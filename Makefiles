@@ -1,3 +1,31 @@
+<<<<<<< HEAD
+NAME	= so_long
+CC		= cc
+CFLAGS	= -Wall -Wextra -Werror -Imlx -g3
+LFLAGS	= -Lmlx -lmlx -lXext -lX11 -lm -lz
+SRCS	= main.c parsing.c ft_split.c errors.c ft_itoa.c\
+ 		initialisations.c flood_fill.c destroy.c move.c\
+		init_images.c show_map.c parsing_2.c
+OBJS	= $(SRCS:.c=.o)
+
+all : $(NAME)
+
+$(NAME) : $(OBJS) $(MLX)
+	$(CC) $(CFLAGS) $(OBJS) -o $(NAME) $(LFLAGS)
+
+$(MLX) :
+	make -C mlx/
+
+clean : 
+	rm -rf $(OBJS)
+
+fclean : clean
+	rm -rf $(NAME)
+
+re : fclean all
+
+.PHONY : fclean re all clean
+=======
 # **************************************************************************** #
 #                                                                              #
 #                                                         :::      ::::::::    #
@@ -6,7 +34,7 @@
 #    By: mkling <mkling@student.42.fr>              +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2025/02/28 15:34:20 by mkling            #+#    #+#              #
-#    Updated: 2025/02/28 15:39:52 by mkling           ###   ########.fr        #
+#    Updated: 2025/02/28 15:36:21 by mkling           ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -113,3 +141,4 @@ fclean:
 re:			fclean all
 
 .PHONY:		all clean fclean re debug test compile
+>>>>>>> AlexMake
