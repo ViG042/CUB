@@ -3,16 +3,16 @@
 /*                                                        :::      ::::::::   */
 /*   errors.c                                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: vgodoy <vgodoy@student.42.fr>              +#+  +:+       +#+        */
+/*   By: mkling <mkling@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/11/27 11:53:25 by vgodoy            #+#    #+#             */
-/*   Updated: 2024/11/29 17:47:58 by vgodoy           ###   ########.fr       */
+/*   Updated: 2025/03/03 11:37:33 by mkling           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "header.h"
 
-void	free_maps(t_var *v)
+void	free_maps(t_cub *v)
 {
 	int	y;
 
@@ -55,7 +55,7 @@ int	basic_errors(int error)
 	return (0);
 }
 
-int	errors(t_var *v, int error)
+int	errors(t_cub *v, int error)
 {
 	write (2, "Error\n", 7);
 	if (error == 1)

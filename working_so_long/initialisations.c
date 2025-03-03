@@ -3,16 +3,16 @@
 /*                                                        :::      ::::::::   */
 /*   initialisations.c                                  :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: vgodoy <vgodoy@student.42.fr>              +#+  +:+       +#+        */
+/*   By: mkling <mkling@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/11/29 09:48:43 by vgodoy            #+#    #+#             */
-/*   Updated: 2024/11/29 17:54:49 by vgodoy           ###   ########.fr       */
+/*   Updated: 2025/03/03 11:37:33 by mkling           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "header.h"
 
-int	map_name(t_var *v)
+int	map_name(t_cub *v)
 {
 	int	i;
 
@@ -29,7 +29,7 @@ int	map_name(t_var *v)
 	return (1);
 }
 
-int	initialisations(t_var *v, char *name)
+int	initialisations(t_cub *v, char *name)
 {
 	v->map_name = name;
 	if (!map_name(v))

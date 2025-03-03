@@ -3,16 +3,16 @@
 /*                                                        :::      ::::::::   */
 /*   main.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: vgodoy <vgodoy@student.42.fr>              +#+  +:+       +#+        */
+/*   By: mkling <mkling@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/11/23 18:16:39 by vgodoy            #+#    #+#             */
-/*   Updated: 2024/11/29 18:18:54 by vgodoy           ###   ########.fr       */
+/*   Updated: 2025/03/03 11:37:33 by mkling           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "header.h"
 
-int	close_window(t_var *v, int success)
+int	close_window(t_cub *v, int success)
 {
 	if (success == 1)
 		write(1, "You win !\n", 11);
@@ -26,7 +26,7 @@ int	close_window(t_var *v, int success)
 	exit(0);
 }
 
-int	key_press(int keycode, t_var *v)
+int	key_press(int keycode, t_cub *v)
 {
 	if (keycode == 65307)
 		close_window(v, 0);
@@ -41,7 +41,7 @@ int	key_press(int keycode, t_var *v)
 	return (0);
 }
 
-int	update(t_var *v)
+int	update(t_cub *v)
 {
 	move(v);
 	if (v->i_boue < 400)
@@ -66,7 +66,7 @@ int	update(t_var *v)
 
 int	main(int argc, char **argv)
 {
-	t_var	v;
+	t_cub	v;
 
 	if (argc != 2)
 		return (basic_errors(1));

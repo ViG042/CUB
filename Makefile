@@ -6,7 +6,7 @@
 #    By: mkling <mkling@student.42.fr>              +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2025/02/28 15:34:20 by mkling            #+#    #+#              #
-#    Updated: 2025/02/28 15:39:52 by mkling           ###   ########.fr        #
+#    Updated: 2025/03/03 16:16:46 by mkling           ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -17,24 +17,44 @@
 NAME		= cub
 
 DIR_SRC		= src
-DIR_EXEC	= execution
+DIR_DISP	= display
+DIR_ERR		= error
+DIR_INPU	= input
 DIR_PARS	= parsing
+DIR_RAY		= raycasting
 
 DIR_OBJ		= obj
-DIR_OBJS	= $(DIR_OBJ) $(DIR_OBJ)/$(DIR_EXEC) $(DIR_OBJ)/$(DIR_PARS) \
+DIR_OBJS	= $(DIR_OBJ) $(DIR_OBJ)/$(DIR_INPU) $(DIR_OBJ)/$(DIR_PARS) \
+				$(DIR_OBJ)/$(DIR_ERR) $(DIR_OBJ)/$(DIR_RAY) $(DIR_OBJ)/$(DIR_DISP)
 
 DIR_INC		= inc
-
-DIR_LIB		= $(DIR_INC)/libft
+DIR_LIB		= $(DIR_INC)/libft \
+				$(DIR_INC)/minilibx-linux
 
 HEADER		= $(DIR_INC)/cub.h
 
-# FUNC_EXEC	=
+FUNC_DISP	=	rasterize.c \
+				render.c \
+				window.c \
+				color.c
 
-# FUNC_PARS	=
+FUNC_ERR	=	clean.c \
+				errors.c
 
-FUNC		=	$(addprefix $(DIR_EXEC)/, $(FUNC_EXEC)) \
+FUNC_INPU	=	input.c
+
+FUNC_PARS	=	flood_fill.c \
+				parsing.c \
+				reading.c \
+				syntax.c
+
+FUNC_RAY 	=
+
+FUNC		=	$(addprefix $(DIR_DISP)/, $(FUNC_DISP)) \
+				$(addprefix $(DIR_ERR)/, $(FUNC_ERR)) \
+				$(addprefix $(DIR_INPU)/, $(FUNC_INPU)) \
 				$(addprefix $(DIR_PARS)/, $(FUNC_PARS)) \
+				$(addprefix $(DIR_RAY)/, $(FUNC_RAY)) \
 
 MAIN		= main.c
 
@@ -43,11 +63,13 @@ SRC			= 	$(addprefix $(DIR_SRC)/, $(FUNC)) \
 
 OBJ			= $(SRC:$(DIR_SRC)/%.c=$(DIR_OBJ)/%.o)
 
-LIB			= -L$(DIR_LIB) -lft -lm
+LIB			= inc/libft/libft.a \
+			inc/minilibx-linux/libmlx.a \
+			-L/usr/lib -lX11 -lXext -lm -lz
 
 DEP			= $(DIR_OBJS) $(HEADER)
 
-INC			= -I$(DIR_INC) -I$(DIR_LIB)
+INC			= -I$(DIR_INC)
 
 CC			= cc
 
@@ -65,8 +87,9 @@ V_FLAG		= valgrind --leak-check=full --show-leak-kinds=all \
 
 all:				$(NAME)
 
-$(NAME):			$(DEP) $(OBJ)
-					$(MAKE) -C $(DIR_LIB)
+$(NAME):			$(OBJ)
+					$(MAKE) -C inc/libft
+					$(MAKE) -C inc/minilibx-linux
 					$(CC) $(CFLAGS) $(INC) -o $(NAME) $(OBJ) $(LIB)
 
 $(DIR_OBJ)/%.o:		$(DIR_SRC)/%.c
@@ -75,23 +98,20 @@ $(DIR_OBJ)/%.o:		$(DIR_SRC)/%.c
 $(DIR_OBJS):
 					mkdir -p $@
 
-$(LIB):
-					make -C $(DIR_LIB)
-
 # **************************************************************************** #
 #																			   #
 #			TEST AND DEBUG													   #
 #																			   #
 # **************************************************************************** #
 
-debug:		$(DEP) $(OBJ)
-			$(MAKE) -C $(DIR_LIB)
-			@echo "Compiling with debug flag"
-			$(CC) $(CFLAGS) -g $(INC) -o $(NAME) $(SRC) $(LIB)
+debug:				$(DEP) $(OBJ)
+					$(MAKE) -C $(DIR_LIB)
+					@echo "Compiling with debug flag"
+					$(CC) $(CFLAGS) -g $(INC) -o $(NAME) $(SRC) $(LIB)
 
-valgrind:	debug
-			@echo "Running with valgrind :"
-			$(V_FLAG) ./$(NAME)
+valgrind:			debug
+					@echo "Running with valgrind :"
+					$(V_FLAG) ./$(NAME)
 
 # **************************************************************************** #
 #																			   #
@@ -100,16 +120,16 @@ valgrind:	debug
 # **************************************************************************** #
 
 clean:
-			rm -rf $(DIR_OBJ)
-			rm -rf $(T_DIR)/$(T_NAME)
-			make -C $(DIR_LIB) clean
+					rm -rf $(DIR_OBJ)
+					rm -rf $(T_DIR)/$(T_NAME)
+					make -C $(DIR_LIB) clean
 
 fclean:
-			rm -rf $(DIR_OBJ)
-			rm -rf $(T_DIR)/$(T_NAME)
-			rm -rf $(NAME)
-			make -C $(DIR_LIB) fclean
+					rm -rf $(DIR_OBJ)
+					rm -rf $(T_DIR)/$(T_NAME)
+					rm -rf $(NAME)
+					make -C $(DIR_LIB) fclean
 
-re:			fclean all
+re:					fclean all
 
-.PHONY:		all clean fclean re debug test compile
+.PHONY:				all clean fclean re debug test compile

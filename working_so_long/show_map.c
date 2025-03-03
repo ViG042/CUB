@@ -3,16 +3,16 @@
 /*                                                        :::      ::::::::   */
 /*   show_map.c                                         :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: vgodoy <vgodoy@student.42.fr>              +#+  +:+       +#+        */
+/*   By: mkling <mkling@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/11/27 11:53:25 by vgodoy            #+#    #+#             */
-/*   Updated: 2024/11/29 18:34:49 by vgodoy           ###   ########.fr       */
+/*   Updated: 2025/03/03 11:37:33 by mkling           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "header.h"
 
-void	put_image_1(t_var *v, int x, int y)
+void	put_image_1(t_cub *v, int x, int y)
 {
 	if (v->map[y][x] == '0')
 		mlx_put_image_to_window(v->mlx, v->win, v->eaux, x * 50, y * 50);
@@ -24,7 +24,7 @@ void	put_image_1(t_var *v, int x, int y)
 		mlx_put_image_to_window(v->mlx, v->win, v->coin, x * 50, y * 50);
 }
 
-void	put_image_2(t_var *v, int x, int y)
+void	put_image_2(t_cub *v, int x, int y)
 {
 	if (v->map[y][x] == 'D')
 		mlx_put_image_to_window(v->mlx, v->win, v->e042, x * 50, y * 50);
@@ -42,7 +42,7 @@ void	put_image_2(t_var *v, int x, int y)
 		mlx_put_image_to_window(v->mlx, v->win, v->e125, x * 50, y * 50);
 }
 
-void	put_image_3(t_var *v, int x, int y)
+void	put_image_3(t_cub *v, int x, int y)
 {
 	if (v->i_boue <= 1 || v->i_boue >= 301)
 		mlx_put_image_to_window(v->mlx, v->win, v->bou1, x * 50, y * 50);
@@ -54,7 +54,7 @@ void	put_image_3(t_var *v, int x, int y)
 		mlx_put_image_to_window(v->mlx, v->win, v->bou4, x * 50, y * 50);
 }
 
-int	show_map(t_var *v)
+int	show_map(t_cub *v)
 {
 	int	x;
 	int	y;

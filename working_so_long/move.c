@@ -3,16 +3,16 @@
 /*                                                        :::      ::::::::   */
 /*   move.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: vgodoy <vgodoy@student.42.fr>              +#+  +:+       +#+        */
+/*   By: mkling <mkling@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/11/26 15:26:22 by vgodoy            #+#    #+#             */
-/*   Updated: 2024/11/29 18:26:30 by vgodoy           ###   ########.fr       */
+/*   Updated: 2025/03/03 11:37:33 by mkling           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "header.h"
 
-void	transform(t_var *v, int x, int y, int param)
+void	transform(t_cub *v, int x, int y, int param)
 {
 	if (param)
 	{
@@ -41,7 +41,7 @@ void	transform(t_var *v, int x, int y, int param)
 	}
 }
 
-void	transform_exit(t_var *v, int param)
+void	transform_exit(t_cub *v, int param)
 {
 	int	x;
 	int	y;
@@ -60,7 +60,7 @@ void	transform_exit(t_var *v, int param)
 	}
 }
 
-void	move_2(t_var *v)
+void	move_2(t_cub *v)
 {
 	if ((v->map[v->new_y][v->new_x] == 'I' || v->map[v->new_y][v->new_x] == 'J')
 			&& v->i_life > 0)
@@ -74,7 +74,7 @@ void	move_2(t_var *v)
 	v->map[v->p_y][v->p_x] = v->new_c;
 }
 
-void	move(t_var *v)
+void	move(t_cub *v)
 {
 	if (v->new_x != v->p_x || v->new_y != v->p_y)
 	{

@@ -3,16 +3,16 @@
 /*                                                        :::      ::::::::   */
 /*   parsing.c                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: vgodoy <vgodoy@student.42.fr>              +#+  +:+       +#+        */
+/*   By: mkling <mkling@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/11/26 15:26:22 by vgodoy            #+#    #+#             */
-/*   Updated: 2024/11/29 18:34:58 by vgodoy           ###   ########.fr       */
+/*   Updated: 2025/03/03 11:37:33 by mkling           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "header.h"
 
-int	configuration(t_var *v)
+int	configuration(t_cub *v)
 {
 	if (!check_walls(v))
 		return (errors(v, 10));
@@ -27,7 +27,7 @@ int	configuration(t_var *v)
 	return (1);
 }
 
-int	get_temp_map(t_var *v)
+int	get_temp_map(t_cub *v)
 {
 	int	map_size;
 
@@ -43,7 +43,7 @@ int	get_temp_map(t_var *v)
 	return (1);
 }
 
-int	parsing(t_var *v)
+int	parsing(t_cub *v)
 {
 	if (!get_temp_map(v))
 		return (0);

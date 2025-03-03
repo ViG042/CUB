@@ -3,16 +3,16 @@
 /*                                                        :::      ::::::::   */
 /*   destroy.c                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: vgodoy <vgodoy@student.42.fr>              +#+  +:+       +#+        */
+/*   By: mkling <mkling@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/11/23 18:16:39 by vgodoy            #+#    #+#             */
-/*   Updated: 2024/11/29 18:22:30 by vgodoy           ###   ########.fr       */
+/*   Updated: 2025/03/03 11:37:33 by mkling           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "header.h"
 
-void	destroy_img_2(t_var *v, int failed_img)
+void	destroy_img_2(t_cub *v, int failed_img)
 {
 	if (failed_img > 8)
 		mlx_destroy_image(v->mlx, v->e050);
@@ -32,7 +32,7 @@ void	destroy_img_2(t_var *v, int failed_img)
 		mlx_destroy_image(v->mlx, v->bou4);
 }
 
-void	destroy_img(t_var *v, int failed_img)
+void	destroy_img(t_cub *v, int failed_img)
 {
 	if (failed_img > 1)
 		mlx_destroy_image(v->mlx, v->wall);

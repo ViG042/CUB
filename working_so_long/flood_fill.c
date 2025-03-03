@@ -3,16 +3,16 @@
 /*                                                        :::      ::::::::   */
 /*   flood_fill.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: vgodoy <vgodoy@student.42.fr>              +#+  +:+       +#+        */
+/*   By: mkling <mkling@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/11/29 10:24:42 by vgodoy            #+#    #+#             */
-/*   Updated: 2024/11/29 17:53:50 by vgodoy           ###   ########.fr       */
+/*   Updated: 2025/03/03 11:37:33 by mkling           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "header.h"
 
-void	flood_fill(t_var *v, int x, int y)
+void	flood_fill(t_cub *v, int x, int y)
 {
 	if (x >= v->x_len || y >= v->y_len || v->map_copy[y][x] == '1')
 		return ;
@@ -35,7 +35,7 @@ void	flood_fill(t_var *v, int x, int y)
 	return ;
 }
 
-int	start_flood_fill(t_var *v)
+int	start_flood_fill(t_cub *v)
 {
 	flood_fill(v, v->p_x, v->p_y);
 	if (v->i_exit_copy < 1)

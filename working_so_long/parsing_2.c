@@ -3,16 +3,16 @@
 /*                                                        :::      ::::::::   */
 /*   parsing_2.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: vgodoy <vgodoy@student.42.fr>              +#+  +:+       +#+        */
+/*   By: mkling <mkling@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/11/26 15:26:22 by vgodoy            #+#    #+#             */
-/*   Updated: 2024/11/29 18:31:49 by vgodoy           ###   ########.fr       */
+/*   Updated: 2025/03/03 11:37:33 by mkling           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "header.h"
 
-int	verify_char(t_var *v, int y, int x)
+int	verify_char(t_cub *v, int y, int x)
 {
 	if (v->map[y][x] == '0' || v->map[y][x] == '1'
 			|| v->map[y][x] == 'C' || v->map[y][x] == 'E'
@@ -41,7 +41,7 @@ int	verify_char(t_var *v, int y, int x)
 	return (1);
 }
 
-int	verify_line(t_var *v, int y)
+int	verify_line(t_cub *v, int y)
 {
 	int	x;
 
@@ -57,7 +57,7 @@ int	verify_line(t_var *v, int y)
 	return (1);
 }
 
-int	get_width_and_height(t_var *v)
+int	get_width_and_height(t_cub *v)
 {
 	int	x;
 	int	y;
@@ -79,7 +79,7 @@ int	get_width_and_height(t_var *v)
 	return (1);
 }
 
-int	check_walls(t_var *v)
+int	check_walls(t_cub *v)
 {
 	int	x;
 	int	y;

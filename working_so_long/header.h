@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   header.h                                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: vgodoy <vgodoy@student.42.fr>              +#+  +:+       +#+        */
+/*   By: mkling <mkling@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/11/23 18:29:15 by vgodoy            #+#    #+#             */
-/*   Updated: 2024/11/29 18:38:45 by vgodoy           ###   ########.fr       */
+/*   Updated: 2025/03/03 11:49:27 by mkling           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,7 +17,7 @@
 # include <stdlib.h>
 # include <unistd.h>
 # include <fcntl.h>
-# include "./mlx/mlx.h"
+# include "../inc/minilibx-linux/mlx.h"
 
 typedef struct s_var
 {
@@ -63,24 +63,24 @@ typedef struct s_var
 	int		p_y;
 	int		x_len;
 	int		y_len;
-}	t_var;
+}	t_cub;
 
 char	*ft_itoa(int n);
 int		basic_errors(int error);
-int		errors(t_var *v, int error);
-int		parsing(t_var *v);
+int		errors(t_cub *v, int error);
+int		parsing(t_cub *v);
 char	**ft_split(char const *s, char c);
-int		init_images(t_var *v);
-int		initialisations(t_var *v, char *name);
-int		start_flood_fill(t_var *v);
-void	free_maps(t_var *v);
-void	destroy_img(t_var *v, int failed_img);
-int		show_map(t_var *v);
-void	destroy_img(t_var *v, int failed_img);
-void	move(t_var *v);
-int		init_images(t_var *v);
-int		close_window(t_var *v, int success);
-int		check_walls(t_var *v);
-int		get_width_and_height(t_var *v);
+int		init_images(t_cub *v);
+int		initialisations(t_cub *v, char *name);
+int		start_flood_fill(t_cub *v);
+void	free_maps(t_cub *v);
+void	destroy_img(t_cub *v, int failed_img);
+int		show_map(t_cub *v);
+void	destroy_img(t_cub *v, int failed_img);
+void	move(t_cub *v);
+int		init_images(t_cub *v);
+int		close_window(t_cub *v, int success);
+int		check_walls(t_cub *v);
+int		get_width_and_height(t_cub *v);
 
 #endif

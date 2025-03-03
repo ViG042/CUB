@@ -3,16 +3,16 @@
 /*                                                        :::      ::::::::   */
 /*   init_images.c                                      :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: vgodoy <vgodoy@student.42.fr>              +#+  +:+       +#+        */
+/*   By: mkling <mkling@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/11/29 09:48:43 by vgodoy            #+#    #+#             */
-/*   Updated: 2024/11/29 18:22:44 by vgodoy           ###   ########.fr       */
+/*   Updated: 2025/03/03 11:37:33 by mkling           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "header.h"
 
-int	init_images3(t_var *v)
+int	init_images3(t_cub *v)
 {
 	v->e042 = mlx_xpm_file_to_image(v->mlx, "xpms/e042.xpm", &v->t, &v->t);
 	if (!v->e042)
@@ -38,7 +38,7 @@ int	init_images3(t_var *v)
 	return (1);
 }
 
-int	init_images2(t_var *v)
+int	init_images2(t_cub *v)
 {
 	v->bou1 = mlx_xpm_file_to_image(v->mlx, "xpms/bou1.xpm", &v->t, &v->t);
 	if (!v->bou1)
@@ -55,7 +55,7 @@ int	init_images2(t_var *v)
 	return (1);
 }
 
-int	init_images1(t_var *v)
+int	init_images1(t_cub *v)
 {
 	v->wall = mlx_xpm_file_to_image(v->mlx, "xpms/wall.xpm", &v->t, &v->t);
 	if (!v->wall)
@@ -72,7 +72,7 @@ int	init_images1(t_var *v)
 	return (1);
 }
 
-int	init_images(t_var *v)
+int	init_images(t_cub *v)
 {
 	if (!init_images1(v) || !init_images3(v) || !init_images2(v))
 	{
