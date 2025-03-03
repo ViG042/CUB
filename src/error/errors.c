@@ -6,7 +6,7 @@
 /*   By: mkling <mkling@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/03/03 12:01:24 by mkling            #+#    #+#             */
-/*   Updated: 2025/03/03 15:22:56 by mkling           ###   ########.fr       */
+/*   Updated: 2025/03/03 18:01:40 by mkling           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,7 +25,7 @@ void	write_syntax_error_message(int err_num)
 	if (err_num == NO_SPRITE)
 		ft_putstr_fd("Couldn't load images\n", 2);
 	if (err_num == NOT_RECT)
-		ft_putstr_fd("Map is not a rectagle\n", 2);
+		ft_putstr_fd("Map is not a rectangle\n", 2);
 	if (err_num == TOO_PLAYER)
 		ft_putstr_fd("Too many players\n", 2);
 	if (err_num == NOT_WALLED)

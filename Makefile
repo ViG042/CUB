@@ -6,7 +6,7 @@
 #    By: mkling <mkling@student.42.fr>              +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2025/02/28 15:34:20 by mkling            #+#    #+#              #
-#    Updated: 2025/03/03 16:16:46 by mkling           ###   ########.fr        #
+#    Updated: 2025/03/03 18:59:33 by mkling           ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -36,17 +36,19 @@ HEADER		= $(DIR_INC)/cub.h
 FUNC_DISP	=	rasterize.c \
 				render.c \
 				window.c \
-				color.c
+				color.c \
+				minimap.c
 
 FUNC_ERR	=	clean.c \
 				errors.c
 
-FUNC_INPU	=	input.c
+FUNC_INPU	=	input.c \
+				player.c
 
 FUNC_PARS	=	flood_fill.c \
 				parsing.c \
-				reading.c \
-				syntax.c
+				syntax.c \
+				map.c
 
 FUNC_RAY 	=
 
@@ -105,7 +107,8 @@ $(DIR_OBJS):
 # **************************************************************************** #
 
 debug:				$(DEP) $(OBJ)
-					$(MAKE) -C $(DIR_LIB)
+					$(MAKE) -C inc/libft
+					$(MAKE) -C inc/minilibx-linux
 					@echo "Compiling with debug flag"
 					$(CC) $(CFLAGS) -g $(INC) -o $(NAME) $(SRC) $(LIB)
 

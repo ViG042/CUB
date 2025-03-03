@@ -6,7 +6,7 @@
 /*   By: mkling <mkling@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/03/03 14:18:46 by mkling            #+#    #+#             */
-/*   Updated: 2025/03/03 15:20:13 by mkling           ###   ########.fr       */
+/*   Updated: 2025/03/03 18:46:22 by mkling           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -30,18 +30,6 @@ float	calculate_progress(t_line *line, t_pt *current)
 			/ line->length;
 	return (progress);
 }
-
-// void	reinitialize_world_grid(t_cub *cub)
-// {
-// 	int	index;
-
-// 	index = 0;
-// 	while (index < cub->map->total)
-// 	{
-// 		cub->map->array[index] = cub->minimap->array[index];
-// 		index++;
-// 	}
-// }
 
 void	print_line(t_line *line, t_cub *cub)
 {

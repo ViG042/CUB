@@ -6,7 +6,7 @@
 /*   By: mkling <mkling@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/03/03 14:07:58 by mkling            #+#    #+#             */
-/*   Updated: 2025/03/03 15:22:32 by mkling           ###   ########.fr       */
+/*   Updated: 2025/03/03 18:57:03 by mkling           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -67,31 +67,27 @@ void	put_point(t_cub *cub, t_pt point)
 	}
 }
 
-// void	paint_minimap(t_cub *cub, t_map *map)
-// {
-// 	int		index;
+void	paint_square(t_cub *cub, t_pt *pt, int color)
+{
+	int	row;
+	int	column;
 
-// 	index = 0;
-// 	while (index < map->total)
-// 	{
-// 		if (index % map->width != 0)
-// 		{
-// 			paint_line(map->array[index - 1], map->array[index], cub);
-// 		}
-// 		if (index >= map->width)
-// 		{
-// 			paint_line(map->array[index - map->width], map->array[index], cub);
-// 		}
-// 		index++;
-// 	}
-// }
+	row = pt->x - UNIT;
+	while (row < pt->x + UNIT && row < WIN_HEIGHT)
+	{
+		column = pt->y - UNIT;
+		while (column < pt->y + UNIT && column < WIN_WIDTH)
+			put_pixel(&cub->img, column++, row, color);
+		row++;
+	}
+}
 
 int	render(t_cub *cub)
 {
 	if (cub->win == NULL)
 		return (1);
 	paint_background(&cub->img, BLACK);
-	// paint_minimap(cub->map, cub);
+	paint_minimap(cub, cub->map);
 	mlx_put_image_to_window(cub->mlx, cub->win, cub->img.mlx_img, 0, 0);
 	return (0);
 }

@@ -6,7 +6,7 @@
 /*   By: mkling <mkling@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/02/28 16:54:35 by vgodoy            #+#    #+#             */
-/*   Updated: 2025/03/03 15:29:32 by mkling           ###   ########.fr       */
+/*   Updated: 2025/03/03 18:59:19 by mkling           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -27,9 +27,11 @@
 
 # define WIN_WIDTH 1200
 # define WIN_HEIGHT 600
+# define UNIT 10
 # define WIN_NAME "CUB3D"
 # define BLACK 0x000000
 # define WHITE 0xffffff
+# define GREY 0x555555
 
 typedef struct s_point
 {
@@ -37,6 +39,7 @@ typedef struct s_point
 	float	y;
 	float	z;
 	int		rgb;
+	char	type;
 }	t_pt;
 
 typedef struct s_line
@@ -65,10 +68,11 @@ typedef struct s_map
 	char	*name;
 	char	**array;
 	char	**split_by_line;
+	t_pt	**pts;
 	int		*pts_array;
 	int		width;
 	int		height;
-	int		total;
+	int		size;
 }	t_map;
 
 typedef struct s_cub
@@ -80,20 +84,7 @@ typedef struct s_cub
 	int		fd;
 	char	temp_map[1024];
 	int		mvt;
-	int		i_player;
-	int		i_exit;
-	int		i_coin;
-	int		i_boue;
-	int		i_life;
-	int		i_exit_copy;
-	int		i_coin_reach;
-	int		i_coin_copy;
-	int		new_x;
-	int		new_y;
-	char	new_c;
-	char	*itoa1;
-	char	*itoa2;
-	char	*itoa3;
+	t_pt	player;
 	int		p_x;
 	int		p_y;
 	int		offset_x;
@@ -114,6 +105,7 @@ int		success_exit(t_cub *cub);
 
 int		handle_input(int keysym, t_cub *cub);
 int		handle_mouse(int button, int x, int y, t_cub *cub);
+void	initialize_player(t_cub *cub);
 
 /* DISPLAY */
 
@@ -122,8 +114,8 @@ int		render(t_cub *cub);
 
 /* PARSING */
 
-void	check_syntax(t_cub *cub, int argc, char **argv);
-void	read_map_into_buffer(t_cub *cub);
+void	check_arg_syntax(t_cub *cub, int argc, char **argv);
+void	check_map_syntax(t_cub *cub);
 void	parse_map(t_cub *cub);
 
 /* PAINTING */
@@ -131,7 +123,8 @@ void	parse_map(t_cub *cub);
 void	put_point(t_cub *cub, t_pt point);
 void	paint_background(t_img *img, int color);
 void	paint_line(t_pt start, t_pt end, t_cub *cub);
-
+void	paint_minimap(t_cub *cub, t_map *map);
+void	paint_square(t_cub *cub, t_pt *pt, int color);
 
 
 

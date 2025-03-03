@@ -6,7 +6,7 @@
 /*   By: mkling <mkling@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/03/03 14:36:06 by mkling            #+#    #+#             */
-/*   Updated: 2025/03/03 15:24:42 by mkling           ###   ########.fr       */
+/*   Updated: 2025/03/03 19:01:19 by mkling           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -48,13 +48,13 @@ int	handle_input(int keysym, t_cub *cub)
 	// if (keysym == XK_Down)
 	// 	zoom(keysym, cub);
 	if (keysym == XK_a)
-		cub->offset_x -= 10;
+		cub->offset_y -= 5;
 	if (keysym == XK_d)
-		cub->offset_x += 10;
+		cub->offset_y += 5;
 	if (keysym == XK_s)
-		cub->offset_y += 10;
+		cub->offset_x += 5;
 	if (keysym == XK_w)
-		cub->offset_y -= 10;
+		cub->offset_x -= 5;
 	render(cub);
 	return (0);
 }
