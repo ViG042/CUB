@@ -6,7 +6,7 @@
 /*   By: mkling <mkling@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/03/03 14:36:06 by mkling            #+#    #+#             */
-/*   Updated: 2025/03/03 19:01:19 by mkling           ###   ########.fr       */
+/*   Updated: 2025/03/04 19:24:03 by mkling           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,24 +14,14 @@
 
 static void	rotations(int keysym, t_cub *cub)
 {
-	if (keysym == XK_r)
-		cub->angle_x_axis += 0.05;
-	if (keysym == XK_f)
-		cub->angle_x_axis -= 0.05;
-	if (keysym == XK_t)
-		cub->angle_z_axis += 0.05;
-	if (keysym == XK_g)
-		cub->angle_z_axis -= 0.05;
 	if (keysym == XK_Left)
-		cub->angle_y_axis += 0.05;
+		cub->angle_x_axis += 5;
 	if (keysym == XK_Right)
-		cub->angle_y_axis -= 0.05;
+		cub->angle_x_axis -= 5;
 }
 
 int	handle_mouse(int button, int x, int y, t_cub *cub)
 {
-	// if (button == WHEEL_UP || button == WHEEL_DOWN)
-	// 	zoom(button, cub);
 	if (button == LEFT_CLICK)
 		mlx_string_put(cub->mlx, cub->win, x, y, WHITE, "Left Click");
 	render(cub);
@@ -43,18 +33,14 @@ int	handle_input(int keysym, t_cub *cub)
 	rotations(keysym, cub);
 	if (keysym == XK_Escape)
 		success_exit(cub);
-	// if (keysym == XK_Up)
-	// 	zoom(keysym, cub);
-	// if (keysym == XK_Down)
-	// 	zoom(keysym, cub);
 	if (keysym == XK_a)
-		cub->offset_y -= 5;
+		cub->player.x -= 5;
 	if (keysym == XK_d)
-		cub->offset_y += 5;
+		cub->player.x += 5;
 	if (keysym == XK_s)
-		cub->offset_x += 5;
+		scale_2dvector(&cub->player, 0.95);
 	if (keysym == XK_w)
-		cub->offset_x -= 5;
+		scale_2dvector(&cub->player, 1.01);
 	render(cub);
 	return (0);
 }

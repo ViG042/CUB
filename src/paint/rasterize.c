@@ -6,7 +6,7 @@
 /*   By: mkling <mkling@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/03/03 14:18:46 by mkling            #+#    #+#             */
-/*   Updated: 2025/03/04 13:34:07 by mkling           ###   ########.fr       */
+/*   Updated: 2025/03/04 16:07:09 by mkling           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -59,8 +59,8 @@ void	paint_line(t_pt start, t_pt end, t_cub *cub)
 {
 	t_line	line;
 
-	line.start = apply_zoom_and_offset(&start, cub);
-	line.end = apply_zoom_and_offset(&end, cub);
+	line.start = start;
+	line.end = end;
 	line.sign.x = 1.0;
 	line.sign.y = 1.0;
 	line.delta.x = ft_abs(line.end.x - line.start.x);

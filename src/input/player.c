@@ -6,7 +6,7 @@
 /*   By: mkling <mkling@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/03/03 18:58:14 by mkling            #+#    #+#             */
-/*   Updated: 2025/03/03 18:58:51 by mkling           ###   ########.fr       */
+/*   Updated: 2025/03/04 19:14:46 by mkling           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,4 +16,6 @@ void	initialize_player(t_cub *cub)
 {
 	cub->offset_x = 1;
 	cub->offset_y = 1;
+	cub->player.x = 200;
+	cub->player.y = 200;
 }

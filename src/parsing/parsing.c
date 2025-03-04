@@ -6,7 +6,7 @@
 /*   By: mkling <mkling@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/03/03 12:33:27 by mkling            #+#    #+#             */
-/*   Updated: 2025/03/04 15:28:59 by mkling           ###   ########.fr       */
+/*   Updated: 2025/03/04 19:14:25 by mkling           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,8 +25,6 @@ static void	read_map_into_buffer(t_cub *cub)
 void	parse_map(t_cub *cub)
 {
 	read_map_into_buffer(cub);
-	cub->map->split_by_line = ft_split(cub->temp_map, '\n');
-	exit_if(!cub->map->split_by_line, MALLOC_FAIL, cub);
 	cub->map->array = ft_split(cub->temp_map, '\n');
 	exit_if(!cub->map->array, MALLOC_FAIL, cub);
 	check_map_syntax(cub);

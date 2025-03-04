@@ -6,7 +6,7 @@
 /*   By: mkling <mkling@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/02/28 16:54:35 by vgodoy            #+#    #+#             */
-/*   Updated: 2025/03/04 15:29:32 by mkling           ###   ########.fr       */
+/*   Updated: 2025/03/04 19:22:59 by mkling           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,6 +25,16 @@
 # include "minilibx-linux/mlx.h"
 # include "libft/inc/libft.h"
 
+
+/* MATH */
+
+// Approximation of pi
+# define PI 3.14159265
+// aproximation of one radian (PI / 180)
+# define RADIAN 0.0174532925
+
+/* GENERAL VALUES */
+
 # define WIN_WIDTH 1200
 # define WIN_HEIGHT 600
 # define UNIT 10
@@ -38,6 +48,7 @@ typedef struct s_point
 	float	x;
 	float	y;
 	float	z;
+	float	direction;
 	int		rgb;
 	char	type;
 }	t_pt;
@@ -90,6 +101,7 @@ typedef struct s_cub
 	int		p_y;
 	int		offset_x;
 	int		offset_y;
+	int		player_direction;
 	float	angle_y_axis;
 	float	angle_x_axis;
 	float	angle_z_axis;
@@ -139,6 +151,8 @@ void	subtract_grid_center(t_pt *point, t_cub *cub);
 void	add_grid_center(t_pt *point, t_cub *cub);
 t_pt	apply_zoom_and_offset(t_pt *point, t_cub *cub);
 void	init_angles_offsets(t_cub *cub);
+void	rotate_point(t_pt *point, t_pt *center, float angle);
+void	scale_2dvector(t_pt *vector, float scalar);
 
 /* SO LONG */
 
