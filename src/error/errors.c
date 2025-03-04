@@ -6,7 +6,7 @@
 /*   By: mkling <mkling@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/03/03 12:01:24 by mkling            #+#    #+#             */
-/*   Updated: 2025/03/03 18:01:40 by mkling           ###   ########.fr       */
+/*   Updated: 2025/03/04 15:47:58 by mkling           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,7 +15,7 @@
 void	write_syntax_error_message(int err_num)
 {
 	if (err_num == WRONG_ARG)
-		ft_putstr_fd("Usage: <./cubd3d>   <map_name.ber>\n", 2);
+		ft_putstr_fd("Usage: <./cubd3d>   <map_name.cub>\n", 2);
 	if (err_num == MAP_NAME)
 		ft_putstr_fd("Wrong map name\n", 2);
 	if (err_num == NO_PLAYER)

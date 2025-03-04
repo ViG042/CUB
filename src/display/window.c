@@ -12,8 +12,6 @@
 
 #include "cub.h"
 
-
-
 void	init_window(t_cub *cub)
 {
 	cub->mlx = mlx_init();

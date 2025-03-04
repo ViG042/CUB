@@ -6,7 +6,7 @@
 /*   By: mkling <mkling@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/02/28 16:54:35 by vgodoy            #+#    #+#             */
-/*   Updated: 2025/03/03 18:59:19 by mkling           ###   ########.fr       */
+/*   Updated: 2025/03/04 15:29:32 by mkling           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -68,8 +68,7 @@ typedef struct s_map
 	char	*name;
 	char	**array;
 	char	**split_by_line;
-	t_pt	**pts;
-	int		*pts_array;
+	t_pt	*pts_array;
 	int		width;
 	int		height;
 	int		size;
@@ -80,6 +79,8 @@ typedef struct s_cub
 	void	*mlx;
 	void	*win;
 	t_map	*map;
+	t_map	*local;
+	t_img	minimap;
 	t_img	img;
 	int		fd;
 	char	temp_map[1024];
@@ -92,6 +93,9 @@ typedef struct s_cub
 	float	angle_y_axis;
 	float	angle_x_axis;
 	float	angle_z_axis;
+	int		count;
+	int		zoom;
+	int		unit;
 }	t_cub;
 
 /* ERROR HANDLING */
@@ -121,15 +125,20 @@ void	parse_map(t_cub *cub);
 /* PAINTING */
 
 void	put_point(t_cub *cub, t_pt point);
+void	paint_pixel(t_img *img, int x, int y, int color);
 void	paint_background(t_img *img, int color);
 void	paint_line(t_pt start, t_pt end, t_cub *cub);
-void	paint_minimap(t_cub *cub, t_map *map);
+void	paint_minimap(t_cub *cub);
 void	paint_square(t_cub *cub, t_pt *pt, int color);
+void	paint_triangle(t_cub *cub, t_pt *pt, int color);
 
+/* TRANSFORM */
 
-
-
-
+void	transform_map_into_pts(t_cub *cub);
+void	subtract_grid_center(t_pt *point, t_cub *cub);
+void	add_grid_center(t_pt *point, t_cub *cub);
+t_pt	apply_zoom_and_offset(t_pt *point, t_cub *cub);
+void	init_angles_offsets(t_cub *cub);
 
 /* SO LONG */
 

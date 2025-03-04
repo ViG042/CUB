@@ -6,7 +6,7 @@
 /*   By: mkling <mkling@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/11/29 10:24:42 by vgodoy            #+#    #+#             */
-/*   Updated: 2025/03/03 18:12:03 by mkling           ###   ########.fr       */
+/*   Updated: 2025/03/04 15:42:03 by mkling           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -31,4 +31,10 @@ void	flood_fill(t_cub *cub, int x, int y)
 	if (x < cub->map->width && y - 1 < cub->map->height
 		&& cub->map->array[y - 1][x] != '1')
 		flood_fill(cub, x, y - 1);
+}
+
+int	start_flood_fill(t_cub *v)
+{
+	flood_fill(v, v->p_x, v->p_y);
+	return (1);
 }

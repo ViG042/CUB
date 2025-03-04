@@ -6,7 +6,7 @@
 /*   By: mkling <mkling@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/03/03 12:33:27 by mkling            #+#    #+#             */
-/*   Updated: 2025/03/03 18:59:07 by mkling           ###   ########.fr       */
+/*   Updated: 2025/03/04 15:28:59 by mkling           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -30,5 +30,7 @@ void	parse_map(t_cub *cub)
 	cub->map->array = ft_split(cub->temp_map, '\n');
 	exit_if(!cub->map->array, MALLOC_FAIL, cub);
 	check_map_syntax(cub);
+	init_angles_offsets(cub);
+	transform_map_into_pts(cub);
 	initialize_player(cub);
 }

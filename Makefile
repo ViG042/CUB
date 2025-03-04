@@ -6,7 +6,7 @@
 #    By: mkling <mkling@student.42.fr>              +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2025/02/28 15:34:20 by mkling            #+#    #+#              #
-#    Updated: 2025/03/03 18:59:33 by mkling           ###   ########.fr        #
+#    Updated: 2025/03/04 13:25:07 by mkling           ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -21,11 +21,15 @@ DIR_DISP	= display
 DIR_ERR		= error
 DIR_INPU	= input
 DIR_PARS	= parsing
+DIR_PAIN	= paint
+DIR_TRANS	= transform
 DIR_RAY		= raycasting
 
 DIR_OBJ		= obj
 DIR_OBJS	= $(DIR_OBJ) $(DIR_OBJ)/$(DIR_INPU) $(DIR_OBJ)/$(DIR_PARS) \
-				$(DIR_OBJ)/$(DIR_ERR) $(DIR_OBJ)/$(DIR_RAY) $(DIR_OBJ)/$(DIR_DISP)
+				$(DIR_OBJ)/$(DIR_ERR) $(DIR_OBJ)/$(DIR_RAY) \
+				$(DIR_OBJ)/$(DIR_DISP) $(DIR_OBJ)/$(DIR_PAIN) \
+				$(DIR_OBJ)/$(DIR_TRANS)
 
 DIR_INC		= inc
 DIR_LIB		= $(DIR_INC)/libft \
@@ -33,11 +37,8 @@ DIR_LIB		= $(DIR_INC)/libft \
 
 HEADER		= $(DIR_INC)/cub.h
 
-FUNC_DISP	=	rasterize.c \
-				render.c \
+FUNC_DISP	=	render.c \
 				window.c \
-				color.c \
-				minimap.c
 
 FUNC_ERR	=	clean.c \
 				errors.c
@@ -50,13 +51,23 @@ FUNC_PARS	=	flood_fill.c \
 				syntax.c \
 				map.c
 
+FUNC_PAIN	=	color.c \
+				minimap.c \
+				rasterize.c \
+				shape.c
+
+FUNC_TRANS	=	center.c \
+				rotate.c \
+				vector.c
+
 FUNC_RAY 	=
 
 FUNC		=	$(addprefix $(DIR_DISP)/, $(FUNC_DISP)) \
 				$(addprefix $(DIR_ERR)/, $(FUNC_ERR)) \
 				$(addprefix $(DIR_INPU)/, $(FUNC_INPU)) \
 				$(addprefix $(DIR_PARS)/, $(FUNC_PARS)) \
-				$(addprefix $(DIR_RAY)/, $(FUNC_RAY)) \
+				$(addprefix $(DIR_TRANS)/, $(FUNC_TRANS)) \
+				$(addprefix $(DIR_PAIN)/, $(FUNC_PAIN))
 
 MAIN		= main.c
 
@@ -89,7 +100,7 @@ V_FLAG		= valgrind --leak-check=full --show-leak-kinds=all \
 
 all:				$(NAME)
 
-$(NAME):			$(OBJ)
+$(NAME):			$(DEP) $(OBJ)
 					$(MAKE) -C inc/libft
 					$(MAKE) -C inc/minilibx-linux
 					$(CC) $(CFLAGS) $(INC) -o $(NAME) $(OBJ) $(LIB)
@@ -124,14 +135,13 @@ valgrind:			debug
 
 clean:
 					rm -rf $(DIR_OBJ)
-					rm -rf $(T_DIR)/$(T_NAME)
-					make -C $(DIR_LIB) clean
+					make -C inc/libft clean
+					make -C inc/minilibx-linux clean
 
 fclean:
 					rm -rf $(DIR_OBJ)
-					rm -rf $(T_DIR)/$(T_NAME)
 					rm -rf $(NAME)
-					make -C $(DIR_LIB) fclean
+					make -C inc/libft fclean
 
 re:					fclean all
 
