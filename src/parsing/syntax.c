@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   syntax.c                                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: mkling <mkling@student.42.fr>              +#+  +:+       +#+        */
+/*   By: vgodoy <vgodoy@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/03/03 14:54:23 by mkling            #+#    #+#             */
-/*   Updated: 2025/03/03 17:55:51 by mkling           ###   ########.fr       */
+/*   Updated: 2025/03/04 17:01:58 by vgodoy           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -28,7 +28,7 @@ static void	check_filename_syntax(char *map_filepath)
 void	check_arg_syntax(t_cub *cub, int argc, char **argv)
 {
 	soft_exit_if(argc != 2, WRONG_ARG);
-	soft_exit_if(argv[1][0] == '\0', WRONG_ARG);
+	soft_exit_if(argv[1][0] == '\0', WRONG_ARG);//comment l'argument pourrait etre un caractere null ?
 	check_filename_syntax(argv[1]);
 	cub->map = ft_calloc(sizeof(t_map), 1);
 	cub->map->name = argv[1];

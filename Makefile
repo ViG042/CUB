@@ -3,10 +3,10 @@
 #                                                         :::      ::::::::    #
 #    Makefile                                           :+:      :+:    :+:    #
 #                                                     +:+ +:+         +:+      #
-#    By: mkling <mkling@student.42.fr>              +#+  +:+       +#+         #
+#    By: vgodoy <vgodoy@student.42.fr>              +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2025/02/28 15:34:20 by mkling            #+#    #+#              #
-#    Updated: 2025/03/04 13:25:07 by mkling           ###   ########.fr        #
+#    Updated: 2025/03/04 18:26:08 by vgodoy           ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -46,8 +46,7 @@ FUNC_ERR	=	clean.c \
 FUNC_INPU	=	input.c \
 				player.c
 
-FUNC_PARS	=	flood_fill.c \
-				parsing.c \
+FUNC_PARS	=	parsing.c \
 				syntax.c \
 				map.c
 

@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   cub.h                                              :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: mkling <mkling@student.42.fr>              +#+  +:+       +#+        */
+/*   By: vgodoy <vgodoy@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/02/28 16:54:35 by vgodoy            #+#    #+#             */
-/*   Updated: 2025/03/04 15:29:32 by mkling           ###   ########.fr       */
+/*   Updated: 2025/03/04 19:31:41 by vgodoy           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,6 +25,7 @@
 # include "minilibx-linux/mlx.h"
 # include "libft/inc/libft.h"
 
+# define MAX_TEMP_MAP 4096
 # define WIN_WIDTH 1200
 # define WIN_HEIGHT 600
 # define UNIT 10
@@ -67,23 +68,43 @@ typedef struct s_map
 {
 	char	*name;
 	char	**array;
-	char	**split_by_line;
-	t_pt	*pts_array;
-	int		width;
-	int		height;
-	int		size;
+	t_pt	*pts_array;//
+	int		width;///////
+	int		height;//////
+	int		size;////////
 }	t_map;
+
+enum e_elem
+{
+	E_NO = 1;
+	E_SO;
+	E_WE;
+	E_EA;
+	E_F;
+	E_C;
+};
+
+typedef struct s_elem
+{
+	char	*NO;
+	char	*SO;
+	char	*WE;
+	char	*EA;
+	char	*F;
+	char	*C;
+}	t_elem;
 
 typedef struct s_cub
 {
 	void	*mlx;
 	void	*win;
+	t_elem	*elem;
 	t_map	*map;
 	t_map	*local;
 	t_img	minimap;
 	t_img	img;
 	int		fd;
-	char	temp_map[1024];
+	char	temp_map[MAX_TEMP_MAP];
 	int		mvt;
 	t_pt	player;
 	int		p_x;
