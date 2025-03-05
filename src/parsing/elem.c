@@ -25,20 +25,18 @@ int	is_elem(char *line)
 void	assign_elem(t_cub *cub, int type, char *temp)
 {
 	printf("temp=[%s], adress=[%p]\n", temp, temp);////////
-	(void)cub;
-	(void)type;
-	//  if (type == E_NO)
-	//  	cub->elem->no = temp;
-	// if (type == E_SO)
-	// 	cub->elem->so = temp;
-	// if (type == E_WE)
-	// 	cub->elem->we = temp;
-	// if (type == E_EA)
-	// 	cub->elem->ea = temp;
-	// if (type == E_F)
-	// 	cub->elem->f = temp;
-	// if (type == E_C)
-	// 	cub->elem->c = temp;
+	 if (type == E_NO)
+	 	cub->elem.no = temp;
+	if (type == E_SO)
+		cub->elem.so = temp;
+	if (type == E_WE)
+		cub->elem.we = temp;
+	if (type == E_EA)
+		cub->elem.ea = temp;
+	if (type == E_F)
+		cub->elem.f = temp;
+	if (type == E_C)
+		cub->elem.c = temp;
 }
 
 void	copy_elem(t_cub *cub, char *line, int type, char *temp, int start)
@@ -69,7 +67,7 @@ void	load_elem(t_cub *cub, char *line, int type)
 		i++;
 	i = i + 2;
 	while (line[i] == ' ')
-	i++;
+		i++;
 	if (line[i] == '.' && line[i + 1] == '/')
 		i = i + 2;
 	// else
@@ -93,11 +91,10 @@ void	load_elem(t_cub *cub, char *line, int type)
 
 int	duplicata_error(t_cub *cub, int type)
 {
-	if ((type == E_NO && cub->elem->no) || (type == E_SO && cub->elem->so)
-		|| (type == E_WE && cub->elem->we) || (type == E_EA && cub->elem->ea)
-		|| (type == E_F && cub->elem->f) || (type == E_C && cub->elem->c))
+	if ((type == E_NO && cub->elem.no) || (type == E_SO && cub->elem.so)
+		|| (type == E_WE && cub->elem.we) || (type == E_EA && cub->elem.ea)
+		|| (type == E_F && cub->elem.f) || (type == E_C && cub->elem.c))
 	{
-		//set duplicata error
 		return (1);
 	}
 	return (0);
@@ -112,8 +109,7 @@ void	extract_elem(t_cub *cub)
 	while (cub->map->array[i])
 	{
 		type = is_elem(cub->map->array[i]);
-		//if (type && duplicata_error(cub, type))
-		//	return ;
+		exit_if(type && duplicata_error(cub, type), DOUBLE_ELEM, cub);
 		printf("type=%d\n", type);///////
 		if (type)
 			load_elem(cub, cub->map->array[i], type);

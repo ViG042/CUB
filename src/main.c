@@ -6,7 +6,7 @@
 /*   By: vgodoy <vgodoy@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/03/03 11:31:02 by mkling            #+#    #+#             */
-/*   Updated: 2025/03/05 16:48:28 by vgodoy           ###   ########.fr       */
+/*   Updated: 2025/03/05 18:44:16 by vgodoy           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,7 +19,6 @@ int	main(int argc, char **argv)
 	ft_bzero(&cub, sizeof(t_cub));
 	check_arg_syntax(&cub, argc, argv);
 	parse_map(&cub);
-	/*
 	init_window(&cub);
 	mlx_loop_hook(cub.mlx, NULL, &cub);
 	render(&cub);
@@ -27,7 +26,6 @@ int	main(int argc, char **argv)
 	mlx_hook(cub.win, DestroyNotify, LeaveWindowMask, &success_exit, &cub);
 	mlx_mouse_hook(cub.win, &handle_mouse, &cub);
 	mlx_loop(cub.mlx);
-	*/
-	//wipe(&cub);
+	wipe(&cub);
 	return (0);
 }

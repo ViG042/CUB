@@ -6,7 +6,7 @@
 /*   By: vgodoy <vgodoy@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/03/03 12:33:27 by mkling            #+#    #+#             */
-/*   Updated: 2025/03/05 16:57:55 by vgodoy           ###   ########.fr       */
+/*   Updated: 2025/03/05 18:30:58 by vgodoy           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -33,12 +33,12 @@ void	process_elem(t_cub *cub)
 
 	printf("extract elem done\n\n");//////
 
-	printf("NO=[%s]", cub->elem->no);
-//	printf("SO=[%s]", cub->elem->so);
-//	printf("WE=[%s]", cub->elem->we);
-//	printf("EA=[%s]", cub->elem->ea);
-//	printf("F=[%s]", cub->elem->f);
-//	printf("C=[%s]", cub->elem->c);
+	printf("NO=[%s]\n", cub->elem.no);
+	printf("SO=[%s]\n", cub->elem.so);
+	printf("WE=[%s]\n", cub->elem.we);
+	printf("EA=[%s]\n", cub->elem.ea);
+	printf("F=[%s]\n", cub->elem.f);
+	printf("C=[%s]\n", cub->elem.c);
 }
 
 void	print_split(char **array)

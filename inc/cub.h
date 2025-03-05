@@ -6,7 +6,7 @@
 /*   By: vgodoy <vgodoy@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/02/28 16:54:35 by vgodoy            #+#    #+#             */
-/*   Updated: 2025/03/05 17:06:28 by vgodoy           ###   ########.fr       */
+/*   Updated: 2025/03/05 18:29:39 by vgodoy           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -98,9 +98,10 @@ typedef struct s_elem
 
 typedef struct s_cub
 {
+	int		err;
 	void	*mlx;
 	void	*win;
-	t_elem	*elem;
+	t_elem	elem;
 	t_map	*map;
 	t_map	*local;
 	t_img	minimap;
@@ -188,6 +189,7 @@ void	init_angles_offsets(t_cub *cub);
 
 enum e_errcode {
 	SUCCESS,
+	DOUBLE_ELEM,
 	WRONG_ARG,
 	OPEN_FAIL,
 	READ_FAIL,

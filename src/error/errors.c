@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   errors.c                                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: mkling <mkling@student.42.fr>              +#+  +:+       +#+        */
+/*   By: vgodoy <vgodoy@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/03/03 12:01:24 by mkling            #+#    #+#             */
-/*   Updated: 2025/03/04 15:47:58 by mkling           ###   ########.fr       */
+/*   Updated: 2025/03/05 18:35:50 by vgodoy           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -50,6 +50,8 @@ void	write_error_message(int err_num)
 		ft_putstr_fd("Unable to allocate a window\n", 2);
 	if (err_num == IMG_ALLOC)
 		ft_putstr_fd("Unable to allocate an image\n", 2);
+	if (err_num == DOUBLE_ELEM)
+		ft_putstr_fd("An element is declared more than one time\n", 2);
 	write_syntax_error_message(err_num);
 }
 
@@ -58,8 +60,9 @@ void	exit_if(int condition, int err_num, t_cub *cub)
 	if (condition == 0)
 		return ;
 	write_error_message(err_num);
-	if (cub)
-		wipe(cub);
+	(void)cub;
+//	if (cub)
+//		wipe(cub);
 	exit(1);
 }
 
