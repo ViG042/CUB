@@ -6,7 +6,7 @@
 /*   By: mkling <mkling@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/02/28 16:54:35 by vgodoy            #+#    #+#             */
-/*   Updated: 2025/03/04 19:22:59 by mkling           ###   ########.fr       */
+/*   Updated: 2025/03/05 16:53:55 by mkling           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -48,7 +48,6 @@ typedef struct s_point
 	float	x;
 	float	y;
 	float	z;
-	float	direction;
 	int		rgb;
 	char	type;
 }	t_pt;
