@@ -6,7 +6,7 @@
 /*   By: vgodoy <vgodoy@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/03/03 14:54:23 by mkling            #+#    #+#             */
-/*   Updated: 2025/03/04 17:01:58 by vgodoy           ###   ########.fr       */
+/*   Updated: 2025/03/05 16:50:25 by vgodoy           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -32,4 +32,5 @@ void	check_arg_syntax(t_cub *cub, int argc, char **argv)
 	check_filename_syntax(argv[1]);
 	cub->map = ft_calloc(sizeof(t_map), 1);
 	cub->map->name = argv[1];
+	printf("cub->map->name=[%s]\n\n", cub->map->name);/////////////////////
 }

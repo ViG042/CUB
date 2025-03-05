@@ -6,7 +6,7 @@
 /*   By: vgodoy <vgodoy@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/02/28 16:54:35 by vgodoy            #+#    #+#             */
-/*   Updated: 2025/03/04 19:31:41 by vgodoy           ###   ########.fr       */
+/*   Updated: 2025/03/05 17:06:28 by vgodoy           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -76,22 +76,24 @@ typedef struct s_map
 
 enum e_elem
 {
-	E_NO = 1;
-	E_SO;
-	E_WE;
-	E_EA;
-	E_F;
-	E_C;
+	E_NO = 1,
+	E_SO,
+	E_WE,
+	E_EA,
+	E_F,
+	E_C,
+	E_D,
 };
 
 typedef struct s_elem
 {
-	char	*NO;
-	char	*SO;
-	char	*WE;
-	char	*EA;
-	char	*F;
-	char	*C;
+	char	*no;
+	char	*so;
+	char	*we;
+	char	*ea;
+	char	*f;
+	char	*c;
+	char	*d;
 }	t_elem;
 
 typedef struct s_cub
@@ -126,6 +128,14 @@ void	soft_exit_if(int condition, int err_num);
 void	wipe(t_cub *cub);
 int		success_exit(t_cub *cub);
 
+/* PARSING */
+
+void	check_arg_syntax(t_cub *cub, int argc, char **argv);
+void	check_map_syntax(t_cub *cub);
+void	parse_map(t_cub *cub);
+
+void	extract_elem(t_cub *cub);
+
 /* INPUTS */
 
 int		handle_input(int keysym, t_cub *cub);
@@ -136,12 +146,6 @@ void	initialize_player(t_cub *cub);
 
 void	init_window(t_cub *cub);
 int		render(t_cub *cub);
-
-/* PARSING */
-
-void	check_arg_syntax(t_cub *cub, int argc, char **argv);
-void	check_map_syntax(t_cub *cub);
-void	parse_map(t_cub *cub);
 
 /* PAINTING */
 

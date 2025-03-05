@@ -6,7 +6,7 @@
 #    By: vgodoy <vgodoy@student.42.fr>              +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2025/02/28 15:34:20 by mkling            #+#    #+#              #
-#    Updated: 2025/03/04 18:26:08 by vgodoy           ###   ########.fr        #
+#    Updated: 2025/03/05 16:30:47 by vgodoy           ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -37,6 +37,11 @@ DIR_LIB		= $(DIR_INC)/libft \
 
 HEADER		= $(DIR_INC)/cub.h
 
+FUNC_PARS	=	parsing.c \
+				syntax.c \
+				map.c \
+				elem.c
+
 FUNC_DISP	=	render.c \
 				window.c \
 
@@ -45,10 +50,6 @@ FUNC_ERR	=	clean.c \
 
 FUNC_INPU	=	input.c \
 				player.c
-
-FUNC_PARS	=	parsing.c \
-				syntax.c \
-				map.c
 
 FUNC_PAIN	=	color.c \
 				minimap.c \
