@@ -6,7 +6,7 @@
 /*   By: vgodoy <vgodoy@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/03/03 12:01:24 by mkling            #+#    #+#             */
-/*   Updated: 2025/03/05 18:35:50 by vgodoy           ###   ########.fr       */
+/*   Updated: 2025/03/06 17:13:15 by vgodoy           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -50,8 +50,12 @@ void	write_error_message(int err_num)
 		ft_putstr_fd("Unable to allocate a window\n", 2);
 	if (err_num == IMG_ALLOC)
 		ft_putstr_fd("Unable to allocate an image\n", 2);
-	if (err_num == DOUBLE_ELEM)
+	if (err_num == EMPTY_ELEM)
+		ft_putstr_fd("An element is declared but empty..\n", 2);
+	if (err_num == DBL_ELEM)
 		ft_putstr_fd("An element is declared more than one time\n", 2);
+	if (err_num == ELEM_MSSG)
+		ft_putstr_fd("An element is missing\n", 2);
 	write_syntax_error_message(err_num);
 }
 
@@ -59,10 +63,11 @@ void	exit_if(int condition, int err_num, t_cub *cub)
 {
 	if (condition == 0)
 		return ;
+	printf("Error\n");
 	write_error_message(err_num);
+	printf("🚨 Exit\n");
 	(void)cub;
-//	if (cub)
-//		wipe(cub);
+	// wipe(cub);
 	exit(1);
 }
 

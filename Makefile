@@ -6,7 +6,7 @@
 #    By: vgodoy <vgodoy@student.42.fr>              +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2025/02/28 15:34:20 by mkling            #+#    #+#              #
-#    Updated: 2025/03/05 16:30:47 by vgodoy           ###   ########.fr        #
+#    Updated: 2025/03/06 17:50:11 by vgodoy           ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -37,10 +37,14 @@ DIR_LIB		= $(DIR_INC)/libft \
 
 HEADER		= $(DIR_INC)/cub.h
 
-FUNC_PARS	=	parsing.c \
-				syntax.c \
+FUNC_PARS	=	do_parsing.c \
+				check_syntax.c \
+				elem_errors.c \
+				elem_extract.c \
+				elem_init.c \
+				elem_color.c \
 				map.c \
-				elem.c
+				prints.c
 
 FUNC_DISP	=	render.c \
 				window.c \
@@ -89,8 +93,7 @@ CC			= cc
 CFLAGS		= -Wall -Wextra -Werror
 
 V_FLAG		= valgrind --leak-check=full --show-leak-kinds=all \
-				--track-origins=yes --track-fds=yes --trace-children=yes \
-				--suppressions=inc/readline.supp
+				--track-origins=yes --track-fds=yes
 
 # **************************************************************************** #
 #																			   #

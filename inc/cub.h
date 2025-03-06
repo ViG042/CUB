@@ -6,7 +6,7 @@
 /*   By: vgodoy <vgodoy@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/02/28 16:54:35 by vgodoy            #+#    #+#             */
-/*   Updated: 2025/03/05 18:29:39 by vgodoy           ###   ########.fr       */
+/*   Updated: 2025/03/06 17:49:53 by vgodoy           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -68,40 +68,38 @@ typedef struct s_map
 {
 	char	*name;
 	char	**array;
-	t_pt	*pts_array;//
-	int		width;///////
-	int		height;//////
-	int		size;////////
+	t_pt	*pts_array;
+	int		width;
+	int		height;
+	int		size;
 }	t_map;
 
 enum e_elem
 {
-	E_NO = 1,
-	E_SO,
-	E_WE,
-	E_EA,
-	E_F,
-	E_C,
-	E_D,
+	NO = 1,
+	SO,
+	WE,
+	EA,
+	F,
+	C,
+	D,
 };
 
 typedef struct s_elem
 {
-	char	*no;
-	char	*so;
-	char	*we;
-	char	*ea;
-	char	*f;
-	char	*c;
-	char	*d;
+	char	*description;
+	void	*texture;
+	int		color;
+	int		back_up;
 }	t_elem;
 
 typedef struct s_cub
 {
-	int		err;
+	int		w;///permet d'utiliser la fonction
+	int		h;//mlx_xpm_file_to_image()
 	void	*mlx;
 	void	*win;
-	t_elem	elem;
+	t_elem	elem[10];
 	t_map	*map;
 	t_map	*local;
 	t_img	minimap;
@@ -131,11 +129,23 @@ int		success_exit(t_cub *cub);
 
 /* PARSING */
 
+void	parse_file(t_cub *cub);
+
 void	check_arg_syntax(t_cub *cub, int argc, char **argv);
 void	check_map_syntax(t_cub *cub);
-void	parse_map(t_cub *cub);
 
-void	extract_elem(t_cub *cub);
+int		dbl_elem(int type, char *description);
+int		elem_missing(t_cub *cub);
+void	elem_extract(t_cub *cub);
+void	elem_init(t_cub *cub);
+int		make_color(char *description);
+
+void	map_check(t_cub *cub);
+
+char	*talking_textures(int type);
+void	print_split(char **array);
+void	print_elem(t_cub *cub);
+void	print_init_elem(t_cub *cub);
 
 /* INPUTS */
 
@@ -189,7 +199,6 @@ void	init_angles_offsets(t_cub *cub);
 
 enum e_errcode {
 	SUCCESS,
-	DOUBLE_ELEM,
 	WRONG_ARG,
 	OPEN_FAIL,
 	READ_FAIL,
@@ -206,6 +215,9 @@ enum e_errcode {
 	WIN_ALLOC,
 	IMG_ALLOC,
 	MALLOC_FAIL,
+	EMPTY_ELEM,
+	DBL_ELEM,
+	ELEM_MSSG,
 };
 
 enum	e_mouse

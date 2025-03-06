@@ -1,18 +1,18 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   parsing.c                                          :+:      :+:    :+:   */
+/*   do_parsing.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: vgodoy <vgodoy@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/03/03 12:33:27 by mkling            #+#    #+#             */
-/*   Updated: 2025/03/05 18:30:58 by vgodoy           ###   ########.fr       */
+/*   Updated: 2025/03/06 17:48:02 by vgodoy           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "cub.h"
 
-static void	read_map_into_buffer(t_cub *cub)
+static void	fetch_info(t_cub *cub)
 {
 	cub->fd = open(cub->map->name, O_RDONLY);
 	soft_exit_if(cub->fd < 0, OPEN_FAIL);
@@ -22,45 +22,19 @@ static void	read_map_into_buffer(t_cub *cub)
 	soft_exit_if((read(cub->fd, cub->temp_map, 1) != 0), TOO_BIG);
 }
 
-void	process_elem(t_cub *cub)
+
+void	parse_file(t_cub *cub)
 {
-	extract_elem(cub);
-
-	//check_elem(cub);//check errors and all there
-	//copy_map(cub);
-	//check_map(cub);
-	//exit_if(!check_walls(cub), NOT_RECT, cub);
-
-	printf("extract elem done\n\n");//////
-
-	printf("NO=[%s]\n", cub->elem.no);
-	printf("SO=[%s]\n", cub->elem.so);
-	printf("WE=[%s]\n", cub->elem.we);
-	printf("EA=[%s]\n", cub->elem.ea);
-	printf("F=[%s]\n", cub->elem.f);
-	printf("C=[%s]\n", cub->elem.c);
-}
-
-void	print_split(char **array)
-{
-	int	i;
-
-	i = 0;
-	while (array[i])
-	{
-		printf("%s/n\n", array[i]);
-		i++;
-	}
-	printf("\n");
-}
-
-void	parse_map(t_cub *cub)
-{
-	read_map_into_buffer(cub);
+	fetch_info(cub);
 	cub->map->array = ft_split(cub->temp_map, '\n');
 	exit_if(!cub->map->array, MALLOC_FAIL, cub);
-	print_split(cub->map->array);////////
-	process_elem(cub);
+	print_split(cub->map->array);
+	elem_extract(cub);
+	print_elem(cub);
+	elem_init(cub);
+	print_init_elem(cub);
+	map_check(cub);
+
 	/*
 	init_angles_offsets(cub);
 	transform_map_into_pts(cub);

@@ -6,11 +6,16 @@
 /*   By: vgodoy <vgodoy@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/03/03 17:35:23 by mkling            #+#    #+#             */
-/*   Updated: 2025/03/05 16:33:07 by vgodoy           ###   ########.fr       */
+/*   Updated: 2025/03/06 17:41:21 by vgodoy           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "cub.h"
+
+void	map_check(t_cub *cub)
+{
+	(void)cub;
+}
 /*
 static void	verify_char(t_cub *cub, int y, int x)
 {

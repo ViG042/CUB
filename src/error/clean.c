@@ -6,7 +6,7 @@
 /*   By: vgodoy <vgodoy@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/03/03 14:07:08 by mkling            #+#    #+#             */
-/*   Updated: 2025/03/05 18:43:59 by vgodoy           ###   ########.fr       */
+/*   Updated: 2025/03/06 15:05:16 by vgodoy           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,20 +14,14 @@
 
 void	free_elem(t_cub *cub)
 {
-	if (cub->elem.no)
-		free(cub->elem.no);
-	if (cub->elem.so)
-		free(cub->elem.so);
-	if (cub->elem.we)
-		free(cub->elem.we);
-	if (cub->elem.ea)
-		free(cub->elem.ea);
-	if (cub->elem.f)
-		free(cub->elem.f);
-	if (cub->elem.c)
-		free(cub->elem.c);
-	if (cub->elem.d)
-		free(cub->elem.d);
+	int	i;
+
+	i = 0;
+	while (i < 10)
+	{
+		if (cub->elem[i].description)
+			free(cub->elem[i].description);
+	}
 }
 
 static void	free_map(t_map *map)

@@ -1,10 +1,14 @@
+F ./path_to_the_floor_texture
+D ./path_to_the_door_texture
 NO ./path_to_the_north_texture
+
+
+EA ./path_to_the_east_texture
+
+C ./path_to_the_ceiling_texture
+
 SO ./path_to_the_south_texture
 WE ./path_to_the_west_texture
-EA ./path_to_the_east_texture
-F ./path_to_the_floor_texture
-C ./path_to_the_ceiling_texture
-D ./path_to_the_door_texture
 
 1111111111111111111111111
 1000000000110000000000001

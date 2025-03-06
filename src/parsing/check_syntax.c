@@ -6,7 +6,7 @@
 /*   By: vgodoy <vgodoy@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/03/03 14:54:23 by mkling            #+#    #+#             */
-/*   Updated: 2025/03/05 18:27:54 by vgodoy           ###   ########.fr       */
+/*   Updated: 2025/03/06 13:49:47 by vgodoy           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -28,9 +28,8 @@ static void	check_filename_syntax(char *map_filepath)
 void	check_arg_syntax(t_cub *cub, int argc, char **argv)
 {
 	soft_exit_if(argc != 2, WRONG_ARG);
-	soft_exit_if(ft_strcmp("", argv[1]) == 0, WRONG_ARG);/////necessaire ?
+	soft_exit_if(ft_strcmp("", argv[1]) == 0, WRONG_ARG);
 	check_filename_syntax(argv[1]);
 	cub->map = ft_calloc(sizeof(t_map), 1);
 	cub->map->name = argv[1];
-	printf("cub->map->name=[%s]\n\n", cub->map->name);/////////////////////
 }
