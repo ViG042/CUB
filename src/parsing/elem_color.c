@@ -4,6 +4,7 @@ int	encode_rgb(int red, int green, int blue)
 {
 	return (red << 16 | green << 8 | blue);
 }
+
 int	color_atoi(char *str)
 {
 	int	i;
@@ -20,7 +21,7 @@ int	color_atoi(char *str)
 		color = color * 10 + str[1] - '0';
 		if (str[2] && str[2] >= '0' && str[2] <= '9')
 			color = color * 10 + str[2] - '0';
-		if (str[3] && str[3] >= '0' && str[3] <= '9')
+		if (str[3])
 			return (-1);
 	}
 	if (color > 255)
@@ -36,17 +37,21 @@ int	make_color(char *description)
 	int	i;
 
 	i = 0;
-	red = color_atoi(description);
+	red = color_atoi(&description[i]);
 	while (description[i] && description[i] >= '0' && description[i] <= '9')
 		i++;
 	if (description[i] == ',')
 		i++;
-	green = color_atoi(description);
+	else
+		return (-1);
+	green = color_atoi(&description[i]);
 	while (description[i] && description[i] >= '0' && description[i] <= '9')
 		i++;
 	if (description[i] == ',')
 		i++;
-	blue = color_atoi(description);
+	else
+		return (-1);
+	blue = color_atoi(&description[i]);
 	if (red == -1 || green == -1 || blue == -1)
 		return (-1);
 	else

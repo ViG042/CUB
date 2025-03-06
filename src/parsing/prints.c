@@ -19,7 +19,7 @@ char	*talking_textures(int type)
 	return ("(what?)");
 }
 
-void	print_split(char **array)
+void	print_info(char **array)
 {
 	int	i;
 
@@ -72,4 +72,29 @@ void	print_init_elem(t_cub *cub)
 		type++;
 	}
 	printf("\n🚀 Elements have been initialized\n\n");
+}
+
+void	printf_map(t_cub *cub)
+{
+	int	line;
+	int	i;
+	char c;
+
+	line = 0;
+	i = 0;
+	while (cub->map->array[line])
+	{
+		while (cub->map->array[line][i])
+		{
+			c = cub->map->array[line][i];
+			if (c == '1')
+				printf("🔒");
+			else if ( c == 'N' || c == 'S' || c == 'E' || c == 'W')
+				printf("🗿");
+			else
+				printf(" ");
+			i++;
+		}
+		line++;
+	}
 }

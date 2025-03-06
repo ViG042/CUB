@@ -6,7 +6,7 @@
 /*   By: vgodoy <vgodoy@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/03/03 12:33:27 by mkling            #+#    #+#             */
-/*   Updated: 2025/03/06 17:48:02 by vgodoy           ###   ########.fr       */
+/*   Updated: 2025/03/06 18:47:39 by vgodoy           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,20 +20,22 @@ static void	fetch_info(t_cub *cub)
 	soft_exit_if(cub->map->size < 0, READ_FAIL);
 	cub->temp_map[cub->map->size] = '\0';
 	soft_exit_if((read(cub->fd, cub->temp_map, 1) != 0), TOO_BIG);
+	cub->map->array = ft_split(cub->temp_map, '\n');
+	exit_if(!cub->map->array, MALLOC_FAIL, cub);
 }
 
 
 void	parse_file(t_cub *cub)
 {
 	fetch_info(cub);
-	cub->map->array = ft_split(cub->temp_map, '\n');
-	exit_if(!cub->map->array, MALLOC_FAIL, cub);
-	print_split(cub->map->array);
+	print_info(cub->map->array);
 	elem_extract(cub);
 	print_elem(cub);
 	elem_init(cub);
 	print_init_elem(cub);
-	map_check(cub);
+	clean_map(cub);
+	printf_map(cub);
+	//map_check(cub);
 
 	/*
 	init_angles_offsets(cub);

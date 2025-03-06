@@ -6,7 +6,7 @@
 /*   By: vgodoy <vgodoy@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/03/03 12:01:24 by mkling            #+#    #+#             */
-/*   Updated: 2025/03/06 17:13:15 by vgodoy           ###   ########.fr       */
+/*   Updated: 2025/03/06 18:44:54 by vgodoy           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -56,6 +56,10 @@ void	write_error_message(int err_num)
 		ft_putstr_fd("An element is declared more than one time\n", 2);
 	if (err_num == ELEM_MSSG)
 		ft_putstr_fd("An element is missing\n", 2);
+	if (err_num == NO_MAP)
+		ft_putstr_fd("Where is the map ??\n", 2);
+	if (err_num == MAP_NOT_VALID)
+		ft_putstr_fd("The map is not valid 👹\n", 2);
 	write_syntax_error_message(err_num);
 }
 

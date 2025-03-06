@@ -6,7 +6,7 @@
 /*   By: vgodoy <vgodoy@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/02/28 16:54:35 by vgodoy            #+#    #+#             */
-/*   Updated: 2025/03/06 17:49:53 by vgodoy           ###   ########.fr       */
+/*   Updated: 2025/03/06 19:51:45 by vgodoy           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -67,7 +67,8 @@ typedef struct s_image
 typedef struct s_map
 {
 	char	*name;
-	char	**array;
+	char	**array;//free lines and array
+	char	**clean_map;//free only clean_map
 	t_pt	*pts_array;
 	int		width;
 	int		height;
@@ -140,12 +141,14 @@ void	elem_extract(t_cub *cub);
 void	elem_init(t_cub *cub);
 int		make_color(char *description);
 
-void	map_check(t_cub *cub);
+void	clean_map(t_cub *cub);
+void	check_map(t_cub *cub);
 
 char	*talking_textures(int type);
-void	print_split(char **array);
+void	print_info(char **array);
 void	print_elem(t_cub *cub);
 void	print_init_elem(t_cub *cub);
+void	printf_map(t_cub *cub);
 
 /* INPUTS */
 
@@ -218,6 +221,8 @@ enum e_errcode {
 	EMPTY_ELEM,
 	DBL_ELEM,
 	ELEM_MSSG,
+	NO_MAP,
+	MAP_NOT_VALID,
 };
 
 enum	e_mouse
