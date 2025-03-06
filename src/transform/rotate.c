@@ -6,7 +6,7 @@
 /*   By: mkling <mkling@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/03/04 12:02:27 by mkling            #+#    #+#             */
-/*   Updated: 2025/03/05 18:37:59 by mkling           ###   ########.fr       */
+/*   Updated: 2025/03/06 22:39:17 by mkling           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -66,22 +66,19 @@ Generate a rotation matrix on the y axis such as
 [ 0 & 1 & 0]
 [ -sin(angle) & 0 & cos(angle)]
 */
-void	generate_shear_matrix(t_cub *cub, float matrix[3][3])
+void	generate_translation_matrix(t_cub *cub, float matrix[3][3])
 {
-	float	sh_x;
-	float	sh_y;
-
-	sh_x = cub->player.x;
-	sh_y = cub->player.y;
 	matrix[0][0] = 1;
-	matrix[0][1] = sh_x;
-	matrix[0][2] = 0;
-	matrix[1][0] = sh_y;
+	matrix[0][1] = 0;
+	matrix[0][2] = cub->player.sh;
+	matrix[1][0] = 0;
 	matrix[1][1] = 1;
-	matrix[1][2] = 0;
+	matrix[1][2] = cub->player.sh;
 	matrix[2][0] = 0;
 	matrix[2][1] = 0;
 	matrix[2][2] = 1;
+
+	fprintf(stderr, "tx is %f\n", cub->player.sh);
 }
 
 void	matrix_multiply(float result[3][3], float mat1[3][3], float mat2[3][3])
@@ -132,87 +129,79 @@ void	rotate(t_cub *cub)
 	int		index;
 	float	matrix_x[3][3];
 	float	matrix_y[3][3];
-	float	matrix_sh[3][3];
+	float	matrix_t[3][3];
 	float	combined_matrix[3][3];
 	float	ult_matrix[3][3];
 
 	index = 0;
+	cub->minimap = cub->map;
 	generate_rotation_matrix_x(cub->angle_x_axis, matrix_x);
 	generate_rotation_matrix_y(cub->angle_y_axis, matrix_y);
-	generate_shear_matrix(cub, matrix_sh);
-	matrix_multiply(combined_matrix, matrix_sh, matrix_y);
+	generate_translation_matrix(cub, matrix_t);
+	matrix_multiply(combined_matrix, matrix_t, matrix_y);
 	matrix_multiply(ult_matrix, combined_matrix, matrix_x);
 	while (index < cub->map->size)
 	{
-		subtract_grid_center(&cub->map->pts_array[index], cub);
-		multiply_point_by_matrix(&cub->map->pts_array[index], ult_matrix);
-		add_grid_center(&cub->map->pts_array[index], cub);
+		subtract_grid_center(&cub->minimap->pts_array[index], cub);
+		multiply_point_by_matrix(&cub->minimap->pts_array[index], ult_matrix);
+		add_grid_center(&cub->minimap->pts_array[index], cub);
 		index++;
 	}
 }
 
 void	rotate_player(t_cub *cub)
 {
-	int		index;
 	float	matrix_x[3][3];
 	float	matrix_y[3][3];
 	float	matrix_sh[3][3];
 	float	combined_matrix[3][3];
 	float	ult_matrix[3][3];
 
-	index = 0;
 	generate_rotation_matrix_x(cub->angle_x_axis, matrix_x);
 	generate_rotation_matrix_y(cub->angle_y_axis, matrix_y);
-	generate_shear_matrix(cub, matrix_sh);
+	generate_translation_matrix(cub, matrix_sh);
 	matrix_multiply(combined_matrix, matrix_sh, matrix_y);
 	matrix_multiply(ult_matrix, combined_matrix, matrix_x);
-	// while (index < cub->map->size)
-	// {
-	// 	multiply_point_by_matrix(&cub->map->pts_array[index], ult_matrix);
-	// 	index++;
-	// }
 	multiply_point_by_matrix(&cub->player, ult_matrix);
 }
 
-
-
-
-void	multiply_2dvector(t_pt *vector, t_pt *other_vector)
+t_pt normalize_vector(t_pt *point)
 {
-	t_pt	result;
+	t_pt	unit_vector;
+	float	magnitude;
 
-	result.x = vector->x * other_vector->x;
-	result.y = vector->y * other_vector->y;
-	vector->x = result.x;
-	vector->y = result.y;
+	unit_vector = *point;
+	magnitude = sqrt(point->x * point->x + point->y * point->y);
+	if (magnitude != 0)
+		unit_vector.x /= magnitude;
+	if (point->y != 0)
+		unit_vector.y /= magnitude;
+	return (unit_vector);
 }
 
-void	scale_2dvector(t_pt *vector, float scalar)
-{
-	t_pt	result;
-
-	result.x += vector->x * scalar;
-	result.y += vector->y * scalar;
-
-	vector->x = result.x;
-	vector->y = result.y;
-	fprintf(stderr, "vetor x is %f, vector y is %f\n", vector->x, vector->y);
-}
-
-void	rotate_point(t_pt *point, t_pt *center, float angle)
+void	rotate_point(t_cub *cub, t_pt *point, t_pt *center, float angle)
 {
 	float	radian;
 	float	cos_angle;
 	float	sin_angle;
-	t_pt	new;
+	float	magnitude;
+	t_pt	centered;
+	t_pt	rotated;
 
+	(void)cub;
+	fprintf(stderr, "point %f %f ", point->x, point->y);
+	centered.x = point->x - center->x;
+	centered.y = point->y - center->y;
+	magnitude = sqrt(point->x * point->x + point->y * point->y);
+	fprintf(stderr, "with magnitude %f ", magnitude);
 	radian = angle * RADIAN;
 	cos_angle = cos(radian);
 	sin_angle = sin(radian);
-	new.x = cos_angle * (point->x - center->x)
-		- sin_angle * (point->y - center->y) + center->x;
-	new.y = sin_angle * (point->x - center->x)
-		+ cos_angle * (point->y - center->y) + center->y;
-	point->x = new.x;
-	point->y = new.y;
+	rotated.x = cos_angle * centered.x - sin_angle * centered.y;
+	rotated.y = sin_angle * centered.x + cos_angle * centered.y;
+	point->x = rotated.x + center->x;
+	point->y = rotated.y + center->y;
+	fprintf(stderr, " is %f %f\n", point->x, point->y);
 }
+
+

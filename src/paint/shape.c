@@ -6,7 +6,7 @@
 /*   By: mkling <mkling@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/03/04 11:24:02 by mkling            #+#    #+#             */
-/*   Updated: 2025/03/04 19:18:31 by mkling           ###   ########.fr       */
+/*   Updated: 2025/03/06 13:27:23 by mkling           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -40,22 +40,22 @@ void	paint_square(t_cub *cub, t_pt *pt, int color)
 	}
 }
 
-void	paint_triangle(t_cub *cub, t_pt *pt, int color)
+void	paint_triangle(t_cub *cub, t_pt *center, int color)
 {
 	t_pt	top;
 	t_pt	left;
 	t_pt	right;
 
-	top.x = pt->x;
-	top.y = pt->y - 5;
-	left.x = pt->x - 5;
-	left.y = pt->y + 5;
-	right.x = pt->x + 5;
-	right.y = pt->y + 5;
+	top.x = center->x;
+	top.y = center->y - 5;
+	left.x = center->x - 5;
+	left.y = center->y + 5;
+	right.x = center->x + 5;
+	right.y = center->y + 5;
 	color = WHITE;
-	rotate_point(&top, pt, cub->angle_x_axis);
-	rotate_point(&left, pt, cub->angle_x_axis);
-	rotate_point(&right, pt, cub->angle_x_axis);
+	rotate_point(cub, &top, center, cub->angle_x_axis);
+	rotate_point(cub, &left, center, cub->angle_x_axis);
+	rotate_point(cub, &right, center, cub->angle_x_axis);
 	put_point(cub, top);
 	put_point(cub, left);
 	put_point(cub, right);

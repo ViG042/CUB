@@ -6,7 +6,7 @@
 #    By: mkling <mkling@student.42.fr>              +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2025/02/28 15:34:20 by mkling            #+#    #+#              #
-#    Updated: 2025/03/04 13:25:07 by mkling           ###   ########.fr        #
+#    Updated: 2025/03/06 22:48:45 by mkling           ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -46,8 +46,7 @@ FUNC_ERR	=	clean.c \
 FUNC_INPU	=	input.c \
 				player.c
 
-FUNC_PARS	=	flood_fill.c \
-				parsing.c \
+FUNC_PARS	=	parsing.c \
 				syntax.c \
 				map.c
 
@@ -58,7 +57,8 @@ FUNC_PAIN	=	color.c \
 
 FUNC_TRANS	=	center.c \
 				rotate.c \
-				vector.c
+				vector.c \
+				project.c
 
 FUNC_RAY 	=
 

@@ -1,42 +1,37 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   minimap.c                                          :+:      :+:    :+:   */
+/*   project.c                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: mkling <mkling@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2025/03/03 18:04:44 by mkling            #+#    #+#             */
-/*   Updated: 2025/03/06 22:50:41 by mkling           ###   ########.fr       */
+/*   Created: 2025/03/06 22:47:28 by mkling            #+#    #+#             */
+/*   Updated: 2025/03/06 22:56:15 by mkling           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "cub.h"
 
-void	paint_miniplayer(t_cub *cub)
-{
-	cub->player.rgb = WHITE;
-	paint_triangle(cub, &cub->player, WHITE);
-}
-
-void	paint_grid(t_cub *cub)
+void	project_minimap(t_cub *cub)
 {
 	int		index;
-	t_pt	pt;
+	int		minimap_offset;
 
 	index = 0;
+	minimap_offset = 20;
+	cub->minimap = cub->map;
 	while (index <= cub->map->size)
 	{
-		pt = cub->minimap->pts_array[index];
-		if (pt.type == '1')
-			paint_square(cub, &pt, GREY);
-		else
-			paint_square(cub, &pt, BLACK);
+		cub->minimap->pts_array[index].x *= 15;
+		cub->minimap->pts_array[index].y *= 15;
+		cub->minimap->pts_array[index].x += minimap_offset;
+		cub->minimap->pts_array[index].y += minimap_offset;
 		index++;
 	}
+	printf("index is %d\n", index);
 }
 
-void	paint_minimap(t_cub *cub)
+void	project(t_cub *cub)
 {
-	paint_grid(cub);
-	paint_miniplayer(cub);
+	project_minimap(cub);
 }

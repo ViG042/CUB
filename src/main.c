@@ -6,11 +6,13 @@
 /*   By: mkling <mkling@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/03/03 11:31:02 by mkling            #+#    #+#             */
-/*   Updated: 2025/03/03 18:00:33 by mkling           ###   ########.fr       */
+/*   Updated: 2025/03/06 22:48:20 by mkling           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "cub.h"
+
+
 
 int	main(int argc, char **argv)
 {
@@ -21,6 +23,7 @@ int	main(int argc, char **argv)
 	parse_map(&cub);
 	init_window(&cub);
 	mlx_loop_hook(cub.mlx, NULL, &cub);
+	project(&cub);
 	render(&cub);
 	mlx_hook(cub.win, KeyPress, KeyPressMask, &handle_input, &cub);
 	mlx_hook(cub.win, DestroyNotify, LeaveWindowMask, &success_exit, &cub);

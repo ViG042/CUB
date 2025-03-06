@@ -6,7 +6,7 @@
 /*   By: mkling <mkling@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/03/03 17:35:23 by mkling            #+#    #+#             */
-/*   Updated: 2025/03/03 18:42:44 by mkling           ###   ########.fr       */
+/*   Updated: 2025/03/06 22:41:18 by mkling           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -82,6 +82,7 @@ static int	check_walls(t_cub *cub)
 		return (0);
 	return (1);
 }
+
 
 void	check_map_syntax(t_cub *cub)
 {

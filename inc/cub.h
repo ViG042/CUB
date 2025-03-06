@@ -6,7 +6,7 @@
 /*   By: mkling <mkling@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/02/28 16:54:35 by vgodoy            #+#    #+#             */
-/*   Updated: 2025/03/05 16:53:55 by mkling           ###   ########.fr       */
+/*   Updated: 2025/03/06 22:48:33 by mkling           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -48,6 +48,7 @@ typedef struct s_point
 	float	x;
 	float	y;
 	float	z;
+	float	sh;
 	int		rgb;
 	char	type;
 }	t_pt;
@@ -77,7 +78,6 @@ typedef struct s_map
 {
 	char	*name;
 	char	**array;
-	char	**split_by_line;
 	t_pt	*pts_array;
 	int		width;
 	int		height;
@@ -89,8 +89,9 @@ typedef struct s_cub
 	void	*mlx;
 	void	*win;
 	t_map	*map;
-	t_map	*local;
-	t_img	minimap;
+	t_map	*minimap;
+	t_map	*world;
+	t_img	hud;
 	t_img	img;
 	int		fd;
 	char	temp_map[1024];
@@ -150,29 +151,10 @@ void	subtract_grid_center(t_pt *point, t_cub *cub);
 void	add_grid_center(t_pt *point, t_cub *cub);
 t_pt	apply_zoom_and_offset(t_pt *point, t_cub *cub);
 void	init_angles_offsets(t_cub *cub);
-void	rotate_point(t_pt *point, t_pt *center, float angle);
-void	scale_2dvector(t_pt *vector, float scalar);
-
-/* SO LONG */
-
-// char	*ft_itoa(int n);
-// int		basic_errors(int error);
-// int		errors(t_cub *cub, int error);
-// int		parsing(t_cub *cub);
-// char	**ft_split(char const *s, char c);
-// int		init_images(t_cub *cub);
-// int		initialisations(t_cub *cub, char *name);
-// int		start_flood_fill(t_cub *cub);
-// void	free_maps(t_cub *cub);
-// void	destroy_img(t_cub *cub, int failed_img);
-// int		show_map(t_cub *cub);
-// void	destroy_img(t_cub *cub, int failed_img);
-// void	move(t_cub *cub);
-// int		init_images(t_cub *cub);
-// int		close_window(t_cub *cub, int success);
-// int		check_walls(t_cub *cub);
-// int		get_width_and_height(t_cub *cub);
-
+void	rotate_point(t_cub *cub, t_pt *point, t_pt *center, float angle);
+void	rotate_player(t_cub *cub);
+void	rotate(t_cub *cub);
+void	project(t_cub *cub);
 
 enum e_errcode {
 	SUCCESS,
