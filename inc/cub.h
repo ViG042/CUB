@@ -6,7 +6,7 @@
 /*   By: vgodoy <vgodoy@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/02/28 16:54:35 by vgodoy            #+#    #+#             */
-/*   Updated: 2025/03/07 11:41:25 by vgodoy           ###   ########.fr       */
+/*   Updated: 2025/03/07 12:30:13 by vgodoy           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -222,7 +222,10 @@ enum e_errcode {
 	MAP_NOT_VALID,//
 	NO_PLAYER,
 	TOO_MANY_PLAYER,
-	BAD_WALLING,
+	BAD_WALLING,//
+	ASTRONAUT,
+	DEADLY_PATH,
+	DEADLY_DOOR,
 };
 
 enum	e_mouse

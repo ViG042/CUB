@@ -91,6 +91,8 @@ void	print_map(char **map)
 				printf("🎬");
 			else if (c == '0')
 				printf("🎹");
+			else if (c == 'D')
+				printf("📂");
 			else if (c == 'N' || c == 'S' || c == 'E' || c == 'W')
 				printf("👹");
 			else

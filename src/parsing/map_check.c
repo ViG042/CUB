@@ -29,19 +29,73 @@ int	how_many_players(t_cub *cub)
 	return (player);
 }
 
-int	check_walls(t_cub *cub)
+/*' ' <- space is NOT a valid char here*/
+int	is_not_valid_char(char c)
 {
-	(void)cub;
+	if (c == '0' || c == '1' || c == 'D'
+		|| c == 'N' || c == 'S' || c == 'E' || c == 'W' )
+	{
+		return (0);
+	}
 	return (1);
+}
+
+int	invalid_flooring(t_cub *cub, char **map, int line, int i)
+{
+	char	c;
+
+	c = map[line][i];
+	if (i == 0 || !map[line][i + 1] || line == 0 || !map[line]
+		|| is_not_valid_char(map[line -1][i])
+		|| is_not_valid_char(map[line + 1][i])
+		|| is_not_valid_char(map[line][i - 1])
+		|| is_not_valid_char(map[line][i + 1]))
+	{
+		printf("map[line=%d][collumn=%d] = %c\n", line, i, map[line][i]);
+		exit_if((c == 'N' || c == 'S'), ASTRONAUT, cub);
+		exit_if((c == 'W' || c == 'E'), ASTRONAUT, cub);
+		exit_if(c == '0', DEADLY_PATH, cub);
+		exit_if(c == 'D', DEADLY_DOOR, cub);
+		return (1);
+	}
+	return (0);
+}
+
+int	bad_walls(t_cub *cub)
+{
+	int		line;
+	int		i;
+	char	**map;
+
+	map = cub->map->clean_map;
+	line = 0;
+	while (map[line])
+	{
+		i = 0;
+		while (map[line][i])
+		{
+			if (map[line][i] == '0' || map[line][i] == 'D'
+				|| map[line][i] == 'N' || map[line][i] == 'S'
+				|| map[line][i] == 'W' || map[line][i] == 'E')
+			{
+				if (invalid_flooring(cub, map, line, i))
+					return (1);
+			}
+			i++;
+		}
+		line++;
+	}
+	return (0);
 }
 
 void	map_check(t_cub *cub)
 {
-	exit_if(!check_walls(cub), BAD_WALLING, cub);
-	printf("The map is correctly walled\n");
 	exit_if(how_many_players(cub) < 1, NO_PLAYER, cub);
 	exit_if(how_many_players(cub) > 1, TOO_MANY_PLAYER, cub);
-	printf("The player is ready to go\n");
+	printf("One player is what we need\n");
+	bad_walls(cub);
+	printf("The map is correctly walled\n");
+	printf("\n🚀 Map check-list complete\n\n");
 }
 
 // static int	check_walls(t_cub *cub)

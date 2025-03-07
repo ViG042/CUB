@@ -6,16 +6,17 @@
 /*   By: vgodoy <vgodoy@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/03/03 17:35:23 by mkling            #+#    #+#             */
-/*   Updated: 2025/03/07 11:29:42 by vgodoy           ###   ########.fr       */
+/*   Updated: 2025/03/07 12:13:29 by vgodoy           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "cub.h"
 
+/*' ' <- space is a valid char here*/
 int	is_valid_char(char c)
 {
-	if (c == '0' || c == '1' || c == 'N'
-		|| c == 'S' || c == 'E' || c == 'W' || c == ' ')
+	if (c == '0' || c == '1' || c == 'D' || c == ' '
+		|| c == 'N' || c == 'S' || c == 'E' || c == 'W' )
 	{
 		return (1);
 	}

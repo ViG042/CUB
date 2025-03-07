@@ -6,7 +6,7 @@
 /*   By: vgodoy <vgodoy@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/03/03 12:01:24 by mkling            #+#    #+#             */
-/*   Updated: 2025/03/07 11:42:07 by vgodoy           ###   ########.fr       */
+/*   Updated: 2025/03/07 12:37:54 by vgodoy           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -29,11 +29,17 @@ void	write_syntax_error_message(int err_num)
 	if (err_num == NOT_RECT)
 		ft_putstr_fd("Map is not a rectangle\n", 2);
 	if (err_num == BAD_WALLING)
-		ft_putstr_fd("This map is incorectly walled\n", 2);
+		ft_putstr_fd("This map is incorrectly walled\n", 2);
 	if (err_num == UNKNOWN)
 		ft_putstr_fd("Unknown character in the map\n", 2);
 	if (err_num == EMPTY_LINE)
 		ft_putstr_fd("There are empty lines in the map\n", 2);
+	if (err_num == ASTRONAUT)
+		ft_putstr_fd("Bad walling\nPlayer ready to talk with god..\n", 2);
+	if (err_num == DEADLY_PATH)
+		ft_putstr_fd("Bad walling\nDon't go gentle into that goodnight\n", 2);
+	if (err_num == DEADLY_DOOR)
+		ft_putstr_fd("Bad walling\nThis door looks like a trap\n", 2);
 }
 
 void	write_error_message(int err_num)
@@ -67,7 +73,7 @@ void	exit_if(int condition, int err_num, t_cub *cub)
 {
 	if (condition == 0)
 		return ;
-	printf("Error\n");
+	printf("\nError\n");
 	write_error_message(err_num);
 	printf("🚨 Exit\n");
 	(void)cub;
