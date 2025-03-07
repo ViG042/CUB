@@ -6,7 +6,7 @@
 /*   By: vgodoy <vgodoy@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/02/28 16:54:35 by vgodoy            #+#    #+#             */
-/*   Updated: 2025/03/06 19:51:45 by vgodoy           ###   ########.fr       */
+/*   Updated: 2025/03/07 11:41:25 by vgodoy           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -141,14 +141,14 @@ void	elem_extract(t_cub *cub);
 void	elem_init(t_cub *cub);
 int		make_color(char *description);
 
-void	clean_map(t_cub *cub);
-void	check_map(t_cub *cub);
+void	map_check(t_cub *cub);
+void	map_clean(t_cub *cub);
 
 char	*talking_textures(int type);
 void	print_info(char **array);
 void	print_elem(t_cub *cub);
 void	print_init_elem(t_cub *cub);
-void	printf_map(t_cub *cub);
+void	print_map(char **map);
 
 /* INPUTS */
 
@@ -205,12 +205,9 @@ enum e_errcode {
 	WRONG_ARG,
 	OPEN_FAIL,
 	READ_FAIL,
-	TOO_BIG,
-	NO_PLAYER,
-	TOO_PLAYER,
-	NO_SPRITE,
+	TOO_BIG,//
+	NO_SPRITE,//
 	NOT_RECT,
-	NOT_WALLED,
 	UNKNOWN,
 	EMPTY_LINE,
 	MAP_NAME,
@@ -222,7 +219,10 @@ enum e_errcode {
 	DBL_ELEM,
 	ELEM_MSSG,
 	NO_MAP,
-	MAP_NOT_VALID,
+	MAP_NOT_VALID,//
+	NO_PLAYER,
+	TOO_MANY_PLAYER,
+	BAD_WALLING,
 };
 
 enum	e_mouse

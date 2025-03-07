@@ -6,7 +6,7 @@
 #    By: vgodoy <vgodoy@student.42.fr>              +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2025/02/28 15:34:20 by mkling            #+#    #+#              #
-#    Updated: 2025/03/06 17:50:11 by vgodoy           ###   ########.fr        #
+#    Updated: 2025/03/07 10:54:18 by vgodoy           ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -43,7 +43,8 @@ FUNC_PARS	=	do_parsing.c \
 				elem_extract.c \
 				elem_init.c \
 				elem_color.c \
-				map.c \
+				map_check.c \
+				map_clean.c \
 				prints.c
 
 FUNC_DISP	=	render.c \

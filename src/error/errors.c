@@ -6,7 +6,7 @@
 /*   By: vgodoy <vgodoy@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/03/03 12:01:24 by mkling            #+#    #+#             */
-/*   Updated: 2025/03/06 18:44:54 by vgodoy           ###   ########.fr       */
+/*   Updated: 2025/03/07 11:42:07 by vgodoy           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,22 +14,22 @@
 
 void	write_syntax_error_message(int err_num)
 {
+	if (err_num == NO_PLAYER)
+		ft_putstr_fd("We need one player\n", 2);
+	if (err_num == TOO_MANY_PLAYER)
+		ft_putstr_fd("Too many players\n", 2);
 	if (err_num == WRONG_ARG)
 		ft_putstr_fd("Usage: <./cubd3d>   <map_name.cub>\n", 2);
 	if (err_num == MAP_NAME)
 		ft_putstr_fd("Wrong map name\n", 2);
-	if (err_num == NO_PLAYER)
-		ft_putstr_fd("We need one player\n", 2);
 	if (err_num == TOO_BIG)
 		ft_putstr_fd("This map is too big to be displayed on this screen\n", 2);
 	if (err_num == NO_SPRITE)
 		ft_putstr_fd("Couldn't load images\n", 2);
 	if (err_num == NOT_RECT)
 		ft_putstr_fd("Map is not a rectangle\n", 2);
-	if (err_num == TOO_PLAYER)
-		ft_putstr_fd("Too many players\n", 2);
-	if (err_num == NOT_WALLED)
-		ft_putstr_fd("We need walls all around the map\n", 2);
+	if (err_num == BAD_WALLING)
+		ft_putstr_fd("This map is incorectly walled\n", 2);
 	if (err_num == UNKNOWN)
 		ft_putstr_fd("Unknown character in the map\n", 2);
 	if (err_num == EMPTY_LINE)

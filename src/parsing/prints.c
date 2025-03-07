@@ -74,27 +74,31 @@ void	print_init_elem(t_cub *cub)
 	printf("\n🚀 Elements have been initialized\n\n");
 }
 
-void	printf_map(t_cub *cub)
+void	print_map(char **map)
 {
-	int	line;
-	int	i;
-	char c;
+	int		line;
+	int		i;
+	char	c;
 
 	line = 0;
-	i = 0;
-	while (cub->map->array[line])
+	while (map[line])
 	{
-		while (cub->map->array[line][i])
+		i = 0;
+		while (map[line][i])
 		{
-			c = cub->map->array[line][i];
+			c = map[line][i];
 			if (c == '1')
-				printf("🔒");
-			else if ( c == 'N' || c == 'S' || c == 'E' || c == 'W')
-				printf("🗿");
+				printf("🎬");
+			else if (c == '0')
+				printf("🎹");
+			else if (c == 'N' || c == 'S' || c == 'E' || c == 'W')
+				printf("👹");
 			else
-				printf(" ");
+				printf("  ");
 			i++;
 		}
+		printf("\n");
 		line++;
 	}
+	printf("\n🚀 Map has been cleaned !\n\n");
 }

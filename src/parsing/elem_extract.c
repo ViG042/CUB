@@ -64,13 +64,14 @@ void	load_elem(t_cub *cub, char *line, int type)
 	copy_elem(cub, line, type, temp, i);
 }
 
+//eventuellement a regarder les elems lorsque l'on commence a voir la map
 void	elem_extract(t_cub *cub)
 {
 	int	i;
 	int	type;
 
 	i = 0;
-	while (cub->map->array[i]) //eventuellement a regarder les elems lorsque l'on commence a voir la map
+	while (cub->map->array[i])
 	{
 		type = 0;
 		type = is_elem(cub->map->array[i]);
