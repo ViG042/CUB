@@ -6,7 +6,7 @@
 /*   By: alex <alex@student.42.fr>                  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/03/03 14:36:06 by mkling            #+#    #+#             */
-/*   Updated: 2025/03/08 23:22:36 by alex             ###   ########.fr       */
+/*   Updated: 2025/03/08 23:59:01 by alex             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -33,7 +33,6 @@ int	handle_input(int keysym, int mode, t_cub *cub)
 	state = 0;
 	if (mode == KeyPressMask)
 		state = 1;
-	fprintf(stderr, "I love you %i %i\n", keysym, mode);
 	if (keysym == XK_a)
 		cub->keys.a = state;
 	if (keysym == XK_d)

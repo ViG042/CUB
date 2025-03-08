@@ -6,7 +6,7 @@
 /*   By: alex <alex@student.42.fr>                  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/03/03 11:31:02 by mkling            #+#    #+#             */
-/*   Updated: 2025/03/08 23:52:11 by alex             ###   ########.fr       */
+/*   Updated: 2025/03/09 00:06:30 by alex             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -61,7 +61,7 @@ long long	get_microseconds(void)
 	struct timeval	time;
 
 	if (gettimeofday(&time, NULL) == -1)
-		return (0);
+		return (-1);
 	return (time.tv_usec + time.tv_sec * 1000000);
 }
 
@@ -74,17 +74,24 @@ void	update_delta_time(t_cub *cub)
 	delta_ms = current_frame - cub->last_frame;
 	cub->last_frame = current_frame;
 	cub->delta_time = ((double)delta_ms) / 1000000.00;
-	// printf("delta is %f\n", cub->delta_time);
 }
 
 int	game_loop(void	*voidedcub)
 {
 	t_cub		*cub;
+	static float counter = 0;
 
 	cub = (t_cub *)voidedcub;
 	if (cub->win == NULL)
 		return (1);
 	update_delta_time(cub);
+	counter += cub->delta_time;
+	if (counter > 1)
+	{
+		cub->fps = 1.0 / cub->delta_time;
+		printf("FPS: %f\n", cub->fps);
+		counter = 0;
+	}
 	rotations(cub);
 	movements(cub);
 	render(cub);

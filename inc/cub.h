@@ -6,7 +6,7 @@
 /*   By: alex <alex@student.42.fr>                  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/02/28 16:54:35 by vgodoy            #+#    #+#             */
-/*   Updated: 2025/03/08 23:51:58 by alex             ###   ########.fr       */
+/*   Updated: 2025/03/09 00:02:14 by alex             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -124,6 +124,7 @@ typedef struct s_cub
 	int			unit;
 	long long	last_frame;
 	float		delta_time;
+	float		fps;
 }	t_cub;
 
 /* ERROR HANDLING */
