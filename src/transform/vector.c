@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   vector.c                                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: mkling <mkling@student.42.fr>              +#+  +:+       +#+        */
+/*   By: alex <alex@student.42.fr>                  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/03/04 13:22:24 by mkling            #+#    #+#             */
-/*   Updated: 2025/03/06 22:39:17 by mkling           ###   ########.fr       */
+/*   Updated: 2025/03/08 22:10:54 by alex             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,9 +18,7 @@ void	init_angles_offsets(t_cub *cub)
 	cub->offset_y = WIN_HEIGHT / 2;
 	cub->unit = 10.0;
 	cub->zoom = 10.0;
-	cub->angle_x_axis = 0;
-	cub->angle_y_axis = 0;
-	cub->angle_z_axis = 0;
+	cub->player_angle = 0;
 }
 
 t_pt	turn_into_pts(char map_point, t_cub *cub)

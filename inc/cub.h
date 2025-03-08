@@ -6,7 +6,7 @@
 /*   By: alex <alex@student.42.fr>                  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/02/28 16:54:35 by vgodoy            #+#    #+#             */
-/*   Updated: 2025/03/08 15:22:05 by alex             ###   ########.fr       */
+/*   Updated: 2025/03/08 23:12:56 by alex             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -37,6 +37,7 @@
 
 # define WIN_WIDTH 1200
 # define WIN_HEIGHT 600
+# define CURSOR_SIZE 10
 # define UNIT 10
 # define WIN_NAME "CUB3D"
 # define BLACK 0x000000
@@ -51,7 +52,6 @@ typedef struct s_point
 	float	x;
 	float	y;
 	float	z;
-	float	sh;
 	int		rgb;
 	char	type;
 }	t_pt;
@@ -87,6 +87,16 @@ typedef struct s_map
 	int		size;
 }	t_map;
 
+typedef struct s_key_states
+{
+	bool	left;
+	bool	right;
+	bool	w;
+	bool	a;
+	bool	s;
+	bool	d;
+}	t_key;
+
 typedef struct s_cub
 {
 	void	*mlx;
@@ -96,6 +106,7 @@ typedef struct s_cub
 	t_map	*world;
 	t_img	hud;
 	t_img	img;
+	t_key	keys;
 	int		fd;
 	char	temp_map[1024];
 	int		mvt;
@@ -104,10 +115,8 @@ typedef struct s_cub
 	int		p_y;
 	int		offset_x;
 	int		offset_y;
-	int		player_direction;
 	float	angle_y_axis;
-	float	angle_x_axis;
-	float	angle_z_axis;
+	float	player_angle;
 	int		count;
 	int		zoom;
 	int		unit;
@@ -122,14 +131,16 @@ int		success_exit(t_cub *cub);
 
 /* INPUTS */
 
-int		handle_input(int keysym, t_cub *cub);
-int		handle_mouse(int button, int x, int y, t_cub *cub);
+int		handle_input(int keysym, int mode, t_cub *cub);
 void	initialize_player(t_cub *cub);
+int		handle_input_release(int keysym, t_cub *cub);
+int		handle_input_press(int keysym, t_cub *cub);
 
 /* DISPLAY */
 
 void	init_window(t_cub *cub);
 int		render(t_cub *cub);
+int		game_loop(void *voided_cub);
 int		is_in_window(int x, int y);
 
 /* PARSING */
@@ -189,11 +200,11 @@ enum	e_mouse
 	WHEEL_DOWN = 5,
 };
 
-enum	e_coord
+enum	e_vertices
 {
 	TOP = 0,
-	MID = 1,
-	BOTTOM = 2,
+	LEFT = 1,
+	RIGHT = 2,
 };
 
 #endif
