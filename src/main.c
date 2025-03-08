@@ -6,7 +6,7 @@
 /*   By: alex <alex@student.42.fr>                  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/03/03 11:31:02 by mkling            #+#    #+#             */
-/*   Updated: 2025/03/08 23:25:54 by alex             ###   ########.fr       */
+/*   Updated: 2025/03/08 23:52:11 by alex             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,9 +15,9 @@
 static void	rotations(t_cub *cub)
 {
 	if (cub->keys.left)
-		cub->player_angle -= 5;
+		cub->player_angle -= SPEED * cub->delta_time;
 	if (cub->keys.right)
-		cub->player_angle += 5;
+		cub->player_angle += SPEED * cub->delta_time;
 }
 
 static void	rotate_direction(t_pt *point, float angle)
@@ -43,31 +43,51 @@ static void	movements(t_cub *cub)
 	direction.x = 0;
 	direction.y = 0;
 	if (cub->keys.a)
-		direction.x -= 5;
+		direction.x -= SPEED * cub->delta_time;
 	if (cub->keys.d)
-		direction.x += 5;
+		direction.x += SPEED * cub->delta_time;
 	if (cub->keys.s)
-		direction.y += 5;
+		direction.y += SPEED * cub->delta_time;
 	if (cub->keys.w)
-		direction.y -= 5;
+		direction.y -= SPEED * cub->delta_time;
 
 	rotate_direction(&direction, cub->player_angle);
 	cub->player.x += direction.x;
 	cub->player.y += direction.y;
 }
 
+long long	get_microseconds(void)
+{
+	struct timeval	time;
+
+	if (gettimeofday(&time, NULL) == -1)
+		return (0);
+	return (time.tv_usec + time.tv_sec * 1000000);
+}
+
+void	update_delta_time(t_cub *cub)
+{
+	long long	current_frame;
+	long long	delta_ms;
+
+	current_frame = get_microseconds();
+	delta_ms = current_frame - cub->last_frame;
+	cub->last_frame = current_frame;
+	cub->delta_time = ((double)delta_ms) / 1000000.00;
+	// printf("delta is %f\n", cub->delta_time);
+}
+
 int	game_loop(void	*voidedcub)
 {
 	t_cub		*cub;
-	static int	i = 0;
 
 	cub = (t_cub *)voidedcub;
 	if (cub->win == NULL)
 		return (1);
+	update_delta_time(cub);
 	rotations(cub);
 	movements(cub);
 	render(cub);
-	printf("frame %d\n", i++);
 	return (0);
 }
 

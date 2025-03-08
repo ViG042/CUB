@@ -6,7 +6,7 @@
 /*   By: alex <alex@student.42.fr>                  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/02/28 16:54:35 by vgodoy            #+#    #+#             */
-/*   Updated: 2025/03/08 23:12:56 by alex             ###   ########.fr       */
+/*   Updated: 2025/03/08 23:51:58 by alex             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,6 +22,7 @@
 # include <fcntl.h>
 # include <X11/keysym.h>
 # include <X11/X.h>
+# include <sys/time.h>
 # include "minilibx-linux/mlx.h"
 # include "libft/inc/libft.h"
 
@@ -46,6 +47,7 @@
 # define MINIMAP_OFFSET 20
 # define MINIMAP_SCALE 20
 # define MINIMAP_TILE_SIZE 18
+# define SPEED 250
 
 typedef struct s_point
 {
@@ -117,9 +119,11 @@ typedef struct s_cub
 	int		offset_y;
 	float	angle_y_axis;
 	float	player_angle;
-	int		count;
-	int		zoom;
-	int		unit;
+	int			count;
+	int			zoom;
+	int			unit;
+	long long	last_frame;
+	float		delta_time;
 }	t_cub;
 
 /* ERROR HANDLING */
