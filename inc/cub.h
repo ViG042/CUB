@@ -6,7 +6,7 @@
 /*   By: alex <alex@student.42.fr>                  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/02/28 16:54:35 by vgodoy            #+#    #+#             */
-/*   Updated: 2025/03/09 00:02:14 by alex             ###   ########.fr       */
+/*   Updated: 2025/03/09 00:21:29 by alex             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -147,6 +147,7 @@ void	init_window(t_cub *cub);
 int		render(t_cub *cub);
 int		game_loop(void *voided_cub);
 int		is_in_window(int x, int y);
+void	update_delta_time(t_cub *cub);
 
 /* PARSING */
 
