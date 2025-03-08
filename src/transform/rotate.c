@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   rotate.c                                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: mkling <mkling@student.42.fr>              +#+  +:+       +#+        */
+/*   By: alex <alex@student.42.fr>                  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/03/04 12:02:27 by mkling            #+#    #+#             */
-/*   Updated: 2025/03/06 22:39:17 by mkling           ###   ########.fr       */
+/*   Updated: 2025/03/08 14:35:14 by alex             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -184,7 +184,6 @@ void	rotate_point(t_cub *cub, t_pt *point, t_pt *center, float angle)
 	float	radian;
 	float	cos_angle;
 	float	sin_angle;
-	float	magnitude;
 	t_pt	centered;
 	t_pt	rotated;
 
@@ -192,8 +191,6 @@ void	rotate_point(t_cub *cub, t_pt *point, t_pt *center, float angle)
 	fprintf(stderr, "point %f %f ", point->x, point->y);
 	centered.x = point->x - center->x;
 	centered.y = point->y - center->y;
-	magnitude = sqrt(point->x * point->x + point->y * point->y);
-	fprintf(stderr, "with magnitude %f ", magnitude);
 	radian = angle * RADIAN;
 	cos_angle = cos(radian);
 	sin_angle = sin(radian);

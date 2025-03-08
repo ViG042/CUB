@@ -1,27 +1,66 @@
 {
-	// Use IntelliSense to learn about possible attributes.
-	// Hover to view descriptions of existing attributes.
-	// For more information, visit: https://go.microsoft.com/fwlink/?linkid=830387
-	"version": "0.2.0",
-	"configurations": [
-	{
-		"name": "(gdb) Launch",
-		"type": "cppdbg",
-		"request": "launch",
-		"program": "${workspaceFolder}/cub",
-		"args": ["maps/4_4.cub"],
-		"stopAtEntry": true,
-		"cwd": "${workspaceFolder}",
-		"environment": [],
-		"externalConsole": false,
-		"MIMode": "gdb",
-		"setupCommands": [
-			{
-				"description": "Enable pretty-printing for gdb",
-				"text": "-enable-pretty-printing",
-				"ignoreFailures": true
-			},
-		]
-	}
-	]
+  "version": "0.2.0",
+  "configurations": [
+    {
+      "name": "44",
+      "type": "cppdbg",
+      "request": "launch",
+      "program": "${workspaceFolder}/cub",
+      "args": [
+        "maps/4_4.cub"
+      ],
+      "stopAtEntry": true,
+      "cwd": "${workspaceFolder}",
+      "environment": [],
+      "externalConsole": false,
+      "MIMode": "gdb",
+      "setupCommands": [
+        {
+          "description": "Enable pretty-printing for gdb",
+          "text": "-enable-pretty-printing",
+          "ignoreFailures": true
+        }
+      ]
+    },
+    {
+      "name": "88",
+      "type": "cppdbg",
+      "request": "launch",
+      "program": "${workspaceFolder}/cub",
+      "args": [
+        "maps/8_8.cub"
+      ],
+      "stopAtEntry": true,
+      "cwd": "${workspaceFolder}",
+      "environment": [],
+      "externalConsole": false,
+      "MIMode": "gdb",
+      "setupCommands": [
+        {
+          "description": "Enable pretty-printing for gdb",
+          "text": "-enable-pretty-printing",
+          "ignoreFailures": true
+        }
+      ]
+    },
+    {
+      "name": "C/C++ Runner: Debug Session",
+      "type": "cppdbg",
+      "request": "launch",
+      "args": [],
+      "stopAtEntry": false,
+      "externalConsole": false,
+      "cwd": "/home/alex/workplace/github.com/AlexEsqu/CUB/src/paint",
+      "program": "/home/alex/workplace/github.com/AlexEsqu/CUB/src/paint/build/Debug/outDebug",
+      "MIMode": "gdb",
+      "miDebuggerPath": "gdb",
+      "setupCommands": [
+        {
+          "description": "Enable pretty-printing for gdb",
+          "text": "-enable-pretty-printing",
+          "ignoreFailures": true
+        }
+      ]
+    }
+  ]
 }

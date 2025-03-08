@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   cub.h                                              :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: mkling <mkling@student.42.fr>              +#+  +:+       +#+        */
+/*   By: alex <alex@student.42.fr>                  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/02/28 16:54:35 by vgodoy            #+#    #+#             */
-/*   Updated: 2025/03/06 22:48:33 by mkling           ###   ########.fr       */
+/*   Updated: 2025/03/08 15:22:05 by alex             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -42,6 +42,9 @@
 # define BLACK 0x000000
 # define WHITE 0xffffff
 # define GREY 0x555555
+# define MINIMAP_OFFSET 20
+# define MINIMAP_SCALE 20
+# define MINIMAP_TILE_SIZE 18
 
 typedef struct s_point
 {
@@ -127,6 +130,7 @@ void	initialize_player(t_cub *cub);
 
 void	init_window(t_cub *cub);
 int		render(t_cub *cub);
+int		is_in_window(int x, int y);
 
 /* PARSING */
 
@@ -141,8 +145,8 @@ void	paint_pixel(t_img *img, int x, int y, int color);
 void	paint_background(t_img *img, int color);
 void	paint_line(t_pt start, t_pt end, t_cub *cub);
 void	paint_minimap(t_cub *cub);
-void	paint_square(t_cub *cub, t_pt *pt, int color);
-void	paint_triangle(t_cub *cub, t_pt *pt, int color);
+void	paint_square(t_img *img, t_pt *pt, int size, int color);
+void	paint_triangle(t_img *img, t_pt coordinates[3], int color);
 
 /* TRANSFORM */
 
@@ -155,6 +159,7 @@ void	rotate_point(t_cub *cub, t_pt *point, t_pt *center, float angle);
 void	rotate_player(t_cub *cub);
 void	rotate(t_cub *cub);
 void	project(t_cub *cub);
+void	orient_and_paint_player(t_cub *cub, t_pt *center, int size, int color);
 
 enum e_errcode {
 	SUCCESS,
@@ -182,6 +187,13 @@ enum	e_mouse
 	LEFT_CLICK = 3,
 	WHEEL_UP = 4,
 	WHEEL_DOWN = 5,
+};
+
+enum	e_coord
+{
+	TOP = 0,
+	MID = 1,
+	BOTTOM = 2,
 };
 
 #endif

@@ -3,20 +3,31 @@
 /*                                                        :::      ::::::::   */
 /*   render.c                                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: mkling <mkling@student.42.fr>              +#+  +:+       +#+        */
+/*   By: alex <alex@student.42.fr>                  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/03/03 14:07:58 by mkling            #+#    #+#             */
-/*   Updated: 2025/03/04 12:13:46 by mkling           ###   ########.fr       */
+/*   Updated: 2025/03/08 15:15:41 by alex             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "cub.h"
+
+int	is_in_window(int x, int y)
+{
+	if (x < 0 || y < 0)
+		return (0);
+	if (x > WIN_WIDTH || y > WIN_HEIGHT)
+		return (0);
+	return (1);
+}
 
 void	paint_pixel(t_img *img, int x, int y, int color)
 {
 	char	*pixel;
 	int		i;
 
+	if (!is_in_window(x, y))
+		return ;
 	i = img->bit_per_pixel - 8;
 	pixel = img->address + (y * img->line_len + x
 			* (img->bit_per_pixel / 8));
