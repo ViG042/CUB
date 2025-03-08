@@ -6,13 +6,11 @@
 /*   By: alex <alex@student.42.fr>                  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/03/03 14:36:06 by mkling            #+#    #+#             */
-/*   Updated: 2025/03/08 23:59:01 by alex             ###   ########.fr       */
+/*   Updated: 2025/03/09 00:29:10 by alex             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "cub.h"
-
-
 
 int	handle_input_press(int keysym, t_cub *cub)
 {

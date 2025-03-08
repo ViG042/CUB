@@ -6,7 +6,7 @@
 /*   By: alex <alex@student.42.fr>                  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/03/03 18:04:44 by mkling            #+#    #+#             */
-/*   Updated: 2025/03/08 22:01:40 by alex             ###   ########.fr       */
+/*   Updated: 2025/03/09 00:40:54 by alex             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,13 +24,13 @@ void	paint_grid(t_cub *cub)
 	t_pt	pt;
 
 	index = 0;
-	while (index <= cub->map->size)
+	while (index < cub->map->size)
 	{
 		pt = cub->minimap->pts_array[index];
 		if (pt.type == '1')
 			paint_square(&cub->img, &pt, MINIMAP_TILE_SIZE, GREY);
 		else
-			paint_square(&cub->img, &pt, MINIMAP_TILE_SIZE, BLACK);
+			paint_square(&cub->img, &pt, MINIMAP_TILE_SIZE, DARK_GREY);
 		index++;
 	}
 }

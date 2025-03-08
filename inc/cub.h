@@ -6,7 +6,7 @@
 /*   By: alex <alex@student.42.fr>                  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/02/28 16:54:35 by vgodoy            #+#    #+#             */
-/*   Updated: 2025/03/09 00:21:29 by alex             ###   ########.fr       */
+/*   Updated: 2025/03/09 00:40:52 by alex             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -44,6 +44,7 @@
 # define BLACK 0x000000
 # define WHITE 0xffffff
 # define GREY 0x555555
+# define DARK_GREY 0x222222
 # define MINIMAP_OFFSET 20
 # define MINIMAP_SCALE 20
 # define MINIMAP_TILE_SIZE 18
