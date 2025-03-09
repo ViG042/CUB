@@ -3,22 +3,32 @@
 /*                                                        :::      ::::::::   */
 /*   minimap.c                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: alex <alex@student.42.fr>                  +#+  +:+       +#+        */
+/*   By: mkling <mkling@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/03/03 18:04:44 by mkling            #+#    #+#             */
-/*   Updated: 2025/03/09 00:40:54 by alex             ###   ########.fr       */
+/*   Updated: 2025/03/09 15:32:21 by mkling           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "cub.h"
 
-void	paint_miniplayer(t_cub *cub)
+void	orient_player_cursor(t_cub *cub)
 {
-	cub->player.rgb = WHITE;
-	orient_and_paint_player(cub, &cub->player, CURSOR_SIZE, WHITE);
+	cub->player.cursor[TOP].x = cub->player.player_pt.x;
+	cub->player.cursor[TOP].y = cub->player.player_pt.y - CURSOR_SIZE * 0.1;
+	cub->player.cursor[LEFT].x = cub->player.player_pt.x - CURSOR_SIZE;
+	cub->player.cursor[LEFT].y = cub->player.player_pt.y + CURSOR_SIZE;
+	cub->player.cursor[RIGHT].x = cub->player.player_pt.x + CURSOR_SIZE;
+	cub->player.cursor[RIGHT].y = cub->player.player_pt.y + CURSOR_SIZE;
+	rotate_point(cub, &cub->player.cursor[TOP], &cub->player.player_pt,
+		cub->player.player_angle);
+	rotate_point(cub, &cub->player.cursor[LEFT], &cub->player.player_pt,
+		cub->player.player_angle);
+	rotate_point(cub, &cub->player.cursor[RIGHT], &cub->player.player_pt,
+		cub->player.player_angle);
 }
 
-void	paint_grid(t_cub *cub)
+static void	paint_map(t_cub *cub)
 {
 	int		index;
 	t_pt	pt;
@@ -29,7 +39,7 @@ void	paint_grid(t_cub *cub)
 		pt = cub->minimap->pts_array[index];
 		if (pt.type == '1')
 			paint_square(&cub->img, &pt, MINIMAP_TILE_SIZE, GREY);
-		else
+		if (pt.type == '0' || pt.type == 'N')
 			paint_square(&cub->img, &pt, MINIMAP_TILE_SIZE, DARK_GREY);
 		index++;
 	}
@@ -37,6 +47,7 @@ void	paint_grid(t_cub *cub)
 
 void	paint_minimap(t_cub *cub)
 {
-	paint_grid(cub);
-	paint_miniplayer(cub);
+	paint_map(cub);
+	orient_player_cursor(cub);
+	paint_triangle(&cub->img, cub->player.cursor, WHITE);
 }

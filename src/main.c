@@ -6,13 +6,11 @@
 /*   By: mkling <mkling@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/03/03 11:31:02 by mkling            #+#    #+#             */
-/*   Updated: 2025/03/09 12:25:59 by mkling           ###   ########.fr       */
+/*   Updated: 2025/03/09 13:36:41 by mkling           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "cub.h"
-
-
 
 int	main(int argc, char **argv)
 {
@@ -22,7 +20,7 @@ int	main(int argc, char **argv)
 	check_arg_syntax(&cub, argc, argv);
 	cub.mlx = mlx_init();
 	if (!cub.mlx)
-		return (0);///////ameliorer erreur
+		return (0);
 	cub.w = 50;
 	cub.h = 50;
 	parse_file(&cub);

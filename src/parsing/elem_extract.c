@@ -24,7 +24,6 @@ int	is_elem(char *line)
 	return (0);
 }
 
-
 void	copy_elem(t_cub *cub, char *line, int type, char *temp, int start)
 {
 	int	i;

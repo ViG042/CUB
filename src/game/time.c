@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   time.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: alex <alex@student.42.fr>                  +#+  +:+       +#+        */
+/*   By: mkling <mkling@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/03/09 00:20:56 by alex              #+#    #+#             */
-/*   Updated: 2025/03/09 00:21:14 by alex             ###   ########.fr       */
+/*   Updated: 2025/03/09 14:53:22 by mkling           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -27,7 +27,7 @@ void	update_delta_time(t_cub *cub)
 	long long	delta_ms;
 
 	current_frame = get_microseconds();
-	delta_ms = current_frame - cub->last_frame;
-	cub->last_frame = current_frame;
-	cub->delta_time = ((double)delta_ms) / 1000000.00;
+	delta_ms = current_frame - cub->display.last_frame;
+	cub->display.last_frame = current_frame;
+	cub->display.delta_time = ((double)delta_ms) / 1000000.00;
 }

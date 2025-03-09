@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   shape.c                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: alex <alex@student.42.fr>                  +#+  +:+       +#+        */
+/*   By: mkling <mkling@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/03/04 11:24:02 by mkling            #+#    #+#             */
-/*   Updated: 2025/03/08 22:10:54 by alex             ###   ########.fr       */
+/*   Updated: 2025/03/09 13:10:24 by mkling           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -76,26 +76,4 @@ void	paint_triangle(t_img *img, t_pt v[3], int color)
 		}
 		current.y++;
 	}
-}
-
-void	orient_and_paint_player(t_cub *cub, t_pt *center, int size, int color)
-{
-	t_pt	vertex[3];
-
-	vertex[TOP].x = center->x;
-	vertex[TOP].y = center->y - size * 0.1;
-	vertex[LEFT].x = center->x - size;
-	vertex[LEFT].y = center->y + size;
-	vertex[RIGHT].x = center->x + size;
-	vertex[RIGHT].y = center->y + size;
-	rotate_point(cub, &vertex[TOP], center, cub->player_angle);
-	rotate_point(cub, &vertex[LEFT], center, cub->player_angle);
-	rotate_point(cub, &vertex[RIGHT], center, cub->player_angle);
-	// put_point(cub, vertex[TOP]);
-	// put_point(cub, vertex[LEFT]);
-	// put_point(cub, vertex[RIGHT]);
-	// paint_line(vertex[TOP], vertex[LEFT], cub);
-	// paint_line(vertex[TOP], vertex[RIGHT], cub);
-	// paint_line(vertex[LEFT], vertex[RIGHT], cub);
-	paint_triangle(&cub->img, vertex, color);
 }

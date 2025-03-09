@@ -6,7 +6,7 @@
 /*   By: mkling <mkling@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/02/28 16:54:35 by vgodoy            #+#    #+#             */
-/*   Updated: 2025/03/09 12:25:31 by mkling           ###   ########.fr       */
+/*   Updated: 2025/03/09 15:15:47 by mkling           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -37,7 +37,7 @@
 /* GENERAL VALUES */
 
 # define MAX_TEMP_MAP 4096
-# define WIN_WIDTH 1200
+# define WIN_WIDTH 1900
 # define WIN_HEIGHT 600
 # define CURSOR_SIZE 10
 # define UNIT 10
@@ -46,9 +46,9 @@
 # define WHITE 0xffffff
 # define GREY 0x555555
 # define DARK_GREY 0x222222
-# define MINIMAP_OFFSET 20
-# define MINIMAP_SCALE 20
-# define MINIMAP_TILE_SIZE 18
+# define MINIMAP_OFFSET 50
+# define MINIMAP_SCALE 30
+# define MINIMAP_TILE_SIZE 26
 # define SPEED 250
 
 typedef struct s_point
@@ -92,17 +92,6 @@ typedef struct s_map
 	int		size;
 }	t_map;
 
-enum e_elem
-{
-	NO = 1,
-	SO,
-	WE,
-	EA,
-	F,
-	C,
-	D,
-};
-
 typedef struct s_elem
 {
 	char	*description;
@@ -110,6 +99,13 @@ typedef struct s_elem
 	int		color;
 	int		back_up;
 }	t_elem;
+
+typedef struct s_display
+{
+	long long	last_frame;
+	float		delta_time;
+	float		fps;
+}	t_disp;
 
 typedef struct s_key_states
 {
@@ -121,10 +117,18 @@ typedef struct s_key_states
 	bool	d;
 }	t_key;
 
+typedef	struct s_player
+{
+	float	player_angle;
+	t_pt	player_pt;
+	t_pt	cursor[3];
+}	t_play;
+
+
 typedef struct s_cub
 {
-	int		w;///permet d'utiliser la fonction
-	int		h;//mlx_xpm_file_to_image()
+	int		w;		///permet d'utiliser la fonction
+	int		h;		//mlx_xpm_file_to_image()
 	void	*mlx;
 	void	*win;
 	t_elem	elem[10];
@@ -134,22 +138,16 @@ typedef struct s_cub
 	t_img	hud;
 	t_img	img;
 	t_key	keys;
+	t_play	player;
+	t_disp	display;
 	int		fd;
 	char	temp_map[MAX_TEMP_MAP];
 	int		mvt;
-	t_pt	player;
-	int		p_x;
-	int		p_y;
 	int		offset_x;
 	int		offset_y;
-	float	angle_y_axis;
-	float	player_angle;
-	int			count;
-	int			zoom;
-	int			unit;
-	long long	last_frame;
-	float		delta_time;
-	float		fps;
+	int		count;
+	int		zoom;
+	int		unit;
 }	t_cub;
 
 /* ERROR HANDLING */
@@ -260,6 +258,17 @@ enum	e_vertices
 	TOP = 0,
 	LEFT = 1,
 	RIGHT = 2,
+};
+
+enum e_elem
+{
+	NO = 1,
+	SO,
+	WE,
+	EA,
+	F,
+	C,
+	D,
 };
 
 #endif

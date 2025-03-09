@@ -9,7 +9,7 @@
 			"type": "cppdbg",
 			"request": "launch",
 			"program": "${workspaceFolder}/cub",
-			"args": ["/home/vgodoy/cub3/maps/elem_test.cub"],
+			"args": ["${workspaceFolder}/maps/elem_test.cub"],
 			"stopAtEntry": true,
 			"cwd": "${fileDirname}",
 			"environment": [],

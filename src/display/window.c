@@ -23,5 +23,5 @@ void	init_window(t_cub *cub)
 	cub->img.address = mlx_get_data_addr(cub->img.mlx_img,
 			&cub->img.bit_per_pixel, &cub->img.line_len,
 			&cub->img.endian);
-	cub->fps = 0.00;
+	cub->display.fps = 0.00;
 }

@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   loop.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: alex <alex@student.42.fr>                  +#+  +:+       +#+        */
+/*   By: mkling <mkling@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/03/09 00:20:40 by alex              #+#    #+#             */
-/*   Updated: 2025/03/09 00:24:38 by alex             ###   ########.fr       */
+/*   Updated: 2025/03/09 15:29:07 by mkling           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,9 +15,10 @@
 static void	rotations(t_cub *cub)
 {
 	if (cub->keys.left)
-		cub->player_angle -= SPEED * cub->delta_time;
+		cub->player.player_angle -= SPEED * cub->display.delta_time;
 	if (cub->keys.right)
-		cub->player_angle += SPEED * cub->delta_time;
+		cub->player.player_angle += SPEED * cub->display.delta_time;
+	fprintf(stderr, "player angle is at %f\n", cub->player.player_angle);
 }
 
 static void	rotate_direction(t_pt *point, float angle)
@@ -43,17 +44,17 @@ static void	movements(t_cub *cub)
 	direction.x = 0;
 	direction.y = 0;
 	if (cub->keys.a)
-		direction.x -= SPEED * cub->delta_time;
+		direction.x -= SPEED * cub->display.delta_time;
 	if (cub->keys.d)
-		direction.x += SPEED * cub->delta_time;
+		direction.x += SPEED * cub->display.delta_time;
 	if (cub->keys.s)
-		direction.y += SPEED * cub->delta_time;
+		direction.y += SPEED * cub->display.delta_time;
 	if (cub->keys.w)
-		direction.y -= SPEED * cub->delta_time;
+		direction.y -= SPEED * cub->display.delta_time;
 
-	rotate_direction(&direction, cub->player_angle);
-	cub->player.x += direction.x;
-	cub->player.y += direction.y;
+	rotate_direction(&direction, cub->player.player_angle);
+	cub->player.player_pt.x += direction.x;
+	cub->player.player_pt.y += direction.y;
 }
 
 int	game_loop(void	*voidedcub)
@@ -65,11 +66,11 @@ int	game_loop(void	*voidedcub)
 	if (cub->win == NULL)
 		return (1);
 	update_delta_time(cub);
-	counter += cub->delta_time;
+	counter += cub->display.delta_time;
 	if (counter > 1)
 	{
-		cub->fps = 1.0 / cub->delta_time;
-		printf("FPS: %f\n", cub->fps);
+		cub->display.fps = 1.0 / cub->display.delta_time;
+		printf("FPS: %f\n", cub->display.fps);
 		counter = 0;
 	}
 	rotations(cub);
