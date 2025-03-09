@@ -6,7 +6,7 @@
 /*   By: mkling <mkling@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/03/09 00:20:40 by alex              #+#    #+#             */
-/*   Updated: 2025/03/09 15:46:35 by mkling           ###   ########.fr       */
+/*   Updated: 2025/03/09 16:06:16 by mkling           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,7 +22,6 @@ static void	rotations(t_cub *cub)
 		cub->player.player_angle = cub->player.player_angle / 360.00;
 	if (cub->player.player_angle < -360)
 		cub->player.player_angle = cub->player.player_angle / 360.00;
-	fprintf(stderr, "player angle is at %f\n", cub->player.player_angle);
 }
 
 static void	rotate_direction(t_pt *point, float angle)
@@ -74,7 +73,6 @@ int	game_loop(void	*voidedcub)
 	if (counter > 1)
 	{
 		cub->display.fps = 1.0 / cub->display.delta_time;
-		printf("FPS: %f\n", cub->display.fps);
 		counter = 0;
 	}
 	rotations(cub);

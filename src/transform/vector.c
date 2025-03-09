@@ -6,7 +6,7 @@
 /*   By: mkling <mkling@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/03/04 13:22:24 by mkling            #+#    #+#             */
-/*   Updated: 2025/03/09 15:16:20 by mkling           ###   ########.fr       */
+/*   Updated: 2025/03/09 16:42:53 by mkling           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,21 +25,17 @@ t_pt	turn_into_pts(char map_point, t_cub *cub)
 {
 	t_pt	point;
 
-	fprintf(stderr, "turning");
 	point.y = cub->count / cub->map->width;
 	point.x = fmod(cub->count, cub->map->width);
+	point.type = map_point;
 	if (map_point == '1' || map_point == ' ')
-	{
 		point.z = 10;
-		point.type = map_point;
-	}
-	else
-	{
+	else if (map_point == '0')
 		point.z = 0;
-		point.type = map_point;
-	}
+	else
+		initialize_player(cub, &point);
 	point.rgb = WHITE;
-	fprintf(stderr, "%c is pt x %f y %f z %f\n", map_point, point.x, point.y, point.z);
+	// fprintf(stderr, "%c is pt x %f y %f z %f\n", map_point, point.x, point.y, point.z);
 	return (point);
 }
 
@@ -57,7 +53,7 @@ void	transform_map_into_pts(t_cub *cub)
 	while (cub->map->clean_map[row])
 	{
 		column = 0;
-		fprintf(stderr, "row is %d column is %d, row string is %s\n", row, column, cub->map->clean_map[row]);
+		// fprintf(stderr, "row is %d column is %d, row string is %s\n", row, column, cub->map->clean_map[row]);
 		while (cub->map->clean_map[row][column] != '\0')
 		{
 			cub->map->pts_array[cub->count]

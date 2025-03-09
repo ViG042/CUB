@@ -6,7 +6,7 @@
 /*   By: mkling <mkling@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/02/28 16:54:35 by vgodoy            #+#    #+#             */
-/*   Updated: 2025/03/09 15:41:07 by mkling           ###   ########.fr       */
+/*   Updated: 2025/03/09 16:42:52 by mkling           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -161,19 +161,15 @@ int		success_exit(t_cub *cub);
 /* PARSING */
 
 void	parse_file(t_cub *cub);
-
 void	check_arg_syntax(t_cub *cub, int argc, char **argv);
-void	check_map_syntax(t_cub *cub);
-
+// void	check_map_syntax(t_cub *cub);
 int		dbl_elem(int type, char *description);
 int		elem_missing(t_cub *cub);
 void	elem_extract(t_cub *cub);
 void	elem_init(t_cub *cub);
 int		make_color(char *description);
-
 void	map_check(t_cub *cub);
 void	map_clean(t_cub *cub);
-
 char	*talking_textures(int type);
 void	print_info(char **array);
 void	print_elem(t_cub *cub);
@@ -183,7 +179,7 @@ void	print_map(char **map);
 /* INPUTS */
 
 int		handle_input(int keysym, int mode, t_cub *cub);
-void	initialize_player(t_cub *cub);
+void	initialize_player(t_cub *cub, t_pt *start);
 int		handle_input_release(int keysym, t_cub *cub);
 int		handle_input_press(int keysym, t_cub *cub);
 
@@ -213,10 +209,8 @@ void	add_grid_center(t_pt *point, t_cub *cub);
 t_pt	apply_zoom_and_offset(t_pt *point, t_cub *cub);
 void	init_angles_offsets(t_cub *cub);
 void	rotate_point(t_cub *cub, t_pt *point, t_pt *center, float angle);
-void	rotate_player(t_cub *cub);
 void	rotate(t_cub *cub);
 void	project(t_cub *cub);
-void	orient_and_paint_player(t_cub *cub, t_pt *center, int size, int color);
 
 enum e_errcode {
 	SUCCESS,

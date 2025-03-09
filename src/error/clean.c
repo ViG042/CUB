@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   clean.c                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: vgodoy <vgodoy@student.42.fr>              +#+  +:+       +#+        */
+/*   By: mkling <mkling@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/03/03 14:07:08 by mkling            #+#    #+#             */
-/*   Updated: 2025/03/06 15:05:16 by vgodoy           ###   ########.fr       */
+/*   Updated: 2025/03/09 16:45:44 by mkling           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,12 +21,17 @@ void	free_elem(t_cub *cub)
 	{
 		if (cub->elem[i].description)
 			free(cub->elem[i].description);
+		i++;
 	}
 }
 
 static void	free_map(t_map *map)
 {
-	free(map->array);
+	if (map->array)
+		ft_free_tab(map->array);
+	// if (map->clean_map)
+	// 	ft_free_tab(map->clean_map);
+	free(map->pts_array);
 	free(map);
 }
 

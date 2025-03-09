@@ -19,10 +19,7 @@ int	how_many_players(t_cub *cub)
 			c = cub->map->clean_map[line][i];
 			if (c == 'N' || c == 'S'
 				|| c == 'W' || c == 'E')
-			{
-				cub->player.init_orientation = c;
 				player++;
-			}
 			i++;
 		}
 		line++;

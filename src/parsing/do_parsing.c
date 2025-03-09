@@ -6,7 +6,7 @@
 /*   By: mkling <mkling@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/03/03 12:33:27 by mkling            #+#    #+#             */
-/*   Updated: 2025/03/09 13:40:12 by mkling           ###   ########.fr       */
+/*   Updated: 2025/03/09 15:57:08 by mkling           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -61,5 +61,5 @@ void	parse_file(t_cub *cub)
 	set_width_and_height(cub);
 	init_angles_offsets(cub);
 	transform_map_into_pts(cub);
-	initialize_player(cub);
+	// initialize_player(cub);
 }
