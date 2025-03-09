@@ -6,7 +6,7 @@
 /*   By: mkling <mkling@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/03/03 18:04:44 by mkling            #+#    #+#             */
-/*   Updated: 2025/03/09 17:03:42 by mkling           ###   ########.fr       */
+/*   Updated: 2025/03/09 18:07:33 by mkling           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -34,13 +34,16 @@ static void	paint_map(t_cub *cub)
 	t_pt	pt;
 
 	index = 0;
-	while (index < cub->map->size)
+	while (index < cub->map->pt_count)
 	{
 		pt = cub->map->pts_array[index];
 		if (pt.type == '1')
 			paint_square(&cub->img, &pt, MINIMAP_TILE_SIZE, GREY);
-		if (pt.type == '0' || pt.type == 'N')
+		if (pt.type == '0' || pt.type == 'N' || pt.type == 'E'
+			|| pt.type == 'S' || pt.type == 'W')
 			paint_square(&cub->img, &pt, MINIMAP_TILE_SIZE, DARK_GREY);
+		if (pt.type == 'D')
+			paint_square(&cub->img, &pt, MINIMAP_TILE_SIZE, ORANGE);
 		index++;
 	}
 }

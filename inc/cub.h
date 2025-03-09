@@ -6,7 +6,7 @@
 /*   By: mkling <mkling@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/02/28 16:54:35 by vgodoy            #+#    #+#             */
-/*   Updated: 2025/03/09 17:24:03 by mkling           ###   ########.fr       */
+/*   Updated: 2025/03/09 18:07:26 by mkling           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -46,6 +46,7 @@
 # define WHITE 0xffffff
 # define GREY 0x555555
 # define DARK_GREY 0x222222
+# define ORANGE 0xFFA500
 # define MINIMAP_OFFSET 50
 # define MINIMAP_SCALE 30
 # define MINIMAP_TILE_SIZE 26
@@ -90,6 +91,7 @@ typedef struct s_map
 	int		width;
 	int		height;
 	int		size;
+	int		pt_count;
 }	t_map;
 
 typedef struct s_elem
@@ -143,10 +145,8 @@ typedef struct s_cub
 	t_disp	display;
 	int		fd;
 	char	temp_map[MAX_TEMP_MAP];
-	int		mvt;
 	int		offset_x;
 	int		offset_y;
-	int		count;
 	int		zoom;
 	int		unit;
 }	t_cub;
