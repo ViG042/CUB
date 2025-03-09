@@ -3,10 +3,10 @@
 #                                                         :::      ::::::::    #
 #    Makefile                                           :+:      :+:    :+:    #
 #                                                     +:+ +:+         +:+      #
-#    By: alex <alex@student.42.fr>                  +#+  +:+       +#+         #
+#    By: mkling <mkling@student.42.fr>              +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2025/02/28 15:34:20 by mkling            #+#    #+#              #
-#    Updated: 2025/03/09 00:27:39 by alex             ###   ########.fr        #
+#    Updated: 2025/03/09 12:23:00 by mkling           ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -41,6 +41,16 @@ HEADER		= $(DIR_INC)/cub.h
 FUNC_GAME	=	loop.c \
 				time.c
 
+FUNC_PARS	=	do_parsing.c \
+				check_syntax.c \
+				elem_errors.c \
+				elem_extract.c \
+				elem_init.c \
+				elem_color.c \
+				map_check.c \
+				map_clean.c \
+				prints.c
+
 FUNC_DISP	=	render.c \
 				window.c \
 
@@ -49,10 +59,6 @@ FUNC_ERR	=	clean.c \
 
 FUNC_INPU	=	input.c \
 				player.c
-
-FUNC_PARS	=	parsing.c \
-				syntax.c \
-				map.c
 
 FUNC_PAIN	=	color.c \
 				minimap.c \
@@ -94,8 +100,7 @@ CC			= cc
 CFLAGS		= -Wall -Wextra -Werror
 
 V_FLAG		= valgrind --leak-check=full --show-leak-kinds=all \
-				--track-origins=yes --track-fds=yes --trace-children=yes \
-				--suppressions=inc/readline.supp
+				--track-origins=yes --track-fds=yes
 
 # **************************************************************************** #
 #																			   #

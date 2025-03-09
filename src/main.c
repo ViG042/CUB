@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   main.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: alex <alex@student.42.fr>                  +#+  +:+       +#+        */
+/*   By: mkling <mkling@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/03/03 11:31:02 by mkling            #+#    #+#             */
-/*   Updated: 2025/03/09 00:20:38 by alex             ###   ########.fr       */
+/*   Updated: 2025/03/09 12:25:59 by mkling           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,7 +20,12 @@ int	main(int argc, char **argv)
 
 	ft_bzero(&cub, sizeof(t_cub));
 	check_arg_syntax(&cub, argc, argv);
-	parse_map(&cub);
+	cub.mlx = mlx_init();
+	if (!cub.mlx)
+		return (0);///////ameliorer erreur
+	cub.w = 50;
+	cub.h = 50;
+	parse_file(&cub);
 	init_window(&cub);
 	project(&cub);
 	mlx_hook(cub.win, KeyPress, KeyPressMask, &handle_input_press, &cub);

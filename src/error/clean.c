@@ -3,14 +3,26 @@
 /*                                                        :::      ::::::::   */
 /*   clean.c                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: mkling <mkling@student.42.fr>              +#+  +:+       +#+        */
+/*   By: vgodoy <vgodoy@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/03/03 14:07:08 by mkling            #+#    #+#             */
-/*   Updated: 2025/03/03 17:27:57 by mkling           ###   ########.fr       */
+/*   Updated: 2025/03/06 15:05:16 by vgodoy           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "cub.h"
+
+void	free_elem(t_cub *cub)
+{
+	int	i;
+
+	i = 0;
+	while (i < 10)
+	{
+		if (cub->elem[i].description)
+			free(cub->elem[i].description);
+	}
+}
 
 static void	free_map(t_map *map)
 {
@@ -36,4 +48,5 @@ void	wipe(t_cub *cub)
 		mlx_destroy_display(cub->mlx);
 		free(cub->mlx);
 	}
+	free_elem(cub);
 }

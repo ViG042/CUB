@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   cub.h                                              :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: alex <alex@student.42.fr>                  +#+  +:+       +#+        */
+/*   By: mkling <mkling@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/02/28 16:54:35 by vgodoy            #+#    #+#             */
-/*   Updated: 2025/03/09 00:40:52 by alex             ###   ########.fr       */
+/*   Updated: 2025/03/09 12:25:31 by mkling           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -36,6 +36,7 @@
 
 /* GENERAL VALUES */
 
+# define MAX_TEMP_MAP 4096
 # define WIN_WIDTH 1200
 # define WIN_HEIGHT 600
 # define CURSOR_SIZE 10
@@ -83,12 +84,32 @@ typedef struct s_image
 typedef struct s_map
 {
 	char	*name;
-	char	**array;
+	char	**array;//free lines and array
+	char	**clean_map;//free only clean_map
 	t_pt	*pts_array;
 	int		width;
 	int		height;
 	int		size;
 }	t_map;
+
+enum e_elem
+{
+	NO = 1,
+	SO,
+	WE,
+	EA,
+	F,
+	C,
+	D,
+};
+
+typedef struct s_elem
+{
+	char	*description;
+	void	*texture;
+	int		color;
+	int		back_up;
+}	t_elem;
 
 typedef struct s_key_states
 {
@@ -102,8 +123,11 @@ typedef struct s_key_states
 
 typedef struct s_cub
 {
+	int		w;///permet d'utiliser la fonction
+	int		h;//mlx_xpm_file_to_image()
 	void	*mlx;
 	void	*win;
+	t_elem	elem[10];
 	t_map	*map;
 	t_map	*minimap;
 	t_map	*world;
@@ -111,7 +135,7 @@ typedef struct s_cub
 	t_img	img;
 	t_key	keys;
 	int		fd;
-	char	temp_map[1024];
+	char	temp_map[MAX_TEMP_MAP];
 	int		mvt;
 	t_pt	player;
 	int		p_x;
@@ -135,6 +159,28 @@ void	soft_exit_if(int condition, int err_num);
 void	wipe(t_cub *cub);
 int		success_exit(t_cub *cub);
 
+/* PARSING */
+
+void	parse_file(t_cub *cub);
+
+void	check_arg_syntax(t_cub *cub, int argc, char **argv);
+void	check_map_syntax(t_cub *cub);
+
+int		dbl_elem(int type, char *description);
+int		elem_missing(t_cub *cub);
+void	elem_extract(t_cub *cub);
+void	elem_init(t_cub *cub);
+int		make_color(char *description);
+
+void	map_check(t_cub *cub);
+void	map_clean(t_cub *cub);
+
+char	*talking_textures(int type);
+void	print_info(char **array);
+void	print_elem(t_cub *cub);
+void	print_init_elem(t_cub *cub);
+void	print_map(char **map);
+
 /* INPUTS */
 
 int		handle_input(int keysym, int mode, t_cub *cub);
@@ -149,12 +195,6 @@ int		render(t_cub *cub);
 int		game_loop(void *voided_cub);
 int		is_in_window(int x, int y);
 void	update_delta_time(t_cub *cub);
-
-/* PARSING */
-
-void	check_arg_syntax(t_cub *cub, int argc, char **argv);
-void	check_map_syntax(t_cub *cub);
-void	parse_map(t_cub *cub);
 
 /* PAINTING */
 
@@ -184,12 +224,9 @@ enum e_errcode {
 	WRONG_ARG,
 	OPEN_FAIL,
 	READ_FAIL,
-	TOO_BIG,
-	NO_PLAYER,
-	TOO_PLAYER,
-	NO_SPRITE,
+	TOO_BIG,//
+	NO_SPRITE,//
 	NOT_RECT,
-	NOT_WALLED,
 	UNKNOWN,
 	EMPTY_LINE,
 	MAP_NAME,
@@ -197,6 +234,17 @@ enum e_errcode {
 	WIN_ALLOC,
 	IMG_ALLOC,
 	MALLOC_FAIL,
+	EMPTY_ELEM,
+	DBL_ELEM,
+	ELEM_MSSG,
+	NO_MAP,
+	MAP_NOT_VALID,//
+	NO_PLAYER,
+	TOO_MANY_PLAYER,
+	BAD_WALLING,//
+	ASTRONAUT,
+	DEADLY_PATH,
+	DEADLY_DOOR,
 };
 
 enum	e_mouse
