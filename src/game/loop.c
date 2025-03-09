@@ -6,7 +6,7 @@
 /*   By: mkling <mkling@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/03/09 00:20:40 by alex              #+#    #+#             */
-/*   Updated: 2025/03/09 15:29:07 by mkling           ###   ########.fr       */
+/*   Updated: 2025/03/09 15:46:35 by mkling           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,6 +18,10 @@ static void	rotations(t_cub *cub)
 		cub->player.player_angle -= SPEED * cub->display.delta_time;
 	if (cub->keys.right)
 		cub->player.player_angle += SPEED * cub->display.delta_time;
+	if (cub->player.player_angle > 360)
+		cub->player.player_angle = cub->player.player_angle / 360.00;
+	if (cub->player.player_angle < -360)
+		cub->player.player_angle = cub->player.player_angle / 360.00;
 	fprintf(stderr, "player angle is at %f\n", cub->player.player_angle);
 }
 

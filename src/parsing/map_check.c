@@ -20,6 +20,7 @@ int	how_many_players(t_cub *cub)
 			if (c == 'N' || c == 'S'
 				|| c == 'W' || c == 'E')
 			{
+				cub->player.init_orientation = c;
 				player++;
 			}
 			i++;

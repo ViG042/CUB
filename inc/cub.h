@@ -6,7 +6,7 @@
 /*   By: mkling <mkling@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/02/28 16:54:35 by vgodoy            #+#    #+#             */
-/*   Updated: 2025/03/09 15:15:47 by mkling           ###   ########.fr       */
+/*   Updated: 2025/03/09 15:41:07 by mkling           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -120,6 +120,7 @@ typedef struct s_key_states
 typedef	struct s_player
 {
 	float	player_angle;
+	char	init_orientation;
 	t_pt	player_pt;
 	t_pt	cursor[3];
 }	t_play;
