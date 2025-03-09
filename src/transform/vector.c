@@ -6,7 +6,7 @@
 /*   By: mkling <mkling@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/03/04 13:22:24 by mkling            #+#    #+#             */
-/*   Updated: 2025/03/09 16:42:53 by mkling           ###   ########.fr       */
+/*   Updated: 2025/03/09 17:04:23 by mkling           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -48,8 +48,6 @@ void	transform_map_into_pts(t_cub *cub)
 	column = 0;
 	cub->map->pts_array = ft_calloc((cub->map->size) + 1, sizeof(t_pt));
 	exit_if(!cub->map->pts_array, MALLOC_FAIL, cub);
-	cub->minimap->pts_array = ft_calloc((cub->map->size) + 1, sizeof(t_pt));
-	exit_if(!cub->minimap->pts_array, MALLOC_FAIL, cub);
 	while (cub->map->clean_map[row])
 	{
 		column = 0;

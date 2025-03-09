@@ -6,7 +6,7 @@
 /*   By: mkling <mkling@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/03/06 22:47:28 by mkling            #+#    #+#             */
-/*   Updated: 2025/03/09 16:03:01 by mkling           ###   ########.fr       */
+/*   Updated: 2025/03/09 17:04:12 by mkling           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,13 +25,12 @@ void	project_minimap(t_cub *cub)
 	int		index;
 
 	index = 0;
-	cub->minimap = cub->map;
 	while (index <= cub->map->size)
 	{
-		cub->minimap->pts_array[index].x *= MINIMAP_SCALE;
-		cub->minimap->pts_array[index].y *= MINIMAP_SCALE;
-		cub->minimap->pts_array[index].x += MINIMAP_OFFSET;
-		cub->minimap->pts_array[index].y += MINIMAP_OFFSET;
+		cub->map->pts_array[index].x *= MINIMAP_SCALE;
+		cub->map->pts_array[index].y *= MINIMAP_SCALE;
+		cub->map->pts_array[index].x += MINIMAP_OFFSET;
+		cub->map->pts_array[index].y += MINIMAP_OFFSET;
 		index++;
 	}
 	printf("index is %d\n", index);

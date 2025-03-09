@@ -6,7 +6,7 @@
 /*   By: mkling <mkling@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/03/03 14:54:23 by mkling            #+#    #+#             */
-/*   Updated: 2025/03/09 12:27:09 by mkling           ###   ########.fr       */
+/*   Updated: 2025/03/09 17:03:47 by mkling           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -31,6 +31,5 @@ void	check_arg_syntax(t_cub *cub, int argc, char **argv)
 	soft_exit_if(ft_strcmp("", argv[1]) == 0, WRONG_ARG);
 	check_filename_syntax(argv[1]);
 	cub->map = ft_calloc(sizeof(t_map), 1);
-	cub->minimap = ft_calloc(sizeof(t_map), 1);
 	cub->map->name = argv[1];
 }

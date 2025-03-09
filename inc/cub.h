@@ -6,7 +6,7 @@
 /*   By: mkling <mkling@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/02/28 16:54:35 by vgodoy            #+#    #+#             */
-/*   Updated: 2025/03/09 16:42:52 by mkling           ###   ########.fr       */
+/*   Updated: 2025/03/09 17:24:03 by mkling           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -162,7 +162,6 @@ int		success_exit(t_cub *cub);
 
 void	parse_file(t_cub *cub);
 void	check_arg_syntax(t_cub *cub, int argc, char **argv);
-// void	check_map_syntax(t_cub *cub);
 int		dbl_elem(int type, char *description);
 int		elem_missing(t_cub *cub);
 void	elem_extract(t_cub *cub);
@@ -186,6 +185,7 @@ int		handle_input_press(int keysym, t_cub *cub);
 /* DISPLAY */
 
 void	init_window(t_cub *cub);
+void	init_display(t_cub *cub);
 int		render(t_cub *cub);
 int		game_loop(void *voided_cub);
 int		is_in_window(int x, int y);

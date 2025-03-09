@@ -6,7 +6,7 @@
 /*   By: mkling <mkling@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/03/09 13:42:43 by mkling            #+#    #+#             */
-/*   Updated: 2025/03/09 15:27:35 by mkling           ###   ########.fr       */
+/*   Updated: 2025/03/09 17:03:57 by mkling           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -111,15 +111,14 @@ void	rotate(t_cub *cub)
 	float	combined_matrix[3][3];
 
 	index = 0;
-	cub->minimap = cub->map;
 	generate_rotation_matrix_x(cub->player.player_angle, matrix_x);
 	// generate_rotation_matrix_y(cub->angle_y_axis, matrix_y);
 	matrix_multiply(combined_matrix, matrix_x, matrix_y);
 	while (index < cub->map->size)
 	{
-		subtract_grid_center(&cub->minimap->pts_array[index], cub);
-		multiply_point_by_matrix(&cub->minimap->pts_array[index], combined_matrix);
-		add_grid_center(&cub->minimap->pts_array[index], cub);
+		subtract_grid_center(&cub->map->pts_array[index], cub);
+		multiply_point_by_matrix(&cub->map->pts_array[index], combined_matrix);
+		add_grid_center(&cub->map->pts_array[index], cub);
 		index++;
 	}
 }

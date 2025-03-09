@@ -25,3 +25,16 @@ void	init_window(t_cub *cub)
 			&cub->img.endian);
 	cub->display.fps = 0.00;
 }
+
+void	init_display(t_cub *cub)
+{
+	cub->mlx = mlx_init();
+	exit_if(!cub->mlx, MALLOC_FAIL, cub);
+	cub->w = 50;
+	cub->h = 50;
+	init_window(cub);
+	mlx_hook(cub->win, KeyPress, KeyPressMask, &handle_input_press, cub);
+	mlx_hook(cub->win, KeyRelease, KeyReleaseMask, &handle_input_release, cub);
+	mlx_hook(cub->win, DestroyNotify, LeaveWindowMask, &success_exit, cub);
+	mlx_loop_hook(cub->mlx, &game_loop, (void *)cub);
+}
