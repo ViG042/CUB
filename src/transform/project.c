@@ -6,7 +6,7 @@
 /*   By: mkling <mkling@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/03/06 22:47:28 by mkling            #+#    #+#             */
-/*   Updated: 2025/03/09 19:19:48 by mkling           ###   ########.fr       */
+/*   Updated: 2025/03/09 21:09:21 by mkling           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -31,7 +31,7 @@ t_map	*project_minimap(t_cub *cub)
 	minimap = ft_calloc(sizeof(t_map), 1);
 	minimap->pts_array = ft_calloc((cub->map->size) + 1, sizeof(t_pt));
 	exit_if(!cub->map->pts_array, MALLOC_FAIL, cub);
-	while (index <= cub->map->size)
+	while (index < cub->map->size)
 	{
 		minimap->pts_array[index] = cub->map->pts_array[index];
 		minimap->pts_array[index].x *= MINIMAP_SCALE;
@@ -40,7 +40,10 @@ t_map	*project_minimap(t_cub *cub)
 		minimap->pts_array[index].y += MINIMAP_OFFSET;
 		index++;
 	}
-	printf("index is %d\n", index);
+	minimap->pt_count = index;
+	minimap->width = cub->map->width * MINIMAP_SCALE;
+	minimap->height = cub->map->height * MINIMAP_SCALE;
+	printf("width %d and height %d\n", minimap->width, minimap->height);
 	return (minimap);
 }
 
