@@ -6,7 +6,7 @@
 /*   By: mkling <mkling@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/02/28 16:54:35 by vgodoy            #+#    #+#             */
-/*   Updated: 2025/03/09 18:07:26 by mkling           ###   ########.fr       */
+/*   Updated: 2025/03/09 19:07:30 by mkling           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -123,10 +123,10 @@ typedef	struct s_player
 {
 	float	player_angle;
 	char	init_orientation;
-	t_pt	player_pt;
+	t_pt	map_pt;
+	t_pt	grid_pt;
 	t_pt	cursor[3];
 }	t_play;
-
 
 typedef struct s_cub
 {
@@ -181,6 +181,7 @@ int		handle_input(int keysym, int mode, t_cub *cub);
 void	initialize_player(t_cub *cub, t_pt *start);
 int		handle_input_release(int keysym, t_cub *cub);
 int		handle_input_press(int keysym, t_cub *cub);
+void	move_player(t_cub *cub);
 
 /* DISPLAY */
 
@@ -211,6 +212,7 @@ void	init_angles_offsets(t_cub *cub);
 void	rotate_point(t_cub *cub, t_pt *point, t_pt *center, float angle);
 void	rotate(t_cub *cub);
 void	project(t_cub *cub);
+t_pt	project_point(t_cub	*cub, t_pt pt);
 
 enum e_errcode {
 	SUCCESS,

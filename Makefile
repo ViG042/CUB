@@ -6,7 +6,7 @@
 #    By: mkling <mkling@student.42.fr>              +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2025/02/28 15:34:20 by mkling            #+#    #+#              #
-#    Updated: 2025/03/09 12:23:00 by mkling           ###   ########.fr        #
+#    Updated: 2025/03/09 18:20:50 by mkling           ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -39,7 +39,8 @@ DIR_LIB		= $(DIR_INC)/libft \
 HEADER		= $(DIR_INC)/cub.h
 
 FUNC_GAME	=	loop.c \
-				time.c
+				time.c \
+				move.c
 
 FUNC_PARS	=	do_parsing.c \
 				check_syntax.c \
