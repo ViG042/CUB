@@ -6,7 +6,7 @@
 /*   By: mkling <mkling@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/02/28 16:54:35 by vgodoy            #+#    #+#             */
-/*   Updated: 2025/03/10 16:34:09 by mkling           ###   ########.fr       */
+/*   Updated: 2025/03/10 17:00:17 by mkling           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -88,9 +88,12 @@ typedef struct s_map
 	int		width;
 	int		height;
 	int		size;
-	int		minimap_tile_size;
-	int		minimap_scale;
-	int		minimap_offset;
+	int		minimap_max_width;
+	int		minimap_max_height;
+	int		tile_size;
+	int		scale;
+	int		offset_x;
+	int		offset_y;
 	int		pt_count;
 }	t_map;
 

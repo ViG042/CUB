@@ -6,7 +6,7 @@
 /*   By: mkling <mkling@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/03/09 18:12:25 by mkling            #+#    #+#             */
-/*   Updated: 2025/03/10 16:33:17 by mkling           ###   ########.fr       */
+/*   Updated: 2025/03/10 16:38:12 by mkling           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -48,17 +48,6 @@ static int	is_wall(t_cub *cub, t_pt dest)
 	return (0);
 }
 
-static int	collides_with_wall(t_cub *cub, t_pt direction)
-{
-	t_pt	destination;
-
-	destination.x = cub->player.grid_pt.x + direction.x;
-	destination.y = cub->player.grid_pt.y + direction.y;
-	if (is_wall(cub, destination))
-		return (1);
-	return (0);
-}
-
 void	move_player(t_cub *cub)
 {
 	t_pt	direction;
@@ -76,9 +65,11 @@ void	move_player(t_cub *cub)
 	else
 		return ;
 	rotate_direction(&direction, cub->player.player_angle);
-	if (collides_with_wall(cub, direction))
+	direction.x += cub->player.grid_pt.x;
+	direction.y += cub->player.grid_pt.y;
+	if (is_wall(cub, direction))
 		return ;
-	cub->player.grid_pt.x += direction.x;
-	cub->player.grid_pt.y += direction.y;
+	cub->player.grid_pt.x = direction.x;
+	cub->player.grid_pt.y = direction.y;
 	cub->player.map_pt = project_point(cub, cub->player.grid_pt);
 }
