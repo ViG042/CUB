@@ -6,7 +6,7 @@
 /*   By: mkling <mkling@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/03/03 14:07:08 by mkling            #+#    #+#             */
-/*   Updated: 2025/03/09 17:12:01 by mkling           ###   ########.fr       */
+/*   Updated: 2025/03/10 16:24:55 by mkling           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -31,7 +31,7 @@ static void	free_map(t_map *map)
 		ft_free_tab(map->array);
 	if (map->clean_map)
 		free(map->clean_map);
-	free(map->pts_array);
+	free(map->pts);
 	free(map);
 }
 

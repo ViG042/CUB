@@ -6,7 +6,7 @@
 /*   By: mkling <mkling@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/03/04 11:24:02 by mkling            #+#    #+#             */
-/*   Updated: 2025/03/10 16:13:44 by mkling           ###   ########.fr       */
+/*   Updated: 2025/03/10 16:15:05 by mkling           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -49,8 +49,8 @@ int	is_in_triangle(t_pt *pt, t_pt *v1, t_pt *v2, t_pt *v3)
 	d1 = get_triangle_area(pt, v1, v2);
 	d2 = get_triangle_area(pt, v2, v3);
 	d3 = get_triangle_area(pt, v3, v1);
-	has_negative = (d1 < 0) || (d2 < 0) || (d3 < 0);
-	has_positive = (d1 > 0) || (d2 > 0) || (d3 > 0);
+	has_negative = ((d1 < 0) || (d2 < 0) || (d3 < 0));
+	has_positive = ((d1 > 0) || (d2 > 0) || (d3 > 0));
 	return (!(has_negative && has_positive));
 }
 

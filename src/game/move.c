@@ -6,7 +6,7 @@
 /*   By: mkling <mkling@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/03/09 18:12:25 by mkling            #+#    #+#             */
-/*   Updated: 2025/03/10 16:10:20 by mkling           ###   ########.fr       */
+/*   Updated: 2025/03/10 16:33:17 by mkling           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -38,7 +38,6 @@ static int	is_wall(t_cub *cub, t_pt dest)
 		return (1);
 	floor_y = (int)round(dest.y);
 	floor_x = (int)round(dest.x);
-	printf("dest floor is %d %d\n", floor_x, floor_y);
 	if (cub->map->pts[floor_y][floor_x].type)
 	{
 		if (cub->map->pts[floor_y][floor_x].type == '1')
@@ -53,11 +52,8 @@ static int	collides_with_wall(t_cub *cub, t_pt direction)
 {
 	t_pt	destination;
 
-	printf("player is %f %f\n", cub->player.grid_pt.x, cub->player.grid_pt.y);
-	printf("direction is %f %f\n", direction.x, direction.y);
 	destination.x = cub->player.grid_pt.x + direction.x;
 	destination.y = cub->player.grid_pt.y + direction.y;
-	printf("destination is %f %f\n", destination.x, destination.y);
 	if (is_wall(cub, destination))
 		return (1);
 	return (0);

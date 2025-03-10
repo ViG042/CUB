@@ -6,7 +6,7 @@
 /*   By: mkling <mkling@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/02/28 16:54:35 by vgodoy            #+#    #+#             */
-/*   Updated: 2025/03/10 16:14:02 by mkling           ###   ########.fr       */
+/*   Updated: 2025/03/10 16:34:09 by mkling           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -47,10 +47,7 @@
 # define GREY 0x555555
 # define DARK_GREY 0x222222
 # define ORANGE 0xFFA500
-# define MINIMAP_OFFSET 50
-# define MINIMAP_SCALE 25
-# define MINIMAP_TILE_SIZE 20
-# define SPEED 5
+# define SPEED 4
 
 typedef struct s_point
 {
@@ -87,11 +84,13 @@ typedef struct s_map
 	char	*name;
 	char	**array;//free lines and array
 	char	**clean_map;//free only clean_map
-	t_pt	*pts_array;
 	t_pt	**pts;
 	int		width;
 	int		height;
 	int		size;
+	int		minimap_tile_size;
+	int		minimap_scale;
+	int		minimap_offset;
 	int		pt_count;
 }	t_map;
 
@@ -127,6 +126,7 @@ typedef	struct s_player
 	t_pt	map_pt;
 	t_pt	grid_pt;
 	t_pt	cursor[3];
+	int		cursor_size;
 }	t_play;
 
 typedef struct s_cub
@@ -211,7 +211,7 @@ t_pt	apply_zoom_and_offset(t_pt *point, t_cub *cub);
 void	init_angles_offsets(t_cub *cub);
 void	rotate_point(t_cub *cub, t_pt *point, t_pt *center, float angle);
 void	rotate(t_cub *cub);
-void	project(t_cub *cub);
+void	project_map(t_cub *cub);
 t_pt	project_point(t_cub	*cub, t_pt pt);
 
 enum e_errcode {
