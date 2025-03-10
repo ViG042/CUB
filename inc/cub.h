@@ -6,7 +6,7 @@
 /*   By: mkling <mkling@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/02/28 16:54:35 by vgodoy            #+#    #+#             */
-/*   Updated: 2025/03/09 21:04:57 by mkling           ###   ########.fr       */
+/*   Updated: 2025/03/10 15:48:11 by mkling           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -48,9 +48,9 @@
 # define DARK_GREY 0x222222
 # define ORANGE 0xFFA500
 # define MINIMAP_OFFSET 50
-# define MINIMAP_SCALE 30
-# define MINIMAP_TILE_SIZE 26
-# define SPEED 220
+# define MINIMAP_SCALE 25
+# define MINIMAP_TILE_SIZE 10
+# define SPEED 5
 
 typedef struct s_point
 {
@@ -88,6 +88,7 @@ typedef struct s_map
 	char	**array;//free lines and array
 	char	**clean_map;//free only clean_map
 	t_pt	*pts_array;
+	t_pt	**pts;
 	int		width;
 	int		height;
 	int		size;
@@ -136,7 +137,6 @@ typedef struct s_cub
 	void	*win;
 	t_elem	elem[10];
 	t_map	*map;
-	t_map	*minimap;
 	t_map	*world;
 	t_img	hud;
 	t_img	img;

@@ -6,22 +6,22 @@
 /*   By: mkling <mkling@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/03/04 11:24:02 by mkling            #+#    #+#             */
-/*   Updated: 2025/03/09 13:10:24 by mkling           ###   ########.fr       */
+/*   Updated: 2025/03/10 15:38:19 by mkling           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "cub.h"
 
-void	paint_square(t_img *img, t_pt *bottom_left, int size, int color)
+void	paint_square(t_img *img, t_pt *center, int size, int color)
 {
 	t_pt	current;
 
-	current.x = bottom_left->x - size;
-	current.y = bottom_left->y - size;
-	while (current.y <= bottom_left->y)
+	current.x = center->x - size;
+	current.y = center->y - size;
+	while (current.y <= center->y + size)
 	{
-		current.x = bottom_left->x - size;
-		while (current.x <= bottom_left->x)
+		current.x = center->x - size;
+		while (current.x <= center->x + size)
 		{
 			if (is_in_window(current.x, current.y))
 				paint_pixel(img, current.x, current.y, color);

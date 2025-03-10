@@ -6,7 +6,7 @@
 /*   By: mkling <mkling@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/03/09 18:12:25 by mkling            #+#    #+#             */
-/*   Updated: 2025/03/09 21:13:16 by mkling           ###   ########.fr       */
+/*   Updated: 2025/03/10 16:10:20 by mkling           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -28,12 +28,24 @@ static void	rotate_direction(t_pt *point, float angle)
 	point->y = rotated.y;
 }
 
-static int	is_wall(t_cub *cub, int x, int y)
+static int	is_wall(t_cub *cub, t_pt dest)
 {
-	if (x < MINIMAP_OFFSET || y < MINIMAP_OFFSET
-		|| x >= cub->minimap->width || y >= cub->minimap->height)
+	int	floor_y;
+	int	floor_x;
+
+	if (dest.x < 0 || dest.y < 0 || dest.x >= cub->map->width
+		|| dest.y >= cub->map->height)
 		return (1);
-	// printf("map is %c\n", cub->map->clean_map[x][y]);
+	floor_y = (int)round(dest.y);
+	floor_x = (int)round(dest.x);
+	printf("dest floor is %d %d\n", floor_x, floor_y);
+	if (cub->map->pts[floor_y][floor_x].type)
+	{
+		if (cub->map->pts[floor_y][floor_x].type == '1')
+			return (1);
+		if (cub->map->pts[floor_y][floor_x].type == 'D')
+			return (1);
+	}
 	return (0);
 }
 
@@ -43,10 +55,10 @@ static int	collides_with_wall(t_cub *cub, t_pt direction)
 
 	printf("player is %f %f\n", cub->player.grid_pt.x, cub->player.grid_pt.y);
 	printf("direction is %f %f\n", direction.x, direction.y);
-	destination.x = cub->player.map_pt.x + direction.x;
-	destination.y = cub->player.map_pt.y + direction.y;
+	destination.x = cub->player.grid_pt.x + direction.x;
+	destination.y = cub->player.grid_pt.y + direction.y;
 	printf("destination is %f %f\n", destination.x, destination.y);
-	if (is_wall(cub, (int)destination.x, (int)destination.y))
+	if (is_wall(cub, destination))
 		return (1);
 	return (0);
 }
@@ -70,9 +82,7 @@ void	move_player(t_cub *cub)
 	rotate_direction(&direction, cub->player.player_angle);
 	if (collides_with_wall(cub, direction))
 		return ;
-	// cub->player.grid_pt.x += direction.x;
-	// cub->player.grid_pt.y += direction.y;
-	// cub->player.map_pt = project_point(cub, cub->player.grid_pt);
-	cub->player.map_pt.x += direction.x;
-	cub->player.map_pt.y += direction.y;
+	cub->player.grid_pt.x += direction.x;
+	cub->player.grid_pt.y += direction.y;
+	cub->player.map_pt = project_point(cub, cub->player.grid_pt);
 }

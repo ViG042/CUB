@@ -2,6 +2,7 @@
 	"files.associations": {
     "compare": "c",
     "type_traits": "c",
-    "cub.h": "c"
+    "cub.h": "c",
+    "cmath": "c"
   }
 }

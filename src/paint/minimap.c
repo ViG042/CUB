@@ -6,7 +6,7 @@
 /*   By: mkling <mkling@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/03/03 18:04:44 by mkling            #+#    #+#             */
-/*   Updated: 2025/03/09 19:05:18 by mkling           ###   ########.fr       */
+/*   Updated: 2025/03/10 14:41:48 by mkling           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -30,21 +30,29 @@ void	orient_player_cursor(t_cub *cub)
 
 static void	paint_map(t_cub *cub)
 {
-	int		index;
+	int		column;
+	int		row;
 	t_pt	pt;
 
-	index = 0;
-	while (index < cub->map->pt_count)
+	row = 0;
+	while (row < cub->map->width)
 	{
-		pt = cub->minimap->pts_array[index];
-		if (pt.type == '1')
-			paint_square(&cub->img, &pt, MINIMAP_TILE_SIZE, GREY);
-		if (pt.type == '0' || pt.type == 'N' || pt.type == 'E'
-			|| pt.type == 'S' || pt.type == 'W')
-			paint_square(&cub->img, &pt, MINIMAP_TILE_SIZE, DARK_GREY);
-		if (pt.type == 'D')
-			paint_square(&cub->img, &pt, MINIMAP_TILE_SIZE, ORANGE);
-		index++;
+		column = 0;
+		while (column < cub->map->height)
+		{
+			pt.x = row * MINIMAP_SCALE + MINIMAP_OFFSET;
+			pt.y = column * MINIMAP_SCALE + MINIMAP_OFFSET;
+			pt.type = cub->map->clean_map[column][row];
+			if (pt.type == '1')
+				paint_square(&cub->img, &pt, MINIMAP_TILE_SIZE, GREY);
+			if (pt.type == '0' || pt.type == 'N' || pt.type == 'E'
+				|| pt.type == 'S' || pt.type == 'W')
+				paint_square(&cub->img, &pt, MINIMAP_TILE_SIZE, DARK_GREY);
+			if (pt.type == 'D')
+				paint_square(&cub->img, &pt, MINIMAP_TILE_SIZE, ORANGE);
+			column++;
+		}
+		row++;
 	}
 }
 
