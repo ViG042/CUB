@@ -6,7 +6,7 @@
 /*   By: mkling <mkling@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/02/28 16:54:35 by vgodoy            #+#    #+#             */
-/*   Updated: 2025/03/10 15:48:11 by mkling           ###   ########.fr       */
+/*   Updated: 2025/03/10 16:14:02 by mkling           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -49,7 +49,7 @@
 # define ORANGE 0xFFA500
 # define MINIMAP_OFFSET 50
 # define MINIMAP_SCALE 25
-# define MINIMAP_TILE_SIZE 10
+# define MINIMAP_TILE_SIZE 20
 # define SPEED 5
 
 typedef struct s_point

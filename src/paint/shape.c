@@ -6,7 +6,7 @@
 /*   By: mkling <mkling@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/03/04 11:24:02 by mkling            #+#    #+#             */
-/*   Updated: 2025/03/10 15:38:19 by mkling           ###   ########.fr       */
+/*   Updated: 2025/03/10 16:13:44 by mkling           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,10 +18,10 @@ void	paint_square(t_img *img, t_pt *center, int size, int color)
 
 	current.x = center->x - size;
 	current.y = center->y - size;
-	while (current.y <= center->y + size)
+	while (current.y <= center->y)
 	{
 		current.x = center->x - size;
-		while (current.x <= center->x + size)
+		while (current.x <= center->x)
 		{
 			if (is_in_window(current.x, current.y))
 				paint_pixel(img, current.x, current.y, color);
