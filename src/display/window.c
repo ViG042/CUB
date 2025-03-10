@@ -24,6 +24,7 @@ void	init_window(t_cub *cub)
 			&cub->img.bit_per_pixel, &cub->img.line_len,
 			&cub->img.endian);
 	cub->display.fps = 0.00;
+	cub->display.counter = 0;
 }
 
 void	init_display(t_cub *cub)

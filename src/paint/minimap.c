@@ -6,7 +6,7 @@
 /*   By: mkling <mkling@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/03/03 18:04:44 by mkling            #+#    #+#             */
-/*   Updated: 2025/03/10 16:59:26 by mkling           ###   ########.fr       */
+/*   Updated: 2025/03/10 17:15:07 by mkling           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -39,15 +39,16 @@ static void	paint_map(t_cub *cub)
 	int		row;
 	t_pt	pt;
 
-	row = 0;
-	while (row < cub->map->width)
+	column = 0;
+	while (column < cub->map->height)
 	{
-		column = 0;
-		while (column < cub->map->height)
+		row = 0;
+		while (row < (int)ft_strlen(cub->map->clean_map[column]))
 		{
 			pt.x = row * cub->map->scale + cub->map->offset_x;
 			pt.y = column * cub->map->scale + cub->map->offset_y;
-			pt.type = cub->map->clean_map[column][row];
+			if (cub->map->clean_map[column][row])
+				pt.type = cub->map->clean_map[column][row];
 			if (pt.type == '1')
 				paint_square(&cub->img, &pt, cub->map->tile_size, GREY);
 			if (pt.type == '0' || pt.type == 'N' || pt.type == 'E'
@@ -55,9 +56,9 @@ static void	paint_map(t_cub *cub)
 				paint_square(&cub->img, &pt, cub->map->tile_size, DARK_GREY);
 			if (pt.type == 'D')
 				paint_square(&cub->img, &pt, cub->map->tile_size, ORANGE);
-			column++;
+			row++;
 		}
-		row++;
+		column++;
 	}
 }
 

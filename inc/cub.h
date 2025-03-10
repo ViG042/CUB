@@ -6,7 +6,7 @@
 /*   By: mkling <mkling@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/02/28 16:54:35 by vgodoy            #+#    #+#             */
-/*   Updated: 2025/03/10 17:00:17 by mkling           ###   ########.fr       */
+/*   Updated: 2025/03/10 17:03:58 by mkling           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -110,6 +110,7 @@ typedef struct s_display
 	long long	last_frame;
 	float		delta_time;
 	float		fps;
+	float		counter;
 }	t_disp;
 
 typedef struct s_key_states
