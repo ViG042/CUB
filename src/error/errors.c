@@ -6,7 +6,7 @@
 /*   By: mkling <mkling@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/03/03 12:01:24 by mkling            #+#    #+#             */
-/*   Updated: 2025/03/10 17:43:01 by mkling           ###   ########.fr       */
+/*   Updated: 2025/03/10 18:11:02 by mkling           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,8 +18,6 @@ void	write_syntax_error_message(int err_num)
 		ft_putstr_fd("We need one player\n", 2);
 	if (err_num == TOO_MANY_PLAYER)
 		ft_putstr_fd("Too many players\n", 2);
-	if (err_num == WRONG_ARG)
-		ft_putstr_fd("Usage: <./cubd3d>   <map_name.cub>\n", 2);
 	if (err_num == MAP_NAME)
 		ft_putstr_fd("Wrong map name\n", 2);
 	if (err_num == TOO_BIG)
@@ -66,6 +64,8 @@ void	write_error_message(int err_num)
 		ft_putstr_fd("Where is the map ??\n", 2);
 	if (err_num == MAP_NOT_VALID)
 		ft_putstr_fd("The map is not valid 👹\n", 2);
+	if (err_num == WRONG_ARG)
+		ft_putstr_fd("Usage: <./cubd3d>   <map_name.cub>\n", 2);
 	write_syntax_error_message(err_num);
 }
 

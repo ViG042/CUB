@@ -6,13 +6,13 @@
 /*   By: mkling <mkling@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/03/04 12:02:27 by mkling            #+#    #+#             */
-/*   Updated: 2025/03/09 13:43:00 by mkling           ###   ########.fr       */
+/*   Updated: 2025/03/10 18:09:19 by mkling           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "cub.h"
 
-t_pt normalize_vector(t_pt *point)
+t_pt	normalize_vector(t_pt *point)
 {
 	t_pt	unit_vector;
 	float	magnitude;
@@ -45,5 +45,3 @@ void	rotate_point(t_cub *cub, t_pt *point, t_pt *center, float angle)
 	point->x = rotated.x + center->x;
 	point->y = rotated.y + center->y;
 }
-
-

@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   map_clean.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: vgodoy <vgodoy@student.42.fr>              +#+  +:+       +#+        */
+/*   By: mkling <mkling@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2025/03/03 17:35:23 by mkling            #+#    #+#             */
-/*   Updated: 2025/03/07 12:13:29 by vgodoy           ###   ########.fr       */
+/*   Created: 2025/03/03 17:35:23 by vgodoy            #+#    #+#             */
+/*   Updated: 2025/03/10 18:11:45 by mkling           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -92,5 +92,3 @@ void	map_clean(t_cub *cub)
 	exit_if(!cub->map->clean_map, MALLOC_FAIL, cub);
 	fill_clean_map(cub, length);
 }
-
-

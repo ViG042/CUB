@@ -86,7 +86,7 @@ void	print_map(char **map)
 		i = 0;
 		while (map[line][i])
 		{
-			c = map[line][i];
+			c = map[line][i++];
 			if (c == '1')
 				printf("🎬");
 			else if (c == '0')
