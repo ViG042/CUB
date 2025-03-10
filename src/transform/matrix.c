@@ -6,7 +6,7 @@
 /*   By: mkling <mkling@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/03/09 13:42:43 by mkling            #+#    #+#             */
-/*   Updated: 2025/03/09 17:03:57 by mkling           ###   ########.fr       */
+/*   Updated: 2025/03/10 17:22:51 by mkling           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -103,22 +103,22 @@ void	multiply_point_by_matrix(t_pt *point, float matrix[3][3])
 	point->z = result.z;
 }
 
-void	rotate(t_cub *cub)
-{
-	int		index;
-	float	matrix_x[3][3];
-	float	matrix_y[3][3];
-	float	combined_matrix[3][3];
+// void	rotate(t_cub *cub)
+// {
+// 	int		index;
+// 	float	matrix_x[3][3];
+// 	float	matrix_y[3][3];
+// 	float	combined_matrix[3][3];
 
-	index = 0;
-	generate_rotation_matrix_x(cub->player.player_angle, matrix_x);
-	// generate_rotation_matrix_y(cub->angle_y_axis, matrix_y);
-	matrix_multiply(combined_matrix, matrix_x, matrix_y);
-	while (index < cub->map->size)
-	{
-		subtract_grid_center(&cub->map->pts_array[index], cub);
-		multiply_point_by_matrix(&cub->map->pts_array[index], combined_matrix);
-		add_grid_center(&cub->map->pts_array[index], cub);
-		index++;
-	}
-}
+// 	index = 0;
+// 	generate_rotation_matrix_x(cub->player.player_angle, matrix_x);
+// 	// generate_rotation_matrix_y(cub->angle_y_axis, matrix_y);
+// 	matrix_multiply(combined_matrix, matrix_x, matrix_y);
+// 	while (index < cub->map->size)
+// 	{
+// 		subtract_grid_center(&cub->map->pts_array[index], cub);
+// 		multiply_point_by_matrix(&cub->map->pts_array[index], combined_matrix);
+// 		add_grid_center(&cub->map->pts_array[index], cub);
+// 		index++;
+// 	}
+// }

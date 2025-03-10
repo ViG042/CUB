@@ -6,7 +6,7 @@
 /*   By: mkling <mkling@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/03/09 18:12:25 by mkling            #+#    #+#             */
-/*   Updated: 2025/03/10 16:38:12 by mkling           ###   ########.fr       */
+/*   Updated: 2025/03/10 17:56:47 by mkling           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -30,19 +30,19 @@ static void	rotate_direction(t_pt *point, float angle)
 
 static int	is_wall(t_cub *cub, t_pt dest)
 {
-	int	floor_y;
-	int	floor_x;
+	int	round_y;
+	int	round_x;
 
 	if (dest.x < 0 || dest.y < 0 || dest.x >= cub->map->width
 		|| dest.y >= cub->map->height)
 		return (1);
-	floor_y = (int)round(dest.y);
-	floor_x = (int)round(dest.x);
-	if (cub->map->pts[floor_y][floor_x].type)
+	round_y = (int)round(dest.y);
+	round_x = (int)round(dest.x);
+	if (cub->map->pts[round_y][round_x].type)
 	{
-		if (cub->map->pts[floor_y][floor_x].type == '1')
+		if (cub->map->pts[round_y][round_x].type == '1')
 			return (1);
-		if (cub->map->pts[floor_y][floor_x].type == 'D')
+		if (cub->map->pts[round_y][round_x].type == 'D')
 			return (1);
 	}
 	return (0);

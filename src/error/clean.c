@@ -6,13 +6,13 @@
 /*   By: mkling <mkling@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/03/03 14:07:08 by mkling            #+#    #+#             */
-/*   Updated: 2025/03/10 17:18:20 by mkling           ###   ########.fr       */
+/*   Updated: 2025/03/10 17:45:11 by mkling           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "cub.h"
 
-void	free_elem(t_cub *cub)
+static void	free_elem(t_cub *cub)
 {
 	int	i;
 
@@ -29,13 +29,16 @@ static void	free_map(t_map *map)
 {
 	int	i;
 
-	i = 0;
 	if (map->array)
 		ft_free_tab(map->array);
 	if (map->clean_map)
 		free(map->clean_map);
-	while (map->pts[i])
-		free(map->pts[i++]);
+	if (map->pts)
+	{
+		i = 0;
+		while (map->pts[i])
+			free(map->pts[i++]);
+	}
 	free(map->pts);
 	free(map);
 }

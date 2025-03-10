@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   errors.c                                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: vgodoy <vgodoy@student.42.fr>              +#+  +:+       +#+        */
+/*   By: mkling <mkling@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/03/03 12:01:24 by mkling            #+#    #+#             */
-/*   Updated: 2025/03/07 12:37:54 by vgodoy           ###   ########.fr       */
+/*   Updated: 2025/03/10 17:43:01 by mkling           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -76,8 +76,7 @@ void	exit_if(int condition, int err_num, t_cub *cub)
 	printf("\nError\n");
 	write_error_message(err_num);
 	printf("🚨 Exit\n");
-	(void)cub;
-	// wipe(cub);
+	wipe(cub);
 	exit(1);
 }
 

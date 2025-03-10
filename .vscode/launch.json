@@ -29,6 +29,30 @@
 			]
 		},
 		{
+			"name": "Incomplete",
+			"type": "cppdbg",
+			"request": "launch",
+			"program": "${workspaceFolder}/cub",
+			"args": ["${workspaceFolder}/maps/elem_incomplete.cub"],
+			"stopAtEntry": true,
+			"cwd": "${fileDirname}",
+			"environment": [],
+			"externalConsole": false,
+			"MIMode": "gdb",
+			"setupCommands": [
+				{
+					"description": "Enable pretty-printing for gdb",
+					"text": "-enable-pretty-printing",
+					"ignoreFailures": true
+				},
+				{
+					"description": "Set Disassembly Flavor to Intel",
+					"text": "-gdb-set disassembly-flavor intel",
+					"ignoreFailures": true
+				}
+			]
+		},
+		{
 			"name": "4x4_Basic",
 			"type": "cppdbg",
 			"request": "launch",
