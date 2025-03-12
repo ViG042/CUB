@@ -6,7 +6,7 @@
 /*   By: vgodoy <vgodoy@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/02/28 16:54:35 by vgodoy            #+#    #+#             */
-/*   Updated: 2025/03/12 16:35:47 by vgodoy           ###   ########.fr       */
+/*   Updated: 2025/03/12 19:06:23 by vgodoy           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -47,7 +47,7 @@
 # define GREY 0x555555
 # define DARK_GREY 0x222222
 # define ORANGE 0xFFA500
-# define SPEED 4
+# define SPEED 1
 
 typedef struct s_point
 {
@@ -265,6 +265,14 @@ enum	e_vertices
 	TOP = 0,
 	LEFT = 1,
 	RIGHT = 2,
+};
+
+enum e_orient
+{
+	NORTH = 0,
+	SOUTH = 1,
+	WEST = 2,
+	EAST = 3,
 };
 
 enum e_elem
