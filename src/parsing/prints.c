@@ -97,7 +97,6 @@ void	print_map(char **map)
 				printf("👹");
 			else
 				printf("  ");
-			i++;
 		}
 		printf("\n");
 		line++;
