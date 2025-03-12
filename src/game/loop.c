@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   loop.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: mkling <mkling@student.42.fr>              +#+  +:+       +#+        */
+/*   By: vgodoy <vgodoy@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/03/09 00:20:40 by alex              #+#    #+#             */
-/*   Updated: 2025/03/10 17:04:02 by mkling           ###   ########.fr       */
+/*   Updated: 2025/03/12 16:29:42 by vgodoy           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,7 +15,12 @@
 static void	rotations(t_cub *cub)
 {
 	if (cub->keys.left)
+	{
+		printf("player grid pt is %f, %f - ", cub->player.grid_pt.x, cub->player.grid_pt.y);
+		printf("map grid pt is %f, %f\n", cub->player.map_pt.x, cub->player.map_pt.y);
+		distance_edge(cub);
 		cub->player.player_angle -= SPEED * 100 * cub->display.delta_time;
+	}
 	if (cub->keys.right)
 		cub->player.player_angle += SPEED * 100 * cub->display.delta_time;
 	if (cub->player.player_angle > 360)

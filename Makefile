@@ -3,10 +3,10 @@
 #                                                         :::      ::::::::    #
 #    Makefile                                           :+:      :+:    :+:    #
 #                                                     +:+ +:+         +:+      #
-#    By: mkling <mkling@student.42.fr>              +#+  +:+       +#+         #
+#    By: vgodoy <vgodoy@student.42.fr>              +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2025/02/28 15:34:20 by mkling            #+#    #+#              #
-#    Updated: 2025/03/09 18:20:50 by mkling           ###   ########.fr        #
+#    Updated: 2025/03/12 16:26:56 by vgodoy           ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -71,7 +71,7 @@ FUNC_TRANS	=	center.c \
 				vector.c \
 				project.c
 
-FUNC_RAY 	=
+FUNC_RAY 	=	interse.c
 
 FUNC		=	$(addprefix $(DIR_DISP)/, $(FUNC_DISP)) \
 				$(addprefix $(DIR_ERR)/, $(FUNC_ERR)) \
@@ -79,7 +79,8 @@ FUNC		=	$(addprefix $(DIR_DISP)/, $(FUNC_DISP)) \
 				$(addprefix $(DIR_PARS)/, $(FUNC_PARS)) \
 				$(addprefix $(DIR_TRANS)/, $(FUNC_TRANS)) \
 				$(addprefix $(DIR_PAIN)/, $(FUNC_PAIN)) \
-				$(addprefix $(DIR_GAME)/, $(FUNC_GAME))
+				$(addprefix $(DIR_GAME)/, $(FUNC_GAME)) \
+				$(addprefix $(DIR_RAY)/, $(FUNC_RAY))
 
 MAIN		= main.c
 

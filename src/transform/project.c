@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   project.c                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: mkling <mkling@student.42.fr>              +#+  +:+       +#+        */
+/*   By: vgodoy <vgodoy@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/03/06 22:47:28 by mkling            #+#    #+#             */
-/*   Updated: 2025/03/10 17:07:29 by mkling           ###   ########.fr       */
+/*   Updated: 2025/03/12 16:03:05 by vgodoy           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -46,4 +46,5 @@ void	project_map(t_cub *cub)
 {
 	set_minimap_scale(cub);
 	cub->player.map_pt = project_point(cub, cub->player.grid_pt);
+
 }

@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   cub.h                                              :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: mkling <mkling@student.42.fr>              +#+  +:+       +#+        */
+/*   By: vgodoy <vgodoy@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/02/28 16:54:35 by vgodoy            #+#    #+#             */
-/*   Updated: 2025/03/12 13:56:26 by mkling           ###   ########.fr       */
+/*   Updated: 2025/03/12 16:29:26 by vgodoy           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -130,6 +130,7 @@ typedef	struct s_player
 	t_pt	map_pt;
 	t_pt	grid_pt;
 	t_pt	cursor[3];
+	double	edge[4];
 	int		cursor_size;
 }	t_play;
 
@@ -217,6 +218,11 @@ void	rotate_point(t_cub *cub, t_pt *point, t_pt *center, float angle);
 void	rotate(t_cub *cub);
 void	project_map(t_cub *cub);
 t_pt	project_point(t_cub	*cub, t_pt pt);
+
+/* RAYCASTING */
+
+void	distance_edge(t_cub *cub);
+
 
 enum e_errcode {
 	SUCCESS,
