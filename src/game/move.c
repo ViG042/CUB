@@ -3,20 +3,20 @@
 /*                                                        :::      ::::::::   */
 /*   move.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: mkling <mkling@student.42.fr>              +#+  +:+       +#+        */
+/*   By: vgodoy <vgodoy@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/03/09 18:12:25 by mkling            #+#    #+#             */
-/*   Updated: 2025/03/10 17:56:47 by mkling           ###   ########.fr       */
+/*   Updated: 2025/03/12 16:35:37 by vgodoy           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "cub.h"
 
-static void	rotate_direction(t_pt *point, float angle)
+static void	rotate_direction(t_pt *point, double angle)
 {
-	float	radian;
-	float	cos_angle;
-	float	sin_angle;
+	double	radian;
+	double	cos_angle;
+	double	sin_angle;
 	t_pt	rotated;
 
 	radian = angle * RADIAN;

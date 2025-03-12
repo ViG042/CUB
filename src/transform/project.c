@@ -6,7 +6,7 @@
 /*   By: vgodoy <vgodoy@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/03/06 22:47:28 by mkling            #+#    #+#             */
-/*   Updated: 2025/03/12 16:03:05 by vgodoy           ###   ########.fr       */
+/*   Updated: 2025/03/12 16:35:37 by vgodoy           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,13 +26,13 @@ static void	set_minimap_scale(t_cub *cub)
 {
 	int		minimap_max_height;
 	int		minimap_max_width;
-	float	scale_width;
-	float	scale_height;
+	double	scale_width;
+	double	scale_height;
 
 	minimap_max_height = WIN_HEIGHT * 0.5;
 	minimap_max_width = WIN_WIDTH * 0.5;
-	scale_height = (float)minimap_max_height / cub->map->height;
-	scale_width = (float)minimap_max_width / cub->map->width;
+	scale_height = (double)minimap_max_height / cub->map->height;
+	scale_width = (double)minimap_max_width / cub->map->width;
 	cub->map->scale = (int)fmin(scale_height, scale_width);
 	cub->map->tile_size = (int)(cub->map->scale * 0.9);
 	cub->map->offset_x = WIN_WIDTH

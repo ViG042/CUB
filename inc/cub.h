@@ -6,7 +6,7 @@
 /*   By: vgodoy <vgodoy@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/02/28 16:54:35 by vgodoy            #+#    #+#             */
-/*   Updated: 2025/03/12 16:29:26 by vgodoy           ###   ########.fr       */
+/*   Updated: 2025/03/12 16:35:47 by vgodoy           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -51,9 +51,9 @@
 
 typedef struct s_point
 {
-	float	x;
-	float	y;
-	float	z;
+	double	x;
+	double	y;
+	double	z;
 	int		rgb;
 	char	type;
 }	t_pt;
@@ -67,7 +67,7 @@ typedef struct s_line
 	t_pt	sign;
 	int		error;
 	int		error2;
-	float	length;
+	double	length;
 }	t_line;
 
 typedef struct s_image
@@ -108,9 +108,9 @@ typedef struct s_elem
 typedef struct s_display
 {
 	long long	last_frame;
-	float		delta_time;
-	float		fps;
-	float		counter;
+	double		delta_time;
+	double		fps;
+	double		counter;
 }	t_disp;
 
 typedef struct s_key_states
@@ -125,7 +125,7 @@ typedef struct s_key_states
 
 typedef	struct s_player
 {
-	float	player_angle;
+	double	player_angle;
 	char	init_orientation;
 	t_pt	map_pt;
 	t_pt	grid_pt;
@@ -214,7 +214,7 @@ void	subtract_grid_center(t_pt *point, t_cub *cub);
 void	add_grid_center(t_pt *point, t_cub *cub);
 t_pt	apply_zoom_and_offset(t_pt *point, t_cub *cub);
 void	init_angles_offsets(t_cub *cub);
-void	rotate_point(t_cub *cub, t_pt *point, t_pt *center, float angle);
+void	rotate_point(t_cub *cub, t_pt *point, t_pt *center, double angle);
 void	rotate(t_cub *cub);
 void	project_map(t_cub *cub);
 t_pt	project_point(t_cub	*cub, t_pt pt);

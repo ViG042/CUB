@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   shape.c                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: mkling <mkling@student.42.fr>              +#+  +:+       +#+        */
+/*   By: vgodoy <vgodoy@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/03/04 11:24:02 by mkling            #+#    #+#             */
-/*   Updated: 2025/03/10 16:15:05 by mkling           ###   ########.fr       */
+/*   Updated: 2025/03/12 16:35:37 by vgodoy           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -31,7 +31,7 @@ void	paint_square(t_img *img, t_pt *center, int size, int color)
 	}
 }
 
-float	get_triangle_area(t_pt *v1, t_pt *v2, t_pt *v3)
+double	get_triangle_area(t_pt *v1, t_pt *v2, t_pt *v3)
 {
 	return ((v1->x - v3->x) * (v2->y - v3->y)
 		- (v2->x - v3->x) * (v1->y - v3->y));
@@ -40,9 +40,9 @@ float	get_triangle_area(t_pt *v1, t_pt *v2, t_pt *v3)
 /* Uses Barycentric coordinate algorythm */
 int	is_in_triangle(t_pt *pt, t_pt *v1, t_pt *v2, t_pt *v3)
 {
-	float	d1;
-	float	d2;
-	float	d3;
+	double	d1;
+	double	d2;
+	double	d3;
 	int		has_negative;
 	int		has_positive;
 

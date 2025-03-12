@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   matrix.c                                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: mkling <mkling@student.42.fr>              +#+  +:+       +#+        */
+/*   By: vgodoy <vgodoy@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/03/09 13:42:43 by mkling            #+#    #+#             */
-/*   Updated: 2025/03/10 17:22:51 by mkling           ###   ########.fr       */
+/*   Updated: 2025/03/12 16:35:37 by vgodoy           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,10 +18,10 @@ Generate a rotation matrix on the x axis such as
 [ 0 & cos(angle) & -sin(angle) ]
 [ 0 & sin(angle) & cos(angle) ]
 */
-void	generate_rotation_matrix_x(float angle, float matrix[3][3])
+void	generate_rotation_matrix_x(double angle, double matrix[3][3])
 {
-	float	cosinus;
-	float	sinus;
+	double	cosinus;
+	double	sinus;
 
 	cosinus = cos(angle);
 	sinus = sin(angle);
@@ -42,10 +42,10 @@ Generate a rotation matrix on the y axis such as
 [ 0 & 1 & 0]
 [ -sin(angle) & 0 & cos(angle)]
 */
-void	generate_rotation_matrix_y(float angle, float matrix[3][3])
+void	generate_rotation_matrix_y(double angle, double matrix[3][3])
 {
-	float	cosinus;
-	float	sinus;
+	double	cosinus;
+	double	sinus;
 
 	cosinus = cos(angle);
 	sinus = sin(angle);
@@ -60,7 +60,7 @@ void	generate_rotation_matrix_y(float angle, float matrix[3][3])
 	matrix[2][2] = cosinus;
 }
 
-void	matrix_multiply(float result[3][3], float mat1[3][3], float mat2[3][3])
+void	matrix_multiply(double result[3][3], double mat1[3][3], double mat2[3][3])
 {
 	int		i;
 	int		j;
@@ -85,7 +85,7 @@ void	matrix_multiply(float result[3][3], float mat1[3][3], float mat2[3][3])
 	}
 }
 
-void	multiply_point_by_matrix(t_pt *point, float matrix[3][3])
+void	multiply_point_by_matrix(t_pt *point, double matrix[3][3])
 {
 	t_pt	result;
 
@@ -106,9 +106,9 @@ void	multiply_point_by_matrix(t_pt *point, float matrix[3][3])
 // void	rotate(t_cub *cub)
 // {
 // 	int		index;
-// 	float	matrix_x[3][3];
-// 	float	matrix_y[3][3];
-// 	float	combined_matrix[3][3];
+// 	double	matrix_x[3][3];
+// 	double	matrix_y[3][3];
+// 	double	combined_matrix[3][3];
 
 // 	index = 0;
 // 	generate_rotation_matrix_x(cub->player.player_angle, matrix_x);

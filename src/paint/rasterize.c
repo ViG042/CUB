@@ -3,24 +3,24 @@
 /*                                                        :::      ::::::::   */
 /*   rasterize.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: mkling <mkling@student.42.fr>              +#+  +:+       +#+        */
+/*   By: vgodoy <vgodoy@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/03/03 14:18:46 by mkling            #+#    #+#             */
-/*   Updated: 2025/03/04 16:07:09 by mkling           ###   ########.fr       */
+/*   Updated: 2025/03/12 16:35:37 by vgodoy           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "cub.h"
 
-float	calculate_line_length(t_pt start, t_pt end)
+double	calculate_line_length(t_pt start, t_pt end)
 {
 	return (sqrtf((end.x - start.x) * (end.x - start.x)
 			+ (end.y - start.y) * (end.y - start.y)));
 }
 
-float	calculate_progress(t_line *line, t_pt *current)
+double	calculate_progress(t_line *line, t_pt *current)
 {
-	float	progress;
+	double	progress;
 
 	if (fabs(current->x - line->start.x) < 0.1
 		&& fabs(current->y - line->start.y) < 0.1)

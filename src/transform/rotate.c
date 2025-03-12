@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   rotate.c                                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: mkling <mkling@student.42.fr>              +#+  +:+       +#+        */
+/*   By: vgodoy <vgodoy@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/03/04 12:02:27 by mkling            #+#    #+#             */
-/*   Updated: 2025/03/10 18:09:19 by mkling           ###   ########.fr       */
+/*   Updated: 2025/03/12 16:35:37 by vgodoy           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,7 +15,7 @@
 t_pt	normalize_vector(t_pt *point)
 {
 	t_pt	unit_vector;
-	float	magnitude;
+	double	magnitude;
 
 	unit_vector = *point;
 	magnitude = sqrt(point->x * point->x + point->y * point->y);
@@ -26,11 +26,11 @@ t_pt	normalize_vector(t_pt *point)
 	return (unit_vector);
 }
 
-void	rotate_point(t_cub *cub, t_pt *point, t_pt *center, float angle)
+void	rotate_point(t_cub *cub, t_pt *point, t_pt *center, double angle)
 {
-	float	radian;
-	float	cos_angle;
-	float	sin_angle;
+	double	radian;
+	double	cos_angle;
+	double	sin_angle;
 	t_pt	centered;
 	t_pt	rotated;
 
