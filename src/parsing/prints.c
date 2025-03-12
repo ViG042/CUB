@@ -55,7 +55,7 @@ void	print_init_elem(t_cub *cub)
 	{
 		if (cub->elem[type].texture)
 		{
-			printf("- The %s", talking_textures(type));
+			printf("- The %s ", talking_textures(type));
 			printf("texture has been initialized\n");
 		}
 		else if (cub->elem[type].color)
