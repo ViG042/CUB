@@ -6,7 +6,7 @@
 /*   By: vgodoy <vgodoy@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/03/09 18:12:25 by mkling            #+#    #+#             */
-/*   Updated: 2025/03/12 19:40:26 by vgodoy           ###   ########.fr       */
+/*   Updated: 2025/03/13 12:12:11 by vgodoy           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -67,7 +67,7 @@ static int	is_wall(t_cub *cub, int x, int y)
 	{
 		if (cub->map->pts[y][x].type == '1')
 		{
-			printf("cub->map->pts[y=%d][x=%d].type == '1'\n", x, y);
+			printf("cub->map->pts[y=%d][x=%d].type == '1'\n", y, x);///////
 			return (1);
 		}
 		if (cub->map->pts[y][x].type == 'D')
@@ -125,7 +125,7 @@ void	check_edges(t_cub *cub, t_pt *direction)
 	(void)direction;//
 	x = cub->player.grid_pt.x;// + direction->x;
 	y = cub->player.grid_pt.y;// + direction->y;
-	printf("player position x=[%f] y=[%f]\n", x ,y);///
+	printf("player position x=[%f] y=[%f]\n\n", x ,y);///
 	if (direction->y < 0
 		&& is_wall(cub, x, y - 1)
 		&& too_close(x, y, NORTH))
@@ -135,11 +135,11 @@ void	check_edges(t_cub *cub, t_pt *direction)
 		&& too_close(x, y, SOUTH))
 		direction->y = 0;
 	if (direction->x < 0
-		&& is_wall(cub, x - 1, y + 0)
+		&& is_wall(cub, x - 1, y)
 		&& too_close(x, y, WEST))
 		direction->x = 0;
 	else if (direction->x > 0
-		&& is_wall(cub, x - 1, y + 0)
+		&& is_wall(cub, x + 1, y)
 		&& too_close(x, y, EAST))
 		direction->x = 0;
 }
@@ -154,7 +154,12 @@ void	move_player(t_cub *cub)
 	rotate_direction(&direction, cub->player.player_angle);
 	printf("dx=[%f] dy=[%f]\n", direction.x, direction.y);//////
 	check_edges(cub, &direction);
-	printf("dx=[%f] dy=[%f]\n\n", direction.x, direction.y);//////
+	// printf("dx=[%f] dy=[%f]\n\n", direction.x, direction.y);//////
+
+	double x = cub->player.grid_pt.x;// + direction->x;
+	double y = cub->player.grid_pt.y;// + direction->y;
+	printf("player position x=[%f] y=[%f]\n\n", x ,y);///
+
 	cub->player.grid_pt.x += direction.x;
 	cub->player.grid_pt.y += direction.y;
 	cub->player.map_pt = project_point(cub, cub->player.grid_pt);
