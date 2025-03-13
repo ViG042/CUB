@@ -6,7 +6,7 @@
 /*   By: vgodoy <vgodoy@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/02/28 16:54:35 by vgodoy            #+#    #+#             */
-/*   Updated: 2025/03/13 14:42:06 by vgodoy           ###   ########.fr       */
+/*   Updated: 2025/03/13 15:31:53 by vgodoy           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -224,7 +224,6 @@ t_pt	project_point(t_cub	*cub, t_pt pt);
 
 /* RAYCASTING */
 
-void	distance_edge(t_cub *cub);
 void	raycasting(t_cub *cub);
 
 
@@ -297,7 +296,7 @@ enum e_raycast
 	DIST_X,
 	DIST_Y,
 	FIRST_X,
-	FIST_Y,
+	FIRST_Y,
 	DIST_TO_WALL,  //
 	START_PAINT,   //from the top
 	STOP_PAINT,    //to the bottom
