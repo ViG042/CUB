@@ -72,7 +72,7 @@ In the if and else, we will put some condition
 to know from where the block is hit (N S W E)*/
 void	digital_differential_analyser(t_cub *cub, double *ray, int *step)
 {
-	while (cub->map->clean_map[Y][X] == 0)
+	while (cub->map->clean_map[step[Y]][step[X]] == '0')
 	{
 		if (fabs(ray[FIRST_X]) < fabs(ray[FIRST_Y]))
 		{
@@ -111,7 +111,7 @@ X=[%d] Y=[%d] STEP_X=[%d] STEP_Y=[%d]\n",
 		digital_differential_analyser(cub, ray, step);
 
 		if (pixel_column == WIN_WIDTH / 2)
-			printf("wall hit at X=[%d] Y=[%d]\n\n", step[X], step[Y]);
+			printf("wall hit at Y=[%d] X=[%d]\n\n", step[X], step[Y]);// -> inverser X et Y...
 
 		//ray[START_PAINT] = start_stop(cub, ray[DIST_TO_WALL], START_PAINT);
 		//ray[STOP_PAINT] = start_stop(cub, ray[DIST_TO_WALL], STOP_PAINT);
