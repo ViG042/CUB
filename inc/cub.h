@@ -6,7 +6,7 @@
 /*   By: vgodoy <vgodoy@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/02/28 16:54:35 by vgodoy            #+#    #+#             */
-/*   Updated: 2025/03/12 19:06:23 by vgodoy           ###   ########.fr       */
+/*   Updated: 2025/03/13 12:33:34 by vgodoy           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -37,8 +37,8 @@
 /* GENERAL VALUES */
 
 # define MAX_TEMP_MAP 4096
-# define WIN_WIDTH 1900
-# define WIN_HEIGHT 600
+# define WIN_WIDTH 1920
+# define WIN_HEIGHT 1010
 # define CURSOR_SIZE 10
 # define UNIT 10
 # define WIN_NAME "CUB3D"
@@ -47,7 +47,7 @@
 # define GREY 0x555555
 # define DARK_GREY 0x222222
 # define ORANGE 0xFFA500
-# define SPEED 1
+# define SPEED 2
 
 typedef struct s_point
 {
