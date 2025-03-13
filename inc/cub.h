@@ -6,7 +6,7 @@
 /*   By: vgodoy <vgodoy@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/02/28 16:54:35 by vgodoy            #+#    #+#             */
-/*   Updated: 2025/03/13 12:33:34 by vgodoy           ###   ########.fr       */
+/*   Updated: 2025/03/13 13:51:42 by vgodoy           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -48,6 +48,7 @@
 # define DARK_GREY 0x222222
 # define ORANGE 0xFFA500
 # define SPEED 2
+# define FIELD_OF_VIEW 60
 
 typedef struct s_point
 {
@@ -284,6 +285,14 @@ enum e_elem
 	F,
 	C,
 	D,
+};
+
+enum e_elem
+{
+	ANGLE,         //from -1 to 1
+	DIST_TO_WALL,  //
+	START_PAINT,   //from the top
+	STOP_PAINT,    //to the bottom
 };
 
 #endif
