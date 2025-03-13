@@ -6,18 +6,18 @@
 /*   By: vgodoy <vgodoy@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/03/09 00:20:40 by alex              #+#    #+#             */
-/*   Updated: 2025/03/12 19:44:09 by vgodoy           ###   ########.fr       */
+/*   Updated: 2025/03/13 13:58:58 by vgodoy           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "cub.h"
 
+/*	// 	printf("player grid pt is %f, %f - ", cub->player.grid_pt.x, cub->player.grid_pt.y);
+	// 	printf("map grid pt is %f, %f\n", cub->player.map_pt.x, cub->player.map_pt.y);*/
 static void	rotations(t_cub *cub)
 {
 	if (cub->keys.left)
 	{
-	// 	printf("player grid pt is %f, %f - ", cub->player.grid_pt.x, cub->player.grid_pt.y);
-	// 	printf("map grid pt is %f, %f\n", cub->player.map_pt.x, cub->player.map_pt.y);
 		distance_edge(cub);
 		cub->player.player_angle -= SPEED * 100 * cub->display.delta_time;
 	}
@@ -45,6 +45,7 @@ int	game_loop(void	*voidedcub)
 	}
 	rotations(cub);
 	move_player(cub);
+	raycasting(cub);
 	render(cub);
 	return (0);
 }

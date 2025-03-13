@@ -6,7 +6,7 @@
 /*   By: vgodoy <vgodoy@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/02/28 16:54:35 by vgodoy            #+#    #+#             */
-/*   Updated: 2025/03/13 13:51:42 by vgodoy           ###   ########.fr       */
+/*   Updated: 2025/03/13 14:32:59 by vgodoy           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -37,8 +37,9 @@
 /* GENERAL VALUES */
 
 # define MAX_TEMP_MAP 4096
-# define WIN_WIDTH 1920
-# define WIN_HEIGHT 1010
+# define WIN_WIDTH 500//1920
+# define WIN_HEIGHT 500//1010
+# define MINIMAP_PROPORTION 0.8
 # define CURSOR_SIZE 10
 # define UNIT 10
 # define WIN_NAME "CUB3D"
@@ -48,6 +49,7 @@
 # define DARK_GREY 0x222222
 # define ORANGE 0xFFA500
 # define SPEED 2
+# define WAND 0.2
 # define FIELD_OF_VIEW 60
 
 typedef struct s_point
@@ -223,6 +225,7 @@ t_pt	project_point(t_cub	*cub, t_pt pt);
 /* RAYCASTING */
 
 void	distance_edge(t_cub *cub);
+void	raycasting(t_cub *cub);
 
 
 enum e_errcode {
@@ -287,9 +290,13 @@ enum e_elem
 	D,
 };
 
-enum e_elem
+enum e_raycast
 {
 	ANGLE,         //from -1 to 1
+	DIST_X,
+	DIST_Y,
+	FIRST_X,
+	FIST_Y,
 	DIST_TO_WALL,  //
 	START_PAINT,   //from the top
 	STOP_PAINT,    //to the bottom
