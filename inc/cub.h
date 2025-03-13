@@ -6,7 +6,7 @@
 /*   By: vgodoy <vgodoy@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/02/28 16:54:35 by vgodoy            #+#    #+#             */
-/*   Updated: 2025/03/13 15:31:53 by vgodoy           ###   ########.fr       */
+/*   Updated: 2025/03/13 17:38:40 by vgodoy           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -293,13 +293,22 @@ enum e_raycast
 {
 	ANGLE_DEG,    //from 0 to 360
 	ANGLE_RAD,    //from -1 to 1
-	DIST_X,
-	DIST_Y,
-	FIRST_X,
-	FIRST_Y,
-	DIST_TO_WALL,  //
+	DIST_X,       //dist entre les colonnes
+	DIST_Y,       //dist entre les lignes
+	FIRST_X,      //premiere dist vers colonne
+	FIRST_Y,      //permiere dist vers ligne
+	DIST_TO_WALL,
 	START_PAINT,   //from the top
 	STOP_PAINT,    //to the bottom
+};
+
+enum e_raycast2
+{
+
+	X,            // X et Y permettent de se deplacer dans clean_map
+	Y,            // et de memoriser la case vue en premier par le rayon
+	STEP_X,       // STEP_X et STEP_Y permettent de sauvegarder le step
+	STEP_Y,       // en X ou Y : 1 ou -1 en fonction de l'angle
 };
 
 #endif
