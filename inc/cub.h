@@ -6,7 +6,7 @@
 /*   By: vgodoy <vgodoy@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/02/28 16:54:35 by vgodoy            #+#    #+#             */
-/*   Updated: 2025/03/13 14:32:59 by vgodoy           ###   ########.fr       */
+/*   Updated: 2025/03/13 14:42:06 by vgodoy           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -292,7 +292,8 @@ enum e_elem
 
 enum e_raycast
 {
-	ANGLE,         //from -1 to 1
+	ANGLE_DEG,    //from 0 to 360
+	ANGLE_RAD,    //from -1 to 1
 	DIST_X,
 	DIST_Y,
 	FIRST_X,
