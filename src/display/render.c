@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   render.c                                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: vgodoy <vgodoy@student.42.fr>              +#+  +:+       +#+        */
+/*   By: mkling <mkling@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/03/03 14:07:58 by mkling            #+#    #+#             */
-/*   Updated: 2025/03/18 14:07:09 by vgodoy           ###   ########.fr       */
+/*   Updated: 2025/03/18 17:14:45 by mkling           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -56,26 +56,9 @@ void	paint_background(t_img *img, int color)
 	}
 }
 
-void	put_point(t_cub *cub, t_pt point)
+void	paint_point(t_img *img, t_pt *pt, int color)
 {
-	char	*pixel;
-	int		i;
-
-	if (point.x < 0 || point.y < 0
-		|| point.x > WIN_WIDTH || point.y > WIN_HEIGHT)
-		return ;
-	i = cub->img.bit_per_pixel - 8;
-	pixel = cub->img.address + ((int)point.y * cub->img.line_len
-			+ (int)point.x * (cub->img.bit_per_pixel / 8));
-	while (i >= 0)
-	{
-		if (cub->img.endian != 0)
-			*pixel++ = (point.rgb >> i) & 0xFF;
-		else
-			*pixel++ = (point.rgb >> (cub->img.bit_per_pixel
-						- 8 - i)) & 0xFF;
-		i -= 8;
-	}
+	paint_pixel(img, pt->x, pt->y, color);
 }
 
 int	render(t_cub *cub)

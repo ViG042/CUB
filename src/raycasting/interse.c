@@ -96,7 +96,7 @@ void	digital_differential_analyser(t_cub *cub, double *ray, int *step, int pixel
 void	calculate_dist_to_wall(t_cub *cub, double *ray, int *step)
 {
 	(void)cub;
-	if (ray[DIST_X] < ray[DIST_Y])
+	if (fabs(ray[DIST_X]) < fabs(ray[DIST_Y]))
 		ray[DIST_TO_WALL] = fabs(ray[FIRST_X]) + abs(step[X]) * fabs(ray[DIST_X]);
 	else
 		ray[DIST_TO_WALL] = fabs(ray[FIRST_Y]) + abs(step[Y]) * fabs(ray[DIST_Y]);
@@ -136,13 +136,13 @@ void	raycasting(t_cub *cub)
 		init_ray(cub, pixel_column, ray);
 		init_step(cub, ray, step);
 
-// 		if (pixel_column == WIN_WIDTH / 2)
-// 			printf("pixel_column=[%d] angle_deg=[%f] angle_rad=[%f] \
-// composante_x=[%f] composante_y=[%f] first_x[%f] first_y=[%f] \
-// X=[%d] Y=[%d] STEP_X=[%d] STEP_Y=[%d]\n",
-// 				pixel_column, ray[ANGLE_DEG], ray[ANGLE_RAD],
-// 				ray[DIST_X], ray[DIST_Y], ray[FIRST_X], ray[FIRST_Y],
-// 				step[X], step[Y], step[STEP_X], step[STEP_Y]);
+		// if (pixel_column == WIN_WIDTH / 2)
+		// 			printf("pixel_column=[%d] angle_deg=[%f] angle_rad=[%f] \
+		// composante_x=[%f] composante_y=[%f] first_x[%f] first_y=[%f] \
+		// X=[%d] Y=[%d] STEP_X=[%d] STEP_Y=[%d]\n",
+		// 				pixel_column, ray[ANGLE_DEG], ray[ANGLE_RAD],
+		// 				ray[DIST_X], ray[DIST_Y], ray[FIRST_X], ray[FIRST_Y],
+		// 				step[X], step[Y], step[STEP_X], step[STEP_Y]);
 		digital_differential_analyser(cub, ray, step, pixel_column);
 
 		calculate_dist_to_wall(cub, ray, step);

@@ -3,10 +3,10 @@
 #                                                         :::      ::::::::    #
 #    Makefile                                           :+:      :+:    :+:    #
 #                                                     +:+ +:+         +:+      #
-#    By: vgodoy <vgodoy@student.42.fr>              +#+  +:+       +#+         #
+#    By: mkling <mkling@student.42.fr>              +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2025/02/28 15:34:20 by mkling            #+#    #+#              #
-#    Updated: 2025/03/12 16:26:56 by vgodoy           ###   ########.fr        #
+#    Updated: 2025/03/18 16:20:51 by mkling           ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -71,7 +71,9 @@ FUNC_TRANS	=	center.c \
 				vector.c \
 				project.c
 
-FUNC_RAY 	=	interse.c
+FUNC_RAY 	=	interse.c \
+				walls.c \
+				raycasting.c
 
 FUNC		=	$(addprefix $(DIR_DISP)/, $(FUNC_DISP)) \
 				$(addprefix $(DIR_ERR)/, $(FUNC_ERR)) \

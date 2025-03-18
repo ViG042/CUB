@@ -6,7 +6,7 @@
 /*   By: mkling <mkling@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/03/03 18:04:44 by mkling            #+#    #+#             */
-/*   Updated: 2025/03/10 17:15:07 by mkling           ###   ########.fr       */
+/*   Updated: 2025/03/18 17:08:06 by mkling           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -67,4 +67,5 @@ void	paint_minimap(t_cub *cub)
 	paint_map(cub);
 	orient_player_cursor(cub);
 	paint_triangle(&cub->img, cub->player.cursor, WHITE);
+	rraycasting(cub);
 }

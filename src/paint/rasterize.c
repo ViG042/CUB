@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   rasterize.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: vgodoy <vgodoy@student.42.fr>              +#+  +:+       +#+        */
+/*   By: mkling <mkling@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/03/03 14:18:46 by mkling            #+#    #+#             */
-/*   Updated: 2025/03/12 16:35:37 by vgodoy           ###   ########.fr       */
+/*   Updated: 2025/03/18 17:15:29 by mkling           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -36,7 +36,7 @@ void	print_line(t_line *line, t_cub *cub)
 	line->current = line->start;
 	while (1)
 	{
-		put_point(cub, line->current);
+		paint_point(&cub->img, &line->current, WHITE);
 		line->error2 = 2 * line->error;
 		if (line->error2 >= line->delta.y)
 		{

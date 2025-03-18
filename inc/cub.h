@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   cub.h                                              :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: vgodoy <vgodoy@student.42.fr>              +#+  +:+       +#+        */
+/*   By: mkling <mkling@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/02/28 16:54:35 by vgodoy            #+#    #+#             */
-/*   Updated: 2025/03/18 14:39:44 by vgodoy           ###   ########.fr       */
+/*   Updated: 2025/03/18 17:27:09 by mkling           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -227,6 +227,9 @@ t_pt	project_point(t_cub	*cub, t_pt pt);
 void	raycasting(t_cub *cub);
 double	get_line_len(double start_x, double start_y,
 			double end_x, double end_y);
+void	rraycasting(t_cub *cub);
+void	paint_point(t_img *img, t_pt *pt, int color);
+void	rotate_direction(t_pt *point, double angle);
 
 
 enum e_errcode {

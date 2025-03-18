@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   move.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: vgodoy <vgodoy@student.42.fr>              +#+  +:+       +#+        */
+/*   By: mkling <mkling@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/03/09 18:12:25 by mkling            #+#    #+#             */
-/*   Updated: 2025/03/13 14:34:39 by vgodoy           ###   ########.fr       */
+/*   Updated: 2025/03/18 17:26:46 by mkling           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -43,7 +43,7 @@ void	init_direction(t_cub *cub, t_pt *direction)
 		direction->x += step;
 }
 
-static void	rotate_direction(t_pt *point, double angle)
+void	rotate_direction(t_pt *point, double angle)
 {
 	double	radian;
 	double	cos_angle;
