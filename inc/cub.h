@@ -6,7 +6,7 @@
 /*   By: vgodoy <vgodoy@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/02/28 16:54:35 by vgodoy            #+#    #+#             */
-/*   Updated: 2025/03/18 14:07:25 by vgodoy           ###   ########.fr       */
+/*   Updated: 2025/03/18 14:39:44 by vgodoy           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -308,6 +308,7 @@ enum e_raycast2
 	Y,            // et de memoriser la case vue en premier par le rayon
 	STEP_X,       // STEP_X et STEP_Y permettent de sauvegarder le step
 	STEP_Y,       // en X ou Y : 1 ou -1 en fonction de l'angle
+	HEIGHT,
 	FIRST_PIXEL,
 	LAST_PIXEL,
 };
