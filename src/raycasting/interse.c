@@ -78,30 +78,76 @@ void	digital_differential_analyser(t_cub *cub, double *ray, int *step, int pixel
 	(void)pixel_column;
 	dda_x = fabs(ray[FIRST_X]);
 	dda_y = fabs(ray[FIRST_Y]);
+	if (pixel_column == WIN_WIDTH / 2)
+		printf("ray[DIST_X]=[%f] ray[DIST_Y]=[%f]\n", ray[DIST_X], ray[DIST_Y]);
 	while (cub->map->clean_map[step[Y]][step[X]] == '0')
 	{
-		if (dda_x < dda_y)
+		if (pixel_column == WIN_WIDTH / 2)
+			printf("dda_x=[%f] dda_y=[%f] step[X]=[%d] step[Y]=[%d]\n", dda_x, dda_y, step[X], step[Y]);
+		if (fabs(dda_x) < fabs(dda_y))
 		{
 			step[X] += step[STEP_X];
+			ray[DIST_TO_WALL] = fabs(dda_x);
 			dda_x += ray[DIST_X];
+			if (pixel_column == WIN_WIDTH / 2)
+				printf("X\n");
 		}
 		else
 		{
 			step[Y] += step[STEP_Y];
+			ray[DIST_TO_WALL] = fabs(dda_y);
 			dda_y += ray[DIST_Y];
+			if (pixel_column == WIN_WIDTH / 2)
+				printf("Y\n");
 		}
 	}
+	if (pixel_column == WIN_WIDTH / 2)
+		printf("dda_x=[%f] dda_y=[%f] step[X]=[%d] step[Y]=[%d]\n", dda_x, dda_y, step[X], step[Y]);
 }
 
-void	calculate_dist_to_wall(t_cub *cub, double *ray, int *step)
-{
-	(void)cub;
-	if (ray[DIST_X] < ray[DIST_Y])
-		ray[DIST_TO_WALL] = fabs(ray[FIRST_X]) + abs(step[X]) * fabs(ray[DIST_X]);
-	else
-		ray[DIST_TO_WALL] = fabs(ray[FIRST_Y]) + abs(step[Y]) * fabs(ray[DIST_Y]);
-}
+// void	calculate_dist_to_wall(t_cub *cub, double *ray, int *step, int pixel_column)
+// {
+// 	(void)cub;
+// 	ray[DIST_TO_WALL] = 0.0;
 
+// 	if (fabs(ray[FIRST_X]) < fabs(ray[FIRST_Y]))
+// 		ray[DIST_TO_WALL] += fabs(ray[FIRST_X]);
+// 	else
+// 		ray[DIST_TO_WALL] += fabs(ray[FIRST_Y]);
+
+// 	if (pixel_column == WIN_WIDTH / 2)
+// 	{
+// 		printf("init Dist_to_wall=[%f]\n", ray[DIST_TO_WALL]);
+// 	}
+// 	if (fabs(ray[DIST_X]) < fabs(ray[DIST_Y]))
+// 	{
+// 		if (pixel_column == WIN_WIDTH / 2)
+// 		{
+// 			printf("abs(step[X] - (int)floor(cub->player.grid_pt.x))=[%d]\n", abs(step[X] - (int)floor(cub->player.grid_pt.x)));
+// 			printf("fabs(ray[DIST_X])=[%f]\n", fabs(ray[DIST_X]));
+// 		}
+// 		ray[DIST_TO_WALL] += (abs(abs(step[X]) - abs((int)floor(cub->player.grid_pt.x))) - 1) * fabs(ray[DIST_X]);
+// 	}
+// 	else
+// 	{
+// 		if (pixel_column == WIN_WIDTH / 2)
+// 		{
+// 			printf("abs(step[Y] - (int)floor(cub->player.grid_pt.y))=[%d]\n", abs(step[Y] - (int)floor(cub->player.grid_pt.y)));
+// 			printf("fabs(ray[DIST_Y])=[%f]\n", fabs(ray[DIST_Y]));
+// 		}
+// 		ray[DIST_TO_WALL] += (abs(abs(step[Y]) - abs((int)floor(cub->player.grid_pt.y))) - 1) * fabs(ray[DIST_Y]);
+// 	}
+
+// 	if (pixel_column == WIN_WIDTH / 2)
+// 		printf("Dist_to_wall=[%f]\n", ray[DIST_TO_WALL]);
+// }
+
+/*	// if ((ray[DIST_TO_WALL]) <= min)
+	// 	int_height = WIN_HEIGHT;
+	// else if ((ray[DIST_TO_WALL]) > max)
+	// 	int_height = 0;
+	// else
+	// {*/
 void	calculate_wall_height(double *ray, int *step)
 {
 	double	min;
@@ -109,15 +155,10 @@ void	calculate_wall_height(double *ray, int *step)
 	int	int_height;
 
 	min = 0.2;
-	max = 20.0;
-	// if ((ray[DIST_TO_WALL]) <= min)
-	// 	int_height = WIN_HEIGHT;
-	// else if ((ray[DIST_TO_WALL]) > max)
-	// 	int_height = 0;
-	// else
-	// {
-		int_height = (int)(((max - ray[DIST_TO_WALL]) / max) * WIN_HEIGHT);
-	// }
+	max = 8.0;
+
+	int_height = (int)(((max - ray[DIST_TO_WALL]) / max) * WIN_HEIGHT);
+
 	step[FIRST_PIXEL] = (WIN_HEIGHT - int_height) / 2;
 	step[LAST_PIXEL] = step[FIRST_PIXEL] + int_height;
 	step[HEIGHT] = int_height;
@@ -145,22 +186,22 @@ void	raycasting(t_cub *cub)
 // 				step[X], step[Y], step[STEP_X], step[STEP_Y]);
 		digital_differential_analyser(cub, ray, step, pixel_column);
 
-		calculate_dist_to_wall(cub, ray, step);
-
+		//calculate_dist_to_wall(cub, ray, step, pixel_column);
+		ray[DIST_TO_WALL] *= cos(ray[ANGLE_RAD] - cub->player.player_angle);
 		calculate_wall_height(ray, step);
-
-		// if (pixel_column == WIN_WIDTH / 2)
-		// {
-		// 	printf("wall hit at X=[%d] Y=[%d]\n", step[X], step[Y]);
-		// 	printf("DIST_X=[%f] Y=[%f]\n", ray[FIRST_X], ray[FIRST_Y]);
-		// 	printf("ray[DIST_TO_WALL]=[%f]\n\n", ray[DIST_TO_WALL]);///
-		// }
 
 		if (pixel_column == WIN_WIDTH / 2)
 		{
-			printf("ray[DIST_TO_WALL]=[%f]\n", ray[DIST_TO_WALL]);///
-			printf("height=[%d]\n\n", step[HEIGHT]);
+			printf("wall hit at X=[%d] Y=[%d]\n", step[X], step[Y]);
+			//printf("DIST_X=[%f] Y=[%f]\n", ray[FIRST_X], ray[FIRST_Y]);
+			printf("ray[DIST_TO_WALL]=[%f]\n\n", ray[DIST_TO_WALL]);///
 		}
+
+		// if (pixel_column == WIN_WIDTH / 2)
+		// {
+		// 	printf("ray[DIST_TO_WALL]=[%f]\n", ray[DIST_TO_WALL]);///
+		// 	printf("height=[%d]\n\n", step[HEIGHT]);
+		// }
 
 		int c = step[FIRST_PIXEL];
 		while (c < step[LAST_PIXEL])
@@ -172,3 +213,26 @@ void	raycasting(t_cub *cub)
 		//paint(cub, pixel_column, ray[START_PAINT], ray[STOP_PAINT]);
 	}
 }
+
+
+// void	digital_differential_analyser(t_cub *cub, double *ray, int *step, int pixel_column)
+// {
+// 	double	dda_x;
+// 	double	dda_y;
+
+// 	dda_x = fabs(ray[FIRST_X]);
+// 	dda_y = fabs(ray[FIRST_Y]);
+// 	while (cub->map->clean_map[step[Y]][step[X]] == '0')
+// 	{
+// 		if (dda_x < dda_y)
+// 		{
+// 			step[X] += step[STEP_X];
+// 			dda_x += ray[DIST_X];
+// 		}
+// 		else
+// 		{
+// 			step[Y] += step[STEP_Y];
+// 			dda_y += ray[DIST_Y];
+// 		}
+// 	}
+// }

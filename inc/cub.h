@@ -6,7 +6,7 @@
 /*   By: vgodoy <vgodoy@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/02/28 16:54:35 by vgodoy            #+#    #+#             */
-/*   Updated: 2025/03/18 14:39:44 by vgodoy           ###   ########.fr       */
+/*   Updated: 2025/03/18 16:31:01 by vgodoy           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -39,7 +39,7 @@
 # define MAX_TEMP_MAP 4096
 # define WIN_WIDTH 1920
 # define WIN_HEIGHT 600
-# define MINIMAP_PROPORTION 0.2
+# define MINIMAP_PROPORTION 0.5
 # define CURSOR_SIZE 10
 # define UNIT 10
 # define WIN_NAME "CUB3D"
