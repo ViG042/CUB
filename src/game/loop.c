@@ -6,7 +6,7 @@
 /*   By: vgodoy <vgodoy@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/03/09 00:20:40 by alex              #+#    #+#             */
-/*   Updated: 2025/03/13 15:33:32 by vgodoy           ###   ########.fr       */
+/*   Updated: 2025/03/18 14:03:08 by vgodoy           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -31,6 +31,7 @@ int	game_loop(void	*voidedcub)
 	t_cub		*cub;
 
 	cub = (t_cub *)voidedcub;
+
 	if (cub->win == NULL)
 		return (1);
 	update_delta_time(cub);
@@ -42,6 +43,7 @@ int	game_loop(void	*voidedcub)
 	}
 	rotations(cub);
 	move_player(cub);
+	paint_background(&cub->img, BLACK);
 	raycasting(cub);
 	render(cub);
 	return (0);

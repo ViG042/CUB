@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   render.c                                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: mkling <mkling@student.42.fr>              +#+  +:+       +#+        */
+/*   By: vgodoy <vgodoy@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/03/03 14:07:58 by mkling            #+#    #+#             */
-/*   Updated: 2025/03/10 17:41:32 by mkling           ###   ########.fr       */
+/*   Updated: 2025/03/18 14:07:09 by vgodoy           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -84,7 +84,8 @@ int	render(t_cub *cub)
 
 	if (cub->win == NULL)
 		return (1);
-	paint_background(&cub->img, BLACK);
+
+
 	paint_minimap(cub);
 	mlx_put_image_to_window(cub->mlx, cub->win, cub->img.mlx_img, 0, 0);
 	itoa_fps = ft_itoa(cub->display.fps);
