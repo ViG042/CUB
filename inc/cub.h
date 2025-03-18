@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   cub.h                                              :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: vgodoy <vgodoy@student.42.fr>              +#+  +:+       +#+        */
+/*   By: mkling <mkling@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/02/28 16:54:35 by vgodoy            #+#    #+#             */
-/*   Updated: 2025/03/13 17:38:40 by vgodoy           ###   ########.fr       */
+/*   Updated: 2025/03/18 11:26:11 by mkling           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -225,6 +225,8 @@ t_pt	project_point(t_cub	*cub, t_pt pt);
 /* RAYCASTING */
 
 void	raycasting(t_cub *cub);
+double	get_line_len(double start_x, double start_y,
+			double end_x, double end_y);
 
 
 enum e_errcode {
@@ -304,7 +306,6 @@ enum e_raycast
 
 enum e_raycast2
 {
-
 	X,            // X et Y permettent de se deplacer dans clean_map
 	Y,            // et de memoriser la case vue en premier par le rayon
 	STEP_X,       // STEP_X et STEP_Y permettent de sauvegarder le step
