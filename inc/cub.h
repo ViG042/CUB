@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   cub.h                                              :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: mkling <mkling@student.42.fr>              +#+  +:+       +#+        */
+/*   By: vgodoy <vgodoy@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/02/28 16:54:35 by vgodoy            #+#    #+#             */
-/*   Updated: 2025/03/18 11:26:11 by mkling           ###   ########.fr       */
+/*   Updated: 2025/03/18 11:43:26 by vgodoy           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -300,8 +300,6 @@ enum e_raycast
 	FIRST_X,      //premiere dist vers colonne
 	FIRST_Y,      //permiere dist vers ligne
 	DIST_TO_WALL,
-	START_PAINT,   //from the top
-	STOP_PAINT,    //to the bottom
 };
 
 enum e_raycast2
@@ -310,6 +308,8 @@ enum e_raycast2
 	Y,            // et de memoriser la case vue en premier par le rayon
 	STEP_X,       // STEP_X et STEP_Y permettent de sauvegarder le step
 	STEP_Y,       // en X ou Y : 1 ou -1 en fonction de l'angle
+	FIRST_PIXEL,
+	LAST_PIXEL,
 };
 
 #endif

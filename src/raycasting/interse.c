@@ -70,21 +70,80 @@ void	init_step(t_cub *cub, double *ray, int *step)
 /*
 In the if and else, we will put some condition
 to know from where the block is hit (N S W E)*/
-void	digital_differential_analyser(t_cub *cub, double *ray, int *step)
+void	digital_differential_analyser(t_cub *cub, double *ray, int *step, int pixel_column)
 {
+	ray[DIST_TO_WALL] = 0.0;
+	int	flag_x = 0;
+	int	flag_y = 0;
+	int	flag_xy = 0;
 	while (cub->map->clean_map[step[Y]][step[X]] == '0')
 	{
+		if (pixel_column == WIN_WIDTH / 2)
+		{
+			printf("ray[FIRST_X]=[%f] ray[FIRST_Y]=[%f]\n", ray[FIRST_X], ray[FIRST_Y]);///
+			printf("ray[DIST_X]=[%f] ray[DIST_Y]=[%f]\n", ray[DIST_X], ray[DIST_Y]);///
+			printf("ray[DIST_TO_WALL]=[%f]\n\n", ray[DIST_TO_WALL]);///
+		}
 		if (fabs(ray[FIRST_X]) < fabs(ray[FIRST_Y]))
 		{
+			if (flag_xy == 0)
+				flag_xy = 1;
 			step[X] += step[STEP_X];
+			if (flag_x == 0 && flag_xy == 1)
+			{
+				ray[DIST_TO_WALL] += fabs(ray[FIRST_X]);
+				flag_x = 1;
+			}
+			else
+			{
+				if (flag_xy == 1)
+					ray[DIST_TO_WALL] += fabs(ray[DIST_X]);
+			}
 			ray[FIRST_X] += ray[DIST_X];
 		}
 		else
 		{
+			if (flag_xy == 0)
+				flag_xy = 2;
 			step[Y] += step[STEP_Y];
+			if (flag_y == 0 && flag_xy == 2)
+			{
+				ray[DIST_TO_WALL] += fabs(ray[FIRST_Y]);
+				flag_y = 1;
+			}
+			else
+			{
+				if (flag_xy == 2)
+					ray[DIST_TO_WALL] += fabs(ray[DIST_Y]);
+			}
 			ray[FIRST_Y] += ray[DIST_Y];
 		}
 	}
+	if (pixel_column == WIN_WIDTH / 2)
+	{
+		printf("ray[FIRST_X]=[%f] ray[FIRST_Y]=[%f]\n", ray[FIRST_X], ray[FIRST_Y]);///
+		printf("ray[DIST_TO_WALL]=[%f]\n\n", ray[DIST_TO_WALL]);///
+	}
+}
+
+void	calculate_wall_height(double *ray, int *step)
+{
+	int	min;
+	int	max;
+	int	int_height;
+
+	min = 1;
+	max = 40;
+	if ((ray[DIST_TO_WALL]) <= (double)min)
+		int_height = WIN_HEIGHT;
+	else if ((ray[DIST_TO_WALL]) >= (double)max)
+		int_height = 0;
+	else
+	{
+		int_height = (int)((ray[DIST_TO_WALL] - (double)min)/(double)max);
+	}
+	step[FIRST_PIXEL] = (WIN_HEIGHT - int_height) / 2;
+	step[LAST_PIXEL] = step[FIRST_PIXEL] + int_height;
 }
 
 /*pixel column from 0 to WIN_WIDTH*/
@@ -107,17 +166,18 @@ void	raycasting(t_cub *cub)
 // 				pixel_column, ray[ANGLE_DEG], ray[ANGLE_RAD],
 // 				ray[DIST_X], ray[DIST_Y], ray[FIRST_X], ray[FIRST_Y],
 // 				step[X], step[Y], step[STEP_X], step[STEP_Y]);
+		digital_differential_analyser(cub, ray, step, pixel_column);
+		if (pixel_column == WIN_WIDTH / 2)
+		{
+			printf("wall hit at X=[%d] Y=[%d]\n", step[X], step[Y]);
+			printf("DIST_X=[%f] Y=[%f]\n", ray[FIRST_X], ray[FIRST_Y]);
+			printf("ray[DIST_TO_WALL]=[%f]\n\n", ray[DIST_TO_WALL]);///
+		}
 
-		digital_differential_analyser(cub, ray, step);
 
 
-		// if (pixel_column == WIN_WIDTH / 2)
-		// 	printf("wall hit at X=[%d] Y=[%d]\n\n", step[X], step[Y]);// -> inverser X et Y...
+		calculate_wall_height(ray, step);
 
-		// get_line_len(start_x, start_y, end_x, end_y,);
-
-
-		//ray[START_PAINT] = calculate_wall_height(cub, ray[DIST_TO_WALL], START_PAINT);
 		//ray[STOP_PAINT] = calculate_wall_height(cub, ray[DIST_TO_WALL], STOP_PAINT);
 		//paint(cub, pixel_column, ray[START_PAINT], ray[STOP_PAINT]);
 	}
