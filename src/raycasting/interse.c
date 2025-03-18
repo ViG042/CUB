@@ -45,8 +45,8 @@ void	init_ray(t_cub *cub, int pixel_column, double *ray)
 		angle -= 360;
 	ray[ANGLE_DEG] = angle;
 	ray[ANGLE_RAD] = fabs(angle * (PI / 180.0));
-	ray[DIST_X] = fabs(1 / cos(ray[ANGLE_RAD]));
-	ray[DIST_Y] = fabs(1 / sin(ray[ANGLE_RAD]));
+	ray[DIST_X] = fabs(1 / sin(ray[ANGLE_RAD]));
+	ray[DIST_Y] = fabs(1 / cos(ray[ANGLE_RAD]));
 	init_first_dist(cub, ray);
 	if (ray[FIRST_X] < 0)
 		ray[DIST_X] *= -1;
@@ -111,10 +111,10 @@ X=[%d] Y=[%d] STEP_X=[%d] STEP_Y=[%d]\n",
 		digital_differential_analyser(cub, ray, step);
 
 		if (pixel_column == WIN_WIDTH / 2)
-			printf("wall hit at Y=[%d] X=[%d]\n\n", step[X], step[Y]);// -> inverser X et Y...
+			printf("wall hit at X=[%d] Y=[%d]\n\n", step[X], step[Y]);// -> inverser X et Y...
 
-		//ray[START_PAINT] = start_stop(cub, ray[DIST_TO_WALL], START_PAINT);
-		//ray[STOP_PAINT] = start_stop(cub, ray[DIST_TO_WALL], STOP_PAINT);
+		//ray[START_PAINT] = calculate_wall_height(cub, ray[DIST_TO_WALL], START_PAINT);
+		//ray[STOP_PAINT] = calculate_wall_height(cub, ray[DIST_TO_WALL], STOP_PAINT);
 		//paint(cub, pixel_column, ray[START_PAINT], ray[STOP_PAINT]);
 	}
 }
