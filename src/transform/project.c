@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   project.c                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: vgodoy <vgodoy@student.42.fr>              +#+  +:+       +#+        */
+/*   By: mkling <mkling@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/03/06 22:47:28 by mkling            #+#    #+#             */
-/*   Updated: 2025/03/13 14:29:09 by vgodoy           ###   ########.fr       */
+/*   Updated: 2025/03/19 11:59:49 by mkling           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,7 +16,6 @@
 	//pt.y += cub->map->offset_y;// - cub->map->tile_size / 2;*/
 t_pt	project_point(t_cub	*cub, t_pt pt)
 {
-	(void)cub;
 	pt.x *= cub->map->scale;
 	pt.y *= cub->map->scale;
 	return (pt);

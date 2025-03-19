@@ -6,7 +6,7 @@
 /*   By: mkling <mkling@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/02/28 16:54:35 by vgodoy            #+#    #+#             */
-/*   Updated: 2025/03/18 17:27:09 by mkling           ###   ########.fr       */
+/*   Updated: 2025/03/19 11:56:37 by mkling           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -48,6 +48,7 @@
 # define GREY 0x555555
 # define DARK_GREY 0x222222
 # define ORANGE 0xFFA500
+# define GREEN 0x008000
 # define SPEED 2
 # define WAND 0.2
 # define FIELD_OF_VIEW 60
@@ -202,13 +203,13 @@ void	update_delta_time(t_cub *cub);
 
 /* PAINTING */
 
-void	put_point(t_cub *cub, t_pt point);
 void	paint_pixel(t_img *img, int x, int y, int color);
 void	paint_background(t_img *img, int color);
 void	paint_line(t_pt start, t_pt end, t_cub *cub);
 void	paint_minimap(t_cub *cub);
 void	paint_square(t_img *img, t_pt *pt, int size, int color);
 void	paint_triangle(t_img *img, t_pt coordinates[3], int color);
+void	paint_column(t_cub *cub, int column, double *ray, int *step);
 
 /* TRANSFORM */
 

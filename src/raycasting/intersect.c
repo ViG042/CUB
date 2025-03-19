@@ -102,26 +102,7 @@ void	calculate_dist_to_wall(t_cub *cub, double *ray, int *step)
 		ray[DIST_TO_WALL] = fabs(ray[FIRST_Y]) + abs(step[Y]) * fabs(ray[DIST_Y]);
 }
 
-void	calculate_wall_height(double *ray, int *step)
-{
-	double	min;
-	double	max;
-	int	int_height;
 
-	min = 0.2;
-	max = 20.0;
-	// if ((ray[DIST_TO_WALL]) <= min)
-	// 	int_height = WIN_HEIGHT;
-	// else if ((ray[DIST_TO_WALL]) > max)
-	// 	int_height = 0;
-	// else
-	// {
-		int_height = (int)(((max - ray[DIST_TO_WALL]) / max) * WIN_HEIGHT);
-	// }
-	step[FIRST_PIXEL] = (WIN_HEIGHT - int_height) / 2;
-	step[LAST_PIXEL] = step[FIRST_PIXEL] + int_height;
-	step[HEIGHT] = int_height;
-}
 
 /*pixel column from 0 to WIN_WIDTH*/
 void	raycasting(t_cub *cub)
@@ -147,7 +128,7 @@ void	raycasting(t_cub *cub)
 
 		calculate_dist_to_wall(cub, ray, step);
 
-		calculate_wall_height(ray, step);
+		// calculate_wall_height(ray, step);
 
 		// if (pixel_column == WIN_WIDTH / 2)
 		// {
@@ -162,12 +143,7 @@ void	raycasting(t_cub *cub)
 			printf("height=[%d]\n\n", step[HEIGHT]);
 		}
 
-		int c = step[FIRST_PIXEL];
-		while (c < step[LAST_PIXEL])
-		{
-			paint_pixel(&cub->img, pixel_column, c, ORANGE);
-			c++;
-		}
+		paint_column(cub, pixel_column, ray, step);
 		//ray[STOP_PAINT] = calculate_wall_height(cub, ray[DIST_TO_WALL], STOP_PAINT);
 		//paint(cub, pixel_column, ray[START_PAINT], ray[STOP_PAINT]);
 	}

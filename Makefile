@@ -6,7 +6,7 @@
 #    By: mkling <mkling@student.42.fr>              +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2025/02/28 15:34:20 by mkling            #+#    #+#              #
-#    Updated: 2025/03/18 16:20:51 by mkling           ###   ########.fr        #
+#    Updated: 2025/03/19 11:06:20 by mkling           ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -25,12 +25,14 @@ DIR_PAIN	= paint
 DIR_TRANS	= transform
 DIR_GAME	= game
 DIR_RAY		= raycasting
+DIR_TEX		= texture
 
 DIR_OBJ		= obj
 DIR_OBJS	= $(DIR_OBJ) $(DIR_OBJ)/$(DIR_INPU) $(DIR_OBJ)/$(DIR_PARS) \
 				$(DIR_OBJ)/$(DIR_ERR) $(DIR_OBJ)/$(DIR_RAY) \
 				$(DIR_OBJ)/$(DIR_DISP) $(DIR_OBJ)/$(DIR_PAIN) \
-				$(DIR_OBJ)/$(DIR_TRANS) $(DIR_OBJ)/$(DIR_GAME)
+				$(DIR_OBJ)/$(DIR_TRANS) $(DIR_OBJ)/$(DIR_GAME) \
+				$(DIR_OBJ)/$(DIR_TEX)
 
 DIR_INC		= inc
 DIR_LIB		= $(DIR_INC)/libft \
@@ -71,9 +73,10 @@ FUNC_TRANS	=	center.c \
 				vector.c \
 				project.c
 
-FUNC_RAY 	=	interse.c \
-				walls.c \
+FUNC_RAY 	=	intersect.c \
 				raycasting.c
+
+FUNC_TEX	=	walls.c
 
 FUNC		=	$(addprefix $(DIR_DISP)/, $(FUNC_DISP)) \
 				$(addprefix $(DIR_ERR)/, $(FUNC_ERR)) \
@@ -82,7 +85,8 @@ FUNC		=	$(addprefix $(DIR_DISP)/, $(FUNC_DISP)) \
 				$(addprefix $(DIR_TRANS)/, $(FUNC_TRANS)) \
 				$(addprefix $(DIR_PAIN)/, $(FUNC_PAIN)) \
 				$(addprefix $(DIR_GAME)/, $(FUNC_GAME)) \
-				$(addprefix $(DIR_RAY)/, $(FUNC_RAY))
+				$(addprefix $(DIR_RAY)/, $(FUNC_RAY)) \
+				$(addprefix $(DIR_TEX)/, $(FUNC_TEX))
 
 MAIN		= main.c
 
