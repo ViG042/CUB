@@ -133,24 +133,75 @@ void	define_surface_collision (double *ray, int *step)
 	}
 }
 
+void	calculate_angle_90(double *ray, int *step, int pixel_column)
+{
+	if (step[LAST_MOVE] == NORTH)
+	{
+		if (ray[ANGLE_DEG] >= 270)
+			ray[ANGLE_90] = 360 - ray[ANGLE_DEG];
+		else
+			ray[ANGLE_90] = ray[ANGLE_DEG];
+	}
+	if (step[LAST_MOVE] == SOUTH)
+	{
+		if (ray[ANGLE_DEG] >= 180)
+			ray[ANGLE_90] = ray[ANGLE_DEG] - 180;
+		else
+			ray[ANGLE_90] = 180 - ray[ANGLE_DEG];
+	}
+	if (step[LAST_MOVE] == WEST)
+	{
+		if (ray[ANGLE_DEG] >= 270)
+			ray[ANGLE_90] = ray[ANGLE_DEG] - 270;
+		else
+			ray[ANGLE_90] = 270 - ray[ANGLE_DEG];
+	}
+	if (step[LAST_MOVE] == EAST)
+	{
+		if (ray[ANGLE_DEG] >= 90)
+			ray[ANGLE_90] = ray[ANGLE_DEG] - 90;
+		else
+			ray[ANGLE_90] = 90 - ray[ANGLE_DEG];
+	}
+
+	if (pixel_column == WIN_WIDTH / 2)
+	{
+		printf("ray[ANGLE_90] = [%f]\n", ray[ANGLE_90]);
+	}
+}
+
 void	calculate_dist_to_wall(t_cub *cub, double *ray, int *step, int pixel_column)
 {
 	(void)cub;
 	(void)pixel_column;
-	if (pixel_column == WIN_WIDTH / 2)
-	{
-		printf("last move = [%d]\n", step[LAST_MOVE]);
-		printf("fabs(ray[F_Y])=[%f] + abs(step[Y]=[%d] - step[Y_PLAYER]=[%d] -1)\n", fabs(ray[F_Y]), step[Y], step[Y_PLAYER]);
-		printf("fabs(ray[F_X])=[%f] + abs(step[X]=[%d] - step[X_PLAYER]=[%d] -1)\n", fabs(ray[F_X]), step[X], step[X_PLAYER]);
-	}
-	if (step[LAST_MOVE] == TOP)
-		ray[DIST_TO_WALL] = (fabs(ray[F_Y]) + abs(step[Y] - step[Y_PLAYER]) -1);
-	else
-		ray[DIST_TO_WALL] = (fabs(ray[F_X]) + abs(step[X] - step[X_PLAYER]) -1);
+
+	ray[DIST_TO_WALL_X] = 0;
+	ray[DIST_TO_WALL_Y] = 0;
 
 	if (pixel_column == WIN_WIDTH / 2)
 	{
-		printf("dist=[%f]\n", ray[DIST_TO_WALL]);
+		printf("last move = [%d]\n", step[LAST_MOVE]);
+		printf("fabs(ray[F_Y])=[%f] + abs(step[Y]=[%d] - step[Y_PLAYER]=[%d]) - 1\n", fabs(ray[F_Y]), step[Y], step[Y_PLAYER]);
+		printf("fabs(ray[F_X])=[%f] + abs(step[X]=[%d] - step[X_PLAYER]=[%d]) - 1\n", fabs(ray[F_X]), step[X], step[X_PLAYER]);
+	}
+
+	if (step[LAST_MOVE] == NORTH || step[LAST_MOVE] == SOUTH)
+	{
+		ray[DIST_TO_WALL_Y] = (fabs(ray[F_Y]) + abs(step[Y] - step[Y_PLAYER]) -1);
+		ray[DIST_TO_WALL] = fabs(ray[DIST_TO_WALL_Y] / cos(ray[ANGLE_90] * (PI / 180.0)));
+	}
+	else
+	{
+		ray[DIST_TO_WALL_X] = (fabs(ray[F_X]) + abs(step[X] - step[X_PLAYER]) -1);
+		ray[DIST_TO_WALL] = fabs(ray[DIST_TO_WALL_X] / cos(ray[ANGLE_90] * (PI / 180.0)));
+	}
+
+
+	if (pixel_column == WIN_WIDTH / 2)
+	{
+		printf("DIST_TO_WALL_X=[%f]\n", ray[DIST_TO_WALL_X]);
+		printf("DIST_TO_WALL_Y=[%f]\n", ray[DIST_TO_WALL_Y]);
+		printf("DIST_TO_WALL=[%f]\n", ray[DIST_TO_WALL]);
 	}
 }
 
@@ -161,7 +212,7 @@ void	calculate_wall_height(double *ray, int *step)
 	int	int_height;
 
 	min = 0.2;
-	max = 8.0;
+	max = 10.0;
 
 	int_height = (int)(((max - ray[DIST_TO_WALL]) / max) * WIN_HEIGHT);
 
@@ -174,12 +225,14 @@ void	calculate_wall_height(double *ray, int *step)
 void	raycasting(t_cub *cub)
 {
 	int		pixel_column;
-	double	ray[10];
+	double	ray[12];
 	int		step[10];
 
 	pixel_column = 0;
 	while (pixel_column++ < WIN_WIDTH)
 	{
+		// if (pixel_column % 10 == 0)
+		// {
 		init_ray(cub, pixel_column, ray);
 		init_step(cub, ray, step);
 
@@ -192,11 +245,13 @@ void	raycasting(t_cub *cub)
 // 				step[X], step[Y], step[STEP_X], step[STEP_Y]);
 		digital_differential_analyser(cub, ray, step, pixel_column);
 
-		calculate_dist_to_wall(cub, ray, step, pixel_column);
-
 		define_surface_collision(ray, step);
 
-		ray[DIST_TO_WALL] *= fabs(cos(ray[ANGLE_RAD] - cub->player.player_angle));
+		calculate_angle_90(ray, step, pixel_column);
+
+		calculate_dist_to_wall(cub, ray, step, pixel_column);
+
+		//ray[DIST_TO_WALL] *= fabs(cos(ray[ANGLE_RAD] - cub->player.player_angle));
 
 		calculate_wall_height(ray, step);
 
@@ -213,6 +268,7 @@ void	raycasting(t_cub *cub)
 			paint_pixel(&cub->img, pixel_column, c, ORANGE);
 			c++;
 		}
+	// }
 	}
 }
 

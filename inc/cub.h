@@ -6,7 +6,7 @@
 /*   By: vgodoy <vgodoy@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/02/28 16:54:35 by vgodoy            #+#    #+#             */
-/*   Updated: 2025/03/19 13:56:07 by vgodoy           ###   ########.fr       */
+/*   Updated: 2025/03/19 16:45:56 by vgodoy           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -295,12 +295,15 @@ enum e_raycast
 {
 	ANGLE_DEG,    //from 0 to 360
 	ANGLE_RAD,    //from -1 to 1
+	ANGLE_90,
 	DIST_X,       //dist entre les colonnes
 	DIST_Y,       //dist entre les lignes
 	F_X,      //premiere dist vers colonne
 	F_Y,      //permiere dist vers ligne
 	FIRST_X,      //premiere dist vers colonne corrigee de l'angle
 	FIRST_Y,      //permiere dist vers ligne corrigee de l'angle
+	DIST_TO_WALL_X,
+	DIST_TO_WALL_Y,
 	DIST_TO_WALL,
 	DIST_IN_TEXTURE,
 };
