@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   cub.h                                              :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: vgodoy <vgodoy@student.42.fr>              +#+  +:+       +#+        */
+/*   By: mkling <mkling@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/02/28 16:54:35 by vgodoy            #+#    #+#             */
-/*   Updated: 2025/03/20 14:17:41 by vgodoy           ###   ########.fr       */
+/*   Updated: 2025/03/20 16:18:21 by mkling           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -126,7 +126,7 @@ typedef struct s_key_states
 	bool	d;
 }	t_key;
 
-typedef	struct s_player
+typedef struct s_player
 {
 	double	player_angle;
 	char	init_orientation;
@@ -136,6 +136,33 @@ typedef	struct s_player
 	double	edge[4];
 	int		cursor_size;
 }	t_play;
+
+typedef struct s_ray
+{
+	double	angle_deg;
+	double	angle_rad;
+	double	angle_90;
+	double	dist_x;
+	double	dist_y;
+	double	dda_x;
+	double	dda_y;
+	double	f_x;
+	double	f_y;
+	double	wall_dist;
+	double	dist_in_text;
+	int		y;
+	int		x;
+	int		firstx;
+	int		firsty;
+	int		step_x;
+	int		step_y;
+	int		x_player;
+	int		y_player;
+	int		side;
+	int		wall_height;
+	int		top_wall;
+	int		end_wall;
+}	t_ray;
 
 typedef struct s_cub
 {
@@ -151,6 +178,7 @@ typedef struct s_cub
 	t_key	keys;
 	t_play	player;
 	t_disp	display;
+	t_ray	ray;
 	int		fd;
 	char	temp_map[MAX_TEMP_MAP];
 	int		offset_x;
@@ -227,6 +255,7 @@ t_pt	project_point(t_cub	*cub, t_pt pt);
 void	raycasting(t_cub *cub);
 double	get_line_len(double start_x, double start_y,
 			double end_x, double end_y);
+void	paint_wall(t_cub *cub, int column);
 
 
 enum e_errcode {
