@@ -8,6 +8,21 @@ void	calculate_dist_to_wall(t_cub *cub)
 		cub->ray.wall_dist = fabs(fabs(cub->ray.dda_x) - fabs(cub->ray.dist_x));
 }
 
+void	calculate_dist_in_texture(t_cub *cub)
+{
+	if (cub->ray.side == NORTH || cub->ray.side == SOUTH)
+	{
+		cub->ray.dist_in_text = sqrt(pow(cub->ray.dda_y, 2) - pow(cub->ray.wall_dist, 2));
+	}
+	else
+	{
+		cub->ray.dist_in_text = sqrt(pow(cub->ray.dda_x, 2) - pow(cub->ray.wall_dist, 2));
+	}
+	//cub->ray.dist_in_text = cub->ray.dist_in_text
+	//	- (int)(cub->ray.dist_in_text);
+	// -/+ la first_x / first_y du player ?
+}
+
 void	calculate_wall_height(t_cub *cub)
 {
 	cub->ray.wall_height = (int)(WIN_HEIGHT / cub->ray.wall_dist);
