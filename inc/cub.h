@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   cub.h                                              :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: vgodoy <vgodoy@student.42.fr>              +#+  +:+       +#+        */
+/*   By: mkling <mkling@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/02/28 16:54:35 by vgodoy            #+#    #+#             */
-/*   Updated: 2025/03/20 18:03:26 by vgodoy           ###   ########.fr       */
+/*   Updated: 2025/03/20 18:22:55 by mkling           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -127,7 +127,7 @@ typedef struct s_key_states
 	bool	d;
 }	t_key;
 
-typedef	struct s_player
+typedef struct s_player
 {
 	double	player_angle;
 	char	init_orientation;
@@ -137,6 +137,28 @@ typedef	struct s_player
 	double	edge[4];
 	int		cursor_size;
 }	t_play;
+
+typedef struct s_ray
+{
+	double	angle_deg;
+	double	angle_rad;
+	double	dist_x;
+	double	dist_y;
+	double	dda_x;
+	double	dda_y;
+	double	firstx;
+	double	firsty;
+	double	wall_dist;
+	double	dist_in_text;
+	int		y;
+	int		x;
+	int		step_x;
+	int		step_y;
+	int		side;
+	int		wall_height;
+	int		top_wall;
+	int		end_wall;
+}	t_ray;
 
 typedef struct s_cub
 {
@@ -152,6 +174,7 @@ typedef struct s_cub
 	t_key	keys;
 	t_play	player;
 	t_disp	display;
+	t_ray	ray;
 	int		fd;
 	char	temp_map[MAX_TEMP_MAP];
 	int		offset_x;
@@ -228,6 +251,9 @@ t_pt	project_point(t_cub	*cub, t_pt pt);
 void	raycasting(t_cub *cub);
 double	get_line_len(double start_x, double start_y,
 			double end_x, double end_y);
+void	paint_column(t_cub *cub, int column);
+void	begug_print(t_cub *cub, int pixel_column);
+
 
 
 enum e_errcode {
@@ -299,8 +325,8 @@ enum e_raycast
 	ANGLE_90,
 	DIST_X,       //dist entre les colonnes
 	DIST_Y,       //dist entre les lignes
-	F_X,      //premiere dist vers colonne
-	F_Y,      //permiere dist vers ligne
+	firstx,      //premiere dist vers colonne
+	firsty,      //permiere dist vers ligne
 	FIRST_X,      //premiere dist vers colonne corrigee de l'angle
 	FIRST_Y,      //permiere dist vers ligne corrigee de l'angle
 	DDA_X,
