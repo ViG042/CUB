@@ -6,7 +6,7 @@
 /*   By: mkling <mkling@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/02/28 16:54:35 by vgodoy            #+#    #+#             */
-/*   Updated: 2025/03/20 17:59:16 by mkling           ###   ########.fr       */
+/*   Updated: 2025/03/20 18:05:34 by mkling           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -141,13 +141,10 @@ typedef struct s_ray
 {
 	double	angle_deg;
 	double	angle_rad;
-	double	angle_90;
 	double	dist_x;
 	double	dist_y;
 	double	dda_x;
 	double	dda_y;
-	double	f_x;
-	double	f_y;
 	double	firstx;
 	double	firsty;
 	double	wall_dist;
@@ -325,8 +322,8 @@ enum e_raycast
 	ANGLE_90,
 	DIST_X,       //dist entre les colonnes
 	DIST_Y,       //dist entre les lignes
-	F_X,      //premiere dist vers colonne
-	F_Y,      //permiere dist vers ligne
+	firstx,      //premiere dist vers colonne
+	firsty,      //permiere dist vers ligne
 	FIRST_X,      //premiere dist vers colonne corrigee de l'angle
 	FIRST_Y,      //permiere dist vers ligne corrigee de l'angle
 	DDA_X,

@@ -9,23 +9,23 @@ void	init_first_dist(t_cub *cub)
 	y = cub->player.grid_pt.y;
 	if (cub->ray.angle_deg < 90)
 	{
-		cub->ray.f_x = (ceil(x) - x);
-		cub->ray.f_y = (floor(y) - y);
+		cub->ray.firstx = (ceil(x) - x);
+		cub->ray.firsty = (floor(y) - y);
 	}
 	else if (cub->ray.angle_deg < 180)
 	{
-		cub->ray.f_x = (ceil(x) - x);
-		cub->ray.f_y = (ceil(y) - y);
+		cub->ray.firstx = (ceil(x) - x);
+		cub->ray.firsty = (ceil(y) - y);
 	}
 	else if (cub->ray.angle_deg < 270)
 	{
-		cub->ray.f_x = (floor(x) - x);
-		cub->ray.f_y = (ceil(y) - y);
+		cub->ray.firstx = (floor(x) - x);
+		cub->ray.firsty = (ceil(y) - y);
 	}
 	else
 	{
-		cub->ray.f_x = (floor(x) - x);
-		cub->ray.f_y = (floor(y) - y);
+		cub->ray.firstx = (floor(x) - x);
+		cub->ray.firsty = (floor(y) - y);
 	}
 }
 
@@ -45,7 +45,6 @@ void	init_ray(t_cub *cub, int pixel_column)
 		angle -= 360;
 	cub->ray.angle_deg = angle;
 	cub->ray.angle_rad = fabs(angle * (PI / 180.0));
-
 	if (sin(cub->ray.angle_rad) == 0.0)
 		cub->ray.dist_x = 100;
 	else
@@ -63,12 +62,12 @@ void	init_step(t_cub *cub)
 	cub->ray.y = floor(cub->player.grid_pt.y);
 	cub->ray.step_x = 1;
 	cub->ray.step_y = 1;
-	if (cub->ray.f_x < 0)
+	if (cub->ray.firstx < 0)
 		cub->ray.step_x = -1;
-	if (cub->ray.f_y < 0)
+	if (cub->ray.firsty < 0)
 		cub->ray.step_y = -1;
-	cub->ray.firstx = cub->ray.f_x * cub->ray.dist_x;
-	cub->ray.firsty = cub->ray.f_y * cub->ray.dist_y;
+	cub->ray.firstx = cub->ray.firstx * cub->ray.dist_x;
+	cub->ray.firsty = cub->ray.firsty * cub->ray.dist_y;
 }
 
 void	digital_differential_analyser(t_cub *cub)
