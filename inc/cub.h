@@ -6,7 +6,7 @@
 /*   By: mkling <mkling@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/02/28 16:54:35 by vgodoy            #+#    #+#             */
-/*   Updated: 2025/03/20 16:18:21 by mkling           ###   ########.fr       */
+/*   Updated: 2025/03/20 17:59:16 by mkling           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -148,16 +148,14 @@ typedef struct s_ray
 	double	dda_y;
 	double	f_x;
 	double	f_y;
+	double	firstx;
+	double	firsty;
 	double	wall_dist;
 	double	dist_in_text;
 	int		y;
 	int		x;
-	int		firstx;
-	int		firsty;
 	int		step_x;
 	int		step_y;
-	int		x_player;
-	int		y_player;
 	int		side;
 	int		wall_height;
 	int		top_wall;

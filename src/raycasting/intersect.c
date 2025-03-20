@@ -45,6 +45,7 @@ void	init_ray(t_cub *cub, int pixel_column)
 		angle -= 360;
 	cub->ray.angle_deg = angle;
 	cub->ray.angle_rad = fabs(angle * (PI / 180.0));
+
 	if (sin(cub->ray.angle_rad) == 0.0)
 		cub->ray.dist_x = 100;
 	else
@@ -122,7 +123,6 @@ void	define_surface_collision(t_cub *cub)
 			cub->ray.side = WEST;
 	}
 }
-
 
 void	calculate_dist_to_wall(t_cub *cub)
 {
