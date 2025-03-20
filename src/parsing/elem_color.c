@@ -7,10 +7,8 @@ int	encode_rgb(int red, int green, int blue)
 
 int	color_atoi(char *str)
 {
-	int	i;
 	int	color;
 
-	i = 0;
 	color = 0;
 	if (str[0] && str[0] >= '0' && str[0] <= '9')
 		color = str[0] - '0';

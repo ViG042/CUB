@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   vector.c                                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: vgodoy <vgodoy@student.42.fr>              +#+  +:+       +#+        */
+/*   By: alex <alex@student.42.fr>                  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/03/04 13:22:24 by mkling            #+#    #+#             */
-/*   Updated: 2025/03/20 15:21:06 by vgodoy           ###   ########.fr       */
+/*   Updated: 2025/03/20 23:52:42 by alex             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -27,6 +27,7 @@ t_pt	turn_to_pts(t_cub *cub, int row, int column)
 
 	point.y = row;
 	point.x = column;
+	point.type = 0;
 	if (cub->map->clean_map[row][column])
 		point.type = cub->map->clean_map[row][column];
 	if (point.type == 'W' || point.type == 'E'
