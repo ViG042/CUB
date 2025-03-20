@@ -6,7 +6,7 @@
 /*   By: vgodoy <vgodoy@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/02/28 16:54:35 by vgodoy            #+#    #+#             */
-/*   Updated: 2025/03/19 16:45:56 by vgodoy           ###   ########.fr       */
+/*   Updated: 2025/03/20 14:17:41 by vgodoy           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -302,8 +302,8 @@ enum e_raycast
 	F_Y,      //permiere dist vers ligne
 	FIRST_X,      //premiere dist vers colonne corrigee de l'angle
 	FIRST_Y,      //permiere dist vers ligne corrigee de l'angle
-	DIST_TO_WALL_X,
-	DIST_TO_WALL_Y,
+	DDA_X,
+	DDA_Y,
 	DIST_TO_WALL,
 	DIST_IN_TEXTURE,
 };
