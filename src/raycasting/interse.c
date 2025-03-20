@@ -36,7 +36,7 @@ void	init_ray(t_cub *cub, int pixel_column, double *ray)
 {
 	double	angle;
 
-	angle = 2 * (pixel_column / (double)WIN_WIDTH) - 1;
+	angle = 2 * pixel_column / (double)WIN_WIDTH - 1;
 	angle = angle * FIELD_OF_VIEW / 2;
 	angle = angle + cub->player.player_angle;
 	if (angle < 0)
@@ -56,10 +56,10 @@ void	init_ray(t_cub *cub, int pixel_column, double *ray)
 		ray[DIST_Y] = fabs(1 / cos(ray[ANGLE_RAD]));
 
 	init_first_dist(cub, ray);
-	if (ray[FIRST_X] < 0)
-		ray[DIST_X] *= -1;
-	if (ray[FIRST_Y] < 0)
-		ray[DIST_Y] *= -1;
+	// if (ray[FIRST_X] < 0)
+	// 	ray[DIST_X] *= -1;
+	// if (ray[FIRST_Y] < 0)
+	// 	ray[DIST_Y] *= -1;
 }
 
 
@@ -88,6 +88,10 @@ void	digital_differential_analyser(t_cub *cub, double *ray, int *step, int pixel
 	(void)cub;
 	ray[DDA_X] = fabs(ray[FIRST_X]);
 	ray[DDA_Y] = fabs(ray[FIRST_Y]);
+	if (pixel_column == WIN_WIDTH / 2 || pixel_column == WIN_WIDTH / 2 + 1)
+	{
+		printf("DIST_X=[%f] DIST_Y=[%f]\n", ray[DIST_X], ray[DIST_Y]);
+	}
 	while (cub->map->clean_map[step[Y]][step[X]] == '0')
 	{
 		if (pixel_column == WIN_WIDTH / 2 || pixel_column == WIN_WIDTH / 2 + 1)
@@ -237,7 +241,11 @@ void	calculate_wall_height(double *ray, int *step)
 	//(int)(((max - ray[DIST_TO_WALL]) / max) * WIN_HEIGHT);
 
 	step[FIRST_PIXEL] = (WIN_HEIGHT - step[HEIGHT]) / 2;
+	if (step[FIRST_PIXEL] < 0)
+		step[FIRST_PIXEL] = 0;
 	step[LAST_PIXEL] = step[FIRST_PIXEL] + step[HEIGHT];
+	if (step[LAST_PIXEL] >= WIN_HEIGHT)
+		step[LAST_PIXEL] = WIN_HEIGHT;
 
 
 		  //calculate lowest and highest pixel to fill in current stripe
@@ -277,26 +285,25 @@ void	raycasting(t_cub *cub)
 
 		calculate_wall_height(ray, step);
 
-		if (pixel_column == WIN_WIDTH / 2 || pixel_column == WIN_WIDTH / 2 + 1)
+		if (pixel_column == 2 || pixel_column == WIN_WIDTH / 2 || pixel_column == WIN_WIDTH - 2)
 		{
-
+			printf("\n\npixel column is %d\n", pixel_column);
 			printf("wall hit at X=[%d] Y=[%d]\n", step[X], step[Y]);
 			printf("LAST_MOVE=[%d]\n", step[LAST_MOVE]);
 			printf("ray[DIST_TO_WALL]=[%f]\n\n", ray[DIST_TO_WALL]);///
 		}
-		// if (pixel_column % 2 == 0)
-		// {
+
 		int c = step[FIRST_PIXEL];
 		while (c < step[LAST_PIXEL])
 		{
-			if (ray[LAST_MOVE] == NORTH)
+			if (step[LAST_MOVE] == NORTH)
 				paint_pixel(&cub->img, pixel_column, c, WHITE);
-			else if (ray[LAST_MOVE] == SOUTH)
+			else if (step[LAST_MOVE] == SOUTH)
 				paint_pixel(&cub->img, pixel_column, c, DARK_GREY);
-			else if (ray[LAST_MOVE] == WEST)
+			else if (step[LAST_MOVE] == WEST)
 				paint_pixel(&cub->img, pixel_column, c, ORANGE);
 			else
-				paint_pixel(&cub->img, pixel_column, c, ORANGE);
+				paint_pixel(&cub->img, pixel_column, c, ORANGE / 2);
 			c++;
 		}
 		// }
