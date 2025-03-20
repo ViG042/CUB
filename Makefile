@@ -6,7 +6,7 @@
 #    By: mkling <mkling@student.42.fr>              +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2025/02/28 15:34:20 by mkling            #+#    #+#              #
-#    Updated: 2025/03/20 18:37:38 by mkling           ###   ########.fr        #
+#    Updated: 2025/03/20 19:41:43 by mkling           ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -54,6 +54,7 @@ FUNC_PARS	=	do_parsing.c \
 
 FUNC_DISP	=	render.c \
 				window.c \
+				title.c
 
 FUNC_ERR	=	clean.c \
 				errors.c

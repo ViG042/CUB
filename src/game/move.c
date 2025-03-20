@@ -6,7 +6,7 @@
 /*   By: mkling <mkling@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/03/09 18:12:25 by mkling            #+#    #+#             */
-/*   Updated: 2025/03/20 18:54:56 by mkling           ###   ########.fr       */
+/*   Updated: 2025/03/20 19:48:43 by mkling           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -27,6 +27,8 @@ void	init_direction(t_cub *cub, t_pt *direction)
 		direction->x -= SPEED * cub->display.delta_time;
 	else if (cub->keys.d)
 		direction->x += SPEED * cub->display.delta_time;
+	if (!cub->begin && (direction->x || direction->y))
+		cub->begin = 1;
 }
 
 static void	rotate_direction(t_pt *point, double angle)
