@@ -6,7 +6,7 @@
 /*   By: vgodoy <vgodoy@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/02/28 16:54:35 by vgodoy            #+#    #+#             */
-/*   Updated: 2025/03/20 14:17:41 by vgodoy           ###   ########.fr       */
+/*   Updated: 2025/03/20 18:03:26 by vgodoy           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -38,7 +38,7 @@
 
 # define MAX_TEMP_MAP 4096
 # define WIN_WIDTH 1920
-# define WIN_HEIGHT 600
+# define WIN_HEIGHT 1000
 # define MINIMAP_PROPORTION 0.5
 # define CURSOR_SIZE 10
 # define UNIT 10
@@ -49,6 +49,7 @@
 # define DARK_GREY 0x222222
 # define ORANGE 0xFFA500
 # define SPEED 2
+# define ROT_SPEED 50
 # define WAND 0.2
 # define FIELD_OF_VIEW 60
 
