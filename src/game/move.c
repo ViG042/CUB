@@ -3,28 +3,14 @@
 /*                                                        :::      ::::::::   */
 /*   move.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: vgodoy <vgodoy@student.42.fr>              +#+  +:+       +#+        */
+/*   By: mkling <mkling@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/03/09 18:12:25 by mkling            #+#    #+#             */
-/*   Updated: 2025/03/19 17:52:08 by vgodoy           ###   ########.fr       */
+/*   Updated: 2025/03/20 18:54:56 by mkling           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "cub.h"
-
-// void	init_direction(t_cub *cub, t_pt *direction)
-// {
-// 	direction->x = 0;
-// 	direction->y = 0;
-// 	if (cub->keys.a)
-// 		direction->x -= SPEED * cub->display.delta_time;
-// 	else if (cub->keys.d)
-// 		direction->x += SPEED * cub->display.delta_time;
-// 	if (cub->keys.s)
-// 		direction->y += SPEED * cub->display.delta_time;
-// 	else if (cub->keys.w)
-// 		direction->y -= SPEED * cub->display.delta_time;
-// }
 
 void	init_direction(t_cub *cub, t_pt *direction)
 {
@@ -34,13 +20,13 @@ void	init_direction(t_cub *cub, t_pt *direction)
 	direction->x = 0;
 	direction->y = 0;
 	if (cub->keys.w)
-		direction->y -= step;
+		direction->y -= SPEED * cub->display.delta_time;
 	else if (cub->keys.s)
-		direction->y += step;
+		direction->y += SPEED * cub->display.delta_time;
 	if (cub->keys.a)
-		direction->x -= step;
+		direction->x -= SPEED * cub->display.delta_time;
 	else if (cub->keys.d)
-		direction->x += step;
+		direction->x += SPEED * cub->display.delta_time;
 }
 
 static void	rotate_direction(t_pt *point, double angle)
@@ -125,11 +111,6 @@ void	check_edges(t_cub *cub, t_pt *direction)
 		direction->x = 0;
 }
 
-/*	double x = cub->player.grid_pt.x;
-	double y = cub->player.grid_pt.y;
-	printf("firection x=[%f] y=[%f]\n", direction.x, direction.y);
-	printf("dx=[%f] dy=[%f]\n", direction.x, direction.y);/////////
-		printf("player position x=[%f] y=[%f]\n\n", x ,y);///*/
 void	move_player(t_cub *cub)
 {
 	t_pt	direction;

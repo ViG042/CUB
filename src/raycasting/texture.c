@@ -6,7 +6,7 @@
 /*   By: mkling <mkling@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/03/18 11:17:21 by mkling            #+#    #+#             */
-/*   Updated: 2025/03/20 18:21:53 by mkling           ###   ########.fr       */
+/*   Updated: 2025/03/20 19:21:25 by mkling           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -55,43 +55,15 @@ void	begug_print(t_cub *cub, int pixel_column)
 	{
 		printf("\n\npixel column is %d\n", pixel_column);
 		printf("wall hit at X=[%d] Y=[%d]\n", cub->ray.x, cub->ray.y);
-		printf("LAST_MOVE=[%d]\n", cub->ray.side);
-		// printf("ray[DIST_TO_WALL]=[%f]\n\n", ray[DIST_TO_WALL]);
-		// printf("pixel_column=[%d] angle_deg=[%f] angle_rad=[%f] \
-		// 	composante_x=[%f] composante_y=[%f] first_x[%f] first_y=[%f] \
-		// 	X=[%d] Y=[%d] STEP_X=[%d] STEP_Y=[%d]\n",
-		// 	pixel_column, ray[ANGLE_DEG], ray[ANGLE_RAD],
-		// 	ray[DIST_X], ray[DIST_Y], ray[FIRST_X], ray[FIRST_Y],
-		// 	step[X], step[Y], step[STEP_X], step[STEP_Y]);
-		printf("first wall pix is %d and last is %d\n", cub->ray.top_wall, cub->ray.end_wall);
+		printf("On side =[%d]\n", cub->ray.side);
+		printf("Wall distance =[%f]\n", cub->ray.wall_dist);
+		printf("pixel_column=[%d] angle_deg=[%f] angle_rad=[%f] \
+			composante_x=[%f] composante_y=[%f] first_x[%f] first_y=[%f] \
+			X=[%d] Y=[%d] STEP_X=[%d] STEP_Y=[%d]\n",
+			pixel_column, cub->ray.angle_deg, cub->ray.angle_deg,
+			cub->ray.dist_x, cub->ray.dist_y, cub->ray.firstx, cub->ray.firsty,
+			cub->ray.x, cub->ray.y, cub->ray.step_x, cub->ray.step_y);
+		printf("first wall pix is %d and last is %d\n",
+			cub->ray.top_wall, cub->ray.end_wall);
 	}
 }
-
-// void paint_column(t_cub *cub, int *step, int pixel_column)
-// {
-// 	int c;
-
-// 	c = 0;
-// 	while (c < step[FIRST_PIXEL])
-// 	{
-// 		paint_pixel(&cub->img, pixel_column, c, ORANGE / 4);
-// 		c++;
-// 	}
-// 	while (c < step[LAST_PIXEL])
-// 	{
-// 		if (step[LAST_MOVE] == NORTH)
-// 			paint_pixel(&cub->img, pixel_column, c, WHITE);
-// 		else if (step[LAST_MOVE] == SOUTH)
-// 			paint_pixel(&cub->img, pixel_column, c, DARK_GREY);
-// 		else if (step[LAST_MOVE] == WEST)
-// 			paint_pixel(&cub->img, pixel_column, c, ORANGE);
-// 		else
-// 			paint_pixel(&cub->img, pixel_column, c, ORANGE / 2);
-// 		c++;
-// 	}
-// 	while (c < WIN_HEIGHT)
-// 	{
-// 		paint_pixel(&cub->img, pixel_column, c, ORANGE * 2);
-// 		c++;
-// 	}
-// }

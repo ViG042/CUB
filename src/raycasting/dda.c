@@ -91,57 +91,6 @@ void	digital_differential_analyser(t_cub *cub)
 	}
 }
 
-void	define_surface_collision(t_cub *cub)
-{
-	if (cub->ray.angle_deg < 90)
-	{
-		if (cub->ray.side == TOP)
-			cub->ray.side = NORTH;
-		else
-			cub->ray.side = EAST;
-	}
-	else if (cub->ray.angle_deg < 180)
-	{
-		if (cub->ray.side == TOP)
-			cub->ray.side = SOUTH;
-		else
-			cub->ray.side = EAST;
-	}
-	else if (cub->ray.angle_deg < 270)
-	{
-		if (cub->ray.side == TOP)
-			cub->ray.side = SOUTH;
-		else
-			cub->ray.side = WEST;
-	}
-	else
-	{
-		if (cub->ray.side == TOP)
-			cub->ray.side = NORTH;
-		else
-			cub->ray.side = WEST;
-	}
-}
-
-void	calculate_dist_to_wall(t_cub *cub)
-{
-	if (cub->ray.side == NORTH || cub->ray.side == SOUTH)
-		cub->ray.wall_dist = fabs(fabs(cub->ray.dda_y) - fabs(cub->ray.dist_y));
-	else
-		cub->ray.wall_dist = fabs(fabs(cub->ray.dda_x) - fabs(cub->ray.dist_x));
-}
-
-void	calculate_wall_height(t_cub *cub)
-{
-	cub->ray.wall_height = (int)(WIN_HEIGHT / cub->ray.wall_dist);
-	cub->ray.top_wall = (WIN_HEIGHT - cub->ray.wall_height) / 2;
-	if (cub->ray.top_wall < 0)
-		cub->ray.top_wall = 0;
-	cub->ray.end_wall = cub->ray.top_wall + cub->ray.wall_height;
-	if (cub->ray.end_wall >= WIN_HEIGHT)
-		cub->ray.end_wall = WIN_HEIGHT;
-}
-
 /*pixel column from 0 to WIN_WIDTH*/
 void	raycasting(t_cub *cub)
 {
@@ -153,10 +102,10 @@ void	raycasting(t_cub *cub)
 		init_ray(cub, column);
 		init_step(cub);
 		digital_differential_analyser(cub);
-		define_surface_collision(cub);
+		define_collision_side(cub);
 		calculate_dist_to_wall(cub);
 		calculate_wall_height(cub);
-		begug_print(cub, column);
+		// begug_print(cub, column);
 		paint_column(cub, column);
 	}
 }

@@ -6,7 +6,7 @@
 /*   By: mkling <mkling@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/03/09 00:20:56 by alex              #+#    #+#             */
-/*   Updated: 2025/03/09 14:53:22 by mkling           ###   ########.fr       */
+/*   Updated: 2025/03/20 18:58:52 by mkling           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -30,4 +30,10 @@ void	update_delta_time(t_cub *cub)
 	delta_ms = current_frame - cub->display.last_frame;
 	cub->display.last_frame = current_frame;
 	cub->display.delta_time = ((double)delta_ms) / 1000000.00;
+	cub->display.counter += cub->display.delta_time;
+	if (cub->display.counter > 1)
+	{
+		cub->display.fps = 1.0 / cub->display.delta_time;
+		cub->display.counter = 0;
+	}
 }

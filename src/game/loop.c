@@ -6,7 +6,7 @@
 /*   By: mkling <mkling@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/03/09 00:20:40 by alex              #+#    #+#             */
-/*   Updated: 2025/03/20 18:11:34 by mkling           ###   ########.fr       */
+/*   Updated: 2025/03/20 18:59:42 by mkling           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -29,16 +29,9 @@ int	game_loop(void	*voidedcub)
 	t_cub		*cub;
 
 	cub = (t_cub *)voidedcub;
-
 	if (cub->win == NULL)
 		return (1);
 	update_delta_time(cub);
-	cub->display.counter += cub->display.delta_time;
-	if (cub->display.counter > 1)
-	{
-		cub->display.fps = 1.0 / cub->display.delta_time;
-		cub->display.counter = 0;
-	}
 	rotations(cub);
 	move_player(cub);
 	paint_background(&cub->img, BLACK);

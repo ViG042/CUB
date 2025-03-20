@@ -6,7 +6,7 @@
 /*   By: mkling <mkling@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/03/04 12:01:04 by mkling            #+#    #+#             */
-/*   Updated: 2025/03/04 15:28:30 by mkling           ###   ########.fr       */
+/*   Updated: 2025/03/20 19:24:54 by mkling           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -31,7 +31,6 @@ void	scale(t_pt *point, t_cub *cub)
 {
 	point->x = cub->unit * point->x;
 	point->y = cub->unit * point->y;
-	fprintf(stderr, "zoom is %d\n", cub->zoom);
 	point->x *= cub->zoom;
 	point->y *= cub->zoom;
 	point->z *= cub->zoom;
