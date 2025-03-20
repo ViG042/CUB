@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   texture.c                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: mkling <mkling@student.42.fr>              +#+  +:+       +#+        */
+/*   By: alex <alex@student.42.fr>                  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/03/18 11:17:21 by mkling            #+#    #+#             */
-/*   Updated: 2025/03/20 19:21:25 by mkling           ###   ########.fr       */
+/*   Updated: 2025/03/21 00:00:01 by alex             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -31,13 +31,13 @@ void	paint_column(t_cub *cub, int column)
 	while (row < cub->ray.end_wall)
 	{
 		if (cub->ray.side == NORTH)
-			paint_pixel(&cub->img, column, row, WHITE);
+			paint_pixel(&cub->img, column, row, gradientify(cub, WHITE));
 		else if (cub->ray.side == SOUTH)
-			paint_pixel(&cub->img, column, row, DARK_GREY);
+			paint_pixel(&cub->img, column, row, gradientify(cub, DARK_GREY));
 		else if (cub->ray.side == WEST)
-			paint_pixel(&cub->img, column, row, ORANGE);
+			paint_pixel(&cub->img, column, row, gradientify(cub, ORANGE));
 		else
-			paint_pixel(&cub->img, column, row, ORANGE / 2);
+			paint_pixel(&cub->img, column, row, gradientify(cub, ORANGE / 2));
 		row++;
 	}
 	while (row < WIN_HEIGHT)

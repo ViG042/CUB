@@ -1,10 +1,5 @@
 #include "cub.h"
 
-int	encode_rgb(int red, int green, int blue)
-{
-	return (red << 16 | green << 8 | blue);
-}
-
 int	color_atoi(char *str)
 {
 	int	color;

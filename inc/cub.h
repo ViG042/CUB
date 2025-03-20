@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   cub.h                                              :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: mkling <mkling@student.42.fr>              +#+  +:+       +#+        */
+/*   By: alex <alex@student.42.fr>                  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/02/28 16:54:35 by vgodoy            #+#    #+#             */
-/*   Updated: 2025/03/20 18:41:16 by mkling           ###   ########.fr       */
+/*   Updated: 2025/03/21 00:13:50 by alex             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -52,6 +52,8 @@
 # define ROT_SPEED 50
 # define WAND 0.2
 # define FIELD_OF_VIEW 60
+
+typedef unsigned char	t_byte;
 
 typedef struct s_point
 {
@@ -233,6 +235,8 @@ void	paint_line(t_pt start, t_pt end, t_cub *cub);
 void	paint_minimap(t_cub *cub);
 void	paint_square(t_img *img, t_pt *pt, int size, int color);
 void	paint_triangle(t_img *img, t_pt coordinates[3], int color);
+int		gradientify(t_cub *cub, int color);
+int		encode_rgb(t_byte red, t_byte green, t_byte blue);
 
 /* TRANSFORM */
 
@@ -242,7 +246,6 @@ void	add_grid_center(t_pt *point, t_cub *cub);
 t_pt	apply_zoom_and_offset(t_pt *point, t_cub *cub);
 void	init_angles_offsets(t_cub *cub);
 void	rotate_point(t_cub *cub, t_pt *point, t_pt *center, double angle);
-void	rotate(t_cub *cub);
 void	project_map(t_cub *cub);
 t_pt	project_point(t_cub	*cub, t_pt pt);
 
