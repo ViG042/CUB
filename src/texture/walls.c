@@ -6,7 +6,7 @@
 /*   By: mkling <mkling@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/03/18 11:17:21 by mkling            #+#    #+#             */
-/*   Updated: 2025/03/19 11:30:57 by mkling           ###   ########.fr       */
+/*   Updated: 2025/03/19 13:31:23 by mkling           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -40,7 +40,7 @@ void	paint_column(t_cub *cub, int column, double *ray, int *step)
 	pix = 0;
 	while (pix < step[LAST_PIXEL])
 	{
-		paint_pixel(&cub->img, column, pix, ORANGE);
+		paint_pixel(&cub->img, column, pix, cub->elem[NO].color);
 		pix++;
 	}
 }

@@ -6,7 +6,7 @@
 /*   By: mkling <mkling@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/03/03 18:04:44 by mkling            #+#    #+#             */
-/*   Updated: 2025/03/18 17:08:06 by mkling           ###   ########.fr       */
+/*   Updated: 2025/03/20 14:45:24 by mkling           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,23 +14,25 @@
 
 void	orient_player_cursor(t_cub *cub)
 {
-	cub->player.cursor[TOP].x = cub->player.map_pt.x;
-	cub->player.cursor[TOP].y
-		= cub->player.map_pt.y - cub->player.cursor_size * 0.1;
-	cub->player.cursor[LEFT].x
-		= cub->player.map_pt.x - cub->player.cursor_size;
-	cub->player.cursor[LEFT].y
-		= cub->player.map_pt.y + cub->player.cursor_size;
-	cub->player.cursor[RIGHT].x
-		= cub->player.map_pt.x + cub->player.cursor_size;
-	cub->player.cursor[RIGHT].y
-		= cub->player.map_pt.y + cub->player.cursor_size;
-	rotate_point(cub, &cub->player.cursor[TOP], &cub->player.map_pt,
-		cub->player.player_angle);
-	rotate_point(cub, &cub->player.cursor[LEFT], &cub->player.map_pt,
-		cub->player.player_angle);
-	rotate_point(cub, &cub->player.cursor[RIGHT], &cub->player.map_pt,
-		cub->player.player_angle);
+	t_pt	cursor[3];
+
+	cursor[TOP].x = cub->player.grid_pt.x + cub->player.dir.x;
+	cursor[TOP].y = cub->player.grid_pt.y + cub->player.dir.y;
+	cursor[LEFT].x
+		= cub->player.grid_pt.x;
+	cursor[LEFT].y
+		= cub->player.grid_pt.y;
+	cursor[RIGHT].x
+		= cub->player.grid_pt.x;
+	cursor[RIGHT].y
+		= cub->player.grid_pt.y;
+	cub->player.cursor[TOP] = project_point(cub, cursor[TOP]);
+	cub->player.cursor[LEFT] = project_point(cub, cursor[LEFT]);
+	cub->player.cursor[RIGHT] = project_point(cub, cursor[RIGHT]);
+	printf("cursor is top %f %f left %f %f right %f %f\n",
+		cub->player.cursor[TOP].x, cub->player.cursor[TOP].y,
+		cub->player.cursor[LEFT].x, cub->player.cursor[LEFT].y,
+		cub->player.cursor[RIGHT].x, cub->player.cursor[RIGHT].y);
 }
 
 static void	paint_map(t_cub *cub)
@@ -65,7 +67,8 @@ static void	paint_map(t_cub *cub)
 void	paint_minimap(t_cub *cub)
 {
 	paint_map(cub);
-	orient_player_cursor(cub);
-	paint_triangle(&cub->img, cub->player.cursor, WHITE);
-	rraycasting(cub);
+	// orient_player_cursor(cub);
+	// paint_triangle(&cub->img, cub->player.cursor, WHITE);
+	paint_square(&cub->img, &cub->player.map_pt, 10, WHITE);
+	// rraycasting(cub);
 }

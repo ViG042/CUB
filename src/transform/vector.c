@@ -6,7 +6,7 @@
 /*   By: mkling <mkling@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/03/04 13:22:24 by mkling            #+#    #+#             */
-/*   Updated: 2025/03/10 15:47:41 by mkling           ###   ########.fr       */
+/*   Updated: 2025/03/20 13:28:24 by mkling           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,7 +18,7 @@ void	init_angles_offsets(t_cub *cub)
 	cub->offset_y = WIN_HEIGHT / 2;
 	cub->unit = 10.0;
 	cub->zoom = 10.0;
-	cub->player.player_angle = 0;
+	cub->player.deg_angle = 0;
 }
 
 t_pt	turn_to_pts(t_cub *cub, int row, int column)

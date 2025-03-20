@@ -3,25 +3,25 @@
 /*                                                        :::      ::::::::   */
 /*   shape.c                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: vgodoy <vgodoy@student.42.fr>              +#+  +:+       +#+        */
+/*   By: mkling <mkling@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/03/04 11:24:02 by mkling            #+#    #+#             */
-/*   Updated: 2025/03/12 16:35:37 by vgodoy           ###   ########.fr       */
+/*   Updated: 2025/03/19 14:23:15 by mkling           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "cub.h"
 
-void	paint_square(t_img *img, t_pt *center, int size, int color)
+void	paint_square(t_img *img, t_pt *bottom_right, int size, int color)
 {
 	t_pt	current;
 
-	current.x = center->x - size;
-	current.y = center->y - size;
-	while (current.y <= center->y)
+	current.x = bottom_right->x - size;
+	current.y = bottom_right->y - size;
+	while (current.y <= bottom_right->y)
 	{
-		current.x = center->x - size;
-		while (current.x <= center->x)
+		current.x = bottom_right->x - size;
+		while (current.x <= bottom_right->x)
 		{
 			if (is_in_window(current.x, current.y))
 				paint_pixel(img, current.x, current.y, color);

@@ -6,7 +6,7 @@
 /*   By: mkling <mkling@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/03/09 18:12:25 by mkling            #+#    #+#             */
-/*   Updated: 2025/03/18 17:26:46 by mkling           ###   ########.fr       */
+/*   Updated: 2025/03/20 14:46:22 by mkling           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,37 +26,22 @@
 // 		direction->y -= SPEED * cub->display.delta_time;
 // }
 
-void	init_direction(t_cub *cub, t_pt *direction)
+void	init_destination(t_cub *cub, t_pt *destination)
 {
 	double	step;
 
 	step = 0.01;
-	direction->x = 0;
-	direction->y = 0;
+	destination->x = 0;
+	destination->y = 0;
 	if (cub->keys.w)
-		direction->y -= step;
+		destination->y = -(cub->player.dir.y * SPEED);
 	else if (cub->keys.s)
-		direction->y += step;
+		destination->y = cub->player.dir.y * SPEED;
 	if (cub->keys.a)
-		direction->x -= step;
+		destination->x = cub->player.dir.x * SPEED;
 	else if (cub->keys.d)
-		direction->x += step;
-}
-
-void	rotate_direction(t_pt *point, double angle)
-{
-	double	radian;
-	double	cos_angle;
-	double	sin_angle;
-	t_pt	rotated;
-
-	radian = angle * RADIAN;
-	cos_angle = cos(radian);
-	sin_angle = sin(radian);
-	rotated.x = cos_angle * point->x - sin_angle * point->y;
-	rotated.y = sin_angle * point->x + cos_angle * point->y;
-	point->x = rotated.x;
-	point->y = rotated.y;
+		destination->x = -(cub->player.dir.x * SPEED);
+	printf("player x[%f]y[%f] destination is x[%f] and y[%f]\n", cub->player.map_pt.x, cub->player.map_pt.y, destination->x, destination->y);
 }
 
 
@@ -132,12 +117,12 @@ void	check_edges(t_cub *cub, t_pt *direction)
 		printf("player position x=[%f] y=[%f]\n\n", x ,y);///*/
 void	move_player(t_cub *cub)
 {
-	t_pt	direction;
+	t_pt	destination;
 
-	init_direction(cub, &direction);
-	rotate_direction(&direction, cub->player.player_angle);
-	check_edges(cub, &direction);
-	cub->player.grid_pt.x += direction.x;
-	cub->player.grid_pt.y += direction.y;
+	init_destination(cub, &destination);
+	check_edges(cub, &destination);
+	cub->player.grid_pt.x += destination.x;
+	cub->player.grid_pt.y += destination.y;
 	cub->player.map_pt = project_point(cub, cub->player.grid_pt);
+	printf("player map is x[%f] and y[%f]\n", cub->player.map_pt.x, cub->player.map_pt.y);
 }

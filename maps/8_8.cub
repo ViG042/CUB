@@ -1,7 +1,7 @@
-NO ./path_to_the_north_texture
-SO ./path_to_the_south_texture
-WE ./path_to_the_west_texture
-EA ./path_to_the_east_texture
+NO 10
+SO 400
+WE 800
+EA 1200
 F ./path_to_the_floor_texture
 C ./path_to_the_ceiling_texture
 D ./path_to_the_door_texture

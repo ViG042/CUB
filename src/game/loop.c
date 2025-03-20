@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   loop.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: vgodoy <vgodoy@student.42.fr>              +#+  +:+       +#+        */
+/*   By: mkling <mkling@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/03/09 00:20:40 by alex              #+#    #+#             */
-/*   Updated: 2025/03/18 14:03:08 by vgodoy           ###   ########.fr       */
+/*   Updated: 2025/03/20 14:25:46 by mkling           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,14 +16,34 @@
 	// 	printf("map grid pt is %f, %f\n", cub->player.map_pt.x, cub->player.map_pt.y);*/
 static void	rotations(t_cub *cub)
 {
+	t_pt	dir;
+	t_pt	plane;
+
+	dir = cub->player.dir;
+	plane = cub->player.plane;
 	if (cub->keys.left)
-		cub->player.player_angle -= SPEED * 100 * cub->display.delta_time;
+	{
+		printf("rotating left\n");
+		cub->player.deg_angle -= SPEED * 100 * cub->display.delta_time;
+		cub->player.dir.x = dir.x * cos(-ROTSPEED) - dir.y * sin(-ROTSPEED);
+		cub->player.dir.y = dir.x * sin(-ROTSPEED) + dir.y * cos(-ROTSPEED);
+		cub->player.plane.x = plane.x * cos(-ROTSPEED) - plane.y * sin(-ROTSPEED);
+		cub->player.plane.y = plane.x * sin(-ROTSPEED) + plane.y * cos(-ROTSPEED);
+	}
 	if (cub->keys.right)
-		cub->player.player_angle += SPEED * 100 * cub->display.delta_time;
-	if (cub->player.player_angle > 360)
-		cub->player.player_angle = cub->player.player_angle / 360.00;
-	if (cub->player.player_angle < -360)
-		cub->player.player_angle = cub->player.player_angle / 360.00;
+	{
+		printf("rotating right\n");
+		cub->player.deg_angle += SPEED * 100 * cub->display.delta_time;
+		cub->player.dir.x = dir.x * cos(ROTSPEED) - dir.y * sin(ROTSPEED);
+		cub->player.dir.y = dir.x * sin(ROTSPEED) + dir.y * cos(ROTSPEED);
+		cub->player.plane.x = plane.x * cos(ROTSPEED) - plane.y * sin(ROTSPEED);
+		cub->player.plane.y = plane.x * sin(ROTSPEED) + plane.y * cos(ROTSPEED);
+	}
+	if (cub->player.deg_angle > 360)
+		cub->player.deg_angle = cub->player.deg_angle / 360.00;
+	if (cub->player.deg_angle < -360)
+		cub->player.deg_angle = cub->player.deg_angle / 360.00;
+	printf("player is dir x[%f] y[%f]\n", cub->player.dir.x, cub->player.dir.y);
 }
 
 int	game_loop(void	*voidedcub)

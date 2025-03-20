@@ -6,7 +6,7 @@
 /*   By: mkling <mkling@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/02/28 16:54:35 by vgodoy            #+#    #+#             */
-/*   Updated: 2025/03/19 11:56:37 by mkling           ###   ########.fr       */
+/*   Updated: 2025/03/20 14:23:24 by mkling           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -49,7 +49,8 @@
 # define DARK_GREY 0x222222
 # define ORANGE 0xFFA500
 # define GREEN 0x008000
-# define SPEED 2
+# define SPEED 0.02
+# define ROTSPEED 20
 # define WAND 0.2
 # define FIELD_OF_VIEW 60
 
@@ -129,10 +130,12 @@ typedef struct s_key_states
 
 typedef	struct s_player
 {
-	double	player_angle;
+	double	deg_angle;
 	char	init_orientation;
 	t_pt	map_pt;
 	t_pt	grid_pt;
+	t_pt	dir;
+	t_pt	plane;
 	t_pt	cursor[3];
 	double	edge[4];
 	int		cursor_size;
@@ -219,7 +222,6 @@ void	add_grid_center(t_pt *point, t_cub *cub);
 t_pt	apply_zoom_and_offset(t_pt *point, t_cub *cub);
 void	init_angles_offsets(t_cub *cub);
 void	rotate_point(t_cub *cub, t_pt *point, t_pt *center, double angle);
-void	rotate(t_cub *cub);
 void	project_map(t_cub *cub);
 t_pt	project_point(t_cub	*cub, t_pt pt);
 
@@ -230,7 +232,6 @@ double	get_line_len(double start_x, double start_y,
 			double end_x, double end_y);
 void	rraycasting(t_cub *cub);
 void	paint_point(t_img *img, t_pt *pt, int color);
-void	rotate_direction(t_pt *point, double angle);
 
 
 enum e_errcode {

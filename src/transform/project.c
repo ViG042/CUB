@@ -6,7 +6,7 @@
 /*   By: mkling <mkling@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/03/06 22:47:28 by mkling            #+#    #+#             */
-/*   Updated: 2025/03/19 11:59:49 by mkling           ###   ########.fr       */
+/*   Updated: 2025/03/20 14:36:26 by mkling           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,6 +16,8 @@
 	//pt.y += cub->map->offset_y;// - cub->map->tile_size / 2;*/
 t_pt	project_point(t_cub	*cub, t_pt pt)
 {
+	pt.x += 1;
+	pt.y += 1;
 	pt.x *= cub->map->scale;
 	pt.y *= cub->map->scale;
 	return (pt);
@@ -39,7 +41,7 @@ static void	set_minimap_scale(t_cub *cub)
 	minimap_max_width = WIN_WIDTH * MINIMAP_PROPORTION;
 	scale_height = (double)minimap_max_height / cub->map->height;
 	scale_width = (double)minimap_max_width / cub->map->width;
-	cub->map->scale = (int)fmin(scale_height, scale_width);
+	cub->map->scale = 64;
 	cub->map->tile_size = (int)(cub->map->scale);
 	cub->map->offset_x = (int)(cub->map->scale);
 	cub->map->offset_y = (int)(cub->map->scale);
@@ -50,5 +52,4 @@ void	project_map(t_cub *cub)
 {
 	set_minimap_scale(cub);
 	cub->player.map_pt = project_point(cub, cub->player.grid_pt);
-
 }

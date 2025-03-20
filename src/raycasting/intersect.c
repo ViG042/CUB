@@ -38,7 +38,7 @@ void	init_ray(t_cub *cub, int pixel_column, double *ray)
 
 	angle = 2 * (pixel_column / (double)WIN_WIDTH) - 1;
 	angle = angle * FIELD_OF_VIEW / 2;
-	angle = angle + cub->player.player_angle;
+	angle = angle + cub->player.deg_angle;
 	if (angle < 0)
 		angle += 360;
 	else if (angle >= 360)

@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   matrix.c                                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: vgodoy <vgodoy@student.42.fr>              +#+  +:+       +#+        */
+/*   By: mkling <mkling@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/03/09 13:42:43 by mkling            #+#    #+#             */
-/*   Updated: 2025/03/12 16:35:37 by vgodoy           ###   ########.fr       */
+/*   Updated: 2025/03/20 13:28:24 by mkling           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -111,7 +111,7 @@ void	multiply_point_by_matrix(t_pt *point, double matrix[3][3])
 // 	double	combined_matrix[3][3];
 
 // 	index = 0;
-// 	generate_rotation_matrix_x(cub->player.player_angle, matrix_x);
+// 	generate_rotation_matrix_x(cub->player.deg_angle, matrix_x);
 // 	// generate_rotation_matrix_y(cub->angle_y_axis, matrix_y);
 // 	matrix_multiply(combined_matrix, matrix_x, matrix_y);
 // 	while (index < cub->map->size)
