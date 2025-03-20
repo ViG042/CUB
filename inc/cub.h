@@ -6,7 +6,7 @@
 /*   By: mkling <mkling@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/02/28 16:54:35 by vgodoy            #+#    #+#             */
-/*   Updated: 2025/03/20 18:22:55 by mkling           ###   ########.fr       */
+/*   Updated: 2025/03/20 18:41:16 by mkling           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -48,7 +48,7 @@
 # define GREY 0x555555
 # define DARK_GREY 0x222222
 # define ORANGE 0xFFA500
-# define SPEED 2
+# define SPEED 0.5
 # define ROT_SPEED 50
 # define WAND 0.2
 # define FIELD_OF_VIEW 60
@@ -253,7 +253,9 @@ double	get_line_len(double start_x, double start_y,
 			double end_x, double end_y);
 void	paint_column(t_cub *cub, int column);
 void	begug_print(t_cub *cub, int pixel_column);
-
+void	calculate_wall_height(t_cub *cub);
+void	calculate_dist_to_wall(t_cub *cub);
+void	define_collision_side(t_cub *cub);
 
 
 enum e_errcode {
