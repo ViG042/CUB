@@ -1,15 +1,3 @@
-/* ************************************************************************** */
-/*                                                                            */
-/*                                                        :::      ::::::::   */
-/*   cub.h                                              :+:      :+:    :+:   */
-/*                                                    +:+ +:+         +:+     */
-/*   By: mkling <mkling@student.42.fr>              +#+  +:+       +#+        */
-/*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2025/02/28 16:54:35 by vgodoy            #+#    #+#             */
-/*   Updated: 2025/03/21 14:00:20 by mkling           ###   ########.fr       */
-/*                                                                            */
-/* ************************************************************************** */
-
 #ifndef CUB_H
 # define CUB_H
 
@@ -38,7 +26,7 @@
 
 # define MAX_TEMP_MAP 4096
 # define WIN_WIDTH 1920
-# define WIN_HEIGHT 1000
+# define WIN_HEIGHT 600
 # define MINIMAP_PROPORTION 0.5
 # define CURSOR_SIZE 10
 # define UNIT 10
@@ -271,13 +259,15 @@ t_pt	project_point(t_cub	*cub, t_pt pt);
 /* RAYCASTING */
 
 void	raycasting(t_cub *cub);
-double	get_line_len(double start_x, double start_y,
-			double end_x, double end_y);
 void	paint_column(t_cub *cub, int column);
-void	begug_print(t_cub *cub, int pixel_column);
+
 void	calculate_wall_height(t_cub *cub);
 void	calculate_dist_to_wall(t_cub *cub);
 void	define_collision_side(t_cub *cub);
+void	calculate_dist_in_texture(t_cub *cub);
+
+void	debug_print(t_cub *cub, int pixel_column);
+
 
 enum e_errcode {
 	SUCCESS,
