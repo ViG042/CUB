@@ -106,7 +106,7 @@ void	raycasting(t_cub *cub)
 		calculate_dist_to_wall(cub);
 		calculate_wall_height(cub);
 		calculate_dist_in_texture(cub);
-		debug_print(cub, column);
+		//debug_print(cub, column);/////////
 		paint_column(cub, column);
 	}
 }

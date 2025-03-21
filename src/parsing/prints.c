@@ -53,7 +53,7 @@ void	print_init_elem(t_cub *cub)
 	type = NO;
 	while (type <= D)
 	{
-		if (cub->elem[type].texture)
+		if (cub->elem[type].texture.mlx_img)
 		{
 			printf("- The %s ", talking_textures(type));
 			printf("texture has been initialized\n");

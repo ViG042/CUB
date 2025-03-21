@@ -32,9 +32,7 @@ int	make_color(char *description)
 	int	i;
 
 	i = 0;
-	printf("\nthe color to parse is [%s]\n", description);/////////
 	red = color_atoi(&description[i]);
-	printf("red=[%d]\n", red);////////////
 	while (description[i] && description[i] >= '0' && description[i] <= '9')
 		i++;
 	if (description[i] == ',')
@@ -42,7 +40,6 @@ int	make_color(char *description)
 	else
 		return (-1);
 	green = color_atoi(&description[i]);
-	printf("green=[%d]\n", green);////////////
 	while (description[i] && description[i] >= '0' && description[i] <= '9')
 		i++;
 	if (description[i] == ',')
@@ -50,7 +47,6 @@ int	make_color(char *description)
 	else
 		return (-1);
 	blue = color_atoi(&description[i]);
-	printf("blue=[%d]\n", blue);////////////
 	if (red == -1 || green == -1 || blue == -1)
 		return (-1);
 	else

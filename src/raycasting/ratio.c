@@ -18,8 +18,8 @@ void	calculate_dist_in_texture(t_cub *cub)
 	else
 		d = cub->player.grid_pt.y
 			- cub->ray.wall_dist * cos(cub->ray.angle_rad);
-	cub->ray.dist_in_text = d- (int)d;
-	if (cub->ray.side == WEST|| cub->ray.side == SOUTH)
+	cub->ray.dist_in_text = d - (int)d;
+	if (cub->ray.side == WEST || cub->ray.side == SOUTH)
 		cub->ray.dist_in_text = 1 - cub->ray.dist_in_text;
 }
 

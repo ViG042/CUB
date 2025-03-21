@@ -1,14 +1,14 @@
-NO ./path_to_the_north_texture
-SO ./path_to_the_south_texture
-WE ./path_to_the_west_texture
-EA ./path_to_the_east_texture
-F ./path_to_the_floor_texture
-C ./path_to_the_ceiling_texture
-D ./path_to_the_door_texture
+NO ./xpms/bou1.xpm
+SO ./xpms/bou2.xpm
+WE ./xpms/bou3.xpm
+EA ./xpms/bou4.xpm
+F 150,200,200
+C  250,200,200
+D ./xpms/e100.xpm
 
 11111111
 10010001
-100100011
+100D00011
 1000000001
 110000111
 10000001

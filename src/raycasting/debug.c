@@ -5,7 +5,7 @@ void	debug_print(t_cub *cub, int pixel_column)
 	if (pixel_column == WIN_WIDTH / 2)
 	{
 		(void)cub;
-		printf("\n\npixel column is %d\n", pixel_column);
+		//printf("\n\npixel column is %d\n", pixel_column);
 		//printf("wall hit at X=[%d] Y=[%d]\n", cub->ray.x, cub->ray.y);
 		// printf("On side =[%d]\n", cub->ray.side);
 		// printf("dda_x =[%f]\n", cub->ray.dda_x);
@@ -22,7 +22,7 @@ void	debug_print(t_cub *cub, int pixel_column)
 		// 	cub->ray.x, cub->ray.y, cub->ray.step_x, cub->ray.step_y);
 		// printf("first wall pix is %d and last is %d\n",
 		// 	cub->ray.top_wall, cub->ray.end_wall);
-		printf("dist in text=[%f]\n", cub->ray.dist_in_text);
+		printf("pretest dist in text=[%f]\n", cub->ray.dist_in_text);
 		// printf("floor dist in text=[%f]\n", cub->ray.dist_in_text - floor(cub->ray.dist_in_text));
 	}
 }

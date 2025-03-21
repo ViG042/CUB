@@ -25,8 +25,8 @@
 /* GENERAL VALUES */
 
 # define MAX_TEMP_MAP 4096
-# define WIN_WIDTH 1920
-# define WIN_HEIGHT 600
+# define WIN_WIDTH 1000
+# define WIN_HEIGHT 1000
 # define MINIMAP_PROPORTION 0.5
 # define CURSOR_SIZE 10
 # define UNIT 10
@@ -106,7 +106,7 @@ typedef struct s_map
 typedef struct s_elem
 {
 	char	*description;
-	void	*texture;
+	t_img	texture;
 	int		color;
 	int		back_up;
 }	t_elem;
