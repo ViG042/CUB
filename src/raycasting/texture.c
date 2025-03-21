@@ -11,6 +11,8 @@ void	paint_column(t_cub *cub, int column)
 	int	row;
 
 	row = 0;
+	if (column == WIN_WIDTH / 2 + 1)//////////////////////////////////////////
+		return ;//////////////////////////////////////////////////////////////
 	while (row < cub->ray.top_wall)
 	{
 		paint_pixel(&cub->img, column, row, ORANGE / 4);

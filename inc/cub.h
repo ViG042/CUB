@@ -6,7 +6,7 @@
 /*   By: vgodoy <vgodoy@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/02/28 16:54:35 by vgodoy            #+#    #+#             */
-/*   Updated: 2025/03/20 19:47:46 by vgodoy           ###   ########.fr       */
+/*   Updated: 2025/03/21 13:03:55 by vgodoy           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -256,7 +256,7 @@ void	paint_column(t_cub *cub, int column);
 void	calculate_wall_height(t_cub *cub);
 void	calculate_dist_to_wall(t_cub *cub);
 void	define_collision_side(t_cub *cub);
-void	calculate_dist_in_texture(t_cub *cub);
+void	calculate_dist_in_texture(t_cub *cub, int column);
 
 void	debug_print(t_cub *cub, int pixel_column);
 
