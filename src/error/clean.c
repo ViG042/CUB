@@ -6,7 +6,7 @@
 /*   By: mkling <mkling@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/03/03 14:07:08 by mkling            #+#    #+#             */
-/*   Updated: 2025/03/10 18:11:12 by mkling           ###   ########.fr       */
+/*   Updated: 2025/03/21 12:26:36 by mkling           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -54,15 +54,13 @@ void	wipe(t_cub *cub)
 {
 	if (cub->map)
 	{
-		if (cub->img.mlx_img)
-			mlx_destroy_image(cub->mlx, cub->img.mlx_img);
 		free_map(cub->map);
 		cub->map = NULL;
 	}
 	if (cub->mlx)
 	{
-		if (cub->win)
-			mlx_destroy_window(cub->mlx, cub->win);
+		mlx_destroy_image(cub->mlx, cub->img.mlx_img);
+		mlx_destroy_window(cub->mlx, cub->win);
 		mlx_destroy_display(cub->mlx);
 		free(cub->mlx);
 		cub->mlx = NULL;

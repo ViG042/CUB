@@ -7,7 +7,6 @@ int	gradientify_wall(t_cub *cub, int color)
 	t_byte	blue;
 	double	angle;
 
-	(void)cub;
 	red = get_red(color);
 	green = get_green(color);
 	blue = get_blue(color);
