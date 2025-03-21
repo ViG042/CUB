@@ -7,16 +7,9 @@ void	paint_pixel_3(t_cub *cub, int column, int row, int type)
 	int	img_y;
 
 	img_x = (int)(cub->ray.dist_in_text * (double)cub->w);
-	img_y = (int)((double)(row - cub->ray.top_wall) / (double)cub->ray.wall_height * (double)cub->h);
+	img_y = (int)((double)(row - cub->ray.top_wall)
+			/ (double)cub->ray.wall_height * (double)cub->h);
 	color = read_pixel(&cub->elem[type].texture, img_x, img_y);
-	if (column == WIN_HEIGHT / 2)
-	{
-		printf("type is %d and texture=[%s]\n", type, cub->elem[type].description);
-		printf("dist_in_text=[%f] img_x=[%d]  w=[%d]\n", cub->ray.dist_in_text, img_x, cub->w);
-		printf("row=[%f] cub->ray.wall_height=[%f]\n", (double)row, (double)cub->ray.wall_height);
-		printf("row/cub->ray.wall_height=[%f] img_y=[%d]  h=[%d]\n\n", (double)row / (double)cub->ray.wall_height, img_y, cub->h);
-		printf("color is %x\n", color);
-	}
 	paint_pixel(&cub->img, column, row, color);
 }
 
@@ -55,47 +48,22 @@ void	paint_column(t_cub *cub, int column)
 	int	color;
 
 	row = 0;
-	color = 42;
-
-	// if (column == WIN_HEIGHT / 2 + 1)
-	// {
-	// 	//printf("type is %d and texture=[%s]\n", type, cub->elem[type].description);
-	// 	//printf("dist_in_text=[%f] img_x=[%d]  w=[%d]\n", cub->ray.dist_in_text, img_x, cub->w);
-	// 	printf("coucou row=[%f] cub->ray.wall_height=[%f]\n", (double)row, (double)cub->ray.wall_height);
-	// 	//printf("coucou row/cub->ray.wall_height=[%f] img_y=[%d]  h=[%d]\n\n", (double)row / (double)cub->ray.wall_height, img_y, cub->h);
-	// 	printf("cpicpi color is %x\n", color);
-	// }
 	while (row < cub->ray.top_wall)
 	{
 		if (cub->elem[F].color)
 			color = grad_floor_ceil(cub, row, cub->elem[F].color);
 		else
 			color = cub->elem[F].back_up;
-		paint_pixel(&cub->img, column, row, color);
-		row++;
+		paint_pixel(&cub->img, column, row++, color);
 	}
 	while (row < cub->ray.end_wall)
-	{
-
-	// if (column == WIN_WIDTH / 2)
-	// {
-	// 	//printf("type is %d and texture=[%s]\n", type, cub->elem[type].description);
-	// 	//printf("dist_in_text=[%f] img_x=[%d]  w=[%d]\n", cub->ray.dist_in_text, img_x, cub->w);
-	// 	//printf("coucou row=[%f] cub->ray.wall_height=[%f]\n", (double)row, (double)cub->ray.wall_height);
-	// 	//printf("coucou row/cub->ray.wall_height=[%f] img_y=[%d]  h=[%d]\n\n", (double)row / (double)cub->ray.wall_height, img_y, cub->h);
-	// 	//printf("cpicpi color is %x\n", color);
-	// 	printf("test apres %f\n", cub->ray.dist_in_text);
-	// }
-		paint_wall_column(cub, column, row);
-		row++;
-	}
+		paint_wall_column(cub, column, row++);
 	while (row < WIN_HEIGHT)
 	{
 		if (cub->elem[C].color)
 			color = grad_floor_ceil(cub, row, cub->elem[C].color);
 		else
 			color = cub->elem[C].back_up;
-		paint_pixel(&cub->img, column, row, color);
-		row++;
+		paint_pixel(&cub->img, column, row++, color);
 	}
 }

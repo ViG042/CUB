@@ -1,10 +1,10 @@
-NO ./xpms/bou1.xpm
-SO ./xpms/bou2.xpm
-WE ./xpms/bou3.xpm
-EA ./xpms/bou4.xpm
+NO ./xpms/e100.xpm
+SO ./xpms/e100.xpm
+WE ./xpms/e100.xpm
+EA ./xpms/e100.xpm
 F 150,200,200
 C  250,200,200
-D ./xpms/e100.xpm
+D ./xpms/bou1.xpm
 
 11111111
 10010001

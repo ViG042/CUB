@@ -91,7 +91,8 @@ void	digital_differential_analyser(t_cub *cub)
 	}
 }
 
-/*pixel column from 0 to WIN_WIDTH*/
+/*pixel column from 0 to WIN_WIDTH
+debug_print(cub, column);*/
 void	raycasting(t_cub *cub)
 {
 	int		column;
@@ -106,7 +107,6 @@ void	raycasting(t_cub *cub)
 		calculate_dist_to_wall(cub);
 		calculate_wall_height(cub);
 		calculate_dist_in_texture(cub);
-		//debug_print(cub, column);/////////
 		paint_column(cub, column);
 	}
 }
