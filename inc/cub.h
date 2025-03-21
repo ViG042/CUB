@@ -217,6 +217,7 @@ void	initialize_player(t_cub *cub, t_pt *start);
 int		handle_input_release(int keysym, t_cub *cub);
 int		handle_input_press(int keysym, t_cub *cub);
 void	move_player(t_cub *cub);
+void	check_collision(t_cub *cub, t_pt *direction);
 
 /* DISPLAY */
 

@@ -3,6 +3,7 @@
 int	shade_left_right(t_cub *cub, int color)
 {
 	double	angle;
+	double	distance;
 
 	angle = cub->ray.angle_deg;
 	if (cub->ray.side == EAST || cub->ray.side == WEST)
@@ -12,7 +13,10 @@ int	shade_left_right(t_cub *cub, int color)
 	angle = fabs(angle);
 	angle /= 90; //range of 0 to 1
 	angle = angle / 2 + 0.5;
-	return (blend(GREY, color, angle));
+	distance = 1 / cub->ray.wall_dist;
+	if (distance > 1)
+		distance = 1;
+	return (blend(BLACK, blend(BLACK, color, distance), angle));
 }
 
 int	shade_up_down(int row, int color)
@@ -21,7 +25,6 @@ int	shade_up_down(int row, int color)
 
 	distance = row - WIN_HEIGHT / 2;
 	distance /= WIN_HEIGHT / 2;
-	distance = fabs(distance);
-	// distance = distance / 2 + 0.5;
+	distance = fabs(distance + 0.1);
 	return (blend(BLACK, color, distance));
 }

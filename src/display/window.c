@@ -40,3 +40,12 @@ void	init_display(t_cub *cub)
 	// move_player(cub);
 	mlx_loop_hook(cub->mlx, &game_loop, (void *)cub);
 }
+
+int	is_in_window(int x, int y)
+{
+	if (x < 0 || y < 0)
+		return (0);
+	if (x > WIN_WIDTH || y > WIN_HEIGHT)
+		return (0);
+	return (1);
+}

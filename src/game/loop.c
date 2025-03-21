@@ -6,7 +6,7 @@
 /*   By: mkling <mkling@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/03/09 00:20:40 by alex              #+#    #+#             */
-/*   Updated: 2025/03/20 18:59:42 by mkling           ###   ########.fr       */
+/*   Updated: 2025/03/21 14:55:02 by mkling           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -34,7 +34,6 @@ int	game_loop(void	*voidedcub)
 	update_delta_time(cub);
 	rotations(cub);
 	move_player(cub);
-	paint_background(&cub->img, BLACK);
 	raycasting(cub);
 	render(cub);
 	return (0);

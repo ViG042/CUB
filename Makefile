@@ -47,7 +47,8 @@ FUNC_ERR	=	clean.c \
 				errors.c
 
 FUNC_INPU	=	input.c \
-				player.c
+				player.c \
+				collision.c
 
 FUNC_PAIN	=	color.c \
 				minimap.c \
