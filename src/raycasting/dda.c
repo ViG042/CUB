@@ -2,8 +2,8 @@
 
 void	init_first_dist(t_cub *cub)
 {
-	double	x;
-	double	y;
+	float	x;
+	float	y;
 
 	x = cub->player.grid_pt.x;
 	y = cub->player.grid_pt.y;
@@ -34,9 +34,9 @@ void	init_first_dist(t_cub *cub)
 3rd ligne corrects angle accordig to actual angle of the player*/
 void	init_ray(t_cub *cub, int pixel_column)
 {
-	double	angle;
+	float	angle;
 
-	angle = 2 * pixel_column / (double)WIN_WIDTH - 1;
+	angle = 2 * pixel_column / (float)WIN_WIDTH - 1;
 	angle = angle * FIELD_OF_VIEW / 2;
 	angle = angle + cub->player.player_angle;
 	if (angle < 0)
@@ -72,8 +72,8 @@ void	init_step(t_cub *cub)
 
 void	digital_differential_analyser(t_cub *cub)
 {
-	cub->ray.dda_x = fabs((double)cub->ray.firstx);
-	cub->ray.dda_y = fabs((double)cub->ray.firsty);
+	cub->ray.dda_x = fabs((float)cub->ray.firstx);
+	cub->ray.dda_y = fabs((float)cub->ray.firsty);
 	while (cub->map->clean_map[cub->ray.y][cub->ray.x] == '0')
 	{
 		if (fabs(cub->ray.dda_x) < fabs(cub->ray.dda_y))

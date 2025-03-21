@@ -2,8 +2,8 @@
 
 int	shade_left_right(t_cub *cub, int color)
 {
-	double	angle;
-	double	distance;
+	float	angle;
+	float	distance;
 
 	angle = cub->ray.angle_deg;
 	if (cub->ray.side == EAST || cub->ray.side == WEST)
@@ -21,7 +21,7 @@ int	shade_left_right(t_cub *cub, int color)
 
 int	shade_up_down(int row, int color)
 {
-	double	distance;
+	float	distance;
 
 	distance = row - WIN_HEIGHT / 2;
 	distance /= WIN_HEIGHT / 2;

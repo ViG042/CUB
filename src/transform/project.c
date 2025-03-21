@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   project.c                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: alex <alex@student.42.fr>                  +#+  +:+       +#+        */
+/*   By: mkling <mkling@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/03/06 22:47:28 by mkling            #+#    #+#             */
-/*   Updated: 2025/03/21 01:11:30 by alex             ###   ########.fr       */
+/*   Updated: 2025/03/21 14:58:03 by mkling           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -33,13 +33,13 @@ static void	set_minimap_scale(t_cub *cub)
 {
 	int		minimap_max_height;
 	int		minimap_max_width;
-	double	scale_width;
-	double	scale_height;
+	float	scale_width;
+	float	scale_height;
 
 	minimap_max_height = WIN_HEIGHT * MINIMAP_PROPORTION * 0.7;
 	minimap_max_width = WIN_WIDTH * MINIMAP_PROPORTION * 0.7;
-	scale_height = (double)minimap_max_height / cub->map->height;
-	scale_width = (double)minimap_max_width / cub->map->width;
+	scale_height = (float)minimap_max_height / cub->map->height;
+	scale_width = (float)minimap_max_width / cub->map->width;
 	cub->map->scale = (int)fmin(scale_height, scale_width);
 	cub->map->tile_size = (int)(cub->map->scale);
 	cub->map->offset_x = (int)(cub->map->scale);

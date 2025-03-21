@@ -10,7 +10,7 @@ void	calculate_dist_to_wall(t_cub *cub)
 
 void	calculate_dist_in_texture(t_cub *cub)
 {
-	double	d;
+	float	d;
 
 	if (cub->ray.side == NORTH || cub->ray.side == SOUTH)
 		d = cub->player.grid_pt.x

@@ -15,7 +15,7 @@ int	merge_rgb(t_color rgb)
 	return (encode_rgb(rgb.red, rgb.green, rgb.blue));
 }
 
-int	blend(int color1, int color2, double ratio)
+int	blend(int color1, int color2, float ratio)
 {
 	t_color	c1;
 	t_color	c2;

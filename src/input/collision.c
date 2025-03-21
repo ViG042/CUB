@@ -14,10 +14,10 @@ static int	is_wall(t_cub *cub, int x, int y)
 }
 
 /*		printf("where=[%d], dist=[%f]\n", where, dist);*/
-int	too_close(double x, double y, int where)
+int	too_close(float x, float y, int where)
 {
-	double	wand;
-	double	dist;
+	float	wand;
+	float	dist;
 
 	wand = WAND;
 	dist = 1;
@@ -42,8 +42,8 @@ Alors on annule le mouvement dans cette direction
 	printf("player position x=[%f] y=[%f]\n\n", x ,y);///*/
 void	check_collision(t_cub *cub, t_pt *direction)
 {
-	double	x;
-	double	y;
+	float	x;
+	float	y;
 
 	x = cub->player.grid_pt.x;
 	y = cub->player.grid_pt.y;

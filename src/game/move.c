@@ -6,7 +6,7 @@
 /*   By: mkling <mkling@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/03/09 18:12:25 by mkling            #+#    #+#             */
-/*   Updated: 2025/03/21 14:56:42 by mkling           ###   ########.fr       */
+/*   Updated: 2025/03/21 14:58:03 by mkling           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,11 +26,11 @@ void	init_direction(t_cub *cub, t_pt *direction)
 		direction->x += SPEED * cub->display.delta_time;
 }
 
-static void	rotate_direction(t_pt *point, double angle)
+static void	rotate_direction(t_pt *point, float angle)
 {
-	double	radian;
-	double	cos_angle;
-	double	sin_angle;
+	float	radian;
+	float	cos_angle;
+	float	sin_angle;
 	t_pt	rotated;
 
 	radian = angle * RADIAN;

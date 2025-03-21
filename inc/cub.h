@@ -50,9 +50,9 @@ typedef unsigned char	t_byte;
 
 typedef struct s_point
 {
-	double	x;
-	double	y;
-	double	z;
+	float	x;
+	float	y;
+	float	z;
 	int		rgb;
 	char	type;
 }	t_pt;
@@ -62,7 +62,7 @@ typedef struct s_color
 	t_byte	red;
 	t_byte	green;
 	t_byte	blue;
-	double	ratio;
+	float	ratio;
 }	t_color;
 
 typedef struct s_line
@@ -74,7 +74,7 @@ typedef struct s_line
 	t_pt	sign;
 	int		error;
 	int		error2;
-	double	length;
+	float	length;
 }	t_line;
 
 typedef struct s_image
@@ -115,9 +115,9 @@ typedef struct s_elem
 typedef struct s_display
 {
 	long long	last_frame;
-	double		delta_time;
-	double		fps;
-	double		counter;
+	float		delta_time;
+	float		fps;
+	float		counter;
 }	t_disp;
 
 typedef struct s_key_states
@@ -132,27 +132,27 @@ typedef struct s_key_states
 
 typedef struct s_player
 {
-	double	player_angle;
+	float	player_angle;
 	char	init_orientation;
 	t_pt	map_pt;
 	t_pt	grid_pt;
 	t_pt	cursor[3];
-	double	edge[4];
+	float	edge[4];
 	int		cursor_size;
 }	t_play;
 
 typedef struct s_ray
 {
-	double	angle_deg;
-	double	angle_rad;
-	double	dist_x;
-	double	dist_y;
-	double	dda_x;
-	double	dda_y;
-	double	firstx;
-	double	firsty;
-	double	wall_dist;
-	double	dist_in_text;
+	float	angle_deg;
+	float	angle_rad;
+	float	dist_x;
+	float	dist_y;
+	float	dda_x;
+	float	dda_y;
+	float	firstx;
+	float	firsty;
+	float	wall_dist;
+	float	dist_in_text;
 	int		y;
 	int		x;
 	int		step_x;
@@ -244,7 +244,7 @@ void	paint_square(t_img *img, t_pt *pt, int size, int color);
 void	paint_triangle(t_img *img, t_pt coordinates[3], int color);
 int		shade_left_right(t_cub *cub, int color);
 int		shade_up_down(int row, int color);
-int		blend(int color1, int color2, double ratio);
+int		blend(int color1, int color2, float ratio);
 
 /* TRANSFORM */
 
@@ -253,7 +253,7 @@ void	subtract_grid_center(t_pt *point, t_cub *cub);
 void	add_grid_center(t_pt *point, t_cub *cub);
 t_pt	apply_zoom_and_offset(t_pt *point, t_cub *cub);
 void	init_angles_offsets(t_cub *cub);
-void	rotate_point(t_cub *cub, t_pt *point, t_pt *center, double angle);
+void	rotate_point(t_cub *cub, t_pt *point, t_pt *center, float angle);
 void	project_map(t_cub *cub);
 t_pt	project_point(t_cub	*cub, t_pt pt);
 
