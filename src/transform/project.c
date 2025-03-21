@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   project.c                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: mkling <mkling@student.42.fr>              +#+  +:+       +#+        */
+/*   By: alex <alex@student.42.fr>                  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/03/06 22:47:28 by mkling            #+#    #+#             */
-/*   Updated: 2025/03/20 15:43:58 by mkling           ###   ########.fr       */
+/*   Updated: 2025/03/21 01:11:30 by alex             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -36,15 +36,15 @@ static void	set_minimap_scale(t_cub *cub)
 	double	scale_width;
 	double	scale_height;
 
-	minimap_max_height = WIN_HEIGHT * MINIMAP_PROPORTION;
-	minimap_max_width = WIN_WIDTH * MINIMAP_PROPORTION;
+	minimap_max_height = WIN_HEIGHT * MINIMAP_PROPORTION * 0.7;
+	minimap_max_width = WIN_WIDTH * MINIMAP_PROPORTION * 0.7;
 	scale_height = (double)minimap_max_height / cub->map->height;
 	scale_width = (double)minimap_max_width / cub->map->width;
 	cub->map->scale = (int)fmin(scale_height, scale_width);
 	cub->map->tile_size = (int)(cub->map->scale);
 	cub->map->offset_x = (int)(cub->map->scale);
 	cub->map->offset_y = (int)(cub->map->scale);
-	cub->player.cursor_size = cub->map->tile_size * 0.2;
+	cub->player.cursor_size = cub->map->tile_size * 0.8;
 }
 
 void	project_map(t_cub *cub)

@@ -6,7 +6,7 @@
 /*   By: alex <alex@student.42.fr>                  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/02/28 16:54:35 by vgodoy            #+#    #+#             */
-/*   Updated: 2025/03/21 00:13:50 by alex             ###   ########.fr       */
+/*   Updated: 2025/03/21 01:49:45 by alex             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -47,7 +47,12 @@
 # define WHITE 0xffffff
 # define GREY 0x555555
 # define DARK_GREY 0x222222
-# define ORANGE 0xFFA500
+# define ORANGE 0xFFFF00
+# define BLUE 0x1111FF
+# define VIOLET 0xFF00FF
+# define TEAL 0x00FFFF
+# define GREEN 0x00FF00
+# define YELLOW 0xFF0055
 # define SPEED 0.5
 # define ROT_SPEED 50
 # define WAND 0.2
@@ -63,6 +68,13 @@ typedef struct s_point
 	int		rgb;
 	char	type;
 }	t_pt;
+
+typedef struct s_color
+{
+	t_byte	red;
+	t_byte	green;
+	t_byte	blue;
+}	t_color;
 
 typedef struct s_line
 {
@@ -228,15 +240,21 @@ void	update_delta_time(t_cub *cub);
 
 /* PAINTING */
 
-void	put_point(t_cub *cub, t_pt point);
+int		get_red(int color);
+int		get_green(int color);
+int		get_blue(int color);
+int		encode_rgb(t_byte red, t_byte green, t_byte blue);
 void	paint_pixel(t_img *img, int x, int y, int color);
+int		read_pixel(t_img *img, int x, int y);
+void	paint_pixel_blend(t_img *img, int x, int y, int color);
 void	paint_background(t_img *img, int color);
 void	paint_line(t_pt start, t_pt end, t_cub *cub);
 void	paint_minimap(t_cub *cub);
 void	paint_square(t_img *img, t_pt *pt, int size, int color);
 void	paint_triangle(t_img *img, t_pt coordinates[3], int color);
-int		gradientify(t_cub *cub, int color);
-int		encode_rgb(t_byte red, t_byte green, t_byte blue);
+int		gradientify_wall(t_cub *cub, int color);
+int		grad_floor_ceil(t_cub *cub, int row, int color);
+
 
 /* TRANSFORM */
 

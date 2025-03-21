@@ -3,10 +3,10 @@
 #                                                         :::      ::::::::    #
 #    Makefile                                           :+:      :+:    :+:    #
 #                                                     +:+ +:+         +:+      #
-#    By: mkling <mkling@student.42.fr>              +#+  +:+       +#+         #
+#    By: alex <alex@student.42.fr>                  +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2025/02/28 15:34:20 by mkling            #+#    #+#              #
-#    Updated: 2025/03/20 18:37:38 by mkling           ###   ########.fr        #
+#    Updated: 2025/03/21 01:25:58 by alex             ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -64,7 +64,9 @@ FUNC_INPU	=	input.c \
 FUNC_PAIN	=	color.c \
 				minimap.c \
 				rasterize.c \
-				shape.c
+				shape.c \
+				blend.c \
+				gradient.c
 
 FUNC_TRANS	=	center.c \
 				rotate.c \

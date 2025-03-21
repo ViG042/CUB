@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   minimap.c                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: mkling <mkling@student.42.fr>              +#+  +:+       +#+        */
+/*   By: alex <alex@student.42.fr>                  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/03/03 18:04:44 by mkling            #+#    #+#             */
-/*   Updated: 2025/03/10 17:15:07 by mkling           ###   ########.fr       */
+/*   Updated: 2025/03/21 01:06:38 by alex             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -51,9 +51,8 @@ static void	paint_map(t_cub *cub)
 				pt.type = cub->map->clean_map[column][row];
 			if (pt.type == '1')
 				paint_square(&cub->img, &pt, cub->map->tile_size, GREY);
-			if (pt.type == '0' || pt.type == 'N' || pt.type == 'E'
-				|| pt.type == 'S' || pt.type == 'W')
-				paint_square(&cub->img, &pt, cub->map->tile_size, DARK_GREY);
+			// if (pt.type == '0')
+			// 	;
 			if (pt.type == 'D')
 				paint_square(&cub->img, &pt, cub->map->tile_size, ORANGE);
 			row++;

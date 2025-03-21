@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   shape.c                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: vgodoy <vgodoy@student.42.fr>              +#+  +:+       +#+        */
+/*   By: alex <alex@student.42.fr>                  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/03/04 11:24:02 by mkling            #+#    #+#             */
-/*   Updated: 2025/03/12 16:35:37 by vgodoy           ###   ########.fr       */
+/*   Updated: 2025/03/21 01:49:20 by alex             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,7 +24,7 @@ void	paint_square(t_img *img, t_pt *center, int size, int color)
 		while (current.x <= center->x)
 		{
 			if (is_in_window(current.x, current.y))
-				paint_pixel(img, current.x, current.y, color);
+				paint_pixel_blend(img, current.x, current.y, color);
 			current.x++;
 		}
 		current.y++;
