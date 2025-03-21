@@ -14,8 +14,6 @@
 
 void	init_window(t_cub *cub)
 {
-	cub->mlx = mlx_init();
-	exit_if(!cub->mlx, MLX_INIT, cub);
 	cub->win = mlx_new_window(cub->mlx, WIN_WIDTH, WIN_HEIGHT, WIN_NAME);
 	exit_if((!cub->win), WIN_ALLOC, cub);
 	cub->img.mlx_img = mlx_new_image(cub->mlx, WIN_WIDTH, WIN_HEIGHT);
