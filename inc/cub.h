@@ -6,7 +6,7 @@
 /*   By: mkling <mkling@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/02/28 16:54:35 by vgodoy            #+#    #+#             */
-/*   Updated: 2025/03/21 11:42:14 by mkling           ###   ########.fr       */
+/*   Updated: 2025/03/21 14:00:20 by mkling           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -253,9 +253,9 @@ void	paint_line(t_pt start, t_pt end, t_cub *cub);
 void	paint_minimap(t_cub *cub);
 void	paint_square(t_img *img, t_pt *pt, int size, int color);
 void	paint_triangle(t_img *img, t_pt coordinates[3], int color);
-int		gradientify_wall(t_cub *cub, int color);
-int		grad_floor_ceil(t_cub *cub, int row, int color);
-
+int		shade_left_right(t_cub *cub, int color);
+int		shade_up_down(int row, int color);
+int		blend(int color1, int color2, double ratio);
 
 /* TRANSFORM */
 
@@ -278,7 +278,6 @@ void	begug_print(t_cub *cub, int pixel_column);
 void	calculate_wall_height(t_cub *cub);
 void	calculate_dist_to_wall(t_cub *cub);
 void	define_collision_side(t_cub *cub);
-
 
 enum e_errcode {
 	SUCCESS,
@@ -340,37 +339,6 @@ enum e_elem
 	F,
 	C,
 	D,
-};
-
-enum e_raycast
-{
-	ANGLE_DEG,    //from 0 to 360
-	ANGLE_RAD,    //from -1 to 1
-	ANGLE_90,
-	DIST_X,       //dist entre les colonnes
-	DIST_Y,       //dist entre les lignes
-	firstx,      //premiere dist vers colonne
-	firsty,      //permiere dist vers ligne
-	FIRST_X,      //premiere dist vers colonne corrigee de l'angle
-	FIRST_Y,      //permiere dist vers ligne corrigee de l'angle
-	DDA_X,
-	DDA_Y,
-	DIST_TO_WALL,
-	DIST_IN_TEXTURE,
-};
-
-enum e_raycast2
-{
-	X_PLAYER,
-	Y_PLAYER,
-	X,            // X et Y permettent de se deplacer dans clean_map
-	Y,            // et de memoriser la case vue en premier par le rayon
-	STEP_X,       // STEP_X et STEP_Y permettent de sauvegarder le step
-	STEP_Y,       // en X ou Y : 1 ou -1 en fonction de l'angle
-	LAST_MOVE,
-	HEIGHT,
-	FIRST_PIXEL,
-	LAST_PIXEL,
 };
 
 #endif

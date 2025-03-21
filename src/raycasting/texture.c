@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   texture.c                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: alex <alex@student.42.fr>                  +#+  +:+       +#+        */
+/*   By: mkling <mkling@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/03/18 11:17:21 by mkling            #+#    #+#             */
-/*   Updated: 2025/03/21 01:03:24 by alex             ###   ########.fr       */
+/*   Updated: 2025/03/21 14:04:00 by mkling           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,24 +25,24 @@ void	paint_column(t_cub *cub, int column)
 	row = 0;
 	while (row < cub->ray.top_wall)
 	{
-		paint_pixel(&cub->img, column, row, grad_floor_ceil(cub, row, BLUE));
+		paint_pixel(&cub->img, column, row, shade_up_down(row, BLUE));
 		row++;
 	}
 	while (row < cub->ray.end_wall)
 	{
 		if (cub->ray.side == NORTH)
-			paint_pixel(&cub->img, column, row, gradientify_wall(cub, ORANGE));
+			paint_pixel(&cub->img, column, row, shade_left_right(cub, ORANGE));
 		else if (cub->ray.side == SOUTH)
-			paint_pixel(&cub->img, column, row, gradientify_wall(cub, VIOLET));
+			paint_pixel(&cub->img, column, row, shade_left_right(cub, VIOLET));
 		else if (cub->ray.side == WEST)
-			paint_pixel(&cub->img, column, row, gradientify_wall(cub, YELLOW));
+			paint_pixel(&cub->img, column, row, shade_left_right(cub, YELLOW));
 		else
-			paint_pixel(&cub->img, column, row, gradientify_wall(cub, TEAL));
+			paint_pixel(&cub->img, column, row, shade_left_right(cub, TEAL));
 		row++;
 	}
 	while (row < WIN_HEIGHT)
 	{
-		paint_pixel(&cub->img, column, row, grad_floor_ceil(cub, row, GREY));
+		paint_pixel(&cub->img, column, row, shade_up_down(row, GREY));
 		row++;
 	}
 }
