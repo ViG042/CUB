@@ -97,8 +97,8 @@ void	raycasting(t_cub *cub)
 {
 	int		column;
 
-	column = 0;
-	while (column++ < WIN_WIDTH)
+	column = -1;
+	while (column++ < WIN_WIDTH -1)
 	{
 		init_ray(cub, column);
 		init_step(cub);

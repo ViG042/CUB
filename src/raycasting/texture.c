@@ -7,8 +7,13 @@ void	paint_pixel_3(t_cub *cub, int column, int row, int type)
 	int	img_y;
 
 	img_x = (int)(cub->ray.dist_in_text * (double)cub->w);
-	img_y = (int)((double)(row - cub->ray.top_wall)
-			/ (double)cub->ray.wall_height * (double)cub->h);
+	if (cub->ray.wall_dist < 1)
+		img_y = ((double)(row - cub->ray.top_wall)
+				/ (double)cub->ray.wall_height * (double)cub->h)
+			+ (double)cub->h / 2.0 * (1.0 - cub->ray.wall_dist);
+	else
+		img_y = ((double)(row - cub->ray.top_wall)
+				/ (double)cub->ray.wall_height * (double)cub->h);
 	color = read_pixel(&cub->elem[type].texture, img_x, img_y);
 	paint_pixel(&cub->img, column, row, color);
 }

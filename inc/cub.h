@@ -43,7 +43,7 @@
 # define YELLOW 0xFF0055
 # define SPEED 0.5
 # define ROT_SPEED 50
-# define WAND 0.2
+# define WAND 0.25
 # define FIELD_OF_VIEW 60
 
 typedef unsigned char	t_byte;
