@@ -22,7 +22,7 @@ void	debug_print(t_cub *cub, int pixel_column)
 		// 	cub->ray.x, cub->ray.y, cub->ray.step_x, cub->ray.step_y);
 		// printf("first wall pix is %d and last is %d\n",
 		// 	cub->ray.top_wall, cub->ray.end_wall);
-		// printf("dist in text=[%f]\n", cub->ray.dist_in_text);
+		printf("dist in text=[%f]\n", cub->ray.dist_in_text);
 		// printf("floor dist in text=[%f]\n", cub->ray.dist_in_text - floor(cub->ray.dist_in_text));
 	}
 }
