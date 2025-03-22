@@ -14,8 +14,8 @@ void	debug_print(t_cub *cub, int pixel_column)
 		// printf("angle deg =[%f]\n", cub->ray.angle_deg);
 		// printf("sin angle deg =[%f]\n", sin(cub->ray.angle_deg));
 		// printf("cos angle deg =[%f]\n", cos(cub->ray.angle_deg));
-		// printf("pixel_column=[%d] angle_deg=[%f] angle_rad=[%f] \
-		// 	composante_x=[%f] composante_y=[%f] first_x[%f] first_y=[%f] \
+		// printf("pixel_column=[%d] angle_deg=[%f] angle_rad=[%f]
+		// 	composante_x=[%f] composante_y=[%f] first_x[%f] first_y=[%f]
 		// 	X=[%d] Y=[%d] STEP_X=[%d] STEP_Y=[%d]\n",
 		// 	pixel_column, cub->ray.angle_deg, cub->ray.angle_deg,
 		// 	cub->ray.dist_x, cub->ray.dist_y, cub->ray.firstx, cub->ray.firsty,

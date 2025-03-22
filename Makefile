@@ -55,7 +55,7 @@ FUNC_PAIN	=	color.c \
 				rasterize.c \
 				shape.c \
 				blend.c \
-				gradient.c
+				shading.c
 
 FUNC_TRANS	=	center.c \
 				rotate.c \
