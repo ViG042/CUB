@@ -6,7 +6,7 @@
 /*   By: alex <alex@student.42.fr>                  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/03/03 18:04:44 by mkling            #+#    #+#             */
-/*   Updated: 2025/03/21 01:06:38 by alex             ###   ########.fr       */
+/*   Updated: 2025/03/22 11:54:39 by alex             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -50,11 +50,11 @@ static void	paint_map(t_cub *cub)
 			if (cub->map->clean_map[column][row])
 				pt.type = cub->map->clean_map[column][row];
 			if (pt.type == '1')
-				paint_square(&cub->img, &pt, cub->map->tile_size, GREY);
+				paint_square(&cub->visual, &pt, cub->map->tile_size, GREY);
 			// if (pt.type == '0')
 			// 	;
 			if (pt.type == 'D')
-				paint_square(&cub->img, &pt, cub->map->tile_size, ORANGE);
+				paint_square(&cub->visual, &pt, cub->map->tile_size, ORANGE);
 			row++;
 		}
 		column++;
@@ -65,5 +65,5 @@ void	paint_minimap(t_cub *cub)
 {
 	paint_map(cub);
 	orient_player_cursor(cub);
-	paint_triangle(&cub->img, cub->player.cursor, WHITE);
+	paint_triangle(&cub->visual, cub->player.cursor, WHITE);
 }

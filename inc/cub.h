@@ -141,6 +141,8 @@ typedef struct s_player
 	t_pt	cursor[3];
 	float	edge[4];
 	int		cursor_size;
+	int		offset_x;
+	int		offset_y;
 }	t_play;
 
 typedef struct s_ray
@@ -172,17 +174,14 @@ typedef struct s_cub
 	t_elem	elem[10];
 	t_map	*map;
 	t_map	*world;
-	t_img	img;
+	t_img	visual;
 	t_img	minimap;
 	t_img	hud;
 	t_key	keys;
 	t_play	player;
 	t_disp	display;
 	t_ray	ray;
-	int		fd;
 	char	temp_map[MAX_TEMP_MAP];
-	int		offset_x;
-	int		offset_y;
 	int		zoom;
 	int		unit;
 }	t_cub;

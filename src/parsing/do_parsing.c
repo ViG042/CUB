@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   do_parsing.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: mkling <mkling@student.42.fr>              +#+  +:+       +#+        */
+/*   By: alex <alex@student.42.fr>                  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/03/03 12:33:27 by mkling            #+#    #+#             */
-/*   Updated: 2025/03/09 18:03:35 by mkling           ###   ########.fr       */
+/*   Updated: 2025/03/22 11:55:44 by alex             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -37,12 +37,14 @@ static void	set_width_and_height(t_cub *cub)
 
 static void	fetch_info(t_cub *cub)
 {
-	cub->fd = open(cub->map->name, O_RDONLY);
-	soft_exit_if(cub->fd < 0, OPEN_FAIL);
-	cub->map->size = read(cub->fd, cub->temp_map, MAX_TEMP_MAP - 1);
+	int	fd;
+
+	fd = open(cub->map->name, O_RDONLY);
+	soft_exit_if(fd < 0, OPEN_FAIL);
+	cub->map->size = read(fd, cub->temp_map, MAX_TEMP_MAP - 1);
 	soft_exit_if(cub->map->size < 0, READ_FAIL);
 	cub->temp_map[cub->map->size] = '\0';
-	soft_exit_if((read(cub->fd, cub->temp_map, 1) != 0), TOO_BIG);
+	soft_exit_if((read(fd, cub->temp_map, 1) != 0), TOO_BIG);
 	cub->map->array = ft_split(cub->temp_map, '\n');
 	exit_if(!cub->map->array, MALLOC_FAIL, cub);
 }

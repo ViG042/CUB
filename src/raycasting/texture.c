@@ -15,7 +15,7 @@ void	paint_pixel_3(t_cub *cub, int column, int row, int type)
 		img_y = ((float)(row - cub->ray.top_wall)
 				/ (float)cub->ray.wall_height * (float)cub->elem[type].width);
 	color = read_pixel(&cub->elem[type].texture, img_x, img_y);
-	paint_pixel(&cub->img, column, row, color);
+	paint_pixel(&cub->visual, column, row, color);
 }
 
 void	paint_pixel_2(t_cub *cub, int column, int row, int type)
@@ -26,11 +26,11 @@ void	paint_pixel_2(t_cub *cub, int column, int row, int type)
 	}
 	else if (cub->elem[type].color)
 	{
-		paint_pixel(&cub->img, column, row,
+		paint_pixel(&cub->visual, column, row,
 			shade_left_right(cub, cub->elem[type].color));
 	}
 	else
-		paint_pixel(&cub->img, column, row, cub->elem[type].back_up);
+		paint_pixel(&cub->visual, column, row, cub->elem[type].back_up);
 }
 
 void	paint_wall_column(t_cub *cub, int column, int row)
@@ -59,7 +59,7 @@ void	paint_column(t_cub *cub, int column)
 			color = shade_up_down(row, cub->elem[F].color);
 		else
 			color = cub->elem[F].back_up;
-		paint_pixel(&cub->img, column, row++, color);
+		paint_pixel(&cub->visual, column, row++, color);
 	}
 	while (row < cub->ray.end_wall)
 		paint_wall_column(cub, column, row++);
@@ -69,6 +69,6 @@ void	paint_column(t_cub *cub, int column)
 			color = shade_up_down(row, cub->elem[C].color);
 		else
 			color = cub->elem[C].back_up;
-		paint_pixel(&cub->img, column, row++, color);
+		paint_pixel(&cub->visual, column, row++, color);
 	}
 }

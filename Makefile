@@ -57,8 +57,7 @@ FUNC_PAIN	=	color.c \
 				blend.c \
 				shading.c
 
-FUNC_TRANS	=	center.c \
-				rotate.c \
+FUNC_TRANS	=	rotate.c \
 				vector.c \
 				project.c
 
