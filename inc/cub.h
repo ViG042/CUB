@@ -110,6 +110,8 @@ typedef struct s_elem
 	t_img	texture;
 	int		color;
 	int		back_up;
+	int		width;
+	int		height;
 }	t_elem;
 
 typedef struct s_display
@@ -165,15 +167,14 @@ typedef struct s_ray
 
 typedef struct s_cub
 {
-	int		w;		///permet d'utiliser la fonction
-	int		h;		//mlx_xpm_file_to_image()
 	void	*mlx;
 	void	*win;
 	t_elem	elem[10];
 	t_map	*map;
 	t_map	*world;
-	t_img	hud;
 	t_img	img;
+	t_img	minimap;
+	t_img	hud;
 	t_key	keys;
 	t_play	player;
 	t_disp	display;
@@ -261,16 +262,14 @@ t_pt	project_point(t_cub	*cub, t_pt pt);
 
 void	raycasting(t_cub *cub);
 void	paint_column(t_cub *cub, int column);
-
 void	calculate_wall_height(t_cub *cub);
 void	calculate_dist_to_wall(t_cub *cub);
 void	define_collision_side(t_cub *cub);
 void	calculate_dist_in_texture(t_cub *cub);
-
 void	debug_print(t_cub *cub, int pixel_column);
 
-
-enum e_errcode {
+enum e_errcode
+{
 	SUCCESS,
 	WRONG_ARG,
 	OPEN_FAIL,

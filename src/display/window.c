@@ -37,10 +37,10 @@ void	init_display(t_cub *cub)
 {
 	cub->mlx = mlx_init();
 	exit_if(!cub->mlx, MALLOC_FAIL, cub);
-	cub->w = 50;
-	cub->h = 50;
 	init_window(cub);
 	init_image(cub, &cub->img);
+	init_image(cub, &cub->minimap);
+	init_image(cub, &cub->hud);
 	mlx_hook(cub->win, KeyPress, KeyPressMask, &handle_input_press, cub);
 	mlx_hook(cub->win, KeyRelease, KeyReleaseMask, &handle_input_release, cub);
 	mlx_hook(cub->win, DestroyNotify, LeaveWindowMask, &success_exit, cub);

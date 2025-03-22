@@ -6,14 +6,14 @@ void	paint_pixel_3(t_cub *cub, int column, int row, int type)
 	int	img_x;
 	int	img_y;
 
-	img_x = (int)(cub->ray.dist_in_text * (float)cub->w);
+	img_x = (int)(cub->ray.dist_in_text * (float)cub->elem[type].width);
 	if (cub->ray.wall_dist < 1)
 		img_y = ((float)(row - cub->ray.top_wall)
-				/ (float)cub->ray.wall_height * (float)cub->h)
-			+ (float)cub->h / 2.0 * (1.0 - cub->ray.wall_dist);
+				/ (float)cub->ray.wall_height * (float)cub->elem[type].height)
+			+ (float)cub->elem[type].height / 2.0 * (1.0 - cub->ray.wall_dist);
 	else
 		img_y = ((float)(row - cub->ray.top_wall)
-				/ (float)cub->ray.wall_height * (float)cub->h);
+				/ (float)cub->ray.wall_height * (float)cub->elem[type].width);
 	color = read_pixel(&cub->elem[type].texture, img_x, img_y);
 	paint_pixel(&cub->img, column, row, color);
 }

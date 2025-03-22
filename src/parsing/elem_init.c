@@ -49,7 +49,8 @@ void	elem_init(t_cub *cub)
 		if (cub->elem[type].description)
 		{
 			path = cub->elem[type].description;
-			cub->elem[type].texture.mlx_img = mlx_xpm_file_to_image(cub->mlx, path, &cub->w, &cub->h);
+			cub->elem[type].texture.mlx_img = mlx_xpm_file_to_image(cub->mlx,
+					path, &cub->elem[type].width, &cub->elem[type].height);
 		}
 		if (cub->elem[type].texture.mlx_img)
 			init_image_address(&cub->elem[type].texture);
