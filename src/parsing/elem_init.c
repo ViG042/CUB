@@ -52,11 +52,7 @@ void	elem_init(t_cub *cub)
 			cub->elem[type].texture.mlx_img = mlx_xpm_file_to_image(cub->mlx, path, &cub->w, &cub->h);
 		}
 		if (cub->elem[type].texture.mlx_img)
-		{
-			cub->elem[type].texture.address = mlx_get_data_addr(cub->elem[type].texture.mlx_img,
-				&cub->elem[type].texture.bit_per_pixel, &cub->elem[type].texture.line_len,
-				&cub->elem[type].texture.endian);
-		}
+			init_image_address(&cub->elem[type].texture);
 		else
 			load_or_assign_color(cub, cub->elem[type].description, type);
 		type++;

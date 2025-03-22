@@ -12,12 +12,17 @@
 
 #include "cub.h"
 
+void	init_image_address(t_img *img)
+{
+	img->address = mlx_get_data_addr(img->mlx_img, &img->bit_per_pixel,
+			&img->line_len, &img->endian);
+}
+
 void	init_image(t_cub *cub, t_img *img)
 {
 	img->mlx_img = mlx_new_image(cub->mlx, WIN_WIDTH, WIN_HEIGHT);
 	exit_if(!img->mlx_img, IMG_ALLOC, cub);
-	img->address = mlx_get_data_addr(img->mlx_img,
-			&img->bit_per_pixel, &img->line_len, &img->endian);
+	init_image_address(img);
 }
 
 void	init_window(t_cub *cub)

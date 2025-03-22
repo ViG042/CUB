@@ -221,8 +221,8 @@ void	check_collision(t_cub *cub, t_pt *direction);
 
 /* DISPLAY */
 
-void	init_window(t_cub *cub);
 void	init_display(t_cub *cub);
+void	init_image_address(t_img *img);
 int		render(t_cub *cub);
 int		game_loop(void *voided_cub);
 int		is_in_window(int x, int y);
