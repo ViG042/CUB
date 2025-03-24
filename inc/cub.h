@@ -313,10 +313,11 @@ enum	e_vertices
 
 enum e_orient
 {
-	NORTH = 0,
-	SOUTH = 1,
-	WEST = 2,
-	EAST = 3,
+	NONUM = 0,
+	NORTH = 1,
+	SOUTH = 2,
+	WEST = 3,
+	EAST = 4,
 };
 
 enum e_elem

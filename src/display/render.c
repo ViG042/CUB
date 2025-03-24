@@ -6,7 +6,7 @@
 /*   By: alex <alex@student.42.fr>                  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/03/03 14:07:58 by mkling            #+#    #+#             */
-/*   Updated: 2025/03/22 11:54:39 by alex             ###   ########.fr       */
+/*   Updated: 2025/03/24 20:28:47 by alex             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -77,6 +77,8 @@ int	render(t_cub *cub)
 		return (1);
 	paint_minimap(cub);
 	mlx_put_image_to_window(cub->mlx, cub->win, cub->visual.mlx_img, 0, 0);
+	// mlx_put_image_to_window(cub->mlx, cub->win, cub->minimap.mlx_img, 0, 0);
+	// mlx_put_image_to_window(cub->mlx, cub->win, cub->hud.mlx_img, 0, 0);
 	itoa_fps = ft_itoa(cub->display.fps);
 	mlx_string_put(cub->mlx, cub->win, 5, WIN_HEIGHT - 5, WHITE, itoa_fps);
 	free(itoa_fps);

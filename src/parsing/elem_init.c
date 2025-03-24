@@ -20,21 +20,13 @@ void	assign_color(t_cub *cub, int type)
 
 void	load_or_assign_color(t_cub *cub, char *description, int type)
 {
-	int	color;
-
 	if (!description)
 		assign_color(cub, type);
 	else
 	{
-		color = make_color(description);
-		if (color == -1)
-		{
+		cub->elem[type].color = make_color(description);
+		if (cub->elem[type].color == -1)
 			assign_color(cub, type);
-		}
-		else
-		{
-			cub->elem[type].color = color;
-		}
 	}
 }
 

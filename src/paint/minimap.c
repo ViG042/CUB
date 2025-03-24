@@ -6,7 +6,7 @@
 /*   By: alex <alex@student.42.fr>                  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/03/03 18:04:44 by mkling            #+#    #+#             */
-/*   Updated: 2025/03/22 11:54:39 by alex             ###   ########.fr       */
+/*   Updated: 2025/03/24 20:29:24 by alex             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -51,8 +51,6 @@ static void	paint_map(t_cub *cub)
 				pt.type = cub->map->clean_map[column][row];
 			if (pt.type == '1')
 				paint_square(&cub->visual, &pt, cub->map->tile_size, GREY);
-			// if (pt.type == '0')
-			// 	;
 			if (pt.type == 'D')
 				paint_square(&cub->visual, &pt, cub->map->tile_size, ORANGE);
 			row++;

@@ -58,7 +58,7 @@ void	print_init_elem(t_cub *cub)
 			printf("- The %s ", talking_textures(type));
 			printf("texture has been initialized\n");
 		}
-		else if (cub->elem[type].color)
+		else if (cub->elem[type].color >= 0)
 		{
 			printf("- The choosen color for the %s", talking_textures(type));
 			printf(" is [%d]\n", cub->elem[type].color);
@@ -68,6 +68,7 @@ void	print_init_elem(t_cub *cub)
 			printf("- Texture or color for the %s", talking_textures(type));
 			printf(" is not valid..\nBut we assigned one color for you : ");
 			printf("[%d] 👀\n", cub->elem[type].back_up);
+			cub->elem[type].color = cub->elem[type].back_up;
 		}
 		type++;
 	}
