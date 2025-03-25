@@ -39,20 +39,14 @@ void	paint_column(t_cub *cub, int column)
 	row = 0;
 	while (row < cub->ray.top_wall)
 	{
-		if (cub->elem[F].color)
-			color = shade_up_down(row, cub->elem[F].color);
-		else
-			color = cub->elem[F].back_up;
+		color = shade_up_down(row, cub->elem[F].color);
 		paint_pixel(&cub->visual, column, row++, color);
 	}
 	while (row < cub->ray.end_wall)
 		paint_wall_column(cub, column, row++, cub->ray.side);
 	while (row < WIN_HEIGHT)
 	{
-		if (cub->elem[C].color)
-			color = shade_up_down(row, cub->elem[C].color);
-		else
-			color = cub->elem[C].back_up;
+		color = shade_up_down(row, cub->elem[C].color);
 		paint_pixel(&cub->visual, column, row++, color);
 	}
 }
