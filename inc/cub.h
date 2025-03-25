@@ -52,7 +52,6 @@ typedef struct s_point
 {
 	float	x;
 	float	y;
-	float	z;
 	int		rgb;
 	char	type;
 }	t_pt;
@@ -120,6 +119,8 @@ typedef struct s_display
 	float		delta_time;
 	float		fps;
 	float		counter;
+	int			mid_x;
+	int			mid_y;
 }	t_disp;
 
 typedef struct s_key_states
@@ -130,6 +131,8 @@ typedef struct s_key_states
 	bool	a;
 	bool	s;
 	bool	d;
+	int		mouse_x;
+	int		mouse_y;
 }	t_key;
 
 typedef struct s_player
@@ -173,10 +176,7 @@ typedef struct s_cub
 	void	*win;
 	t_elem	elem[10];
 	t_map	*map;
-	t_map	*world;
 	t_img	visual;
-	t_img	minimap;
-	t_img	hud;
 	t_key	keys;
 	t_play	player;
 	t_disp	display;
@@ -216,6 +216,7 @@ int		handle_input(int keysym, int mode, t_cub *cub);
 void	initialize_player(t_cub *cub, t_pt *start);
 int		handle_input_release(int keysym, t_cub *cub);
 int		handle_input_press(int keysym, t_cub *cub);
+int		handle_mouse(int x, int y, t_cub *cub);
 void	move_player(t_cub *cub);
 void	check_collision(t_cub *cub, t_pt *direction);
 
@@ -249,9 +250,6 @@ int		blend(int color1, int color2, float ratio);
 /* TRANSFORM */
 
 void	transform_map_into_pts(t_cub *cub);
-void	subtract_grid_center(t_pt *point, t_cub *cub);
-void	add_grid_center(t_pt *point, t_cub *cub);
-t_pt	apply_zoom_and_offset(t_pt *point, t_cub *cub);
 void	init_angles_offsets(t_cub *cub);
 void	rotate_point(t_cub *cub, t_pt *point, t_pt *center, float angle);
 void	project_map(t_cub *cub);

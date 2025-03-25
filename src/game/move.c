@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   move.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: mkling <mkling@student.42.fr>              +#+  +:+       +#+        */
+/*   By: alex <alex@student.42.fr>                  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/03/09 18:12:25 by mkling            #+#    #+#             */
-/*   Updated: 2025/03/21 14:58:03 by mkling           ###   ########.fr       */
+/*   Updated: 2025/03/25 15:52:33 by alex             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -52,5 +52,4 @@ void	move_player(t_cub *cub)
 	cub->player.grid_pt.x += direction.x;
 	cub->player.grid_pt.y += direction.y;
 	cub->player.map_pt = project_point(cub, cub->player.grid_pt);
-	// printf("player is at %f %f\n", cub->player.map_pt.x, cub->player.map_pt.y);
 }

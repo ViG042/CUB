@@ -31,6 +31,8 @@ void	init_window(t_cub *cub)
 	exit_if((!cub->win), WIN_ALLOC, cub);
 	cub->display.fps = 0.00;
 	cub->display.counter = 0;
+	cub->display.mid_x = WIN_WIDTH / 2;
+	cub->display.mid_y = WIN_HEIGHT / 2;
 }
 
 void	init_display(t_cub *cub)
@@ -39,12 +41,10 @@ void	init_display(t_cub *cub)
 	exit_if(!cub->mlx, MALLOC_FAIL, cub);
 	init_window(cub);
 	init_image(cub, &cub->visual);
-	// init_image(cub, &cub->minimap);
-	// init_image(cub, &cub->hud);
+	mlx_hook(cub->win, DestroyNotify, LeaveWindowMask, &success_exit, cub);
 	mlx_hook(cub->win, KeyPress, KeyPressMask, &handle_input_press, cub);
 	mlx_hook(cub->win, KeyRelease, KeyReleaseMask, &handle_input_release, cub);
-	mlx_hook(cub->win, DestroyNotify, LeaveWindowMask, &success_exit, cub);
-	// move_player(cub);
+	mlx_hook(cub->win, MotionNotify, PointerMotionMask, &handle_mouse, cub);
 	mlx_loop_hook(cub->mlx, &game_loop, (void *)cub);
 }
 

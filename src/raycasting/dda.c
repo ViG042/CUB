@@ -66,14 +66,12 @@ void	init_step(t_cub *cub)
 		cub->ray.step_x = -1;
 	if (cub->ray.firsty < 0)
 		cub->ray.step_y = -1;
-	cub->ray.firstx = cub->ray.firstx * cub->ray.dist_x;
-	cub->ray.firsty = cub->ray.firsty * cub->ray.dist_y;
+	cub->ray.dda_x = fabs(cub->ray.firstx * cub->ray.dist_x);
+	cub->ray.dda_y = fabs(cub->ray.firsty * cub->ray.dist_y);
 }
 
 void	digital_differential_analyser(t_cub *cub)
 {
-	cub->ray.dda_x = fabs((float)cub->ray.firstx);
-	cub->ray.dda_y = fabs((float)cub->ray.firsty);
 	while (cub->ray.y >= 0 && cub->ray.x >= 0
 		&& cub->map->clean_map[cub->ray.y]
 		&& cub->map->clean_map[cub->ray.y][cub->ray.x]
@@ -110,7 +108,7 @@ void	raycasting(t_cub *cub)
 		calculate_dist_to_wall(cub);
 		calculate_wall_height(cub);
 		calculate_dist_in_texture(cub);
-		debug_print(cub, column);
+		// debug_print(cub, column);
 		paint_column(cub, column);
 	}
 }

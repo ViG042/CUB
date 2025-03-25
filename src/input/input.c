@@ -6,23 +6,11 @@
 /*   By: alex <alex@student.42.fr>                  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/03/03 14:36:06 by mkling            #+#    #+#             */
-/*   Updated: 2025/03/09 00:29:10 by alex             ###   ########.fr       */
+/*   Updated: 2025/03/25 17:45:55 by alex             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "cub.h"
-
-int	handle_input_press(int keysym, t_cub *cub)
-{
-	handle_input(keysym, KeyPressMask, cub);
-	return (0);
-}
-
-int	handle_input_release(int keysym, t_cub *cub)
-{
-	handle_input(keysym, KeyReleaseMask, cub);
-	return (0);
-}
 
 int	handle_input(int keysym, int mode, t_cub *cub)
 {
@@ -47,3 +35,40 @@ int	handle_input(int keysym, int mode, t_cub *cub)
 		success_exit(cub);
 	return (0);
 }
+
+int	handle_input_press(int keysym, t_cub *cub)
+{
+	handle_input(keysym, KeyPressMask, cub);
+	return (0);
+}
+
+int	handle_input_release(int keysym, t_cub *cub)
+{
+	handle_input(keysym, KeyReleaseMask, cub);
+	return (0);
+}
+
+void	capture_mouse(int x, int y, t_cub *cub)
+{
+	if (x < 0)
+		mlx_mouse_move(cub->mlx, cub->win, 0, y);
+	if (y < 0)
+		mlx_mouse_move(cub->mlx, cub->win, x, 0);
+	if (x > WIN_WIDTH)
+		mlx_mouse_move(cub->mlx, cub->win, WIN_WIDTH, y);
+	if (y > WIN_HEIGHT)
+		mlx_mouse_move(cub->mlx, cub->win, x, WIN_HEIGHT);
+}
+
+int	handle_mouse(int x, int y, t_cub *cub)
+{
+	cub->keys.mouse_x = cub->display.mid_x;
+	cub->keys.mouse_y = cub->display.mid_y;
+	printf("mouse is x=[%d] y=[%d]\n", x, y);
+	capture_mouse(x, y, cub);
+	cub->keys.mouse_x = x;
+	cub->keys.mouse_y = y;
+	return (0);
+}
+
+
