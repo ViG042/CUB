@@ -14,7 +14,6 @@
 # include "minilibx-linux/mlx.h"
 # include "libft/inc/libft.h"
 
-
 /* MATH */
 
 // Approximation of pi
@@ -25,12 +24,19 @@
 /* GENERAL VALUES */
 
 # define MAX_TEMP_MAP 4096
-# define WIN_WIDTH 1000
-# define WIN_HEIGHT 1000
+# define WIN_WIDTH 1200
+# define WIN_HEIGHT 900
 # define MINIMAP_PROPORTION 0.5
 # define CURSOR_SIZE 10
 # define UNIT 10
 # define WIN_NAME "CUB3D"
+# define SPEED 0.5
+# define ROT_SPEED 50
+# define WAND 0.25
+# define FIELD_OF_VIEW 60
+
+/* COLORS */
+
 # define BLACK 0x000000
 # define WHITE 0xffffff
 # define GREY 0x555555
@@ -41,10 +47,6 @@
 # define TEAL 0x00FFFF
 # define GREEN 0x00FF00
 # define YELLOW 0xFF0055
-# define SPEED 0.5
-# define ROT_SPEED 50
-# define WAND 0.25
-# define FIELD_OF_VIEW 60
 
 typedef unsigned char	t_byte;
 
