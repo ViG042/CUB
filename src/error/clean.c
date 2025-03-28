@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   clean.c                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: alex <alex@student.42.fr>                  +#+  +:+       +#+        */
+/*   By: mkling <mkling@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/03/03 14:07:08 by mkling            #+#    #+#             */
-/*   Updated: 2025/03/24 20:34:25 by alex             ###   ########.fr       */
+/*   Updated: 2025/03/28 10:54:45 by mkling           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -65,5 +65,4 @@ void	wipe(t_cub *cub)
 	free(cub->mlx);
 	cub->mlx = NULL;
 	free_elem(cub);
-	printf("wiped\n");
 }

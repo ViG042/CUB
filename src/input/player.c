@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   player.c                                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: alex <alex@student.42.fr>                  +#+  +:+       +#+        */
+/*   By: mkling <mkling@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/03/03 18:58:14 by mkling            #+#    #+#             */
-/*   Updated: 2025/03/25 11:38:45 by alex             ###   ########.fr       */
+/*   Updated: 2025/03/28 10:47:02 by mkling           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,7 +18,6 @@ void	initialize_player(t_cub *cub, t_pt *start)
 	cub->player.offset_y = 0;
 	cub->player.grid_pt.x = start->x + 0.5;
 	cub->player.grid_pt.y = start->y + 0.5;
-	// cub->player.grid_pt = *start;
 	if (start->type == 'N')
 		cub->player.player_angle = 0.00;
 	if (start->type == 'E')

@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   input.c                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: alex <alex@student.42.fr>                  +#+  +:+       +#+        */
+/*   By: mkling <mkling@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/03/03 14:36:06 by mkling            #+#    #+#             */
-/*   Updated: 2025/03/25 17:45:55 by alex             ###   ########.fr       */
+/*   Updated: 2025/03/28 10:55:54 by mkling           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -64,7 +64,7 @@ int	handle_mouse(int x, int y, t_cub *cub)
 {
 	cub->keys.mouse_x = cub->display.mid_x;
 	cub->keys.mouse_y = cub->display.mid_y;
-	printf("mouse is x=[%d] y=[%d]\n", x, y);
+	// printf("mouse is x=[%d] y=[%d]\n", x, y);
 	capture_mouse(x, y, cub);
 	cub->keys.mouse_x = x;
 	cub->keys.mouse_y = y;
