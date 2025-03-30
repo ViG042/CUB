@@ -3,11 +3,11 @@
 /*			printf("cub->map->pts[y=%d][x=%d].type == '1'\n", y, x);///////*/
 static int	is_wall(t_cub *cub, int x, int y)
 {
-	if (cub->map->pts[y][x].type)
+	if (cub->map->tiles[y][x].type)
 	{
-		if (cub->map->pts[y][x].type == '1')
+		if (cub->map->tiles[y][x].type == '1')
 			return (1);
-		if (cub->map->pts[y][x].type == 'D')
+		if (cub->map->tiles[y][x].type == 'D')
 			return (1);
 	}
 	return (0);

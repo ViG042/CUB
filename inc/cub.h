@@ -45,8 +45,9 @@
 # define BLUE 0x1111FF
 # define VIOLET 0xFF00FF
 # define TEAL 0x00FFFF
-# define GREEN 0x00FF00
+# define GREEN 0x00F500
 # define YELLOW 0xFF0055
+# define TRANSPARENT 0x5CB85C
 
 typedef unsigned char	t_byte;
 
@@ -54,15 +55,22 @@ typedef struct s_point
 {
 	float	x;
 	float	y;
-	int		rgb;
 	char	type;
 }	t_pt;
 
 typedef	struct s_pixel
 {
-	int		row;
-	int		column;
+	int		x;
+	int		y;
 }	t_pix;
+
+typedef struct s_tile
+{
+	int		x;
+	int		y;
+	int		type;
+	float	state;
+}	t_tile;
 
 typedef struct s_color
 {
@@ -98,7 +106,7 @@ typedef struct s_map
 	char	*name;
 	char	**array;//free lines and array
 	char	**clean_map;//free only clean_map
-	t_pt	**pts;
+	t_tile	**tiles;
 	int		width;
 	int		height;
 	int		size;
@@ -226,8 +234,8 @@ void	print_map(char **map);
 
 /* INPUTS */
 
+void	initialize_player(t_cub *cub, float x, float y, int orientation);
 int		handle_input(int keysym, int mode, t_cub *cub);
-void	initialize_player(t_cub *cub, t_pt *start);
 int		handle_input_release(int keysym, t_cub *cub);
 int		handle_input_press(int keysym, t_cub *cub);
 int		handle_mouse(int x, int y, t_cub *cub);
@@ -263,7 +271,7 @@ int		blend(int color1, int color2, float ratio);
 
 /* TRANSFORM */
 
-void	transform_map_into_pts(t_cub *cub);
+void	transform_map_into_tiles(t_cub *cub);
 void	init_angles_offsets(t_cub *cub);
 void	rotate_point(t_cub *cub, t_pt *point, t_pt *center, float angle);
 void	project_map(t_cub *cub);
@@ -330,11 +338,12 @@ enum e_orient
 	EAST = 4,
 };
 
-enum e_block
+enum e_block_type
 {
-	WALL = 0,
-	DOOR = 7,
-	GOLEM = 8,
+	EMPTY = '0',
+	WALL = '1',
+	DOOR = 'D',
+	GOLEM = 'G',
 };
 
 enum e_elem

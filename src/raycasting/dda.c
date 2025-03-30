@@ -65,9 +65,10 @@ void	digital_differential_analyser(t_ray *ray, t_map *map, t_pt player_position)
 {
 	ray->hit_count = 0;
 	while (ray->y >= 0 && ray->x >= 0
-		&& map->clean_map[ray->y][ray->x] != '1')
+		&& ray->y <= map->height && ray->x <= map->width
+		&& map->tiles[ray->y][ray->x].type != '1')
 	{
-		if (map->clean_map[ray->y][ray->x] != '0' && ray->hit_count < 9)
+		if (map->tiles[ray->y][ray->x].type != '0' && ray->hit_count < 9)
 			identify_block(&ray->hit[ray->hit_count], ray, map, player_position);
 		if (fabs(ray->dda.x) < fabs(ray->dda.y))
 		{

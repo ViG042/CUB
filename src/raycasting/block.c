@@ -1,15 +1,5 @@
 #include "cub.h"
 
-void	set_block_type(t_hit *block, char map_char)
-{
-	if (map_char == 'D')
-		block->type = DOOR;
-	// else if (map_char == 'G')
-	// 	block->type = GOLEM;
-	else
-		block->type = WALL;
-}
-
 void	set_dist_to_block(t_hit *block, t_ray *ray)
 {
 	if (block->side == NORTH || block->side == SOUTH)
@@ -44,8 +34,12 @@ void	set_block_height_top_end_pixels(t_hit *block)
 
 void	identify_block(t_hit *block, t_ray *ray, t_map *map, t_pt player_position)
 {
+	block->type = map->tiles[ray->y][ray->x].type;
+	if (block->type == DOOR)
+		block->type = D;
+	else if (block->type == GOLEM)
+		block->type = G;
 	define_collision_side(block, ray);
-	set_block_type(block, map->clean_map[ray->y][ray->x]);
 	set_dist_to_block(block, ray);
 	set_block_height_top_end_pixels(block);
 	set_texture_offset(block, ray, player_position);

@@ -10,7 +10,6 @@ DIR_ERR		= error
 DIR_INPU	= input
 DIR_PARS	= parsing
 DIR_PAIN	= paint
-DIR_TRANS	= transform
 DIR_GAME	= game
 DIR_RAY		= raycasting
 
@@ -18,7 +17,7 @@ DIR_OBJ		= obj
 DIR_OBJS	= $(DIR_OBJ) $(DIR_OBJ)/$(DIR_INPU) $(DIR_OBJ)/$(DIR_PARS) \
 				$(DIR_OBJ)/$(DIR_ERR) $(DIR_OBJ)/$(DIR_RAY) \
 				$(DIR_OBJ)/$(DIR_DISP) $(DIR_OBJ)/$(DIR_PAIN) \
-				$(DIR_OBJ)/$(DIR_TRANS) $(DIR_OBJ)/$(DIR_GAME)
+				$(DIR_OBJ)/$(DIR_GAME)
 
 DIR_INC		= inc
 DIR_LIB		= $(DIR_INC)/libft \
@@ -55,15 +54,12 @@ FUNC_PAIN	=	color.c \
 				rasterize.c \
 				shape.c \
 				blend.c \
-				shading.c
-
-FUNC_TRANS	=	rotate.c \
-				vector.c \
+				shading.c \
 				project.c
 
 FUNC_RAY 	=	dda.c \
 				texture.c \
-				ratio.c \
+				block.c \
 				side.c \
 				debug.c
 

@@ -6,18 +6,23 @@
 /*   By: mkling <mkling@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/03/03 14:07:58 by mkling            #+#    #+#             */
-/*   Updated: 2025/03/30 16:56:55 by mkling           ###   ########.fr       */
+/*   Updated: 2025/03/30 20:38:40 by mkling           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "cub.h"
+
+int	is_transparent(int color)
+{
+	return (color == TRANSPARENT);
+}
 
 void	paint_pixel(t_img *img, int x, int y, int color)
 {
 	char	*pixel;
 	int		i;
 
-	if (!is_in_window(x, y))
+	if (!is_in_window(x, y) || is_transparent(color))
 		return ;
 	i = img->bit_per_pixel - 8;
 	pixel = img->address + (y * img->line_len + x
