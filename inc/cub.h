@@ -47,7 +47,7 @@
 # define TEAL 0x00FFFF
 # define GREEN 0x00F500
 # define YELLOW 0xFF0055
-# define TRANSPARENT 0x5CB85C
+# define TRANSPARENT 0x500000
 
 typedef unsigned char	t_byte;
 
@@ -153,8 +153,7 @@ typedef struct s_key_states
 
 typedef struct s_player
 {
-	float	player_angle;
-	char	init_orientation;
+	float	angle;
 	t_pt	map_pt;
 	t_pt	grid_pt;
 	t_pt	cursor[3];
@@ -174,6 +173,7 @@ typedef struct s_rayhit
 	float	angle;
 	int		side;
 	int		type;
+	t_tile	*tile;
 }	t_hit;
 
 typedef struct s_ray
@@ -202,7 +202,6 @@ typedef struct s_cub
 	t_key	keys;
 	t_play	player;
 	t_disp	display;
-	// t_ray	ray;
 	char	temp_map[MAX_TEMP_MAP];
 	int		zoom;
 	int		unit;
@@ -258,7 +257,7 @@ int		get_green(int color);
 int		get_blue(int color);
 int		encode_rgb(t_byte red, t_byte green, t_byte blue);
 void	paint_pixel(t_img *img, int x, int y, int color);
-int		read_pixel(t_img *img, int x, int y);
+int		read_pixel(t_img *img, int img_width, int img_height, int x, int y);
 void	paint_pixel_blend(t_img *img, int x, int y, int color);
 void	paint_background(t_img *img, int color);
 void	paint_line(t_pt start, t_pt end, t_cub *cub);
@@ -284,6 +283,10 @@ void	define_collision_side(t_hit *block, t_ray *ray);
 void	identify_block(t_hit *block, t_ray *ray, t_map *map, t_pt player_position);
 void	paint_column(t_cub *cub, t_hit *block, int column, int is_last_block);
 void	debug_print(t_cub *cub, int pixel_column);
+
+/* MATH */
+
+float	fclamp(float value, float min, float max);
 
 enum e_errcode
 {

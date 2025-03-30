@@ -6,16 +6,11 @@
 /*   By: mkling <mkling@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/03/09 18:12:25 by mkling            #+#    #+#             */
-/*   Updated: 2025/03/30 21:25:12 by mkling           ###   ########.fr       */
+/*   Updated: 2025/03/30 22:17:30 by mkling           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "cub.h"
-
-// void	open_close_doors(t_cub *cub)
-// {
-
-// }
 
 void	init_direction(t_cub *cub, t_pt *direction)
 {
@@ -52,7 +47,7 @@ void	move_player(t_cub *cub)
 	t_pt	direction;
 
 	init_direction(cub, &direction);
-	rotate_direction(&direction, cub->player.player_angle);
+	rotate_direction(&direction, cub->player.angle);
 	check_collision(cub, &direction);
 	cub->player.grid_pt.x += direction.x;
 	cub->player.grid_pt.y += direction.y;

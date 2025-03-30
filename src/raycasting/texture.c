@@ -3,17 +3,20 @@
 int	get_color_from_texture(t_hit *block, t_elem *texture, t_pix *pixel)
 {
 	int		color;
-	t_pix	texture_pixel;
+	t_pix	texture_pix;
 
-	texture_pixel.x = (int)(block->texture_offset * texture->width);
+	texture_pix.x = (int)(block->texture_offset * texture->width);
 	if (block->distance < 1)
-		texture_pixel.y = ((float)(pixel->x - block->top_pixel)
+		texture_pix.y = ((float)(pixel->x - block->top_pixel)
 				/ (float)block->height * (float)texture->height)
 			+ (float)texture->height / 2.0 * (1.0 - block->distance);
 	else
-		texture_pixel.y = ((float)(pixel->x - block->top_pixel)
+		texture_pix.y = ((float)(pixel->x - block->top_pixel)
 				/ (float)block->height * (float)texture->width);
-	color = read_pixel(&texture->texture, texture_pixel.x, texture_pixel.y);
+	if (block->type == D)
+		texture_pix.y -= texture->height * block->tile->state;
+	color = read_pixel(&texture->texture, texture->width,
+		texture->height, texture_pix.x, texture_pix.y);
 	return (color);
 }
 

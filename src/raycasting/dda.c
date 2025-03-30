@@ -3,11 +3,11 @@
 /*1st ligne gives a value from -1 to 1
 2ng line give a value in degrees from -30 to 30 for a field of view of 60
 3rd ligne corrects angle accordig to actual angle of the player*/
-void	find_ray_angle(t_ray *ray, float player_angle, int column)
+void	find_ray_angle(t_ray *ray, float angle, int column)
 {
 	ray->angle_deg = 2 * column / (float)WIN_WIDTH - 1;
 	ray->angle_deg *= FIELD_OF_VIEW / 2;
-	ray->angle_deg += player_angle;
+	ray->angle_deg += angle;
 	if (ray->angle_deg < 0)
 		ray->angle_deg += 360;
 	else if (ray->angle_deg >= 360)
@@ -95,7 +95,7 @@ void	raycasting(t_cub *cub)
 	column = 0;
 	while (column < WIN_WIDTH - 1)
 	{
-		find_ray_angle(&ray, cub->player.player_angle, column);
+		find_ray_angle(&ray, cub->player.angle, column);
 		find_offset_from_player_to_tile_edge(&ray, cub->player.grid_pt);
 		find_dist_first_x_and_y_intersect(&ray, cub->player.grid_pt);
 		digital_differential_analyser(&ray, cub->map, cub->player.grid_pt);

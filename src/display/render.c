@@ -6,7 +6,7 @@
 /*   By: mkling <mkling@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/03/03 14:07:58 by mkling            #+#    #+#             */
-/*   Updated: 2025/03/30 20:38:40 by mkling           ###   ########.fr       */
+/*   Updated: 2025/03/30 22:52:20 by mkling           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -37,14 +37,14 @@ void	paint_pixel(t_img *img, int x, int y, int color)
 	}
 }
 
-int	read_pixel(t_img *img, int x, int y)
+int	read_pixel(t_img *img, int img_width, int img_height, int x, int y)
 {
 	char	*pixel;
 	int		color;
 	int		i;
 
-	if (!is_in_window(x, y))
-		return (0);
+	if (x < 0 || y < 0 || x > img_width || y > img_height)
+		return (TRANSPARENT);
 	color = 0;
 	pixel = img->address + (y * img->line_len + x * (img->bit_per_pixel / 8));
 	i = 0;

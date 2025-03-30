@@ -7,8 +7,6 @@ static int	is_wall(t_cub *cub, int x, int y)
 	{
 		if (cub->map->tiles[y][x].type == '1')
 			return (1);
-		if (cub->map->tiles[y][x].type == 'D')
-			return (1);
 	}
 	return (0);
 }

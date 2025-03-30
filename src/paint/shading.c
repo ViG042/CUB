@@ -1,5 +1,14 @@
 #include "cub.h"
 
+float	fclamp(float value, float min, float max)
+{
+	if (value < min)
+		return (min);
+	if (value > max)
+		return (max);
+	return (value);
+}
+
 int	shade_left_right(t_hit *block, int color)
 {
 	float	angle;

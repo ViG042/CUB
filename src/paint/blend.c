@@ -37,6 +37,10 @@ int	blend(int color1, int color2, float ratio)
 	t_color	c2;
 	t_color	mix;
 
+	if (color1 == TRANSPARENT)
+		return (color2);
+	if (color2 == TRANSPARENT)
+		return (color1);
 	c1 = split_rgb(color1);
 	c2 = split_rgb(color2);
 	mix.red = mix_color(c1.red, c2.red, ratio);
@@ -54,6 +58,6 @@ void	paint_pixel_blend(t_img *img, int x, int y, int color)
 
 	if (!is_in_window(x, y))
 		return ;
-	prev_color = read_pixel(img, x, y);
+	prev_color = read_pixel(img, WIN_WIDTH, WIN_HEIGHT, x, y);
 	paint_pixel(img, x, y, blend(prev_color, color, 0.7));
 }
