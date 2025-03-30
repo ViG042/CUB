@@ -1,115 +1,112 @@
 #include "cub.h"
 
-void	init_first_dist(t_cub *cub)
-{
-	float	x;
-	float	y;
-
-	x = cub->player.grid_pt.x;
-	y = cub->player.grid_pt.y;
-	if (cub->ray.angle_deg < 90)
-	{
-		cub->ray.firstx = (ceil(x) - x);
-		cub->ray.firsty = (floor(y) - y);
-	}
-	else if (cub->ray.angle_deg < 180)
-	{
-		cub->ray.firstx = (ceil(x) - x);
-		cub->ray.firsty = (ceil(y) - y);
-	}
-	else if (cub->ray.angle_deg < 270)
-	{
-		cub->ray.firstx = (floor(x) - x);
-		cub->ray.firsty = (ceil(y) - y);
-	}
-	else
-	{
-		cub->ray.firstx = (floor(x) - x);
-		cub->ray.firsty = (floor(y) - y);
-	}
-}
-
 /*1st ligne gives a value from -1 to 1
 2ng line give a value in degrees from -30 to 30 for a field of view of 60
 3rd ligne corrects angle accordig to actual angle of the player*/
-void	init_ray(t_cub *cub, int pixel_column)
+void	find_ray_angle(t_ray *ray, float player_angle, int column)
 {
-	float	angle;
-
-	angle = 2 * pixel_column / (float)WIN_WIDTH - 1;
-	angle = angle * FIELD_OF_VIEW / 2;
-	angle = angle + cub->player.player_angle;
-	if (angle < 0)
-		angle += 360;
-	else if (angle >= 360)
-		angle -= 360;
-	cub->ray.angle_deg = angle;
-	cub->ray.angle_rad = fabs(angle * (PI / 180.0));
-	if (sin(cub->ray.angle_rad) == 0.0)
-		cub->ray.dist_x = 100;
-	else
-		cub->ray.dist_x = fabs(1 / sin(cub->ray.angle_rad));
-	if (cos(cub->ray.angle_rad) == 0.0)
-		cub->ray.dist_y = 100;
-	else
-		cub->ray.dist_y = fabs(1 / cos(cub->ray.angle_rad));
-	init_first_dist(cub);
+	ray->angle_deg = 2 * column / (float)WIN_WIDTH - 1;
+	ray->angle_deg *= FIELD_OF_VIEW / 2;
+	ray->angle_deg += player_angle;
+	if (ray->angle_deg < 0)
+		ray->angle_deg += 360;
+	else if (ray->angle_deg >= 360)
+		ray->angle_deg -= 360;
+	ray->angle_rad = fabs(ray->angle_deg * (PI / 180.0));
 }
 
-void	init_step(t_cub *cub)
+void	find_offset_from_player_to_tile_edge(t_ray *ray, t_pt player_position)
 {
-	cub->ray.x = floor(cub->player.grid_pt.x);
-	cub->ray.y = floor(cub->player.grid_pt.y);
-	cub->ray.step_x = 1;
-	cub->ray.step_y = 1;
-	if (cub->ray.firstx < 0)
-		cub->ray.step_x = -1;
-	if (cub->ray.firsty < 0)
-		cub->ray.step_y = -1;
-	cub->ray.dda_x = fabs(cub->ray.firstx * cub->ray.dist_x);
-	cub->ray.dda_y = fabs(cub->ray.firsty * cub->ray.dist_y);
-}
-
-void	digital_differential_analyser(t_cub *cub)
-{
-	while (cub->ray.y >= 0 && cub->ray.x >= 0
-		&& cub->map->clean_map[cub->ray.y]
-		&& cub->map->clean_map[cub->ray.y][cub->ray.x]
-		&& cub->map->clean_map[cub->ray.y][cub->ray.x] == '0')
+	if (ray->angle_deg < 90)
 	{
-		if (fabs(cub->ray.dda_x) < fabs(cub->ray.dda_y))
+		ray->offset_to_edge.x = (ceil(player_position.x) - player_position.x);
+		ray->offset_to_edge.y = (floor(player_position.y) - player_position.y);
+	}
+	else if (ray->angle_deg < 180)
+	{
+		ray->offset_to_edge.x = (ceil(player_position.x) - player_position.x);
+		ray->offset_to_edge.y = (ceil(player_position.y) - player_position.y);
+	}
+	else if (ray->angle_deg < 270)
+	{
+		ray->offset_to_edge.x = (floor(player_position.x) - player_position.x);
+		ray->offset_to_edge.y = (ceil(player_position.y) - player_position.y);
+	}
+	else
+	{
+		ray->offset_to_edge.x = (floor(player_position.x) - player_position.x);
+		ray->offset_to_edge.y = (floor(player_position.y) - player_position.y);
+	}
+}
+
+void	find_dist_first_x_and_y_intersect(t_ray *ray, t_pt player_position)
+{
+	ray->x = floor(player_position.x);
+	ray->y = floor(player_position.y);
+	if (sin(ray->angle_rad) == 0.0)
+		ray->dist.x = 100;
+	else
+		ray->dist.x = fabs(1 / sin(ray->angle_rad));
+	if (cos(ray->angle_rad) == 0.0)
+		ray->dist.y = 100;
+	else
+		ray->dist.y = fabs(1 / cos(ray->angle_rad));
+	ray->step_x = 1;
+	ray->step_y = 1;
+	if (ray->offset_to_edge.x < 0)
+		ray->step_x = -1;
+	if (ray->offset_to_edge.y < 0)
+		ray->step_y = -1;
+	ray->dda.x = fabs(ray->offset_to_edge.x * ray->dist.x);
+	ray->dda.y = fabs(ray->offset_to_edge.y * ray->dist.y);
+}
+
+void	digital_differential_analyser(t_ray *ray, t_map *map, t_pt player_position)
+{
+	ray->hit_count = 0;
+	while (ray->y >= 0 && ray->x >= 0
+		&& map->clean_map[ray->y][ray->x] != '1')
+	{
+		if (map->clean_map[ray->y][ray->x] != '0' && ray->hit_count < 9)
+			identify_block(&ray->hit[ray->hit_count], ray, map, player_position);
+		if (fabs(ray->dda.x) < fabs(ray->dda.y))
 		{
-			cub->ray.side = LEFT;
-			cub->ray.x += cub->ray.step_x;
-			cub->ray.dda_x += cub->ray.dist_x;
+			ray->side = LEFT;
+			ray->x += ray->step_x;
+			ray->dda.x += ray->dist.x;
 		}
 		else
 		{
-			cub->ray.side = TOP;
-			cub->ray.y += cub->ray.step_y;
-			cub->ray.dda_y += cub->ray.dist_y;
+			ray->side = TOP;
+			ray->y += ray->step_y;
+			ray->dda.y += ray->dist.y;
 		}
 	}
 }
 
-/*pixel column from 0 to WIN_WIDTH
-debug_print(cub, column);*/
+/* pixel column from 0 to WIN_WIDTH */
 void	raycasting(t_cub *cub)
 {
+	t_ray	ray;
 	int		column;
+	int		layer_index;
 
-	column = -1;
-	while (column++ < WIN_WIDTH -1)
+	column = 0;
+	while (column < WIN_WIDTH - 1)
 	{
-		init_ray(cub, column);
-		init_step(cub);
-		digital_differential_analyser(cub);
-		define_collision_side(cub);
-		calculate_dist_to_wall(cub);
-		calculate_wall_height(cub);
-		calculate_dist_in_texture(cub);
-		// debug_print(cub, column);
-		paint_column(cub, column);
+		find_ray_angle(&ray, cub->player.player_angle, column);
+		find_offset_from_player_to_tile_edge(&ray, cub->player.grid_pt);
+		find_dist_first_x_and_y_intersect(&ray, cub->player.grid_pt);
+		digital_differential_analyser(&ray, cub->map, cub->player.grid_pt);
+		identify_block(&ray.hit[ray.hit_count], &ray, cub->map, cub->player.grid_pt);
+		debug_print(cub, column);
+		layer_index = ray.hit_count - 1;
+		while (layer_index >= 0)
+		{
+			paint_column(cub, &ray.hit[layer_index], column, layer_index == ray.hit_count - 1);
+			layer_index--;
+		}
+		column++;
 	}
 }
 

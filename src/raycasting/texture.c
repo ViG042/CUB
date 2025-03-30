@@ -1,50 +1,60 @@
 #include "cub.h"
 
-void	paint_texture_to_wall(t_cub *cub, int column, int row, int type)
+void	paint_texture_to_wall(t_img *img, t_hit *block, t_elem *texture, t_pix *pixel)
 {
 	int	color;
 	int	img_x;
 	int	img_y;
 
-	img_x = (int)(cub->ray.dist_in_text * (float)cub->elem[type].width);
-	if (cub->ray.wall_dist < 1)
-		img_y = ((float)(row - cub->ray.top_wall)
-				/ (float)cub->ray.wall_height * (float)cub->elem[type].height)
-			+ (float)cub->elem[type].height / 2.0 * (1.0 - cub->ray.wall_dist);
+	img_x = (int)(block->texture_offset * texture->width);
+	if (block->distance < 1)
+		img_y = ((float)(pixel->row - block->top_pixel)
+				/ (float)block->height * (float)texture->height)
+			+ (float)texture->height / 2.0 * (1.0 - block->distance);
 	else
-		img_y = ((float)(row - cub->ray.top_wall)
-				/ (float)cub->ray.wall_height * (float)cub->elem[type].width);
-	color = read_pixel(&cub->elem[type].texture, img_x, img_y);
-	paint_pixel(&cub->visual, column, row, shade_left_right(cub, color));
+		img_y = ((float)(pixel->row - block->top_pixel)
+				/ (float)block->height * (float)texture->width);
+	color = read_pixel(&texture->texture, img_x, img_y);
+	paint_pixel(img, pixel->column, pixel->row, color);
 }
 
-void	paint_wall_column(t_cub *cub, int column, int row, int type)
+void	paint_block(t_cub *cub, t_hit *block, int column, int row)
 {
-	if (cub->map->clean_map[cub->ray.y][cub->ray.x] == 'D')
-		type = D;
-	if (cub->elem[type].texture.mlx_img)
-		paint_texture_to_wall(cub, column, row, type);
-	else if (cub->elem[type].color)
-		paint_pixel(&cub->visual, column, row,
-			shade_left_right(cub, cub->elem[type].color));
+	t_pix	pixel;
+
+	pixel.row = row;
+	pixel.column = column;
+	if (block->type != WALL)
+	{
+		if (cub->elem[block->type].texture.mlx_img)
+			paint_texture_to_wall(&cub->visual, block, &cub->elem[block->type], &pixel);
+		else
+			paint_pixel(&cub->visual, column, row, cub->elem[block->type].color);
+	}
 	else
-		paint_pixel(&cub->visual, column, row, cub->elem[type].back_up);
+	{
+		if (cub->elem[block->side].texture.mlx_img)
+			paint_texture_to_wall(&cub->visual, block, &cub->elem[block->side], &pixel);
+		else
+			paint_pixel(&cub->visual, column, row, cub->elem[block->side].color);
+	}
 }
 
-void	paint_column(t_cub *cub, int column)
+void	paint_column(t_cub *cub, t_hit *block, int column, int is_last_block)
 {
 	int	row;
 	int	color;
 
 	row = 0;
-	while (row < cub->ray.top_wall)
+	while (is_last_block && row < block->top_pixel)
 	{
 		color = shade_up_down(row, cub->elem[F].color);
 		paint_pixel(&cub->visual, column, row++, color);
 	}
-	while (row < cub->ray.end_wall)
-		paint_wall_column(cub, column, row++, cub->ray.side);
-	while (row < WIN_HEIGHT)
+	row = block->top_pixel;
+	while (row < block->end_pixel)
+		paint_block(cub, block, column, row++);
+	while (is_last_block && row < WIN_HEIGHT)
 	{
 		color = shade_up_down(row, cub->elem[C].color);
 		paint_pixel(&cub->visual, column, row++, color);

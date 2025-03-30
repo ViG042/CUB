@@ -1,35 +1,53 @@
 #include "cub.h"
 
-void	calculate_dist_to_wall(t_cub *cub)
+void	set_block_type(t_hit *block, char map_char)
 {
-	if (cub->ray.side == NORTH || cub->ray.side == SOUTH)
-		cub->ray.wall_dist = fabs(fabs(cub->ray.dda_y) - fabs(cub->ray.dist_y));
+	if (map_char == 'D')
+		block->type = DOOR;
+	// else if (map_char == 'G')
+	// 	block->type = GOLEM;
 	else
-		cub->ray.wall_dist = fabs(fabs(cub->ray.dda_x) - fabs(cub->ray.dist_x));
+		block->type = WALL;
 }
 
-void	calculate_dist_in_texture(t_cub *cub)
+void	set_dist_to_block(t_hit *block, t_ray *ray)
 {
-	float	d;
-
-	if (cub->ray.side == NORTH || cub->ray.side == SOUTH)
-		d = cub->player.grid_pt.x
-			+ cub->ray.wall_dist * sin(cub->ray.angle_rad);
+	if (block->side == NORTH || block->side == SOUTH)
+		block->distance = fabs(fabs(ray->dda.y) - fabs(ray->dist.y));
 	else
-		d = cub->player.grid_pt.y
-			- cub->ray.wall_dist * cos(cub->ray.angle_rad);
-	cub->ray.dist_in_text = d - (int)d;
-	if (cub->ray.side == WEST || cub->ray.side == SOUTH)
-		cub->ray.dist_in_text = 1 - cub->ray.dist_in_text;
+		block->distance = fabs(fabs(ray->dda.x) - fabs(ray->dist.x));
 }
 
-void	calculate_wall_height(t_cub *cub)
+void	set_texture_offset(t_hit *block, t_ray *ray, t_pt player_position)
 {
-	cub->ray.wall_height = (int)(WIN_HEIGHT / cub->ray.wall_dist);
-	cub->ray.top_wall = (WIN_HEIGHT - cub->ray.wall_height) / 2;
-	if (cub->ray.top_wall < 0)
-		cub->ray.top_wall = 0;
-	cub->ray.end_wall = cub->ray.top_wall + cub->ray.wall_height;
-	if (cub->ray.end_wall >= WIN_HEIGHT)
-		cub->ray.end_wall = WIN_HEIGHT;
+	float	offset;
+
+	if (block->side == NORTH || block->side == SOUTH)
+		offset = player_position.x + block->distance * sin(ray->angle_rad);
+	else
+		offset = player_position.y - block->distance * cos(ray->angle_rad);
+	block->texture_offset = offset - (int)offset;
+	if (block->side == WEST || block->side == SOUTH)
+		block->texture_offset = 1 - block->texture_offset;
+}
+
+void	set_block_height_top_end_pixels(t_hit *block)
+{
+	block->height = (int)(WIN_HEIGHT / block->distance);
+	block->top_pixel = (WIN_HEIGHT - block->height) / 2;
+	if (block->top_pixel < 0)
+		block->top_pixel = 0;
+	block->end_pixel = block->top_pixel + block->height;
+	if (block->end_pixel >= WIN_HEIGHT)
+		block->end_pixel = WIN_HEIGHT;
+}
+
+void	identify_block(t_hit *block, t_ray *ray, t_map *map, t_pt player_position)
+{
+	define_collision_side(block, ray);
+	set_block_type(block, map->clean_map[ray->y][ray->x]);
+	set_dist_to_block(block, ray);
+	set_block_height_top_end_pixels(block);
+	set_texture_offset(block, ray, player_position);
+	ray->hit_count++;
 }

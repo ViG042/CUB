@@ -4,7 +4,8 @@
     "type_traits": "c",
     "cub.h": "c",
     "cmath": "c",
-    "libft.h": "c"
+    "libft.h": "c",
+    "utility": "c"
   },
   "C_Cpp_Runner.msvcBatchPath": "",
   "C_Cpp_Runner.cCompilerPath": "gcc",

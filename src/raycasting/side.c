@@ -1,45 +1,45 @@
 #include "cub.h"
 
-static void	define_surface_till_90(t_cub *cub)
+static void	define_surface_till_90(t_hit *block, t_ray *ray)
 {
-	if (cub->ray.side == TOP)
-		cub->ray.side = NORTH;
+	if (ray->side == TOP)
+		block->side = NORTH;
 	else
-		cub->ray.side = EAST;
+		block->side = EAST;
 }
 
-static void	define_surface_till_180(t_cub *cub)
+static void	define_surface_till_180(t_hit *block, t_ray *ray)
 {
-	if (cub->ray.side == TOP)
-		cub->ray.side = SOUTH;
+	if (ray->side == TOP)
+		block->side = SOUTH;
 	else
-		cub->ray.side = EAST;
+		block->side = EAST;
 }
 
-static void	define_surface_till_270(t_cub *cub)
+static void	define_surface_till_270(t_hit *block, t_ray *ray)
 {
-	if (cub->ray.side == TOP)
-		cub->ray.side = SOUTH;
+	if (ray->side == TOP)
+		block->side = SOUTH;
 	else
-		cub->ray.side = WEST;
+		block->side = WEST;
 }
 
-static void	define_surface_till_360(t_cub *cub)
+static void	define_surface_till_360(t_hit *block, t_ray *ray)
 {
-	if (cub->ray.side == TOP)
-		cub->ray.side = NORTH;
+	if (ray->side == TOP)
+		block->side = NORTH;
 	else
-		cub->ray.side = WEST;
+		block->side = WEST;
 }
 
-void	define_collision_side(t_cub *cub)
+void	define_collision_side(t_hit *block, t_ray *ray)
 {
-	if (cub->ray.angle_deg < 90)
-		return (define_surface_till_90(cub));
-	if (cub->ray.angle_deg < 180)
-		return (define_surface_till_180(cub));
-	if (cub->ray.angle_deg < 270)
-		return (define_surface_till_270(cub));
+	if (ray->angle_deg < 90)
+		return (define_surface_till_90(block, ray));
+	if (ray->angle_deg < 180)
+		return (define_surface_till_180(block, ray));
+	if (ray->angle_deg < 270)
+		return (define_surface_till_270(block, ray));
 	else
-		return (define_surface_till_360(cub));
+		return (define_surface_till_360(block, ray));
 }

@@ -58,6 +58,12 @@ typedef struct s_point
 	char	type;
 }	t_pt;
 
+typedef	struct s_pixel
+{
+	int		row;
+	int		column;
+}	t_pix;
+
 typedef struct s_color
 {
 	t_byte	red;
@@ -150,26 +156,32 @@ typedef struct s_player
 	int		offset_y;
 }	t_play;
 
+typedef struct s_rayhit
+{
+	float	texture_offset;
+	float	distance;
+	int		height;
+	int		top_pixel;
+	int		end_pixel;
+	float	angle;
+	int		side;
+	int		type;
+}	t_hit;
+
 typedef struct s_ray
 {
 	float	angle_deg;
 	float	angle_rad;
-	float	dist_x;
-	float	dist_y;
-	float	dda_x;
-	float	dda_y;
-	float	firstx;
-	float	firsty;
-	float	wall_dist;
-	float	dist_in_text;
+	t_pt	dist;
+	t_pt	dda;
+	t_pt	offset_to_edge;
 	int		y;
 	int		x;
 	int		step_x;
 	int		step_y;
 	int		side;
-	int		wall_height;
-	int		top_wall;
-	int		end_wall;
+	t_hit	hit[10];
+	int		hit_count;
 }	t_ray;
 
 typedef struct s_cub
@@ -182,7 +194,7 @@ typedef struct s_cub
 	t_key	keys;
 	t_play	player;
 	t_disp	display;
-	t_ray	ray;
+	// t_ray	ray;
 	char	temp_map[MAX_TEMP_MAP];
 	int		zoom;
 	int		unit;
@@ -245,7 +257,7 @@ void	paint_line(t_pt start, t_pt end, t_cub *cub);
 void	paint_minimap(t_cub *cub);
 void	paint_square(t_img *img, t_pt *pt, int size, int color);
 void	paint_triangle(t_img *img, t_pt coordinates[3], int color);
-int		shade_left_right(t_cub *cub, int color);
+int		shade_left_right(t_hit *block, int color);
 int		shade_up_down(int row, int color);
 int		blend(int color1, int color2, float ratio);
 
@@ -260,11 +272,9 @@ t_pt	project_point(t_cub	*cub, t_pt pt);
 /* RAYCASTING */
 
 void	raycasting(t_cub *cub);
-void	paint_column(t_cub *cub, int column);
-void	calculate_wall_height(t_cub *cub);
-void	calculate_dist_to_wall(t_cub *cub);
-void	define_collision_side(t_cub *cub);
-void	calculate_dist_in_texture(t_cub *cub);
+void	define_collision_side(t_hit *block, t_ray *ray);
+void	identify_block(t_hit *block, t_ray *ray, t_map *map, t_pt player_position);
+void	paint_column(t_cub *cub, t_hit *block, int column, int is_last_block);
 void	debug_print(t_cub *cub, int pixel_column);
 
 enum e_errcode
@@ -320,6 +330,13 @@ enum e_orient
 	EAST = 4,
 };
 
+enum e_block
+{
+	WALL = 0,
+	DOOR = 7,
+	GOLEM = 8,
+};
+
 enum e_elem
 {
 	NO = 1,
@@ -329,6 +346,7 @@ enum e_elem
 	F,
 	C,
 	D,
+	G,
 };
 
 #endif
