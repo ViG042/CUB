@@ -6,13 +6,11 @@
 /*   By: mkling <mkling@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/03/09 18:12:25 by mkling            #+#    #+#             */
-/*   Updated: 2025/03/31 08:27:13 by mkling           ###   ########.fr       */
+/*   Updated: 2025/03/31 09:14:59 by mkling           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "cub.h"
-
-
 
 static void	init_direction(t_cub *cub, t_pt *direction)
 {

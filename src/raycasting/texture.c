@@ -1,46 +1,41 @@
 #include "cub.h"
 
-int	get_color_from_texture(t_hit *block, t_elem *texture, t_pix *pixel)
+int	get_color_from_elem(t_hit *block, t_elem *elem, t_pix *pixel)
 {
-	int		color;
 	t_pix	texture_pix;
 
-	texture_pix.x = (int)(block->texture_offset * texture->width);
+	texture_pix.x = (int)(block->texture_offset * elem->width);
 	if (block->distance < 1)
-		texture_pix.y = ((float)(pixel->x - block->top_pixel)
-				/ (float)block->height * (float)texture->height)
-			+ (float)texture->height / 2.0 * (1.0 - block->distance);
+		texture_pix.y = ((float)(pixel->y - block->top_pixel)
+			/ (float)block->height * (float)elem->height)
+			+ (float)elem->height / 2.0 * (1.0 - block->distance);
 	else
-		texture_pix.y = ((float)(pixel->x - block->top_pixel)
-				/ (float)block->height * (float)texture->width);
+		texture_pix.y = ((float)(pixel->y - block->top_pixel)
+				/ (float)block->height * (float)elem->width);
 	if (block->type == D)
-		texture_pix.y -= texture->height * block->tile->state;
-	color = read_pixel(&texture->texture, texture->width,
-		texture->height, texture_pix.x, texture_pix.y);
-	return (color);
+		texture_pix.y -= elem->height * block->tile->state;
+	if (elem->texture.mlx_img)
+		return (read_pixel(&elem->texture, elem->width,
+			elem->height, texture_pix.x, texture_pix.y));
+	if (texture_pix.y < 0 || texture_pix.y > elem->height)
+		return (TRANSPARENT);
+	else
+		return (elem->color);
 }
 
 void	paint_block(t_cub *cub, t_hit *block, int column, int row)
 {
+	t_elem	elem;
 	t_pix	pixel;
 	int		color;
 
-	pixel.x = row;
-	pixel.y = column;
+	pixel.y = row;
+	pixel.x = column;
 	if (block->type != WALL)
-	{
-		if (cub->elem[block->type].texture.mlx_img)
-			color = get_color_from_texture(block, &cub->elem[block->type], &pixel);
-		else
-			color = cub->elem[block->type].color;
-	}
+		elem = cub->elem[block->type];
 	else
-	{
-		if (cub->elem[block->side].texture.mlx_img)
-			color = get_color_from_texture(block, &cub->elem[block->side], &pixel);
-		else
-			color = cub->elem[block->side].color;
-	}
+		elem = cub->elem[block->side];
+	color = get_color_from_elem(block, &elem, &pixel);
 	paint_pixel(&cub->visual, column, row, color);
 }
 

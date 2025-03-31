@@ -28,6 +28,8 @@ void	load_or_assign_color(t_cub *cub, char *description, int type)
 		if (cub->elem[type].color == -1)
 			assign_color(cub, type);
 	}
+	cub->elem[type].height = 64;
+	cub->elem[type].width = 64;
 }
 
 void	elem_init(t_cub *cub)
