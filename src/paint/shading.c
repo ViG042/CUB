@@ -14,6 +14,8 @@ int	shade_left_right(t_hit *block, int color)
 	float	angle;
 	float	distance;
 
+	if (color == TRANSPARENT)
+		return (TRANSPARENT);
 	angle = block->angle;
 	if (block->side == EAST || block->side == WEST)
 		angle += 90;
@@ -23,15 +25,18 @@ int	shade_left_right(t_hit *block, int color)
 	angle /= 90; //range of 0 to 1
 	angle = angle / 2 + 0.5;
 	distance = 1 / block->distance;
+	distance = distance / 2 + 0.5;
 	if (distance > 1)
 		distance = 1;
-	return (blend(BLACK, blend(BLACK, color, distance), angle));
+	return (blend(BLACK, blend(BLACK, color, angle), distance));
 }
 
 int	shade_up_down(int row, int color)
 {
 	float	distance;
 
+	if (color == TRANSPARENT)
+		return (TRANSPARENT);
 	distance = row - WIN_HEIGHT / 2;
 	distance /= WIN_HEIGHT / 2;
 	distance = fabs(distance + 0.1);

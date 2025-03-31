@@ -36,26 +36,26 @@ void	paint_block(t_cub *cub, t_hit *block, int column, int row)
 	else
 		elem = cub->elem[block->side];
 	color = get_color_from_elem(block, &elem, &pixel);
-	paint_pixel(&cub->visual, column, row, color);
+	paint_pixel(&cub->visual, column, row, shade_left_right(block, color));
 }
 
-void	paint_column(t_cub *cub, t_hit *block, int column, int is_last_block)
+void	paint_column(t_cub *cub, t_hit *block, int column, int /*is_last_block*/)
 {
 	int	row;
-	int	color;
+	// int	color;
 
 	row = 0;
-	while (is_last_block && row < block->top_pixel)
-	{
-		color = shade_up_down(row, cub->elem[C].color);
-		paint_pixel(&cub->visual, column, row++, color);
-	}
+	// while (is_last_block && row < block->top_pixel)
+	// {
+	// 	color = shade_up_down(row, cub->elem[C].color);
+	// 	paint_pixel(&cub->visual, column, row++, color);
+	// }
 	row = block->top_pixel;
 	while (row < block->end_pixel)
 		paint_block(cub, block, column, row++);
-	while (is_last_block && row < WIN_HEIGHT)
-	{
-		color = shade_up_down(row, cub->elem[F].color);
-		paint_pixel(&cub->visual, column, row++, color);
-	}
+	// while (is_last_block && row < WIN_HEIGHT)
+	// {
+	// 	color = shade_up_down(row, cub->elem[F].color);
+	// 	paint_pixel(&cub->visual, column, row++, color);
+	// }
 }

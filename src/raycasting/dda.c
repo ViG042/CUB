@@ -93,6 +93,7 @@ void	raycasting(t_cub *cub)
 	int		layer_index;
 
 	column = 0;
+	floorcasting(cub);
 	while (column < WIN_WIDTH - 1)
 	{
 		find_ray_angle(&ray, cub->player.angle, column);

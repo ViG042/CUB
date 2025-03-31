@@ -61,6 +61,7 @@ FUNC_RAY 	=	dda.c \
 				texture.c \
 				block.c \
 				side.c \
+				floor.c \
 				debug.c
 
 FUNC		=	$(addprefix $(DIR_DISP)/, $(FUNC_DISP)) \

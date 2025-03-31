@@ -1,10 +1,10 @@
-NO ./xpms/e100.xpm
-SO ./xpms/e075.xpm
-WE ./xpms/e125.xpm
-EA ./xpms/e025.xpm
+NO ./xpms/mossy.xpm
+SO ./xpms/pillar.xpm
+WE ./xpms/redbrick.xpm
+EA ./xpms/wood.xpm
 F 150,200,200
 C  250,200,200
-D ./xpms/vigo.xpm
+D ./xpms/colorstone.xpm
 
 11111111
 10010001
