@@ -6,7 +6,7 @@
 /*   By: mkling <mkling@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/03/09 00:20:56 by alex              #+#    #+#             */
-/*   Updated: 2025/03/21 14:58:03 by mkling           ###   ########.fr       */
+/*   Updated: 2025/03/31 11:22:31 by mkling           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -27,6 +27,7 @@ void	update_delta_time(t_cub *cub)
 	long long	delta_ms;
 
 	current_frame = get_microseconds();
+	current_frame = fmax(current_frame, cub->display.last_frame);
 	delta_ms = current_frame - cub->display.last_frame;
 	cub->display.last_frame = current_frame;
 	cub->display.delta_time = ((float)delta_ms) / 1000000.00;
