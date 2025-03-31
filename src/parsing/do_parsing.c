@@ -6,7 +6,7 @@
 /*   By: mkling <mkling@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/03/03 12:33:27 by mkling            #+#    #+#             */
-/*   Updated: 2025/03/30 21:46:19 by mkling           ###   ########.fr       */
+/*   Updated: 2025/03/31 09:13:52 by mkling           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,10 +14,6 @@
 
 void	init_angles_offsets(t_cub *cub)
 {
-	cub->player.offset_x = WIN_WIDTH / 2;
-	cub->player.offset_y = WIN_HEIGHT / 2;
-	cub->unit = 10.0;
-	cub->zoom = 10.0;
 	cub->player.angle = 0;
 }
 

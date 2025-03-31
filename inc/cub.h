@@ -64,7 +64,7 @@ typedef	struct s_pixel
 	int		y;
 }	t_pix;
 
-typedef struct s_tile
+typedef struct s_maptile
 {
 	int		x;
 	int		y;
@@ -110,8 +110,7 @@ typedef struct s_map
 	int		width;
 	int		height;
 	int		size;
-	int		minimap_max_width;
-	int		minimap_max_height;
+	int		cursor_size;
 	int		tile_size;
 	int		scale;
 	int		offset_x;
@@ -158,9 +157,6 @@ typedef struct s_player
 	t_pt	grid_pt;
 	t_pt	cursor[3];
 	float	edge[4];
-	int		cursor_size;
-	int		offset_x;
-	int		offset_y;
 }	t_play;
 
 typedef struct s_rayhit
@@ -203,8 +199,6 @@ typedef struct s_cub
 	t_play	player;
 	t_disp	display;
 	char	temp_map[MAX_TEMP_MAP];
-	int		zoom;
-	int		unit;
 }	t_cub;
 
 /* ERROR HANDLING */
@@ -239,7 +233,7 @@ int		handle_input_release(int keysym, t_cub *cub);
 int		handle_input_press(int keysym, t_cub *cub);
 int		handle_mouse(int x, int y, t_cub *cub);
 void	move_player(t_cub *cub);
-void	check_collision(t_cub *cub, t_pt *direction);
+void	check_collision(t_map *map, const t_pt *player_grid, t_pt *direction);
 
 /* DISPLAY */
 
@@ -261,7 +255,7 @@ int		read_pixel(t_img *img, int img_width, int img_height, int x, int y);
 void	paint_pixel_blend(t_img *img, int x, int y, int color);
 void	paint_background(t_img *img, int color);
 void	paint_line(t_pt start, t_pt end, t_cub *cub);
-void	paint_minimap(t_cub *cub);
+void	update_player_cursor(t_cub *cub);
 void	paint_square(t_img *img, t_pt *pt, int size, int color);
 void	paint_triangle(t_img *img, t_pt coordinates[3], int color);
 int		shade_left_right(t_hit *block, int color);
@@ -272,9 +266,9 @@ int		blend(int color1, int color2, float ratio);
 
 void	transform_map_into_tiles(t_cub *cub);
 void	init_angles_offsets(t_cub *cub);
-void	rotate_point(t_cub *cub, t_pt *point, t_pt *center, float angle);
-void	project_map(t_cub *cub);
-t_pt	project_point(t_cub	*cub, t_pt pt);
+void	rotate_point(t_pt *point, t_pt *center, float angle);
+void	init_minimap(t_map *map);
+t_pt	scale_point(t_pt pt, int scale);
 
 /* RAYCASTING */
 

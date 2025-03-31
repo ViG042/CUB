@@ -6,7 +6,7 @@
 /*   By: mkling <mkling@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/03/03 14:07:58 by mkling            #+#    #+#             */
-/*   Updated: 2025/03/30 22:52:20 by mkling           ###   ########.fr       */
+/*   Updated: 2025/03/31 08:34:08 by mkling           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -80,7 +80,7 @@ int	render(t_cub *cub)
 
 	if (cub->win == NULL)
 		return (1);
-	paint_minimap(cub);
+	update_player_cursor(cub);
 	mlx_put_image_to_window(cub->mlx, cub->win, cub->visual.mlx_img, 0, 0);
 	itoa_fps = ft_itoa(cub->display.fps);
 	mlx_string_put(cub->mlx, cub->win, 5, WIN_HEIGHT - 5, WHITE, itoa_fps);

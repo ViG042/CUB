@@ -6,13 +6,15 @@
 /*   By: mkling <mkling@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/03/09 18:12:25 by mkling            #+#    #+#             */
-/*   Updated: 2025/03/30 22:17:30 by mkling           ###   ########.fr       */
+/*   Updated: 2025/03/31 08:27:13 by mkling           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "cub.h"
 
-void	init_direction(t_cub *cub, t_pt *direction)
+
+
+static void	init_direction(t_cub *cub, t_pt *direction)
 {
 	direction->x = 0;
 	direction->y = 0;
@@ -48,8 +50,8 @@ void	move_player(t_cub *cub)
 
 	init_direction(cub, &direction);
 	rotate_direction(&direction, cub->player.angle);
-	check_collision(cub, &direction);
+	check_collision(cub->map, &cub->player.grid_pt, &direction);
 	cub->player.grid_pt.x += direction.x;
 	cub->player.grid_pt.y += direction.y;
-	cub->player.map_pt = project_point(cub, cub->player.grid_pt);
+	cub->player.map_pt = scale_point(cub->player.grid_pt, cub->map->scale);
 }

@@ -6,7 +6,7 @@
 /*   By: mkling <mkling@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/03/03 18:04:44 by mkling            #+#    #+#             */
-/*   Updated: 2025/03/30 22:28:24 by mkling           ###   ########.fr       */
+/*   Updated: 2025/03/31 08:59:22 by mkling           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,7 +25,6 @@ static t_tile	turn_to_tile(t_cub *cub, int row, int column)
 	{
 		initialize_player(cub, (float)tile.x, (float)tile.y, tile.type);
 		tile.type = '0';
-		// cub->map->clean_map[row][column] = '0';
 	}
 	return (tile);
 }
@@ -53,54 +52,26 @@ void	transform_map_into_tiles(t_cub *cub)
 	}
 }
 
-static void	orient_player_cursor(t_cub *cub)
+void	init_minimap(t_map *map)
 {
-	cub->player.cursor[TOP].x = cub->player.map_pt.x;
-	cub->player.cursor[TOP].y
-		= cub->player.map_pt.y - cub->player.cursor_size * 0.1;
-	cub->player.cursor[LEFT].x
-		= cub->player.map_pt.x - cub->player.cursor_size;
-	cub->player.cursor[LEFT].y
-		= cub->player.map_pt.y + cub->player.cursor_size;
-	cub->player.cursor[RIGHT].x
-		= cub->player.map_pt.x + cub->player.cursor_size;
-	cub->player.cursor[RIGHT].y
-		= cub->player.map_pt.y + cub->player.cursor_size;
-	rotate_point(cub, &cub->player.cursor[TOP], &cub->player.map_pt,
-		cub->player.angle);
-	rotate_point(cub, &cub->player.cursor[LEFT], &cub->player.map_pt,
-		cub->player.angle);
-	rotate_point(cub, &cub->player.cursor[RIGHT], &cub->player.map_pt,
-		cub->player.angle);
+	int		minimap_max_height;
+	int		minimap_max_width;
+	float	scale_width;
+	float	scale_height;
+
+	minimap_max_height = WIN_HEIGHT * MINIMAP_PROPORTION * 0.7;
+	minimap_max_width = WIN_WIDTH * MINIMAP_PROPORTION * 0.7;
+	scale_height = (float)minimap_max_height / map->height;
+	scale_width = (float)minimap_max_width / map->width;
+	map->scale = (int)fmin(scale_height, scale_width);
+	map->tile_size = (int)(map->scale);
+	map->offset_x = (int)(map->scale);
+	map->offset_y = (int)(map->scale);
+	map->cursor_size = map->tile_size * 0.8;
 }
 
-static void	paint_map(t_img *img, t_map *map)
-{
-	int		column;
-	int		row;
-	t_pt	pt;
 
-	column = 0;
-	while (column < map->height)
-	{
-		row = 0;
-		while (row < map->width)
-		{
-			pt.x = row * map->scale + map->offset_x;
-			pt.y = column * map->scale + map->offset_y;
-			if (map->tiles[column][row].type == '1')
-				paint_square(img, &pt, map->tile_size, GREY);
-			if (map->tiles[column][row].type == 'D')
-				paint_square(img, &pt, map->tile_size, ORANGE);
-			row++;
-		}
-		column++;
-	}
-}
 
-void	paint_minimap(t_cub *cub)
-{
-	paint_map(&cub->visual, cub->map);
-	orient_player_cursor(cub);
-	paint_triangle(&cub->visual, cub->player.cursor, WHITE);
-}
+
+
+

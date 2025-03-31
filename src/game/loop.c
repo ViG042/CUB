@@ -6,13 +6,13 @@
 /*   By: mkling <mkling@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/03/09 00:20:40 by alex              #+#    #+#             */
-/*   Updated: 2025/03/30 23:11:08 by mkling           ###   ########.fr       */
+/*   Updated: 2025/03/30 23:23:10 by mkling           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "cub.h"
 
-void	open_close_if_door(t_cub *cub, t_tile *tile, t_pt *player)
+void	open_close_if_door(t_cub *cub, t_tile *tile, const t_pt *player)
 {
 	float	door_center_x;
 	float	door_center_y;
@@ -27,8 +27,6 @@ void	open_close_if_door(t_cub *cub, t_tile *tile, t_pt *player)
 	else
 		tile->state -= 1 * cub->display.delta_time;
 	tile->state = fclamp(tile->state, 0, 1);
-	printf("door state is %f - player is x %f y %f - tile is  x %f y %f\n",
-		tile->state, player->x, player->y, door_center_x, door_center_y);
 }
 
 void	update_tiles(t_cub *cub)
