@@ -37,6 +37,7 @@
 
 /* COLORS */
 
+# define TRANSPARENT 0x500000
 # define BLACK 0x000000
 # define WHITE 0xffffff
 # define GREY 0x555555
@@ -47,7 +48,12 @@
 # define TEAL 0x00FFFF
 # define GREEN 0x00F500
 # define YELLOW 0xFF0055
-# define TRANSPARENT 0x500000
+# define DIMBROWN 0x5A4A3F
+# define LIGHTGREY 0xA9A9A9
+# define PEACH 0xFFDAB9
+# define WARMORANGE 0xFFB347
+# define LIGHTBLUE 0x87CEEB
+# define CHOCO 0xD2691E
 
 typedef unsigned char	t_byte;
 

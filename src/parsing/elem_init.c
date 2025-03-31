@@ -3,19 +3,19 @@
 void	assign_color(t_cub *cub, int type)
 {
 	if (type == NO)
-		cub->elem[NO].back_up = 4210944;
+		cub->elem[NO].back_up = DIMBROWN;
 	else if (type == SO)
-		cub->elem[SO].back_up = 6908313;
+		cub->elem[SO].back_up = LIGHTGREY;
 	else if (type == WE)
-		cub->elem[WE].back_up = 12632352;
+		cub->elem[WE].back_up = GREY;
 	else if (type == EA)
-		cub->elem[EA].back_up = 14660672;
+		cub->elem[EA].back_up = PEACH;
 	else if (type == F)
-		cub->elem[F].back_up = 14553600;
+		cub->elem[F].back_up = WARMORANGE;
 	else if (type == C)
-		cub->elem[C].back_up = 14872320;
+		cub->elem[C].back_up = LIGHTBLUE;
 	else if (type == D)
-		cub->elem[D].back_up = 9127219;
+		cub->elem[D].back_up = CHOCO;
 }
 
 void	load_or_assign_color(t_cub *cub, char *description, int type)
