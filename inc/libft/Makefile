@@ -3,10 +3,10 @@
 #                                                         :::      ::::::::    #
 #    Makefile                                           :+:      :+:    :+:    #
 #                                                     +:+ +:+         +:+      #
-#    By: mkling <mkling@student.42.fr>              +#+  +:+       +#+         #
+#    By: alex <alex@student.42.fr>                  +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2024/05/20 10:20:10 by mkling            #+#    #+#              #
-#    Updated: 2024/12/13 15:12:02 by mkling           ###   ########.fr        #
+#    Updated: 2025/04/01 17:51:52 by alex             ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -34,7 +34,7 @@ OBJS	= $(patsubst $(SRC_DIR)/%.c,$(OBJ_DIR)/%.o,$(addprefix $(SRC_DIR)/, $(SRCS)
 # Compilation options
 CC		= cc
 
-CFLAGS	= -Wall -Wextra -Werror -g
+CFLAGS	= -Wall -Wextra -Werror
 
 
 # General rules
@@ -44,7 +44,7 @@ $(NAME):	$(OBJ_DIR) $(OBJS)
 			ar rcs $(NAME) $(OBJS)
 
 $(OBJ_DIR)/%.o: $(SRC_DIR)/%.c
-				$(CC) $(CFLAGS) -g $(INC) -c $< -o $@
+				$(CC) $(CFLAGS) $(INC) -c $< -o $@
 
 $(OBJ_DIR):
 				mkdir -p $@

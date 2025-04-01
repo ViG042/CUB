@@ -4,8 +4,8 @@ int	get_color_from_texture_and_ratios(t_elem *elem, t_pt texture_pos)
 {
 	t_pix	texture_pix;
 
-	texture_pix.x = (int)(elem->width * texture_pos.x) & (elem->width - 1);
-	texture_pix.y = (int)(elem->height * texture_pos.y) & (elem->height - 1);
+	texture_pix.x = (int)(elem->width * texture_pos.x) % (elem->width - 1);
+	texture_pix.y = (int)(elem->height * texture_pos.y) % (elem->height - 1);
 	if (texture_pix.y < 0 || texture_pix.x < 0
 		|| texture_pix.y > elem->height || texture_pix.x > elem->width)
 		return (BLACK);
@@ -45,7 +45,8 @@ void	floorcasting(t_cub *cub)
 	float	row_distance;
 	float	vertical_position_of_camera;
 
-	row = 0;
+	vertical_position_of_camera = 0.5 * WIN_HEIGHT;
+	row = WIN_HEIGHT / 2 + 1;
 	while (row < WIN_HEIGHT)
 	{
 		// Ray directions for the leftmost and rightmost rays
@@ -58,7 +59,7 @@ void	floorcasting(t_cub *cub)
 		y_distance_from_middle = row - WIN_HEIGHT / 2;
 
 		// Vertical position of the camera
-		vertical_position_of_camera = 0.5 * WIN_HEIGHT;
+
 
 		// Horizontal distance from the camera to the floor for the current row
 		row_distance = vertical_position_of_camera / y_distance_from_middle;
