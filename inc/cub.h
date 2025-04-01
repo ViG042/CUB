@@ -166,7 +166,6 @@ typedef struct s_player
 	float	edge[4];
 	t_pt	dir;
 	t_pt	plane;
-	t_pt	start_pos;
 }	t_play;
 
 typedef struct s_rayhit

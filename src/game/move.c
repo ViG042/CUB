@@ -6,7 +6,7 @@
 /*   By: alex <alex@student.42.fr>                  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/03/09 18:12:25 by mkling            #+#    #+#             */
-/*   Updated: 2025/04/01 12:48:55 by alex             ###   ########.fr       */
+/*   Updated: 2025/04/01 20:44:52 by alex             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -55,7 +55,7 @@ void	move_player(t_play *player, t_key *keys, t_map *map, float delta)
 
 	player->rad_angle = player->deg_angle * RADIAN;
 	player->dir.x = cos(player->rad_angle);
-	player->dir.y = sin(player->rad_angle);
+	player->dir.y = -sin(player->rad_angle);
 	player->plane.x = -player->dir.y * tan(FIELD_OF_VIEW / 2 * RADIAN);
 	player->plane.y = player->dir.x * tan(FIELD_OF_VIEW / 2 * RADIAN);
 	init_direction(&direction, player, keys, delta);

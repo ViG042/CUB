@@ -6,7 +6,7 @@
 /*   By: alex <alex@student.42.fr>                  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/03/03 18:58:14 by mkling            #+#    #+#             */
-/*   Updated: 2025/04/01 13:22:10 by alex             ###   ########.fr       */
+/*   Updated: 2025/04/01 20:39:30 by alex             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -74,6 +74,5 @@ void	initialize_player(t_play *player, float x, float y, int orientation)
 	player->dir.y = sin(player->rad_angle);
 	player->plane.x = -player->dir.y * tan(FIELD_OF_VIEW / 2 * RADIAN);
 	player->plane.y = player->dir.x * tan(FIELD_OF_VIEW / 2 * RADIAN);
-	player->start_pos.x = x;
-	player->start_pos.y = y;
+	printf("starting dir is %f, %f with plane %f %f\n", player->dir.x, player->dir.y, player->plane.x, player->plane.y);
 }
