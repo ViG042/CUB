@@ -61,7 +61,7 @@ void	find_dist_first_x_and_y_intersect(t_ray *ray, t_pt player_position)
 	ray->dda.y = fabs(ray->offset_to_edge.y * ray->dist.y);
 }
 
-void	digital_differential_analyser(t_ray *ray, t_map *map, t_pt player_position)
+void	digital_differential_analyser(t_ray *ray, t_map *map, t_pt player_pos)
 {
 	ray->hit_count = 0;
 	while (ray->y >= 0 && ray->x >= 0
@@ -69,7 +69,7 @@ void	digital_differential_analyser(t_ray *ray, t_map *map, t_pt player_position)
 		&& map->tiles[ray->y][ray->x].type != '1')
 	{
 		if (map->tiles[ray->y][ray->x].type != '0' && ray->hit_count < 9)
-			identify_block(&ray->hit[ray->hit_count], ray, map, player_position);
+			identify_block(&ray->hit[ray->hit_count], ray, map, player_pos);
 		if (fabs(ray->dda.x) < fabs(ray->dda.y))
 		{
 			ray->side = LEFT;
@@ -95,13 +95,14 @@ void	raycasting(t_cub *cub)
 	column = 0;
 	while (column < WIN_WIDTH - 1)
 	{
-		find_ray_angle(&ray, cub->player.angle, column);
+		find_ray_angle(&ray, cub->player.angle_deg, column);
 		find_offset_from_player_to_tile_edge(&ray, cub->player.grid_pt);
 		find_dist_first_x_and_y_intersect(&ray, cub->player.grid_pt);
 		digital_differential_analyser(&ray, cub->map, cub->player.grid_pt);
 		identify_block(&ray.hit[ray.hit_count], &ray, cub->map, cub->player.grid_pt);
 		debug_print(cub, column);
 		layer_index = ray.hit_count - 1;
+		paint_floor(cub, &ray, &cub->elem[WE], column);
 		while (layer_index >= 0)
 		{
 			paint_column(cub, &ray.hit[layer_index], column, layer_index == ray.hit_count - 1);

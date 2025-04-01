@@ -16,9 +16,9 @@ void	set_texture_offset(t_hit *block, t_ray *ray, t_pt player_position)
 		offset = player_position.x + block->distance * sin(ray->angle_rad);
 	else
 		offset = player_position.y - block->distance * cos(ray->angle_rad);
-	block->texture_offset = offset - (int)offset;
+	block->texture_offset.x = offset - (int)offset;
 	if (block->side == WEST || block->side == SOUTH)
-		block->texture_offset = 1 - block->texture_offset;
+		block->texture_offset.x = 1 - block->texture_offset.x;
 }
 
 void	set_block_height_top_end_pixels(t_hit *block)

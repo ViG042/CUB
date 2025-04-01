@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   do_parsing.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: mkling <mkling@student.42.fr>              +#+  +:+       +#+        */
+/*   By: alex <alex@student.42.fr>                  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/03/03 12:33:27 by mkling            #+#    #+#             */
-/*   Updated: 2025/03/31 09:13:52 by mkling           ###   ########.fr       */
+/*   Updated: 2025/04/01 15:45:43 by alex             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,7 +14,7 @@
 
 void	init_angles_offsets(t_cub *cub)
 {
-	cub->player.angle = 0;
+	cub->player.angle_deg = 0;
 }
 
 static void	set_width_and_height(t_cub *cub)

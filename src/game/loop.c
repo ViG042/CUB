@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   loop.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: mkling <mkling@student.42.fr>              +#+  +:+       +#+        */
+/*   By: alex <alex@student.42.fr>                  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/03/09 00:20:40 by alex              #+#    #+#             */
-/*   Updated: 2025/03/31 10:52:45 by mkling           ###   ########.fr       */
+/*   Updated: 2025/04/01 15:45:43 by alex             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -51,17 +51,17 @@ void	update_tiles(t_cub *cub)
 static void	rotations(t_cub *cub)
 {
 	if (cub->keys.left)
-		cub->player.angle -= ROT_SPEED * cub->display.delta_time;
+		cub->player.angle_deg -= ROT_SPEED * cub->display.delta_time;
 	if (cub->keys.right)
-		cub->player.angle += ROT_SPEED * cub->display.delta_time;
+		cub->player.angle_deg += ROT_SPEED * cub->display.delta_time;
 	// if (cub->keys.mouse_x > cub->display.mid_x + 30)
-	// 	cub->player.angle -= ROT_SPEED * cub->display.delta_time;
+	// 	cub->player.angle_deg -= ROT_SPEED * cub->display.delta_time;
 	// if (cub->keys.mouse_x < cub->display.mid_x - 30)
-	// 	cub->player.angle += ROT_SPEED * cub->display.delta_time;
-	if (cub->player.angle > 360)
-		cub->player.angle = cub->player.angle / 360.00;
-	if (cub->player.angle < -360)
-		cub->player.angle = cub->player.angle / 360.00;
+	// 	cub->player.angle_deg += ROT_SPEED * cub->display.delta_time;
+	if (cub->player.angle_deg > 360)
+		cub->player.angle_deg = cub->player.angle_deg / 360.00;
+	if (cub->player.angle_deg < -360)
+		cub->player.angle_deg = cub->player.angle_deg / 360.00;
 }
 
 int	game_loop(void	*voidedcub)

@@ -64,7 +64,7 @@ typedef struct s_point
 	char	type;
 }	t_pt;
 
-typedef	struct s_pixel
+typedef struct s_pixel
 {
 	int		x;
 	int		y;
@@ -158,7 +158,7 @@ typedef struct s_key_states
 
 typedef struct s_player
 {
-	float	angle;
+	float	angle_deg;
 	t_pt	map_pt;
 	t_pt	grid_pt;
 	t_pt	cursor[3];
@@ -167,7 +167,7 @@ typedef struct s_player
 
 typedef struct s_rayhit
 {
-	float	texture_offset;
+	t_pt	texture_offset;
 	float	distance;
 	int		height;
 	int		top_pixel;
@@ -282,6 +282,7 @@ void	raycasting(t_cub *cub);
 void	define_collision_side(t_hit *block, t_ray *ray);
 void	identify_block(t_hit *block, t_ray *ray, t_map *map, t_pt player_position);
 void	paint_column(t_cub *cub, t_hit *block, int column, int is_last_block);
+void	paint_floor(t_cub *cub, t_ray *ray, t_elem *elem, int column);
 void	debug_print(t_cub *cub, int pixel_column);
 
 /* MATH */
@@ -347,6 +348,7 @@ enum e_block_type
 	WALL = '1',
 	DOOR = 'D',
 	GOLEM = 'G',
+	FLOOR,
 };
 
 enum e_elem

@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   move.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: mkling <mkling@student.42.fr>              +#+  +:+       +#+        */
+/*   By: alex <alex@student.42.fr>                  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/03/09 18:12:25 by mkling            #+#    #+#             */
-/*   Updated: 2025/03/31 09:14:59 by mkling           ###   ########.fr       */
+/*   Updated: 2025/04/01 15:45:43 by alex             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -47,7 +47,7 @@ void	move_player(t_cub *cub)
 	t_pt	direction;
 
 	init_direction(cub, &direction);
-	rotate_direction(&direction, cub->player.angle);
+	rotate_direction(&direction, cub->player.angle_deg);
 	check_collision(cub->map, &cub->player.grid_pt, &direction);
 	cub->player.grid_pt.x += direction.x;
 	cub->player.grid_pt.y += direction.y;

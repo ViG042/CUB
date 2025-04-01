@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   player.c                                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: mkling <mkling@student.42.fr>              +#+  +:+       +#+        */
+/*   By: alex <alex@student.42.fr>                  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/03/03 18:58:14 by mkling            #+#    #+#             */
-/*   Updated: 2025/03/31 11:23:52 by mkling           ###   ########.fr       */
+/*   Updated: 2025/04/01 15:45:43 by alex             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -52,7 +52,7 @@ static void	paint_minimap(t_img *img, t_map *map)
 void	update_player_cursor(t_cub *cub)
 {
 	paint_minimap(&cub->visual, cub->map);
-	orient_cursor(cub->player.cursor, cub->player.map_pt, cub->player.angle, cub->map->cursor_size);
+	orient_cursor(cub->player.cursor, cub->player.map_pt, cub->player.angle_deg, cub->map->cursor_size);
 	paint_triangle(&cub->visual, cub->player.cursor, WHITE);
 }
 
@@ -61,12 +61,12 @@ void	initialize_player(t_cub *cub, float x, float y, int orientation)
 	cub->player.grid_pt.x = x + 0.5;
 	cub->player.grid_pt.y = y + 0.5;
 	if (orientation == 'N')
-		cub->player.angle = 0.00;
+		cub->player.angle_deg = 0.00;
 	if (orientation == 'E')
-		cub->player.angle = 90.00;
+		cub->player.angle_deg = 90.00;
 	if (orientation == 'S')
-		cub->player.angle = 180.00;
+		cub->player.angle_deg = 180.00;
 	if (orientation == 'W')
-		cub->player.angle = 270.00;
+		cub->player.angle_deg = 270.00;
 	cub->player.map_pt = scale_point(cub->player.grid_pt, cub->map->scale);
 }
