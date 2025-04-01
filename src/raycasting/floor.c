@@ -1,19 +1,36 @@
 #include "cub.h"
 
-int	get_color_from_texture_and_ratios(t_elem *elem, t_pt texture_position)
+int	get_color_from_texture_and_ratios(t_elem *elem, t_pt texture_pos)
 {
 	t_pix	texture_pix;
 
-	texture_pix.x = (int)(elem->width * texture_position.x) & (elem->width - 1);
-	texture_pix.y = (int)(elem->height * texture_position.y) & (elem->height - 1);
+	texture_pix.x = (int)(elem->width * texture_pos.x) & (elem->width - 1);
+	texture_pix.y = (int)(elem->height * texture_pos.y) & (elem->height - 1);
 	if (texture_pix.y < 0 || texture_pix.x < 0
 		|| texture_pix.y > elem->height || texture_pix.x > elem->width)
 		return (BLACK);
 	else if (elem->texture.mlx_img)
 		return (read_pixel(&elem->texture, elem->width,
-			elem->height, texture_pix.x, texture_pix.y));
+				elem->height, texture_pix.x, texture_pix.y));
 	else
 		return (elem->color);
+}
+
+void	paint_floor_and_ceiling(t_cub *cub, t_pt floor, int column, int row)
+{
+	int		cell_x;
+	int		cell_y;
+	int		color;
+	t_pt	texture_pos;
+
+	cell_x = (int)floor.x;
+	cell_y = (int)floor.y;
+	texture_pos.x = (floor.x - cell_x);
+	texture_pos.y = (floor.y - cell_y);
+	color = get_color_from_texture_and_ratios(&cub->elem[EA], texture_pos);
+	paint_pixel(&cub->visual, column, row, color);
+	color = get_color_from_texture_and_ratios(&cub->elem[WE], texture_pos);
+	paint_pixel(&cub->visual, column, WIN_HEIGHT - row - 1, color);
 }
 
 void	floorcasting(t_cub *cub)
@@ -22,18 +39,14 @@ void	floorcasting(t_cub *cub)
 	t_pt	floor_step;
 	t_pt	leftmost_ray;
 	t_pt	rightmost_ray;
-	t_pt	texture_pos;
 	int		column;
 	int		row;
 	int		y_distance_from_middle;
 	float	row_distance;
 	float	vertical_position_of_camera;
-	int		cell_x;
-	int		cell_y;
-	int		color;
 
 	row = 0;
-	while (row < WIN_HEIGHT / 2)
+	while (row < WIN_HEIGHT)
 	{
 		// Ray directions for the leftmost and rightmost rays
 		leftmost_ray.x = cub->player.dir.x - cub->player.plane.x;
@@ -61,18 +74,7 @@ void	floorcasting(t_cub *cub)
 		column = 0;
 		while (column < WIN_WIDTH)
 		{
-			// Cell coordinates
-			cell_x = (int)floor.x;
-			cell_y = (int)floor.y;
-
-			texture_pos.x = floor.x - cell_x;
-			texture_pos.y = floor.y - cell_y;
-
-			color = get_color_from_texture_and_ratios(&cub->elem[EA], texture_pos);
-			paint_pixel(&cub->visual, column, row, color);
-			color = get_color_from_texture_and_ratios(&cub->elem[WE], texture_pos);
-			paint_pixel(&cub->visual, column, WIN_HEIGHT - row - 1, color);
-
+			paint_floor_and_ceiling(cub, floor, column, row);
 			floor.x += floor_step.x;
 			floor.y += floor_step.y;
 			column++;
