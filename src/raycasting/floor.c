@@ -20,8 +20,6 @@ void	floorcasting(t_cub *cub)
 {
 	t_pt	floor;
 	t_pt	floor_step;
-	t_pt	player_dir;
-	t_pt	player_plane;
 	t_pt	leftmost_ray;
 	t_pt	rightmost_ray;
 	t_pt	texture_pos;
@@ -34,20 +32,14 @@ void	floorcasting(t_cub *cub)
 	int		cell_y;
 	int		color;
 
-
-	player_dir.x = cos(cub->player.angle);
-	player_dir.y = sin(cub->player.angle);
-	player_plane.x = -player_dir.y * tan(FIELD_OF_VIEW / 2 * (PI / 180.0));
-	player_plane.y = player_dir.x * tan(FIELD_OF_VIEW / 2 * (PI / 180.0));
-
 	row = 0;
 	while (row < WIN_HEIGHT / 2)
 	{
 		// Ray directions for the leftmost and rightmost rays
-		leftmost_ray.x = player_dir.x - player_plane.x;
-		leftmost_ray.y = player_dir.y - player_plane.y;
-		rightmost_ray.x = player_dir.x + player_plane.x;
-		rightmost_ray.y = player_dir.y + player_plane.y;
+		leftmost_ray.x = cub->player.dir.x - cub->player.plane.x;
+		leftmost_ray.y = cub->player.dir.y - cub->player.plane.y;
+		rightmost_ray.x = cub->player.dir.x + cub->player.plane.x;
+		rightmost_ray.y = cub->player.dir.y + cub->player.plane.y;
 
 		// Current y position compared to the center of the screen
 		y_distance_from_middle = row - WIN_HEIGHT / 2;

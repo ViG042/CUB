@@ -96,7 +96,7 @@ void	raycasting(t_cub *cub)
 	floorcasting(cub);
 	while (column < WIN_WIDTH - 1)
 	{
-		find_ray_angle(&ray, cub->player.angle, column);
+		find_ray_angle(&ray, cub->player.deg_angle, column);
 		find_offset_from_player_to_tile_edge(&ray, cub->player.grid_pt);
 		find_dist_first_x_and_y_intersect(&ray, cub->player.grid_pt);
 		digital_differential_analyser(&ray, cub->map, cub->player.grid_pt);

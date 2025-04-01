@@ -6,7 +6,7 @@
 /*   By: mkling <mkling@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/03/09 00:20:56 by alex              #+#    #+#             */
-/*   Updated: 2025/03/31 11:22:31 by mkling           ###   ########.fr       */
+/*   Updated: 2025/03/31 16:54:38 by mkling           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,7 +21,7 @@ long long	get_microseconds(void)
 	return (time.tv_usec + time.tv_sec * 1000000);
 }
 
-void	update_delta_time(t_cub *cub)
+void	update_delta(t_cub *cub)
 {
 	long long	current_frame;
 	long long	delta_ms;
@@ -30,11 +30,11 @@ void	update_delta_time(t_cub *cub)
 	current_frame = fmax(current_frame, cub->display.last_frame);
 	delta_ms = current_frame - cub->display.last_frame;
 	cub->display.last_frame = current_frame;
-	cub->display.delta_time = ((float)delta_ms) / 1000000.00;
-	cub->display.counter += cub->display.delta_time;
+	cub->display.delta = ((float)delta_ms) / 1000000.00;
+	cub->display.counter += cub->display.delta;
 	if (cub->display.counter > 1)
 	{
-		cub->display.fps = 1.0 / cub->display.delta_time;
+		cub->display.fps = 1.0 / cub->display.delta;
 		cub->display.counter = 0;
 	}
 }

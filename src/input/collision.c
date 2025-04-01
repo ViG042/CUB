@@ -14,10 +14,8 @@ static int	is_wall(t_map *map, int x, int y)
 /*		printf("where=[%d], dist=[%f]\n", where, dist);*/
 int	too_close(float x, float y, int where)
 {
-	float	wand;
 	float	dist;
 
-	wand = WAND;
 	dist = 1;
 	if (where == NORTH)
 		dist = y - floor(y);
@@ -27,7 +25,7 @@ int	too_close(float x, float y, int where)
 		dist = x - floor(x);
 	else if (where == EAST)
 		dist = ceil(x) - x;
-	if (dist < wand)
+	if (dist < WAND)
 		return (1);
 	return (0);
 }

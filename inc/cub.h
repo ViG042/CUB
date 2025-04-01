@@ -137,7 +137,7 @@ typedef struct s_elem
 typedef struct s_display
 {
 	long long	last_frame;
-	float		delta_time;
+	float		delta;
 	float		fps;
 	float		counter;
 	int			mid_x;
@@ -158,11 +158,14 @@ typedef struct s_key_states
 
 typedef struct s_player
 {
-	float	angle;
+	float	deg_angle;
+	float	rad_angle;
 	t_pt	map_pt;
 	t_pt	grid_pt;
 	t_pt	cursor[3];
 	float	edge[4];
+	t_pt	dir;
+	t_pt	plane;
 }	t_play;
 
 typedef struct s_rayhit
@@ -233,12 +236,12 @@ void	print_map(char **map);
 
 /* INPUTS */
 
-void	initialize_player(t_cub *cub, float x, float y, int orientation);
+void	initialize_player(t_play *player, float x, float y, int orient);
 int		handle_input(int keysym, int mode, t_cub *cub);
 int		handle_input_release(int keysym, t_cub *cub);
 int		handle_input_press(int keysym, t_cub *cub);
 int		handle_mouse(int x, int y, t_cub *cub);
-void	move_player(t_cub *cub);
+void	move_player(t_play *player, t_key *keys, t_map *map, float delta);
 void	check_collision(t_map *map, const t_pt *player_grid, t_pt *direction);
 
 /* DISPLAY */
@@ -248,7 +251,7 @@ void	init_image_address(t_img *img);
 int		render(t_cub *cub);
 int		game_loop(void *voided_cub);
 int		is_in_window(int x, int y);
-void	update_delta_time(t_cub *cub);
+void	update_delta(t_cub *cub);
 
 /* PAINTING */
 

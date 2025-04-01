@@ -6,7 +6,7 @@
 /*   By: mkling <mkling@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/03/03 18:04:44 by mkling            #+#    #+#             */
-/*   Updated: 2025/03/31 10:49:31 by mkling           ###   ########.fr       */
+/*   Updated: 2025/03/31 15:44:50 by mkling           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,7 +23,7 @@ static t_tile	turn_to_tile(t_cub *cub, int row, int column)
 	if (tile.type == 'W' || tile.type == 'E'
 		|| tile.type == 'N' || tile.type == 'S')
 	{
-		initialize_player(cub, (float)tile.x, (float)tile.y, tile.type);
+		initialize_player(&cub->player, (float)tile.x, (float)tile.y, tile.type);
 		tile.type = '0';
 	}
 	return (tile);

@@ -6,7 +6,7 @@
 /*   By: mkling <mkling@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/03/03 18:58:14 by mkling            #+#    #+#             */
-/*   Updated: 2025/03/31 11:23:52 by mkling           ###   ########.fr       */
+/*   Updated: 2025/03/31 17:40:58 by mkling           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -52,21 +52,29 @@ static void	paint_minimap(t_img *img, t_map *map)
 void	update_player_cursor(t_cub *cub)
 {
 	paint_minimap(&cub->visual, cub->map);
-	orient_cursor(cub->player.cursor, cub->player.map_pt, cub->player.angle, cub->map->cursor_size);
+	cub->player.map_pt = scale_point(cub->player.grid_pt, cub->map->scale);
+	orient_cursor(cub->player.cursor, cub->player.map_pt, cub->player.deg_angle, cub->map->cursor_size);
 	paint_triangle(&cub->visual, cub->player.cursor, WHITE);
 }
 
-void	initialize_player(t_cub *cub, float x, float y, int orientation)
+void	initialize_player(t_play *player, float x, float y, int orientation)
 {
-	cub->player.grid_pt.x = x + 0.5;
-	cub->player.grid_pt.y = y + 0.5;
+	player->grid_pt.x = x + 0.5;
+	player->grid_pt.y = y + 0.5;
 	if (orientation == 'N')
-		cub->player.angle = 0.00;
+	{
+		player->deg_angle = 0.00;
+	}
+
 	if (orientation == 'E')
-		cub->player.angle = 90.00;
+		player->deg_angle = 90.00;
 	if (orientation == 'S')
-		cub->player.angle = 180.00;
+		player->deg_angle = 180.00;
 	if (orientation == 'W')
-		cub->player.angle = 270.00;
-	cub->player.map_pt = scale_point(cub->player.grid_pt, cub->map->scale);
+		player->deg_angle = 270.00;
+	player->rad_angle = player->deg_angle * RADIAN;
+	player->dir.x = cos(player->rad_angle);
+	player->dir.y = sin(player->rad_angle);
+	player->plane.x = -player->dir.y * tan(FIELD_OF_VIEW / 2 * RADIAN);
+	player->plane.y = player->dir.x * tan(FIELD_OF_VIEW / 2 * RADIAN);
 }

@@ -6,7 +6,7 @@
 /*   By: mkling <mkling@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/03/09 00:20:40 by alex              #+#    #+#             */
-/*   Updated: 2025/03/31 10:52:45 by mkling           ###   ########.fr       */
+/*   Updated: 2025/03/31 17:30:40 by mkling           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,9 +23,9 @@ void	open_close_if_door(t_cub *cub, t_tile *tile, const t_pt *player)
 	door_center_y = tile->y + 0.5;
 	if ((player->x >= door_center_x - 1.5 && player->x <= door_center_x + 1.5)
 		&& (player->y >= door_center_y - 1.5 && player->y <= door_center_y + 1.5))
-		tile->state += 1 * cub->display.delta_time;
+		tile->state += 1 * cub->display.delta;
 	else
-		tile->state -= 1 * cub->display.delta_time;
+		tile->state -= 1 * cub->display.delta;
 	tile->state = fclamp(tile->state, 0, 1);
 }
 
@@ -48,20 +48,47 @@ void	update_tiles(t_cub *cub)
 	}
 }
 
-static void	rotations(t_cub *cub)
+// static void	rotate_player(t_play *player, t_key *keys, float delta)
+// {
+// 	if (keys->left)
+// 		player->deg_angle -= ROT_SPEED * delta;
+// 	if (keys->right)
+// 		player->deg_angle += ROT_SPEED * delta;
+// 	// if (keys->mouse_x > cub->display.mid_x + 30)
+// 	// 	cub->player->deg_angle -= ROT_SPEED * delta;
+// 	// if (keys->mouse_x < cub->display.mid_x - 30)
+// 	// 	cub->player->deg_angle += ROT_SPEED * delta;
+// 	if (player->deg_angle > 360)
+// 		player->deg_angle = player->deg_angle / 360.00;
+// 	if (player->deg_angle < -360)
+// 		player->deg_angle = player->deg_angle / 360.00;
+// }
+
+static void	rotate_player(t_play *player, t_key *keys, float delta)
 {
-	if (cub->keys.left)
-		cub->player.angle -= ROT_SPEED * cub->display.delta_time;
-	if (cub->keys.right)
-		cub->player.angle += ROT_SPEED * cub->display.delta_time;
-	// if (cub->keys.mouse_x > cub->display.mid_x + 30)
-	// 	cub->player.angle -= ROT_SPEED * cub->display.delta_time;
-	// if (cub->keys.mouse_x < cub->display.mid_x - 30)
-	// 	cub->player.angle += ROT_SPEED * cub->display.delta_time;
-	if (cub->player.angle > 360)
-		cub->player.angle = cub->player.angle / 360.00;
-	if (cub->player.angle < -360)
-		cub->player.angle = cub->player.angle / 360.00;
+	float	old_dir_x;
+	float	old_plane_x;
+
+	if (keys->left)
+	{
+		player->deg_angle -= ROT_SPEED * delta;
+		old_dir_x = player->dir.x;
+		player->dir.x = player->dir.x * cos(ROT_SPEED) - player->dir.y * sin(ROT_SPEED);
+		player->dir.y = old_dir_x * sin(ROT_SPEED) + player->dir.y * cos(ROT_SPEED);
+		old_plane_x = player->plane.x;
+		player->plane.x = player->plane.x * cos(ROT_SPEED) - player->plane.y * sin(ROT_SPEED);
+		player->plane.y = old_plane_x * sin(ROT_SPEED) + player->plane.y * cos(ROT_SPEED);
+	}
+	if (keys->right)
+	{
+		player->deg_angle += ROT_SPEED * delta;
+		old_dir_x = player->dir.x;
+		player->dir.x = player->dir.x * cos(-ROT_SPEED) - player->dir.y * sin(-ROT_SPEED);
+		player->dir.y = old_dir_x * sin(-ROT_SPEED) + player->dir.y * cos(-ROT_SPEED);
+		old_plane_x = player->plane.x;
+		player->plane.x = player->plane.x * cos(-ROT_SPEED) - player->plane.y * sin(-ROT_SPEED);
+		player->plane.y = old_plane_x * sin(-ROT_SPEED) + player->plane.y * cos(-ROT_SPEED);
+	}
 }
 
 int	game_loop(void	*voidedcub)
@@ -71,10 +98,10 @@ int	game_loop(void	*voidedcub)
 	cub = (t_cub *)voidedcub;
 	if (cub->win == NULL)
 		return (1);
-	update_delta_time(cub);
+	update_delta(cub);
 	update_tiles(cub);
-	rotations(cub);
-	move_player(cub);
+	rotate_player(&cub->player, &cub->keys, cub->display.delta);
+	move_player(&cub->player, &cub->keys, cub->map, cub->display.delta);
 	raycasting(cub);
 	render(cub);
 	return (0);

@@ -34,6 +34,8 @@ void	set_block_height_top_end_pixels(t_hit *block)
 
 void	identify_block(t_hit *block, t_ray *ray, t_map *map, t_pt player_position)
 {
+	if (ray->y < 0 || ray->x < 0 || ray->x >= map->width || ray->y >= map->height)
+		return ;
 	block->tile = &map->tiles[ray->y][ray->x];
 	block->type = map->tiles[ray->y][ray->x].type;
 	if (block->type == DOOR)

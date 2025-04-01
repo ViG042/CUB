@@ -6,50 +6,48 @@
 /*   By: mkling <mkling@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/03/09 18:12:25 by mkling            #+#    #+#             */
-/*   Updated: 2025/03/31 09:14:59 by mkling           ###   ########.fr       */
+/*   Updated: 2025/03/31 17:39:57 by mkling           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "cub.h"
 
-static void	init_direction(t_cub *cub, t_pt *direction)
+static void	init_direction(t_pt *direction, t_play *player, t_key *keys, float delta)
 {
 	direction->x = 0;
 	direction->y = 0;
-	if (cub->keys.w)
-		direction->y -= SPEED * cub->display.delta_time;
-	else if (cub->keys.s)
-		direction->y += SPEED * cub->display.delta_time;
-	if (cub->keys.a)
-		direction->x -= SPEED * cub->display.delta_time;
-	else if (cub->keys.d)
-		direction->x += SPEED * cub->display.delta_time;
+	if (keys->w)
+		direction->y += (2.0 * delta) * player->dir.y;
+	else if (keys->s)
+		direction->y -= (2.0 * delta) * player->dir.y;
+	if (keys->a)
+		direction->x -= (2.0 * delta) * player->dir.x;
+	else if (keys->d)
+		direction->x += (2.0 * delta) * player->dir.x;
 }
 
-static void	rotate_direction(t_pt *point, float angle)
-{
-	float	radian;
-	float	cos_angle;
-	float	sin_angle;
-	t_pt	rotated;
+// static void	rotate_direction(t_pt *direction, float rad_angle)
+// {
+// 	float	cos_angle;
+// 	float	sin_angle;
 
-	radian = angle * RADIAN;
-	cos_angle = cos(radian);
-	sin_angle = sin(radian);
-	rotated.x = cos_angle * point->x - sin_angle * point->y;
-	rotated.y = sin_angle * point->x + cos_angle * point->y;
-	point->x = rotated.x;
-	point->y = rotated.y;
-}
+// 	cos_angle = cos(rad_angle);
+// 	sin_angle = sin(rad_angle);
+// 	direction->x = cos_angle * direction->x - sin_angle * direction->y;
+// 	direction->y = sin_angle * direction->x + cos_angle * direction->y;
+// }
 
-void	move_player(t_cub *cub)
+void	move_player(t_play *player, t_key *keys, t_map *map, float delta)
 {
 	t_pt	direction;
 
-	init_direction(cub, &direction);
-	rotate_direction(&direction, cub->player.angle);
-	check_collision(cub->map, &cub->player.grid_pt, &direction);
-	cub->player.grid_pt.x += direction.x;
-	cub->player.grid_pt.y += direction.y;
-	cub->player.map_pt = scale_point(cub->player.grid_pt, cub->map->scale);
+	player->rad_angle = player->deg_angle * RADIAN;
+	player->dir.x = cos(player->rad_angle);
+	player->dir.y = sin(player->rad_angle);
+	player->plane.x = -player->dir.y * tan(FIELD_OF_VIEW / 2 * RADIAN);
+	player->plane.y = player->dir.x * tan(FIELD_OF_VIEW / 2 * RADIAN);
+	init_direction(&direction, player, keys, delta);
+	check_collision(map, &player->grid_pt, &direction);
+	player->grid_pt.x += direction.x;
+	player->grid_pt.y += direction.y;
 }
