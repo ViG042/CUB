@@ -56,49 +56,58 @@ void	paint_floor(t_cub *cub, t_ray *ray, t_elem *elem, int column)
 	t_pix	texture;
 	float	row_distance;
 	int		color;
-	t_pt	floor;
-	t_hit	floor_hit;
-	// float	fish_eye_correction;
+	// t_pt	world;
+	// t_hit	floor_hit;
+	// t_pt	texture_offset;
+	float	fish_eye_correction;
+	float	aspect_ratio;
+	float	correction;
 
+	ray->angle_deg = fmod(ray->angle_deg, 360.0);
+	if (ray->angle_deg < 0)
+		ray->angle_deg += 360.0;
+	fish_eye_correction = cub->player.angle_deg - ray->angle_deg;
+	if (fish_eye_correction > 360)
+		fish_eye_correction = fish_eye_correction / 360.00;
+	if (fish_eye_correction < 0)
+		fish_eye_correction = 360 - fish_eye_correction;
 	curr.y = WIN_HEIGHT / 2;
 	curr.x = column;
+	aspect_ratio = (0.5 * WIN_WIDTH) / (5.0 / 8.0 * (float)WIN_HEIGHT);
+	correction = (0.5 * cub->map->width * cub->map->tile_size) / aspect_ratio;
+	fish_eye_correction = cos((fish_eye_correction) * RADIAN);
 	while (curr.y < WIN_HEIGHT)
 	{
-		row_distance = (float)WIN_HEIGHT / (2.0 * curr.y - WIN_HEIGHT);
+		// row_distance = (float)WIN_HEIGHT / (2.0 * (curr.y - WIN_HEIGHT / 2.0));
 
-		// texture.x = cub->player.grid_pt.x / 2
-		// 	+ cos(ray->angle_rad)
-		// 	* 158
-		// 	* 2
-		// 	* elem->width
-		// 	/ row_distance;
-		// texture.y = cub->player.grid_pt.y / 2
-		// 	+ sin(ray->angle_rad) * 158 * 2 * elem->height / row_distance;
+		row_distance = curr.y - (WIN_HEIGHT / 2.0);
+
+		texture.x = cub->player.grid_pt.x / 2 + cos(ray->angle_rad)
+			* correction * 2 * elem->width / row_distance / fish_eye_correction;
+		texture.y = cub->player.grid_pt.y / 2 + sin(ray->angle_rad)
+			* correction * 2 * elem->height / row_distance / fish_eye_correction;
+
+		texture.x = (int)(abs(texture.x)) % (elem->width - 1);
+		texture.y = (int)(abs(texture.y)) % (elem->height - 1);
+
+		// world.x = cub->player.grid_pt.x + row_distance * cos(ray->angle_rad) / fish_eye_correction;
+		// world.y = cub->player.grid_pt.y + row_distance * sin(ray->angle_rad) / fish_eye_correction;
+
+		// // Map the world position to texture coordinates
+		// texture.x = (int)(world.x * elem->width) % elem->width;
+		// texture.y = (int)(world.y * elem->height) % elem->height;
 
 		if (column == WIN_WIDTH / 2)
 		{
 			printf("elem width is %d %d\n", elem->width, elem->height);
+			printf("correction is %f fisheye is %f\n", correction, fish_eye_correction);
 			printf("texture is %d %d\n", texture.x, texture.y);
 			printf("row distance is %f\n", row_distance);
+			printf("ray angle is %f and player angle is %f\n", ray->angle_deg, cub->player.angle_deg);
 		}
 
-		floor.x = cub->player.grid_pt.x + row_distance * cos(ray->angle_rad);
-		floor.y = cub->player.grid_pt.y - row_distance * sin(ray->angle_rad);
-
-		texture_offset.x = floor.x - (int)floor.x;
-		texture_offset.y = floor.y - (int)floor.y;
-		texture.x = (int)(floor_hit.texture_offset.x * elem->width);
-		if (floor_hit.distance < 1)
-			texture.y = ((float)(curr.y - floor_hit.top_pixel)
-					/ (float)floor_hit.height * (float)elem->height)
-				+ (float)elem->height / 2.0 * (1.0 - floor_hit.distance);
-		else
-			texture.y = ((float)(curr.y - floor_hit.top_pixel)
-					/ (float)floor_hit.height * (float)elem->width);
 		color = get_color_in_texture_at_pixel(elem, &texture);
 
-
-		// color = get_color_in_texture_at_pixel(elem, &texture);
 		paint_pixel(&cub->visual, curr.x, curr.y, color);
 		curr.y++;
 	}
@@ -119,3 +128,27 @@ void	paint_column(t_cub *cub, t_hit *block, int column, int is_last_block)
 	while (row < block->end_pixel)
 		paint_block(cub, block, column, row++);
 }
+
+
+
+	// if (column == WIN_WIDTH / 2)
+		// {
+		// 	printf("elem width is %d %d\n", elem->width, elem->height);
+		// 	printf("correction is %f\n", correction);
+		// 	printf("texture is %d %d\n", texture.x, texture.y);
+		// 	printf("row distance is %f\n", row_distance);
+		// }
+
+		// floor.x = cub->player.grid_pt.x + row_distance * cos(ray->angle_rad);
+		// floor.y = cub->player.grid_pt.y - row_distance * sin(ray->angle_rad);
+
+		// texture_offset.x = floor.x - (int)floor.x;
+		// texture_offset.y = floor.y - (int)floor.y;
+		// texture.x = (int)(floor_hit.texture_offset.x * elem->width);
+		// if (floor_hit.distance < 1)
+		// 	texture.y = ((float)(curr.y - floor_hit.top_pixel)
+		// 			/ (float)floor_hit.height * (float)elem->height)
+		// 		+ (float)elem->height / 2.0 * (1.0 - floor_hit.distance);
+		// else
+		// 	texture.y = ((float)(curr.y - floor_hit.top_pixel)
+		// 			/ (float)floor_hit.height * (float)elem->width);
