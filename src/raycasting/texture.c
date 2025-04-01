@@ -50,22 +50,16 @@ P_x = px + cos(deg) * players_height *
 distance_of_player_to_projection_plane *
 aspect_ratio_correction_factor / dy / raFix
 ar = (0.5 * screenwidth) / (5 / 8 * screenheight). (int)(0.5 * mapX * mapS) / ar */
-void	paint_floor(t_cub *cub, t_ray *ray, t_elem *elem, int column)
+void	paint_floor_and_ceiling(t_cub *cub, t_ray *ray, t_elem *elem, int column)
 {
 	t_pix	curr;
 	t_pix	texture;
 	float	row_distance;
 	int		color;
-	// t_pt	world;
-	// t_hit	floor_hit;
-	// t_pt	texture_offset;
 	float	fish_eye_correction;
-	float	aspect_ratio;
-	float	correction;
+	// float	aspect_ratio;
+	// float	correction;
 
-	ray->angle_deg = fmod(ray->angle_deg, 360.0);
-	if (ray->angle_deg < 0)
-		ray->angle_deg += 360.0;
 	fish_eye_correction = cub->player.angle_deg - ray->angle_deg;
 	if (fish_eye_correction > 360)
 		fish_eye_correction = fish_eye_correction / 360.00;
@@ -73,57 +67,57 @@ void	paint_floor(t_cub *cub, t_ray *ray, t_elem *elem, int column)
 		fish_eye_correction = 360 - fish_eye_correction;
 	curr.y = WIN_HEIGHT / 2;
 	curr.x = column;
-	aspect_ratio = (0.5 * WIN_WIDTH) / (5.0 / 8.0 * (float)WIN_HEIGHT);
-	correction = (0.5 * cub->map->width * cub->map->tile_size) / aspect_ratio;
+	// aspect_ratio = (0.5 * WIN_WIDTH) / (5.0 / 8.0 * (float)WIN_HEIGHT);
+	// correction = (0.5 * cub->map->width * cub->map->tile_size) / aspect_ratio;
 	fish_eye_correction = cos((fish_eye_correction) * RADIAN);
 	while (curr.y < WIN_HEIGHT)
 	{
-		// row_distance = (float)WIN_HEIGHT / (2.0 * (curr.y - WIN_HEIGHT / 2.0));
 
-		row_distance = curr.y - (WIN_HEIGHT / 2.0);
+		row_distance = (float)WIN_HEIGHT / (2.0 * (curr.y - WIN_HEIGHT / 2.0));
 
-		texture.x = cub->player.grid_pt.x / 2 + cos(ray->angle_rad)
-			* correction * 2 * elem->width / row_distance / fish_eye_correction;
-		texture.y = cub->player.grid_pt.y / 2 + sin(ray->angle_rad)
-			* correction * 2 * elem->height / row_distance / fish_eye_correction;
+        // Calculate the world position of the floor/ceiling pixel
+        float world_x = cub->player.grid_pt.x + row_distance * cos(ray->angle_rad) / fish_eye_correction;
+        float world_y = cub->player.grid_pt.y + row_distance * sin(ray->angle_rad) / fish_eye_correction;
 
-		texture.x = (int)(abs(texture.x)) % (elem->width - 1);
-		texture.y = (int)(abs(texture.y)) % (elem->height - 1);
+        // Map the world position to texture coordinates
+        texture.x = (int)(world_x * elem->width) % elem->width;
+        texture.y = (int)(world_y * elem->height) % elem->height;
 
-		// world.x = cub->player.grid_pt.x + row_distance * cos(ray->angle_rad) / fish_eye_correction;
-		// world.y = cub->player.grid_pt.y + row_distance * sin(ray->angle_rad) / fish_eye_correction;
+		// row_distance = curr.y - (WIN_HEIGHT / 2.0);
 
-		// // Map the world position to texture coordinates
-		// texture.x = (int)(world.x * elem->width) % elem->width;
-		// texture.y = (int)(world.y * elem->height) % elem->height;
+		// texture.x = cub->player.grid_pt.x / 2 + cos(ray->angle_rad) * correction
+		// 	* 2 * elem->width / row_distance / fish_eye_correction;
+		// texture.y = cub->player.grid_pt.y / 2 - sin(ray->angle_rad) * correction
+		// 	* 2 * elem->height / row_distance / fish_eye_correction;
 
-		if (column == WIN_WIDTH / 2)
-		{
-			printf("elem width is %d %d\n", elem->width, elem->height);
-			printf("correction is %f fisheye is %f\n", correction, fish_eye_correction);
-			printf("texture is %d %d\n", texture.x, texture.y);
-			printf("row distance is %f\n", row_distance);
-			printf("ray angle is %f and player angle is %f\n", ray->angle_deg, cub->player.angle_deg);
-		}
+		// texture.x = (int)(abs(texture.x)) % (elem->width - 1);
+		// texture.y = (int)(abs(texture.y)) % (elem->height - 1);
+
+		// if (column == WIN_WIDTH / 2)
+		// {
+		// 	printf("elem width is %d %d\n", elem->width, elem->height);
+		// 	printf("correction is %f fisheye is %f\n", correction, fish_eye_correction);
+		// 	printf("texture is %d %d\n", texture.x, texture.y);
+		// 	printf("row distance is %f\n", row_distance);
+		// 	printf("ray angle is %f and player angle is %f\n", ray->angle_deg, cub->player.angle_deg);
+		// }
 
 		color = get_color_in_texture_at_pixel(elem, &texture);
 
 		paint_pixel(&cub->visual, curr.x, curr.y, color);
+
+		color = get_color_in_texture_at_pixel(elem, &texture);
+
+		paint_pixel(&cub->visual, curr.x, WIN_HEIGHT - curr.y + 1, color);
 		curr.y++;
 	}
 }
 
-void	paint_column(t_cub *cub, t_hit *block, int column, int is_last_block)
+void	paint_column(t_cub *cub, t_hit *block, int column, int /*is_last_block*/)
 {
 	int	row;
-	int	color;
 
 	row = 0;
-	while (is_last_block && row < block->top_pixel)
-	{
-		color = shade_up_down(row, cub->elem[C].color);
-		paint_pixel(&cub->visual, column, row++, color);
-	}
 	row = block->top_pixel;
 	while (row < block->end_pixel)
 		paint_block(cub, block, column, row++);

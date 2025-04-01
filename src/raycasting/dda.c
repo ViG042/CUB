@@ -102,7 +102,8 @@ void	raycasting(t_cub *cub)
 		identify_block(&ray.hit[ray.hit_count], &ray, cub->map, cub->player.grid_pt);
 		debug_print(cub, column);
 		layer_index = ray.hit_count - 1;
-		paint_floor(cub, &ray, &cub->elem[WE], column);
+		// paint_sky(&cub->visual, &cub->elem[WE], &cub->player);
+		paint_floor_and_ceiling(cub, &ray, &cub->elem[WE], column);
 		while (layer_index >= 0)
 		{
 			paint_column(cub, &ray.hit[layer_index], column, layer_index == ray.hit_count - 1);

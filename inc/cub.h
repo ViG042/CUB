@@ -25,7 +25,7 @@
 
 # define MAX_TEMP_MAP 4096
 # define WIN_WIDTH 1200
-# define WIN_HEIGHT 900
+# define WIN_HEIGHT 600
 # define MINIMAP_PROPORTION 0.5
 # define CURSOR_SIZE 10
 # define UNIT 10
@@ -267,6 +267,7 @@ void	paint_triangle(t_img *img, t_pt coordinates[3], int color);
 int		shade_left_right(t_hit *block, int color);
 int		shade_up_down(int row, int color);
 int		blend(int color1, int color2, float ratio);
+void	paint_sky(t_img *img, t_elem *sky, t_play *player);
 
 /* TRANSFORM */
 
@@ -282,7 +283,7 @@ void	raycasting(t_cub *cub);
 void	define_collision_side(t_hit *block, t_ray *ray);
 void	identify_block(t_hit *block, t_ray *ray, t_map *map, t_pt player_position);
 void	paint_column(t_cub *cub, t_hit *block, int column, int is_last_block);
-void	paint_floor(t_cub *cub, t_ray *ray, t_elem *elem, int column);
+void	paint_floor_and_ceiling(t_cub *cub, t_ray *ray, t_elem *elem, int column);
 void	debug_print(t_cub *cub, int pixel_column);
 
 /* MATH */
