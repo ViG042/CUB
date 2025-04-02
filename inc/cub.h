@@ -1,3 +1,15 @@
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   cub.h                                              :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: mkling <mkling@student.42.fr>              +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2025/04/02 12:47:57 by mkling            #+#    #+#             */
+/*   Updated: 2025/04/02 12:48:32 by mkling           ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
+
 #ifndef CUB_H
 # define CUB_H
 
@@ -110,8 +122,8 @@ typedef struct s_image
 typedef struct s_map
 {
 	char	*name;
-	char	**array;//free lines and array
-	char	**clean_map;//free only clean_map
+	char	**array;
+	char	**clean_map;
 	t_tile	**tiles;
 	int		width;
 	int		height;
@@ -280,7 +292,7 @@ t_pt	scale_point(t_pt pt, int scale);
 
 void	raycasting(t_cub *cub);
 void	define_collision_side(t_hit *block, t_ray *ray);
-void	identify_block(t_hit *block, t_ray *ray, t_map *map, t_pt player_position);
+void	identify_block(t_hit *block, t_ray *ray, t_map *map, t_pt player_pos);
 void	paint_column(t_cub *cub, t_hit *block, int column, int is_last_block);
 
 /* MATH */
@@ -293,8 +305,8 @@ enum e_errcode
 	WRONG_ARG,
 	OPEN_FAIL,
 	READ_FAIL,
-	TOO_BIG,//
-	NO_SPRITE,//
+	TOO_BIG,
+	NO_SPRITE,
 	NOT_RECT,
 	UNKNOWN,
 	EMPTY_LINE,
@@ -307,10 +319,10 @@ enum e_errcode
 	DBL_ELEM,
 	ELEM_MSSG,
 	NO_MAP,
-	MAP_NOT_VALID,//
+	MAP_NOT_VALID,
 	NO_PLAYER,
 	TOO_MANY_PLAYER,
-	BAD_WALLING,//
+	BAD_WALLING,
 	ASTRONAUT,
 	DEADLY_PATH,
 	DEADLY_DOOR,
