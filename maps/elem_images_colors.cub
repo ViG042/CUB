@@ -1,9 +1,10 @@
-NO  220,100,50
+NO  ./xpms/bigstones.xpm
 SO ./xpms/holebrick.xpm
 WE ./xpms/vinebrick.xpm
 EA ./xpms/whitebrick.xpm
 F 220,100,0
 D ./xpms/title.xpm
+C  012,123,234
 
         1111111111111111111111111111
    11      1000000000110000000000001
