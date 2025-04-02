@@ -6,7 +6,7 @@
 /*   By: mkling <mkling@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/03/03 14:07:08 by mkling            #+#    #+#             */
-/*   Updated: 2025/03/30 20:57:09 by mkling           ###   ########.fr       */
+/*   Updated: 2025/04/02 11:28:08 by mkling           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,7 +20,16 @@ static void	free_elem(t_cub *cub)
 	while (i < 10)
 	{
 		if (cub->elem[i].description)
+		{
 			free(cub->elem[i].description);
+			printf("elem is %p\n", cub->elem[i].texture.mlx_img);
+			if (cub->elem[i].texture.mlx_img)
+			{
+				printf("being destroyed\n");
+				mlx_destroy_image(cub->mlx, cub->elem[i].texture.mlx_img);
+				// free(cub->elem[i].texture.mlx_img);
+			}
+		}
 		i++;
 	}
 }
@@ -58,8 +67,6 @@ void	wipe(t_cub *cub)
 		cub->map = NULL;
 	}
 	mlx_destroy_image(cub->mlx, cub->visual.mlx_img);
-	// mlx_destroy_image(cub->mlx, cub->minimap.mlx_img);
-	// mlx_destroy_image(cub->mlx, cub->hud.mlx_img);
 	mlx_destroy_window(cub->mlx, cub->win);
 	mlx_destroy_display(cub->mlx);
 	free(cub->mlx);

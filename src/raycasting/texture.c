@@ -7,7 +7,7 @@ int	get_color_from_elem(t_hit *block, t_elem *elem, t_pix *pixel)
 	texture_pix.x = (int)(block->texture_offset * elem->width);
 	if (block->distance < 1)
 		texture_pix.y = ((float)(pixel->y - block->top_pixel)
-			/ (float)block->height * (float)elem->height)
+				/ (float)block->height * (float)elem->height)
 			+ (float)elem->height / 2.0 * (1.0 - block->distance);
 	else
 		texture_pix.y = ((float)(pixel->y - block->top_pixel)
@@ -16,7 +16,7 @@ int	get_color_from_elem(t_hit *block, t_elem *elem, t_pix *pixel)
 		texture_pix.y -= elem->height * block->tile->state;
 	if (elem->texture.mlx_img)
 		return (read_pixel(&elem->texture, elem->width,
-			elem->height, texture_pix.x, texture_pix.y));
+				elem->height, texture_pix.x, texture_pix.y));
 	if (texture_pix.y < 0 || texture_pix.y > elem->height)
 		return (TRANSPARENT);
 	else

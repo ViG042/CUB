@@ -64,7 +64,7 @@ typedef struct s_point
 	char	type;
 }	t_pt;
 
-typedef	struct s_pixel
+typedef struct s_pixel
 {
 	int		x;
 	int		y;

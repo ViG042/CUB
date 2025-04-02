@@ -6,7 +6,7 @@
 /*   By: mkling <mkling@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/03/06 22:47:28 by mkling            #+#    #+#             */
-/*   Updated: 2025/03/31 08:57:53 by mkling           ###   ########.fr       */
+/*   Updated: 2025/04/02 11:07:09 by mkling           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -33,7 +33,7 @@ void	rotate_point(t_pt *point, t_pt *center, float angle)
 
 t_pt	scale_point(t_pt pt, int scale)
 {
-	t_pt projection;
+	t_pt	projection;
 
 	projection.x = pt.x * scale;
 	projection.y = pt.y * scale;

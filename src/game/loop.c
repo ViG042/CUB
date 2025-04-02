@@ -6,7 +6,7 @@
 /*   By: mkling <mkling@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/03/09 00:20:40 by alex              #+#    #+#             */
-/*   Updated: 2025/04/02 10:21:29 by mkling           ###   ########.fr       */
+/*   Updated: 2025/04/02 11:09:42 by mkling           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,6 +20,7 @@ void	open_close_if_door(t_cub *cub, t_tile *tile, const t_pt *player)
 		return ;
 	door_mid.x = tile->x + 0.5;
 	door_mid.y = tile->y + 0.5;
+	tile->state = 0;
 	if ((player->x >= door_mid.x - 1.5 && player->x <= door_mid.x + 1.5)
 		&& (player->y >= door_mid.y - 1.5 && player->y <= door_mid.y + 1.5))
 		tile->state += 1 * cub->display.delta_time;
@@ -33,7 +34,6 @@ void	update_tiles(t_cub *cub)
 	int		y;
 	int		x;
 
-	x = 0;
 	y = 0;
 	while (y < cub->map->height)
 	{
