@@ -6,7 +6,7 @@
 /*   By: mkling <mkling@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/03/06 22:47:28 by mkling            #+#    #+#             */
-/*   Updated: 2025/04/02 11:07:09 by mkling           ###   ########.fr       */
+/*   Updated: 2025/04/02 12:20:15 by mkling           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -39,5 +39,3 @@ t_pt	scale_point(t_pt pt, int scale)
 	projection.y = pt.y * scale;
 	return (projection);
 }
-
-

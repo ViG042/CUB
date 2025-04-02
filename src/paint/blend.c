@@ -6,7 +6,7 @@
 /*   By: mkling <mkling@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/04/02 11:56:25 by mkling            #+#    #+#             */
-/*   Updated: 2025/04/02 11:59:10 by mkling           ###   ########.fr       */
+/*   Updated: 2025/04/02 12:42:24 by mkling           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -67,10 +67,13 @@ int	blend(int color1, int color2, float ratio)
 
 void	paint_pixel_blend(t_img *img, int x, int y, int color)
 {
-	int	prev_color;
+	int		prev_color;
+	t_pix	pixel;
 
 	if (!is_in_window(x, y))
 		return ;
-	prev_color = read_pixel(img, WIN_WIDTH, WIN_HEIGHT, x, y);
+	pixel.x = x;
+	pixel.y = y;
+	prev_color = read_pixel(img, WIN_WIDTH, WIN_HEIGHT, pixel);
 	paint_pixel(img, x, y, blend(prev_color, color, 0.7));
 }

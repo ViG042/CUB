@@ -257,7 +257,7 @@ int		get_green(int color);
 int		get_blue(int color);
 int		encode_rgb(t_byte red, t_byte green, t_byte blue);
 void	paint_pixel(t_img *img, int x, int y, int color);
-int		read_pixel(t_img *img, int img_width, int img_height, int x, int y);
+int		read_pixel(t_img *img, int img_width, int img_height, t_pix pixel);
 void	paint_pixel_blend(t_img *img, int x, int y, int color);
 void	paint_background(t_img *img, int color);
 void	paint_line(t_pt start, t_pt end, t_cub *cub);

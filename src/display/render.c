@@ -6,7 +6,7 @@
 /*   By: mkling <mkling@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/03/03 14:07:58 by mkling            #+#    #+#             */
-/*   Updated: 2025/03/31 08:34:08 by mkling           ###   ########.fr       */
+/*   Updated: 2025/04/02 12:41:18 by mkling           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -37,23 +37,26 @@ void	paint_pixel(t_img *img, int x, int y, int color)
 	}
 }
 
-int	read_pixel(t_img *img, int img_width, int img_height, int x, int y)
+int	read_pixel(t_img *img, int img_width, int img_height, t_pix pixel)
 {
-	char	*pixel;
+	char	*text_pix;
 	int		color;
 	int		i;
 
-	if (x < 0 || y < 0 || x > img_width || y > img_height)
+	if (pixel.x < 0 || pixel.y < 0
+		|| pixel.x > img_width || pixel.y > img_height)
 		return (TRANSPARENT);
 	color = 0;
-	pixel = img->address + (y * img->line_len + x * (img->bit_per_pixel / 8));
+	text_pix = img->address + (pixel.y * img->line_len + pixel.x
+		* (img->bit_per_pixel / 8));
 	i = 0;
 	while (i < img->bit_per_pixel)
 	{
 		if (img->endian != 0)
-			color |= (unsigned char)(*pixel++) << (img->bit_per_pixel - 8 - i);
+			color |= (unsigned char)(*text_pix++)
+				<< (img->bit_per_pixel - 8 - i);
 		else
-			color |= (unsigned char)(*pixel++) << i;
+			color |= (unsigned char)(*text_pix++) << i;
 		i += 8;
 	}
 	return (color);

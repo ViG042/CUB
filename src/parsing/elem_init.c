@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   elem_init.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: vgodoy <vgodoy@student.42.fr>              +#+  +:+       +#+        */
+/*   By: mkling <mkling@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/04/02 11:45:33 by vgodoy            #+#    #+#             */
-/*   Updated: 2025/04/02 11:45:34 by vgodoy           ###   ########.fr       */
+/*   Updated: 2025/04/02 12:44:18 by mkling           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -58,7 +58,6 @@ void	elem_init(t_cub *cub)
 			cub->elem[type].texture.mlx_img = mlx_xpm_file_to_image(cub->mlx,
 					path, &cub->elem[type].width, &cub->elem[type].height);
 		}
-		printf("elem is %p\n", cub->elem[type].texture.mlx_img);
 		if (cub->elem[type].texture.mlx_img)
 			init_image_address(&cub->elem[type].texture);
 		else

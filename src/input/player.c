@@ -6,7 +6,7 @@
 /*   By: mkling <mkling@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/03/03 18:58:14 by mkling            #+#    #+#             */
-/*   Updated: 2025/03/31 11:23:52 by mkling           ###   ########.fr       */
+/*   Updated: 2025/04/02 12:20:24 by mkling           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -52,7 +52,8 @@ static void	paint_minimap(t_img *img, t_map *map)
 void	update_player_cursor(t_cub *cub)
 {
 	paint_minimap(&cub->visual, cub->map);
-	orient_cursor(cub->player.cursor, cub->player.map_pt, cub->player.angle, cub->map->cursor_size);
+	orient_cursor(cub->player.cursor, cub->player.map_pt,
+		cub->player.angle, cub->map->cursor_size);
 	paint_triangle(&cub->visual, cub->player.cursor, WHITE);
 }
 

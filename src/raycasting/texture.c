@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   texture.c                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: vgodoy <vgodoy@student.42.fr>              +#+  +:+       +#+        */
+/*   By: mkling <mkling@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/04/02 11:49:36 by vgodoy            #+#    #+#             */
-/*   Updated: 2025/04/02 11:49:37 by vgodoy           ###   ########.fr       */
+/*   Updated: 2025/04/02 12:43:36 by mkling           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -27,8 +27,8 @@ int	get_color_from_elem(t_hit *block, t_elem *elem, t_pix *pixel)
 	if (block->type == D)
 		texture_pix.y -= elem->height * block->tile->state;
 	if (elem->texture.mlx_img)
-		return (read_pixel(&elem->texture, elem->width,
-				elem->height, texture_pix.x, texture_pix.y));
+		return (read_pixel(&elem->texture, elem->width, elem->height,
+				texture_pix));
 	if (texture_pix.y < 0 || texture_pix.y > elem->height)
 		return (TRANSPARENT);
 	else
