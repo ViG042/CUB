@@ -6,7 +6,7 @@
 /*   By: mkling <mkling@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/04/02 11:47:24 by vgodoy            #+#    #+#             */
-/*   Updated: 2025/04/02 11:52:43 by mkling           ###   ########.fr       */
+/*   Updated: 2025/04/02 12:08:23 by mkling           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,10 +20,7 @@ void	find_ray_angle(t_ray *ray, float angle, int column)
 	ray->angle_deg = 2 * column / (float)WIN_WIDTH - 1;
 	ray->angle_deg *= FIELD_OF_VIEW / 2;
 	ray->angle_deg += angle;
-	if (ray->angle_deg < 0)
-		ray->angle_deg += 360;
-	else if (ray->angle_deg >= 360)
-		ray->angle_deg -= 360;
+	ray->angle_deg = fix_deg_angle(ray->angle_deg);
 	ray->angle_rad = fabs(ray->angle_deg * (PI / 180.0));
 }
 
