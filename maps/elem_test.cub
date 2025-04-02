@@ -4,7 +4,7 @@ WE ./xpms/vinebrick.xpm
 EA ./xpms/whitebrick.xpm
 F ./path_to_the_floor_texture
 C ./path_to_the_ceiling_texture
-D ./xpms/metaldoor.xpm
+D ./xpms/title.xpm
 
 1111111111111111111111111
 1000000000110000000000001

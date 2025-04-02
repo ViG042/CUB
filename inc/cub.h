@@ -110,8 +110,8 @@ typedef struct s_image
 typedef struct s_map
 {
 	char	*name;
-	char	**array;//free lines and array
-	char	**clean_map;//free only clean_map
+	char	**array;
+	char	**clean_map;
 	t_tile	**tiles;
 	int		width;
 	int		height;
@@ -257,7 +257,7 @@ int		get_green(int color);
 int		get_blue(int color);
 int		encode_rgb(t_byte red, t_byte green, t_byte blue);
 void	paint_pixel(t_img *img, int x, int y, int color);
-int		read_pixel(t_img *img, int img_width, int img_height, int x, int y);
+int		read_pixel(t_img *img, int img_width, int img_height, t_pix pixel);
 void	paint_pixel_blend(t_img *img, int x, int y, int color);
 void	paint_background(t_img *img, int color);
 void	paint_line(t_pt start, t_pt end, t_cub *cub);
@@ -281,7 +281,7 @@ t_pt	scale_point(t_pt pt, int scale);
 
 void	raycasting(t_cub *cub);
 void	define_collision_side(t_hit *block, t_ray *ray);
-void	identify_block(t_hit *block, t_ray *ray, t_map *map, t_pt player_position);
+void	identify_block(t_hit *block, t_ray *ray, t_map *map, t_pt player_pos);
 void	paint_column(t_cub *cub, t_hit *block, int column, int is_last_block);
 void	paint_floor_and_ceiling(t_cub *cub, t_ray *ray, t_elem *elem, int column);
 void	debug_print(t_cub *cub, int pixel_column);
@@ -296,8 +296,8 @@ enum e_errcode
 	WRONG_ARG,
 	OPEN_FAIL,
 	READ_FAIL,
-	TOO_BIG,//
-	NO_SPRITE,//
+	TOO_BIG,
+	NO_SPRITE,
 	NOT_RECT,
 	UNKNOWN,
 	EMPTY_LINE,
@@ -310,10 +310,10 @@ enum e_errcode
 	DBL_ELEM,
 	ELEM_MSSG,
 	NO_MAP,
-	MAP_NOT_VALID,//
+	MAP_NOT_VALID,
 	NO_PLAYER,
 	TOO_MANY_PLAYER,
-	BAD_WALLING,//
+	BAD_WALLING,
 	ASTRONAUT,
 	DEADLY_PATH,
 	DEADLY_DOOR,

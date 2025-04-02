@@ -1,3 +1,15 @@
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   dda.c                                              :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: vgodoy <vgodoy@student.42.fr>              +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2025/04/02 11:47:24 by vgodoy            #+#    #+#             */
+/*   Updated: 2025/04/02 12:14:40 by vgodoy           ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
+
 #include "cub.h"
 
 /*1st ligne gives a value from -1 to 1
@@ -101,7 +113,6 @@ void	raycasting(t_cub *cub)
 		digital_differential_analyser(&ray, cub->map, cub->player.grid_pt);
 		identify_block(&ray.hit[ray.hit_count], &ray, cub->map,
 			cub->player.grid_pt);
-		debug_print(cub, column);
 		layer_index = ray.hit_count - 1;
 		// paint_sky(&cub->visual, &cub->elem[WE], &cub->player);
 		paint_floor_and_ceiling(cub, &ray, &cub->elem[WE], column);
@@ -114,4 +125,3 @@ void	raycasting(t_cub *cub)
 		column++;
 	}
 }
-

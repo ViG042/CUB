@@ -6,7 +6,7 @@
 /*   By: mkling <mkling@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/03/03 14:07:08 by mkling            #+#    #+#             */
-/*   Updated: 2025/04/02 11:45:52 by mkling           ###   ########.fr       */
+/*   Updated: 2025/04/02 12:50:30 by mkling           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,7 +23,9 @@ static void	free_elem(t_cub *cub)
 		{
 			free(cub->elem[i].description);
 			if (cub->elem[i].texture.mlx_img)
+			{
 				mlx_destroy_image(cub->mlx, cub->elem[i].texture.mlx_img);
+			}
 		}
 		i++;
 	}

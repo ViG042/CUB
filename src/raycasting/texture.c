@@ -1,3 +1,15 @@
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   texture.c                                          :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: mkling <mkling@student.42.fr>              +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2025/04/02 11:49:36 by vgodoy            #+#    #+#             */
+/*   Updated: 2025/04/02 12:51:17 by mkling           ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
+
 #include "cub.h"
 
 int	get_color_in_texture_at_pixel(t_elem *elem, t_pix *pixel)
@@ -26,7 +38,13 @@ int	get_color_for_block(t_hit *block, t_elem *elem, t_pix *pixel)
 				/ (float)block->height * (float)elem->width);
 	if (block->type == D)
 		texture_pix.y -= elem->height * block->tile->state;
-	return (get_color_in_texture_at_pixel(elem, &texture_pix));
+	if (elem->texture.mlx_img)
+		return (read_pixel(&elem->texture, elem->width, elem->height,
+				texture_pix));
+	if (texture_pix.y < 0 || texture_pix.y > elem->height)
+		return (TRANSPARENT);
+	else
+		return (elem->color);
 }
 
 void	paint_block(t_cub *cub, t_hit *block, int column, int row)

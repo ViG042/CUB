@@ -1,3 +1,15 @@
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   block.c                                            :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: vgodoy <vgodoy@student.42.fr>              +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2025/04/02 11:47:14 by vgodoy            #+#    #+#             */
+/*   Updated: 2025/04/02 11:47:15 by vgodoy           ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
+
 #include "cub.h"
 
 void	set_dist_to_block(t_hit *block, t_ray *ray)
@@ -32,7 +44,7 @@ void	set_block_height_top_end_pixels(t_hit *block)
 		block->end_pixel = WIN_HEIGHT;
 }
 
-void	identify_block(t_hit *block, t_ray *ray, t_map *map, t_pt player_position)
+void	identify_block(t_hit *block, t_ray *ray, t_map *map, t_pt player_pos)
 {
 	block->tile = &map->tiles[ray->y][ray->x];
 	block->type = map->tiles[ray->y][ray->x].type;
@@ -43,6 +55,6 @@ void	identify_block(t_hit *block, t_ray *ray, t_map *map, t_pt player_position)
 	define_collision_side(block, ray);
 	set_dist_to_block(block, ray);
 	set_block_height_top_end_pixels(block);
-	set_texture_offset(block, ray, player_position);
+	set_texture_offset(block, ray, player_pos);
 	ray->hit_count++;
 }

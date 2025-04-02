@@ -1,3 +1,15 @@
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   shading.c                                          :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: mkling <mkling@student.42.fr>              +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2025/04/02 11:56:50 by mkling            #+#    #+#             */
+/*   Updated: 2025/04/02 11:57:25 by mkling           ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
+
 #include "cub.h"
 
 float	fclamp(float value, float min, float max)
@@ -20,7 +32,7 @@ int	shade_left_right(t_hit *block, int color)
 	angle = fmod(angle, 180);
 	angle -= 90;
 	angle = fabs(angle);
-	angle /= 90; //range of 0 to 1
+	angle /= 90;
 	angle = angle / 2 + 0.5;
 	distance = 1 / block->distance;
 	if (distance > 1)

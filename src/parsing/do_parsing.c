@@ -5,8 +5,8 @@
 /*                                                    +:+ +:+         +:+     */
 /*   By: mkling <mkling@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2025/03/03 12:33:27 by mkling            #+#    #+#             */
-/*   Updated: 2025/04/02 11:37:17 by mkling           ###   ########.fr       */
+/*   Created: 2025/04/02 11:44:35 by vgodoy            #+#    #+#             */
+/*   Updated: 2025/04/02 12:51:02 by mkling           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -64,6 +64,7 @@ void	parse_file(t_cub *cub)
 	print_init_elem(cub);
 	map_clean(cub);
 	print_map(cub->map->clean_map);
+	printf("\n🚀 Map has been cleaned !\n\n");
 	map_check(cub);
 	set_width_and_height(cub);
 	init_angles_offsets(cub);
