@@ -6,7 +6,7 @@
 /*   By: mkling <mkling@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/03/03 14:36:06 by mkling            #+#    #+#             */
-/*   Updated: 2025/03/28 10:55:54 by mkling           ###   ########.fr       */
+/*   Updated: 2025/04/02 10:06:31 by mkling           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -55,9 +55,9 @@ void	capture_mouse(int x, int y, t_cub *cub)
 	if (y < 0)
 		mlx_mouse_move(cub->mlx, cub->win, x, 0);
 	if (x > WIN_WIDTH)
-		mlx_mouse_move(cub->mlx, cub->win, WIN_WIDTH, y);
+		mlx_mouse_move(cub->mlx, cub->win, WIN_WIDTH - 1, y);
 	if (y > WIN_HEIGHT)
-		mlx_mouse_move(cub->mlx, cub->win, x, WIN_HEIGHT);
+		mlx_mouse_move(cub->mlx, cub->win, x, WIN_HEIGHT - 1);
 }
 
 int	handle_mouse(int x, int y, t_cub *cub)
