@@ -6,7 +6,7 @@
 /*   By: mkling <mkling@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/03/03 14:07:58 by mkling            #+#    #+#             */
-/*   Updated: 2025/04/02 12:41:18 by mkling           ###   ########.fr       */
+/*   Updated: 2025/04/02 12:47:08 by mkling           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -48,7 +48,7 @@ int	read_pixel(t_img *img, int img_width, int img_height, t_pix pixel)
 		return (TRANSPARENT);
 	color = 0;
 	text_pix = img->address + (pixel.y * img->line_len + pixel.x
-		* (img->bit_per_pixel / 8));
+			* (img->bit_per_pixel / 8));
 	i = 0;
 	while (i < img->bit_per_pixel)
 	{
