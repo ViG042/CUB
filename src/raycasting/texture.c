@@ -113,11 +113,12 @@ void	paint_floor_and_ceiling(t_cub *cub, t_ray *ray, t_elem *elem, int column)
 	}
 }
 
-void	paint_column(t_cub *cub, t_hit *block, int column, int /*is_last_block*/)
+void	paint_column(t_cub *cub, t_hit *block, int column, int is_last_block)
 {
 	int	row;
 
 	row = 0;
+	(void)is_last_block;
 	row = block->top_pixel;
 	while (row < block->end_pixel)
 		paint_block(cub, block, column, row++);
