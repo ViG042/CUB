@@ -6,7 +6,7 @@
 /*   By: mkling <mkling@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/03/03 18:04:44 by mkling            #+#    #+#             */
-/*   Updated: 2025/03/31 10:49:31 by mkling           ###   ########.fr       */
+/*   Updated: 2025/04/02 11:57:47 by mkling           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -69,9 +69,3 @@ void	init_minimap(t_map *map)
 	map->offset_y = (int)(map->scale);
 	map->cursor_size = map->tile_size * 0.8;
 }
-
-
-
-
-
-
