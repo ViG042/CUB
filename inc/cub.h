@@ -282,7 +282,6 @@ void	raycasting(t_cub *cub);
 void	define_collision_side(t_hit *block, t_ray *ray);
 void	identify_block(t_hit *block, t_ray *ray, t_map *map, t_pt player_position);
 void	paint_column(t_cub *cub, t_hit *block, int column, int is_last_block);
-void	debug_print(t_cub *cub, int pixel_column);
 
 /* MATH */
 

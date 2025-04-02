@@ -60,8 +60,7 @@ FUNC_PAIN	=	color.c \
 FUNC_RAY 	=	dda.c \
 				texture.c \
 				block.c \
-				side.c \
-				debug.c
+				side.c
 
 FUNC		=	$(addprefix $(DIR_DISP)/, $(FUNC_DISP)) \
 				$(addprefix $(DIR_ERR)/, $(FUNC_ERR)) \

@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   dda.c                                              :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: vgodoy <vgodoy@student.42.fr>              +#+  +:+       +#+        */
+/*   By: mkling <mkling@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/04/02 11:47:24 by vgodoy            #+#    #+#             */
-/*   Updated: 2025/04/02 11:47:25 by vgodoy           ###   ########.fr       */
+/*   Updated: 2025/04/02 11:52:43 by mkling           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -113,7 +113,6 @@ void	raycasting(t_cub *cub)
 		digital_differential_analyser(&ray, cub->map, cub->player.grid_pt);
 		identify_block(&ray.hit[ray.hit_count], &ray, cub->map,
 			cub->player.grid_pt);
-		debug_print(cub, column);
 		layer_index = ray.hit_count - 1;
 		while (layer_index >= 0)
 		{
