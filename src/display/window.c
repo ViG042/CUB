@@ -44,7 +44,7 @@ void	init_display(t_cub *cub)
 	mlx_hook(cub->win, DestroyNotify, LeaveWindowMask, &success_exit, cub);
 	mlx_hook(cub->win, KeyPress, KeyPressMask, &handle_input_press, cub);
 	mlx_hook(cub->win, KeyRelease, KeyReleaseMask, &handle_input_release, cub);
-	// mlx_hook(cub->win, MotionNotify, PointerMotionMask, &handle_mouse, cub);
+	mlx_hook(cub->win, MotionNotify, PointerMotionMask, &handle_mouse, cub);
 	mlx_loop_hook(cub->mlx, &game_loop, (void *)cub);
 }
 

@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   loop.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: alex <alex@student.42.fr>                  +#+  +:+       +#+        */
+/*   By: mkling <mkling@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/03/09 00:20:40 by alex              #+#    #+#             */
-/*   Updated: 2025/04/01 21:32:57 by alex             ###   ########.fr       */
+/*   Updated: 2025/04/02 11:44:33 by mkling           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,15 +14,15 @@
 
 void	open_close_if_door(t_cub *cub, t_tile *tile, const t_pt *player)
 {
-	float	door_center_x;
-	float	door_center_y;
+	t_pt	door_mid;
 
 	if (tile->type != DOOR)
 		return ;
-	door_center_x = tile->x + 0.5;
-	door_center_y = tile->y + 0.5;
-	if ((player->x >= door_center_x - 1.5 && player->x <= door_center_x + 1.5)
-		&& (player->y >= door_center_y - 1.5 && player->y <= door_center_y + 1.5))
+	door_mid.x = tile->x + 0.5;
+	door_mid.y = tile->y + 0.5;
+	tile->state = 0;
+	if ((player->x >= door_mid.x - 1.5 && player->x <= door_mid.x + 1.5)
+		&& (player->y >= door_mid.y - 1.5 && player->y <= door_mid.y + 1.5))
 		tile->state += 1 * cub->display.delta_time;
 	else
 		tile->state -= 1 * cub->display.delta_time;
@@ -34,14 +34,14 @@ void	update_tiles(t_cub *cub)
 	int		y;
 	int		x;
 
-	x = 0;
 	y = 0;
 	while (y < cub->map->height)
 	{
 		x = 0;
 		while (x < cub->map->width)
 		{
-			open_close_if_door(cub, &cub->map->tiles[y][x], &cub->player.grid_pt);
+			open_close_if_door(cub, &cub->map->tiles[y][x],
+				&cub->player.grid_pt);
 			x++;
 		}
 		y++;
@@ -50,18 +50,22 @@ void	update_tiles(t_cub *cub)
 
 static void	rotations(t_cub *cub)
 {
+	float	mouse_from_center;
+	float	middle_of_window;
+
 	if (cub->keys.left)
 		cub->player.angle_deg -= ROT_SPEED * cub->display.delta_time;
 	if (cub->keys.right)
 		cub->player.angle_deg += ROT_SPEED * cub->display.delta_time;
-	// if (cub->keys.mouse_x > cub->display.mid_x + 30)
-	// 	cub->player.angle_deg -= ROT_SPEED * cub->display.delta_time;
-	// if (cub->keys.mouse_x < cub->display.mid_x - 30)
-	// 	cub->player.angle_deg += ROT_SPEED * cub->display.delta_time;
+	middle_of_window = WIN_WIDTH / 2;
+	mouse_from_center = middle_of_window - cub->keys.mouse_x;
+	mouse_from_center = mouse_from_center / middle_of_window;
+	cub->player.angle_deg -= mouse_from_center * ROT_SPEED
+		* cub->display.delta_time;
 	if (cub->player.angle_deg > 360)
 		cub->player.angle_deg = cub->player.angle_deg / 360.00;
-	if (cub->player.angle_deg < 0)
-		cub->player.angle_deg = 360 - cub->player.angle_deg;
+	if (cub->player.angle_deg < -360)
+		cub->player.angle_deg = cub->player.angle_deg / 360.00;
 }
 
 int	game_loop(void	*voidedcub)

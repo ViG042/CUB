@@ -99,14 +99,16 @@ void	raycasting(t_cub *cub)
 		find_offset_from_player_to_tile_edge(&ray, cub->player.grid_pt);
 		find_dist_first_x_and_y_intersect(&ray, cub->player.grid_pt);
 		digital_differential_analyser(&ray, cub->map, cub->player.grid_pt);
-		identify_block(&ray.hit[ray.hit_count], &ray, cub->map, cub->player.grid_pt);
+		identify_block(&ray.hit[ray.hit_count], &ray, cub->map,
+			cub->player.grid_pt);
 		debug_print(cub, column);
 		layer_index = ray.hit_count - 1;
 		// paint_sky(&cub->visual, &cub->elem[WE], &cub->player);
 		paint_floor_and_ceiling(cub, &ray, &cub->elem[WE], column);
 		while (layer_index >= 0)
 		{
-			paint_column(cub, &ray.hit[layer_index], column, layer_index == ray.hit_count - 1);
+			paint_column(cub, &ray.hit[layer_index], column,
+				layer_index == ray.hit_count - 1);
 			layer_index--;
 		}
 		column++;
