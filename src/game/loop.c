@@ -6,7 +6,7 @@
 /*   By: mkling <mkling@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/03/09 00:20:40 by alex              #+#    #+#             */
-/*   Updated: 2025/04/02 13:03:56 by mkling           ###   ########.fr       */
+/*   Updated: 2025/04/02 13:07:42 by mkling           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -63,11 +63,7 @@ static void	rotations(t_cub *cub)
 		mouse_from_center = mouse_from_center / middle_of_window;
 		cub->player.angle -= mouse_from_center * ROT_SPEED
 		* cub->display.delta_time;
-	}
-	if (cub->player.angle > 360)
-		cub->player.angle = cub->player.angle / 360.00;
-	if (cub->player.angle < -360)
-		cub->player.angle = cub->player.angle / 360.00;
+	cub->player.angle = fix_deg_angle(cub->player.angle);
 }
 
 int	game_loop(void	*voidedcub)

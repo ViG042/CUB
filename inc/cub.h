@@ -287,6 +287,7 @@ void	init_angles_offsets(t_cub *cub);
 void	rotate_point(t_pt *point, t_pt *center, float angle);
 void	init_minimap(t_map *map);
 t_pt	scale_point(t_pt pt, int scale);
+float	fix_deg_angle(float deg_angle);
 
 /* RAYCASTING */
 

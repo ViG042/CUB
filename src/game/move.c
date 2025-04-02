@@ -6,11 +6,19 @@
 /*   By: mkling <mkling@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/03/09 18:12:25 by mkling            #+#    #+#             */
-/*   Updated: 2025/03/31 09:14:59 by mkling           ###   ########.fr       */
+/*   Updated: 2025/04/02 12:09:56 by mkling           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "cub.h"
+
+float	fix_deg_angle(float deg_angle)
+{
+	deg_angle = fmod(deg_angle, 360.0);
+	if (deg_angle < 0)
+		deg_angle = deg_angle + 360.0;
+	return (deg_angle);
+}
 
 static void	init_direction(t_cub *cub, t_pt *direction)
 {
