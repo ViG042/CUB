@@ -1,13 +1,9 @@
-
-SO ./working_so_long/xpms/coin.xpm
-
-EA ./working_so_long/xpms/eaux.xpm
+NO  220,100,50
+SO ./xpms/holebrick.xpm
+WE ./xpms/vinebrick.xpm
+EA ./xpms/whitebrick.xpm
 F 220,100,0
-C working_so_long/xpms/bou1.xpm
-NO   220,100,50dfgh
-
-WE ./working_so_long/xpms/e000.xpm
-
+D ./xpms/title.xpm
 
         1111111111111111111111111111
    11      1000000000110000000000001
