@@ -6,7 +6,7 @@
 /*   By: vgodoy <vgodoy@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/04/02 11:45:29 by vgodoy            #+#    #+#             */
-/*   Updated: 2025/04/02 11:45:30 by vgodoy           ###   ########.fr       */
+/*   Updated: 2025/04/02 12:10:32 by vgodoy           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -36,11 +36,20 @@ int	is_elem(char *line)
 	return (0);
 }
 
-void	copy_elem(t_cub *cub, char *line, int type, char *temp, int start)
+void	copy_elem(t_cub *cub, char *line, int *three)
 {
-	int	i;
+	int		i;
+	int		type;
+	int		start;
+	int		size;
+	char	*temp;
 
 	i = 0;
+	type = three[0];
+	start = three[1];
+	size = three[2];
+	temp = malloc(size + 1);
+	exit_if(!temp, MALLOC_FAIL, cub);
 	while (line[start + i] != ' ' && line[start + i] != '\n'
 		&& line[start + i] != '\0' )
 	{
@@ -55,7 +64,7 @@ void	load_elem(t_cub *cub, char *line, int type)
 {
 	int		i;
 	int		size;
-	char	*temp;
+	int		three[3];
 
 	i = 0;
 	size = 0;
@@ -70,12 +79,12 @@ void	load_elem(t_cub *cub, char *line, int type)
 		&& line[i + size] != '\0' )
 		size++;
 	exit_if(size == 0, EMPTY_ELEM, cub);
-	temp = malloc(size + 1);
-	exit_if(!temp, MALLOC_FAIL, cub);
-	copy_elem(cub, line, type, temp, i);
+	three[0] = type;
+	three[1] = i;
+	three[2] = size;
+	copy_elem(cub, line, three);
 }
 
-//eventuellement a regarder les elems lorsque l'on commence a voir la map
 void	elem_extract(t_cub *cub)
 {
 	int	i;
