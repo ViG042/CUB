@@ -5,7 +5,8 @@
     "cub.h": "c",
     "cmath": "c",
     "libft.h": "c",
-    "utility": "c"
+    "utility": "c",
+    "limits": "c"
   },
   "C_Cpp_Runner.msvcBatchPath": "",
   "C_Cpp_Runner.cCompilerPath": "gcc",

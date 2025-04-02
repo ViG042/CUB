@@ -6,7 +6,7 @@
 /*   By: mkling <mkling@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/03/03 18:04:44 by mkling            #+#    #+#             */
-/*   Updated: 2025/04/02 11:57:47 by mkling           ###   ########.fr       */
+/*   Updated: 2025/04/02 13:12:39 by mkling           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,6 +19,7 @@ static t_tile	turn_to_tile(t_cub *cub, int row, int column)
 	tile.y = row;
 	tile.x = column;
 	tile.type = 0;
+	tile.state = 0;
 	tile.type = cub->map->clean_map[row][column];
 	if (tile.type == 'W' || tile.type == 'E'
 		|| tile.type == 'N' || tile.type == 'S')

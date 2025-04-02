@@ -6,7 +6,7 @@
 /*   By: mkling <mkling@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/03/09 00:20:40 by alex              #+#    #+#             */
-/*   Updated: 2025/04/02 13:07:42 by mkling           ###   ########.fr       */
+/*   Updated: 2025/04/02 13:13:20 by mkling           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,7 +25,10 @@ void	open_close_if_door(t_cub *cub, t_tile *tile, const t_pt *player)
 		tile->state += 1 * cub->display.delta_time;
 	else
 		tile->state -= 1 * cub->display.delta_time;
-	tile->state = fclamp(tile->state, 0, 1);
+	if (tile->state < 0)
+		tile->state = 0;
+	if (tile->state > 1)
+		tile->state = 1;
 }
 
 void	update_tiles(t_cub *cub)
@@ -62,7 +65,8 @@ static void	rotations(t_cub *cub)
 		mouse_from_center = middle_of_window - cub->keys.mouse_x;
 		mouse_from_center = mouse_from_center / middle_of_window;
 		cub->player.angle -= mouse_from_center * ROT_SPEED
-		* cub->display.delta_time;
+			* cub->display.delta_time;
+	}
 	cub->player.angle = fix_deg_angle(cub->player.angle);
 }
 

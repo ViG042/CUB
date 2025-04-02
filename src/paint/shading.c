@@ -6,20 +6,11 @@
 /*   By: mkling <mkling@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/04/02 11:56:50 by mkling            #+#    #+#             */
-/*   Updated: 2025/04/02 11:57:25 by mkling           ###   ########.fr       */
+/*   Updated: 2025/04/02 13:09:05 by mkling           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "cub.h"
-
-float	fclamp(float value, float min, float max)
-{
-	if (value < min)
-		return (min);
-	if (value > max)
-		return (max);
-	return (value);
-}
 
 int	shade_left_right(t_hit *block, int color)
 {

@@ -6,7 +6,7 @@
 /*   By: mkling <mkling@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/04/02 12:47:57 by mkling            #+#    #+#             */
-/*   Updated: 2025/04/02 12:48:32 by mkling           ###   ########.fr       */
+/*   Updated: 2025/04/02 13:09:38 by mkling           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -295,10 +295,6 @@ void	raycasting(t_cub *cub);
 void	define_collision_side(t_hit *block, t_ray *ray);
 void	identify_block(t_hit *block, t_ray *ray, t_map *map, t_pt player_pos);
 void	paint_column(t_cub *cub, t_hit *block, int column, int is_last_block);
-
-/* MATH */
-
-float	fclamp(float value, float min, float max);
 
 enum e_errcode
 {
