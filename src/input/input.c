@@ -6,7 +6,7 @@
 /*   By: mkling <mkling@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/03/03 14:36:06 by mkling            #+#    #+#             */
-/*   Updated: 2025/04/02 10:06:31 by mkling           ###   ########.fr       */
+/*   Updated: 2025/04/02 10:29:14 by mkling           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -48,27 +48,9 @@ int	handle_input_release(int keysym, t_cub *cub)
 	return (0);
 }
 
-void	capture_mouse(int x, int y, t_cub *cub)
-{
-	if (x < 0)
-		mlx_mouse_move(cub->mlx, cub->win, 0, y);
-	if (y < 0)
-		mlx_mouse_move(cub->mlx, cub->win, x, 0);
-	if (x > WIN_WIDTH)
-		mlx_mouse_move(cub->mlx, cub->win, WIN_WIDTH - 1, y);
-	if (y > WIN_HEIGHT)
-		mlx_mouse_move(cub->mlx, cub->win, x, WIN_HEIGHT - 1);
-}
-
 int	handle_mouse(int x, int y, t_cub *cub)
 {
-	cub->keys.mouse_x = cub->display.mid_x;
-	cub->keys.mouse_y = cub->display.mid_y;
-	// printf("mouse is x=[%d] y=[%d]\n", x, y);
-	capture_mouse(x, y, cub);
 	cub->keys.mouse_x = x;
 	cub->keys.mouse_y = y;
 	return (0);
 }
-
-
